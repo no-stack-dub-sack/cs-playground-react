@@ -1,0 +1,166 @@
+.main.right-pane {
+  width: 69.5%;
+  height: 100vh;
+}
+
+.sidebar.left-pane {
+  top: 0;
+  left: 0;
+  width: 30%;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-right: none;
+  height: 100vh;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar--menu.top-pane {
+  overflow-y: auto;
+  height: 70%;
+  flex: auto;
+  user-select: none;
+}
+
+.sidebar--output.bottom-pane {
+  height: 30%;
+  margin: 0;
+}
+
+.divider {
+  position: relative;
+  background: darkgrey;
+}
+
+.vertical.divider {
+  width: .5%;
+  cursor: col-resize;
+}
+
+.horizontal.divider {
+  height: 1%;
+  cursor: row-resize;
+}
+
+.sidebar--menu--header {
+  cursor: default;
+  text-align: center;
+}
+
+.sidebar--menu--header,
+.sidebar--menu--sub-header,
+.sidebar--menu--detail {
+  cursor: pointer;
+  border: 1px solid black;
+  outline: none;
+}
+
+.sidebar--menu--sub-header:hover,
+.sidebar--menu--detail:hover {
+  background: rgba(39, 145, 152, 0.52);
+}
+
+.sidebar--menu:last-child {
+  border: 2px solid black;
+}
+
+.sidebar--menu--header,
+.sidebar--menu--sub-header {
+  font-size: 20px;
+  padding: 2px 0 2px 10px;
+}
+
+.sidebar--menu--sub-header.sub,
+.sidebar--menu--detail.sub {
+  padding-left: 30px;
+}
+
+.sidebar--menu--detail {
+  font-size: 16px;
+  padding: 5px;
+  margin: 0;
+}
+
+.sidebar--output--messages {
+  box-sizing: border-box;
+  height: 100%;
+  /*border: 2px solid rgb(14, 115, 45);*/
+  background: rgb(27, 29, 26);
+  color: rgb(7, 187, 4);
+  font-family: monospace;
+  overflow-y: auto;
+}
+
+.sidebar--output--messages--message {
+  white-space: pre;
+}
+
+.sidebar--output--messages--message:last-of-type {
+  margin-bottom: 5px;
+}
+
+.sidebar--output--messages--message {
+  margin: 0;
+  padding: 5px 0 0 8px;
+}
+
+.sidebar--output--message:last-of-type {
+  padding-bottom: 5px;
+}
+
+.sidebar--output--messages--default-message {
+  margin: 0;
+  padding: 5px 0 0 8px;
+  color: rgb(120, 117, 119);
+}
+
+.main--controls {
+  height: 50px;
+}
+
+.main--controls--button {
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-right: 2px solid black;
+  background: rgba(39, 145, 152, 0.52);
+  color: rgb(51, 43, 57);
+  height: 100%;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.main--controls--button:active {
+  color: white;
+  background: rgb(39, 145, 152);
+}
+
+.main--controls--button.run-code {
+  width: 50%;
+}
+
+.main--controls--button.next,
+.main--controls--button.previous {
+  width: 25%;
+}
+
+.ReactCodeMirror {
+  height: calc(100vh - 50px);
+  margin: none;
+}
+
+.CodeMirror {
+  height: 100% !important;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid #d5d5d5 !important;
+}
+
+.cm-s-tomorrow-night-eighties .CodeMirror-activeline-background {
+  background: rgba(187, 141, 245, 0.1) !important;
+}
