@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CodeMirror from 'react-codemirror';
 import Quicksort from '../assets/seed/algorithms/Quicksort';
+import { updateCode } from '../actions/editor';
+import options from '../utils/editorConfig';
+
+// codemirror assets
 import 'codemirror/keymap/sublime';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/fold/foldcode';
@@ -16,46 +20,33 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/selection/active-line';
 import 'codemirror/theme/tomorrow-night-eighties.css';
 
-const options = {
-  mode:  "javascript",
-  indentUnit: 4,
-  foldGutter: true,
-  lineNumbers: true,
-  matchBrackets: true,
-  styleActiveLine: true,
-  autoCloseBrackets: true,
-  theme: 'tomorrow-night-eighties',
-  keyMap: 'sublime',
-  gutters: [
-    'CodeMirror-linenumbers',
-    'CodeMirror-foldgutter'
-  ]
-};
-
 class CodeMirrorRenderer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: Quicksort
+      snippet: this.props.snippet
     }
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.code !== this.props.code) {
-      this.setState({ code: this.props.code }, () => {
+    if (prevProps.snippet !== this.props.snippet) {
+      this.setState({ snippet: this.props.snippet }, () => {
         const codemirror = this.CodeMirror.getCodeMirror();
-        codemirror.setValue(this.state.code);
+        codemirror.setValue(this.state.snippet);
+        this.props.updateCode(this.state.snippet, true);
       });
     }
   }
   updateCode = (newCode) => {
-    this.setState({ code: newCode });
+    this.setState({ snippet: newCode }, () => {
+      this.props.updateCode(this.state.snippet, false);
+    });
   }
   render() {
     return (
       <CodeMirror
         ref={ref => this.CodeMirror = ref }
         options={options}
-        value={this.state.code}
+        value={this.state.snippet}
         onChange={this.updateCode}
       />
     );
@@ -64,8 +55,8 @@ class CodeMirrorRenderer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    code: state.snippets.code
+    snippet: state.snippets.code
   }
 }
 
-export default connect(mapStateToProps)(CodeMirrorRenderer);
+export default connect(mapStateToProps, { updateCode })(CodeMirrorRenderer);

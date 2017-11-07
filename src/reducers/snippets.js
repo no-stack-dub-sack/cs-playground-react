@@ -1,4 +1,9 @@
 import SnippetList from '../assets/codeRef';
+import {
+  SELECT_SNIPPET,
+  NEXT_SNIPPET,
+  PREVIOUS_SNIPPET
+} from '../actions/editor';
 
 const firstNode = SnippetList.fetchNode('Quicksort');
 
@@ -11,7 +16,7 @@ const initialState = {
 
 const snippets = (state = initialState, action) => {
   switch(action.type) {
-    case 'SELECT_SNIPPET': {
+    case SELECT_SNIPPET: {
       const node = SnippetList.fetchNode(action.id);
       return {
         id:   node.id,
@@ -20,7 +25,7 @@ const snippets = (state = initialState, action) => {
         next: node.next.id
       };
     }
-    case 'NEXT_SNIPPET': {
+    case NEXT_SNIPPET: {
       const node = SnippetList.fetchNode(state.next);
       return {
         id:   node.id,
@@ -29,7 +34,7 @@ const snippets = (state = initialState, action) => {
         next: node.next.id
       };
     }
-    case 'PREVIOUS_SNIPPET': {
+    case PREVIOUS_SNIPPET: {
       const node = SnippetList.fetchNode(state.prev);
       return {
         id:   node.id,

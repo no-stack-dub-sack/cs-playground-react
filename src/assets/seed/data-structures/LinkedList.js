@@ -41,7 +41,7 @@ class LinkedList {
 
     get size() {
         return length;
-    }@function
+    }
 
 
     add(el) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import resizePanes from './utils/resize';
+import shortid from 'shortid';
 import './App.css';
 
 import Menu from './components/sidebar/Menu';
@@ -23,7 +24,7 @@ class App extends Component {
     return [
       <aside
         className="sidebar left-pane"
-        key="aside"
+        key={shortid.generate()}
         ref={ref => this.leftPane = ref }>
         <Menu attachRef={ref => this.topPane = ref } />
         <Divider
@@ -34,10 +35,10 @@ class App extends Component {
       <Divider
         attachRef={ref => this.verticalDivider = ref }
         direction="vertical"
-        key="verticalDiv" />,
+        key={shortid.generate()} />,
       <main
         className="main right-pane"
-        key="main"
+        key={shortid.generate()}
         ref={ref => this.rightPane = ref }>
         <CodeMirrorRenderer className="main--editor" />
         <Controls />

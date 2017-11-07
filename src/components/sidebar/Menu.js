@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuMap from './MenuMap';
+import PropTypes from 'prop-types';
 
 import {
   SORTING_ALGOS_MENU,
@@ -35,6 +36,10 @@ const Menu = ({ attachRef }) => {
       </details>
     </section>
   );
+};
+
+Menu.propTypes = {
+  attachRef: PropTypes.func.isRequired
 };
 
 export default Menu;

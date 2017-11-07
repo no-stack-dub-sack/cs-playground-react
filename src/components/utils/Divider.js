@@ -11,7 +11,8 @@ const Divider = ({ attachRef, direction }) => {
 };
 
 Divider.propTypes = {
-  direction: PropTypes.oneOf(['horizontal', 'vertical'])
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  attachRef: PropTypes.func.isRequired
 };
 
 export default Divider;
