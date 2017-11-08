@@ -64,7 +64,7 @@ export default function() {
      *
      *
      */
-     
+
   // simple drag
   function sdrag(onDrag, onStop, direction) {
 
@@ -105,10 +105,10 @@ export default function() {
       if (e.currentTarget instanceof HTMLElement || e.currentTarget instanceof SVGElement) {
         dragging = true;
         var left = el.style.left
-          ? parseInt(el.style.left)
+          ? parseInt(el.style.left, 10)
           : 0;
         var top = el.style.top
-          ? parseInt(el.style.top)
+          ? parseInt(el.style.top, 10)
           : 0;
         startX = e.pageX - left;
         startY = e.pageY - top;

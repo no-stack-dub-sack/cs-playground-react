@@ -30,16 +30,18 @@
 
 .divider {
   position: relative;
-  background: darkgrey;
+  background-color: #a19c9c;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 
 .vertical.divider {
-  width: .5%;
+  width: 7px;
   cursor: col-resize;
 }
 
 .horizontal.divider {
-  height: 1%;
+  height: 7px;
   cursor: row-resize;
 }
 
@@ -85,7 +87,6 @@
 .sidebar--output--messages {
   box-sizing: border-box;
   height: 100%;
-  /*border: 2px solid rgb(14, 115, 45);*/
   background: rgb(27, 29, 26);
   color: rgb(7, 187, 4);
   font-family: monospace;
@@ -123,6 +124,7 @@
   display: inline-block;
   box-sizing: border-box;
   border: none;
+  border-radius: 0;
   border-right: 2px solid black;
   background: rgba(39, 145, 152, 0.52);
   color: rgb(51, 43, 57);

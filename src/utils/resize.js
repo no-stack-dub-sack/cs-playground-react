@@ -1,8 +1,11 @@
+import { HORIZONTAL_GRIP, VERTICAL_GRIP } from './grips';
+import styleListeners from './styleListeners';
+
 export default (
   leftPane,
   topPane,
   rightPane,
-  bottomPane, 
+  bottomPane,
   verticalDivider,
   horizontalDivider
 ) => {
@@ -58,16 +61,9 @@ export default (
     bottomPane.style.height = bottom + "%";
   }, null, "vertical");
 
-  verticalDivider.addEventListener('mousedown', function(e) {
-    e.target.style.background = '#279198';
-  });
+  // initialize grip styles:
+  horizontalDivider.style.backgroundImage = HORIZONTAL_GRIP;
+  verticalDivider.style.backgroundImage = VERTICAL_GRIP;
 
-  horizontalDivider.addEventListener('mousedown', function(e) {
-    e.target.style.background = '#279198';
-  });
-
-  window.addEventListener('mouseup', function(e) {
-    verticalDivider.style.background = 'darkgrey';
-    horizontalDivider.style.background = 'darkgrey';
-  });
+  styleListeners(horizontalDivider, verticalDivider);
 };
