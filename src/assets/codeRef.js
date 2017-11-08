@@ -21,35 +21,49 @@ import List from '../utils/List';
 
 const SnippetList = new List();
 
-// must retain order of sidebar menu
+// order of arrays determines order of sidebar menu:
 
-const CODE = [
-  // sorting algorithms:
-  { id: 'Quicksort', Quicksort },
-  { id: 'Mergesort', Mergesort },
-  { id: 'SelectionSort', SelectionSort },
-  { id: 'InsertionSort', InsertionSort },
-  { id: 'BubbleSort', BubbleSort },
-  { id: 'HeapSort', HeapSort },
-  { id: 'SortingAlgorithmBenchmarks', SortingAlgorithmBenchmarks },
-  // data structures:
-  { id: 'Stack', Stack },
-  { id: 'Queue', Queue },
-  { id: 'LinkedList', LinkedList },
-  { id: 'DoublyLinkedList', DoublyLinkedList },
-  { id: 'BinarySearchTree', BinarySearchTree },
-  { id: 'MaxHeap', MaxHeap },
-  { id: 'HashTable', HashTable },
-  // other algos:
-  { id: 'SumAllPrimes', SumAllPrimes },
-  { id: 'NoTwoConsecutiveChars', NoTwoConsecutiveChars },
-  { id: 'AnagramPalindrome', AnagramPalindrome },
-];
+export const CODE = {
+  SORTING_ALGOS: [
+    { title: 'Quicksort', Quicksort },
+    { title: 'Mergesort', Mergesort },
+    { title: 'Selection Sort', SelectionSort },
+    { title: 'Insertion Sort', InsertionSort },
+    { title: 'Bubble Sort', BubbleSort },
+    { title: 'Heap Sort', HeapSort },
+    { title: 'Sorting Algorithm Benchmarks', SortingAlgorithmBenchmarks },
+  ],
+  DATA_STRUCTURES: [
+    { title: 'Stack', Stack },
+    { title: 'Queue', Queue },
+    { title: 'Linked List', LinkedList },
+    { title: 'Doubly Linked List', DoublyLinkedList },
+    { title: 'Binary Search Tree', BinarySearchTree },
+    { title: 'Max Heap', MaxHeap },
+    { title: 'Hash Table', HashTable },
+  ],
+  EASY_ALGOS: [
+    { title: 'Sum All Primes', SumAllPrimes },
+    // { title: 'Is Palindrome', IsPalindrome },
+    // { title: 'Fizz Buzz', FizzBuzz },
+  ],
+  MODERATE_ALGOS: [
+    { title: 'No Two Consecutive Chars', NoTwoConsecutiveChars },
+    { title: 'Anagram Palindrome', AnagramPalindrome },
+    // { title: 'Sum Prime Factors', SumPrimeFactors },
+    // { title: 'Rotate An Image', RotateAnImage },
+  ]
+};
 
-CODE.forEach(el => {
-  SnippetList.add(el.id, el[el.id]);
-});
+for (let type in CODE) {
+  CODE[type].forEach(snippet => {
+    let id = snippet.title.replace(/\s/g, '');
+    SnippetList.add(id, snippet[id]);
+  });
+}
 
+/** make structure circular for
+circular navigation of snippets */
 SnippetList.makeCircular();
 
 export default SnippetList;

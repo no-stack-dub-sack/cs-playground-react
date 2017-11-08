@@ -14,6 +14,23 @@ class Controls extends Component {
       clear: false
     }
   }
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+  handleKeyPress = (e) => {
+    if (e.ctrlKey && e.keyCode === 13) {
+      this.runCode();
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 188) {
+      this.props.previousSnippet();
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 190) {
+      this.props.nextSnippet();
+    }
+  }
   runCode = () => {
     if (this.state.clear) {
       this.props.clearConsole();

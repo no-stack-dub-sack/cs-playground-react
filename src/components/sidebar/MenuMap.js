@@ -11,10 +11,10 @@ class MenuMap extends Component {
   renderItem = (item, i) => (
     <p
       className={`sidebar--menu--detail ${ this.props.xtraClass }`}
-      id={item.replace(/\s/g, '')}
+      id={item.title.replace(/\s/g, '')}
       key={shortid.generate()}
       onClick={this.handleClick}>
-      {item}
+      {item.title}
     </p>
   )
   render() {

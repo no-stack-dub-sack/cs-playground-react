@@ -1,13 +1,14 @@
 import React from 'react';
 import MenuMap from './MenuMap';
 import PropTypes from 'prop-types';
+import { CODE } from '../../assets/codeRef';
 
-import {
-  SORTING_ALGOS_MENU,
-  DATA_STRUCTURES_MENU,
-  EASY_ALGOS_MENU,
-  MODERATE_ALGOS_MENU
-} from '../../assets/menu';
+const {
+  SORTING_ALGOS,
+  DATA_STRUCTURES,
+  EASY_ALGOS,
+  MODERATE_ALGOS
+} = CODE;
 
 const Menu = ({ attachRef }) => {
   return (
@@ -17,21 +18,21 @@ const Menu = ({ attachRef }) => {
       </header>
       <MenuMap
         header="Sorting Algorithms"
-        items={SORTING_ALGOS_MENU} />
+        items={SORTING_ALGOS} />
       <MenuMap
         header="Data Structures"
-        items={DATA_STRUCTURES_MENU} />
+        items={DATA_STRUCTURES} />
       <details open>
         <summary className="sidebar--menu--sub-header">
           Algorithm Challenges
         </summary>
         <MenuMap
           header="Easy"
-          items={EASY_ALGOS_MENU}
+          items={EASY_ALGOS}
           xtraClass="sub" />
         <MenuMap
           header="Moderate"
-          items={MODERATE_ALGOS_MENU}
+          items={MODERATE_ALGOS}
           xtraClass="sub" />
       </details>
     </section>
