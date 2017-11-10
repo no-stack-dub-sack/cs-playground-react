@@ -25,40 +25,43 @@ const SnippetList = new List();
 
 export const CODE = {
   SORTING_ALGOS: [
-    { title: 'Quicksort', Quicksort },
-    { title: 'Mergesort', Mergesort },
-    { title: 'Selection Sort', SelectionSort },
-    { title: 'Insertion Sort', InsertionSort },
-    { title: 'Bubble Sort', BubbleSort },
-    { title: 'Heap Sort', HeapSort },
-    { title: 'Sorting Algorithm Benchmarks', SortingAlgorithmBenchmarks },
+    { title: 'Quicksort', seed: Quicksort.seed, solution: Quicksort.solution  },
+    { title: 'Mergesort', seed: Mergesort.seed, solution: Mergesort.solution  },
+    { title: 'Selection Sort', seed: SelectionSort.seed, solution: SelectionSort.solution  },
+    { title: 'Insertion Sort', seed: InsertionSort.seed, solution: InsertionSort.solution  },
+    { title: 'Bubble Sort', seed: BubbleSort.seed, solution: BubbleSort.solution  },
+    { title: 'Heap Sort', seed: HeapSort.seed, solution: HeapSort.solution  },
+    { title: 'Sorting Algorithm Benchmarks', seed: SortingAlgorithmBenchmarks.seed },
   ],
   DATA_STRUCTURES: [
-    { title: 'Stack', Stack },
-    { title: 'Queue', Queue },
-    { title: 'Linked List', LinkedList },
-    { title: 'Doubly Linked List', DoublyLinkedList },
-    { title: 'Binary Search Tree', BinarySearchTree },
-    { title: 'Max Heap', MaxHeap },
-    { title: 'Hash Table', HashTable },
+    // { title: 'Stack', seed: Stack.seed, solution: Stack.solution  },
+    // { title: 'Queue', seed: Queue.seed, solution: Queue.solution  },
+    // { title: 'Linked List', seed: LinkedList.seed, solution: LinkedList.solution  },
+    // { title: 'Doubly Linked List', seed: DoublyLinkedList.seed, solution: DoublyLinkedList.solution  },
+    // { title: 'Binary Search Tree', seed: BinarySearchTree.seed, solution: BinarySearchTree.solution  },
+    // { title: 'Max Heap', seed: MaxHeap.seed, solution: MaxHeap.solution  },
+    // { title: 'Hash Table', seed: HashTable.seed, solution: HashTable.solution  },
   ],
   EASY_ALGOS: [
-    { title: 'Sum All Primes', SumAllPrimes },
-    // { title: 'Is Palindrome', IsPalindrome },
-    // { title: 'Fizz Buzz', FizzBuzz },
+    { title: 'Sum All Primes', seed: SumAllPrimes.seed, solution: SumAllPrimes.solution  },
+    // { title: 'Is Palindrome', seed: IsPalindrome.seed, solution: IsPalindrome.solution  },
+    // { title: 'Fizz Buzz', seed: FizzBuzz.seed, solution: FizzBuzz.solution  },
   ],
   MODERATE_ALGOS: [
-    { title: 'No Two Consecutive Chars', NoTwoConsecutiveChars },
-    { title: 'Anagram Palindrome', AnagramPalindrome },
-    // { title: 'Sum Prime Factors', SumPrimeFactors },
-    // { title: 'Rotate An Image', RotateAnImage },
+    { title: 'No Two Consecutive Chars', seed: NoTwoConsecutiveChars.seed, solution: NoTwoConsecutiveChars.solution  },
+    { title: 'Anagram Palindrome', seed: AnagramPalindrome.seed, solution: AnagramPalindrome.solution  },
+    // { title: 'Sum Prime Factors', seed: SumPrimeFactors.seed, solution: SumPrimeFactors.solution  },
+    // { title: 'Rotate An Image', seed: RotateAnImage.seed, solution: RotateAnImage.solution  },
   ]
 };
 
 for (let type in CODE) {
   CODE[type].forEach(snippet => {
-    let id = snippet.title.replace(/\s/g, '');
-    SnippetList.add(id, snippet[id]);
+    SnippetList.add(
+      snippet.title.replace(/\s/g, ''),
+      snippet.seed,
+      snippet.solution
+    );
   });
 }
 

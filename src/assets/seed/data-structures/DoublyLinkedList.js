@@ -19,16 +19,16 @@ class Node {
  * @property {object} head Root element of collection
  * @property {object} tail Tail element of collection
  * @property {number} length The length of the list
- * @function peekHead @return {object} root element of collection
- * @function peekTail @return {object} tail element of collection
- * @function add @param {number|string} el Adds element to List
- * @function addAt @param {number} index @param {number|string} el Adds element at specific index
- * @function remove @param {number|string} el @return {number|string|null} removed element or null
- * @function removeAt @param {number} index @return {number|string|null} removed element at specific index or null
- * @function indexOf @param {number|string} el @return {number|null} index of a given element or null
- * @function elementAt @param {number} index @return {number|string|null} elementAt at specific index or null
- * @function isEmpty @return {bool}
- * @function size @return size of List
+ * @method peekHead @return {object} root element of collection
+ * @method peekTail @return {object} tail element of collection
+ * @method add @param {number|string} el Adds element to List
+ * @method addAt @param {number} index @param {number|string} el Adds element at specific index
+ * @method remove @param {number|string} el @return {number|string|null} removed element or null
+ * @method removeAt @param {number} index @return {number|string|null} removed element at specific index or null
+ * @method indexOf @param {number|string} el @return {number|null} index of a given element or null
+ * @method elementAt @param {number} index @return {number|string|null} elementAt at specific index or null
+ * @method isEmpty @return {bool}
+ * @method size @return size of List
  */
 
 class DoublyLinkedList {

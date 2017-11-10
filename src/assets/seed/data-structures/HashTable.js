@@ -2,10 +2,10 @@ export default
 `/**
  * @class Hash Table data structure
  * @property {object} collection
- * @function hasher @param {string} str The function that produces our hash keys
- * @function add @param {string} key @param {*} value The key value pair to add to the hash table
- * @function remove @param {string} key @return {*} Accepts an un-hashed key, removes and returns associated value
- * @function lookup @param {string} key @return {*} Accepts an un-hashed key, returns associated value
+ * @method hasher @param {string} str The function that produces our hash keys
+ * @method add @param {string} key @param {*} value The key value pair to add to the hash table
+ * @method remove @param {string} key @return {*} Accepts an un-hashed key, removes and returns associated value
+ * @method lookup @param {string} key @return {*} Accepts an un-hashed key, returns associated value
  */
 
  class HashTable {

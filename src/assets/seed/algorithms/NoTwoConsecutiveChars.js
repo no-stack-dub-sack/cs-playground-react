@@ -1,7 +1,6 @@
-export default
-`// No 2 Consecutive Characters Challenge:
-
-// Given a random string, return a new string containing all the
+export default {
+seed:
+`// Given a random string, return a new string containing all the
 // characters of the original string, but no 2 characters should
 // be consecutive. If such a string can't be created, return false.
 
@@ -16,7 +15,38 @@ export default
 /**
  * @function noTwoConsecutiveChars
  * @param {string} str The String to operate on
- * @return {string|bool} Rearranged string or false
+ * @return {(string|bool)} Rearranged string or false
+ */
+
+function noTwoConsecutiveChars(str) {
+
+    return str;
+}
+
+console.log(noTwoConsecutiveChars('aaba'));
+console.log(noTwoConsecutiveChars('aabba'));
+console.log(noTwoConsecutiveChars('aaaaaaabbbbcc'));
+console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
+console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
+console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd'));
+`,
+solution:
+`// Given a random string, return a new string containing all the
+// characters of the original string, but no 2 characters should
+// be consecutive. If such a string can't be created, return false.
+
+// Ex1.
+// Input: ABBCCD
+// Output: ABCBCD
+
+// Ex2.
+// Input: AAAB
+// Output: false
+
+/**
+ * @function noTwoConsecutiveChars
+ * @param {string} str The String to operate on
+ * @return {(string|bool)} Rearranged string or false
  */
 
 function noTwoConsecutiveChars(str) {
@@ -69,4 +99,5 @@ console.log(noTwoConsecutiveChars('aaaaaaabbbbcc'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd'));
-`;
+`
+};

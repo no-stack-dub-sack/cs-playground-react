@@ -16,15 +16,15 @@ class Node {
  * @class Singly-Linked List data structure
  * @property {object} headNode Root element of collection
  * @property {number} length The length of the list
- * @function head @return {object} root element of collection
- * @function size @return size of List
- * @function add @param {number|string} el Adds element to List
- * @function addAt @param {number} index @param {number|string} el Adds element at specific index
- * @function remove @param {number|string} el @return {number|string} removed element
- * @function removeAt @param {number} index @return {number|string} removed element at specific index
- * @function indexOf @param {number|string} el @return {number} index of a given element
- * @function elementAt @param {number} index @return {number|string} elementAt at specific index
- * @function isEmpty @return {bool}
+ * @method head @return {object} root element of collection
+ * @method size @return size of List
+ * @method add @param {number|string} el Adds element to List
+ * @method addAt @param {number} index @param {number|string} el Adds element at specific index
+ * @method remove @param {number|string} el @return {number|string} removed element
+ * @method removeAt @param {number} index @return {number|string} removed element at specific index
+ * @method indexOf @param {number|string} el @return {number} index of a given element
+ * @method elementAt @param {number} index @return {number|string} elementAt at specific index
+ * @method isEmpty @return {bool}
  */
 
 class LinkedList {

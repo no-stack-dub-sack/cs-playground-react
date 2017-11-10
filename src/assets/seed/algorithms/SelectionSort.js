@@ -1,5 +1,25 @@
-export default
-`function selectionSort(arr) {
+export default {
+seed:
+`/**
+  * @function selectionSort
+  * @param {number[]} arr
+  * @return {number[]}
+  */
+
+function selectionSort(arr) {
+    return arr;
+}
+
+console.log(selectionSort([5, 23, 9876, 21, 0, 11, 2, 67, 89, 234, 0, 12, 43, 694]));
+`,
+solution:
+`/**
+  * @function selectionSort
+  * @param {number[]} arr
+  * @return {number[]}
+  */
+
+function selectionSort(arr) {
     var pointer = 0;
     while (pointer < arr.length) {
         var min = arr[pointer], swapIdx;
@@ -20,4 +40,5 @@ export default
 }
 
 console.log(selectionSort([5, 23, 9876, 21, 0, 11, 2, 67, 89, 234, 0, 12, 43, 694]));
-`;
+`
+};

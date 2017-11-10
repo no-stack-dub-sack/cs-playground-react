@@ -1,7 +1,8 @@
 class Node {
-  constructor(id, str) {
+  constructor(id, seed, solution) {
     this.id = id;
-    this.code = str;
+    this.seed = seed;
+    this.solution = solution;
     this.prev = null;
     this.next = null;
   }
@@ -13,9 +14,9 @@ export default class List {
     this.tail = null;
   }
 
-  add(id, str) {
+  add(id, seed, solution) {
     if (!this.head) {
-      this.head = new Node(id, str);
+      this.head = new Node(id, seed, solution);
       this.tail = this.head;
       return;
     }
@@ -26,7 +27,7 @@ export default class List {
       currentNode = currentNode.next;
     }
 
-    currentNode.next = new Node(id, str);
+    currentNode.next = new Node(id, seed, solution);
     currentNode.next.prev = currentNode;
     this.tail = currentNode.next;
   }

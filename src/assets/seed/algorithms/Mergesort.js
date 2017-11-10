@@ -1,5 +1,25 @@
-export default
-`function mergeSort(arr) {
+export default {
+seed:
+`/**
+  * @function mergeSort
+  * @param {number[]} arr
+  * @return {number[]}
+  */
+
+function mergeSort(arr) {
+    return arr;
+}
+
+console.log(mergeSort([27698, 234, 98, 0, 23, 11, 9, 65, 3, 4, 0, 2, 1]));
+`,
+solution:
+`/**
+  * @function mergeSort
+  * @param {number[]} arr
+  * @return {number[]}
+  */
+
+function mergeSort(arr) {
     if (arr.length < 2) {
         return arr;
     }
@@ -9,6 +29,13 @@ export default
 
     return merge(mergeSort(left), mergeSort(right));
 }
+
+/**
+  * @function merge
+  * @param {number[]} left
+  * @param {number[]} right
+  * @return {number[]}
+  */
 
 function merge(left, right) {
     var results = [],
@@ -27,4 +54,5 @@ function merge(left, right) {
 }
 
 console.log(mergeSort([27698, 234, 98, 0, 23, 11, 9, 65, 3, 4, 0, 2, 1]));
-`;
+`
+};

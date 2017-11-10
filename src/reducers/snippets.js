@@ -1,26 +1,37 @@
 import SnippetList from '../assets/codeRef';
 import {
-  SELECT_SNIPPET,
   NEXT_SNIPPET,
-  PREVIOUS_SNIPPET
+  PREVIOUS_SNIPPET,
+  SELECT_SNIPPET,
+  SELECT_SOLUTION,
 } from '../actions/editor';
 
 const firstNode = SnippetList.fetchNode('Quicksort');
 
 const initialState = {
   id:   firstNode.id,
-  code: firstNode.code,
+  code: firstNode.seed,
   prev: firstNode.prev.id,
   next: firstNode.next.id
 }
 
 const snippets = (state = initialState, action) => {
   switch(action.type) {
+    case SELECT_SOLUTION: {
+      const id = action.id.slice(2);
+      const node = SnippetList.fetchNode(id);
+      return {
+        id:   node.id,
+        code: node.solution,
+        prev: node.prev.id,
+        next: node.next.id
+      };
+    }
     case SELECT_SNIPPET: {
       const node = SnippetList.fetchNode(action.id);
       return {
         id:   node.id,
-        code: node.code,
+        code: node.seed,
         prev: node.prev.id,
         next: node.next.id
       };
@@ -29,7 +40,7 @@ const snippets = (state = initialState, action) => {
       const node = SnippetList.fetchNode(state.next);
       return {
         id:   node.id,
-        code: node.code,
+        code: node.seed,
         prev: node.prev.id,
         next: node.next.id
       };
@@ -38,7 +49,7 @@ const snippets = (state = initialState, action) => {
       const node = SnippetList.fetchNode(state.prev);
       return {
         id:   node.id,
-        code: node.code,
+        code: node.seed,
         prev: node.prev.id,
         next: node.next.id
       };
