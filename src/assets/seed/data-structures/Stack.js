@@ -1,4 +1,33 @@
-export default
+export default {
+
+  seed:
+
+`class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Stack {
+    constructor() {
+        this.root = null;
+        this.size = 0;
+    }
+    
+    // methods to implement:
+    
+    // push()
+    // pop()
+    // peek()
+    // isEmpty()
+    // clear()
+    // print()
+}
+`,
+
+  solution:
+
 `/**
   * @class Node
   * @property {(number|string)} value The node's value
@@ -122,4 +151,5 @@ console.log('\\n' + JSON.stringify(stack, null, 2));
 stack.clear();
 
 console.log('\\ncleared:\\n\\n' + JSON.stringify(stack, null, 2));
-`;
+`
+};

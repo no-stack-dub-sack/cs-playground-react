@@ -1,4 +1,36 @@
-export default
+export default {
+
+  seed:
+
+`class Node {
+    constructor(el) {
+        this.el = el;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.length = 0;
+        this.headNode = null;
+    }
+    
+    // methods to implement:
+    
+    // head()
+    // size()
+    // add()
+    // addAt()
+    // remove()
+    // removeAt()
+    // indexOf()
+    // elementAt()
+    // isEmpty()
+}
+`,
+
+  solution:
+
 `/**
   * @class Node
   * @property {number|string} value The node's value
@@ -24,7 +56,7 @@ class Node {
  * @method removeAt @param {number} index @return {number|string} removed element at specific index
  * @method indexOf @param {number|string} el @return {number} index of a given element
  * @method elementAt @param {number} index @return {number|string} elementAt at specific index
- * @method isEmpty @return {bool}
+ * @method isEmpty @return {boolean}
  */
 
 class LinkedList {
@@ -187,4 +219,5 @@ console.log(JSON.stringify(list.head(), null, 2));
 console.log(\`indexOf trains: \${list.indexOf('Trains')}\`);
 console.log(\`indexOf trucks: \${list.indexOf('Trucks')}\`);
 console.log(\`size: \${list.size}\`);
-`;
+`
+};

@@ -4,6 +4,7 @@ import {
   PREVIOUS_SNIPPET,
   SELECT_SNIPPET,
   SELECT_SOLUTION,
+  UPDATE_CODE
 } from '../actions/editor';
 
 const firstNode = SnippetList.fetchNode('Quicksort');
@@ -12,11 +13,17 @@ const initialState = {
   id:   firstNode.id,
   code: firstNode.seed,
   prev: firstNode.prev.id,
-  next: firstNode.next.id
+  next: firstNode.next.id,
+  isSolution: false
 }
 
 const snippets = (state = initialState, action) => {
   switch(action.type) {
+    case UPDATE_CODE:
+      return {
+        ...state,
+        code: action.code
+      };
     case SELECT_SOLUTION: {
       const id = action.id.slice(2);
       const node = SnippetList.fetchNode(id);
@@ -24,7 +31,8 @@ const snippets = (state = initialState, action) => {
         id:   node.id,
         code: node.solution,
         prev: node.prev.id,
-        next: node.next.id
+        next: node.next.id,
+        isSolution: true
       };
     }
     case SELECT_SNIPPET: {
@@ -33,7 +41,8 @@ const snippets = (state = initialState, action) => {
         id:   node.id,
         code: node.seed,
         prev: node.prev.id,
-        next: node.next.id
+        next: node.next.id,
+        isSolution: false
       };
     }
     case NEXT_SNIPPET: {
@@ -42,7 +51,8 @@ const snippets = (state = initialState, action) => {
         id:   node.id,
         code: node.seed,
         prev: node.prev.id,
-        next: node.next.id
+        next: node.next.id,
+        isSolution: false
       };
     }
     case PREVIOUS_SNIPPET: {
@@ -51,7 +61,8 @@ const snippets = (state = initialState, action) => {
         id:   node.id,
         code: node.seed,
         prev: node.prev.id,
-        next: node.next.id
+        next: node.next.id,
+        isSolution: false
       };
     }
     default:

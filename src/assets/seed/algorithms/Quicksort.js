@@ -1,9 +1,11 @@
 export default {
-seed:
+
+  seed:
+  
 `/**
   * @function quickSort
   * @param {number[]} arr
-  * @return {array}
+  * @return {number[]}
   */
 
 function quickSort(arr) {
@@ -12,7 +14,9 @@ function quickSort(arr) {
 
 console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]));
 `,
-solution:
+
+  solution:
+  
 `/**
   * @function quickSort
   * @param {number[]} arr

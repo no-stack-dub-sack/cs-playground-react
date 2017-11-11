@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+  
 `/**
   * @function mergeSort
   * @param {number[]} arr
@@ -12,7 +14,9 @@ function mergeSort(arr) {
 
 console.log(mergeSort([27698, 234, 98, 0, 23, 11, 9, 65, 3, 4, 0, 2, 1]));
 `,
-solution:
+
+  solution:
+  
 `/**
   * @function mergeSort
   * @param {number[]} arr

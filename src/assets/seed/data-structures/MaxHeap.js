@@ -1,5 +1,35 @@
-export default
+export default {
+
+  seed:
+
 `class MaxHeap {
+    constructor() {
+        this.heap = [];
+        this.length = 0;
+    }
+    
+    // methods to implement
+    
+    // insert()
+    // remove()
+    // print()
+    // size()
+}
+`,
+
+  solution:
+
+`/**
+  * @class MaxHeap
+  * @property {number[]} heap The heap's collection
+  * @property {number} length The heap's length
+  * @method insert {number} node Inserts number according to max heap principle
+  * @method remove @return {number} Returns the max value of the heap
+  * @method print Prints the heap to the console
+  * @method size @return {number} Returns the size of the heap
+  */
+
+class MaxHeap {
     constructor() {
         this.heap = [];
         this.length = 0;
@@ -89,4 +119,5 @@ console.log(\`\\nremove \${heap.remove()}\\n\\n\`);
 heap.print();
 console.log(\`\\nremove \${heap.remove()}\\n\\n\`);
 heap.print();
-`;
+`
+};

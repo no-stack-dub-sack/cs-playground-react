@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+
 `/**
   * @function insertionSort
   * @param {number[]} arr
@@ -12,7 +14,9 @@ function insertionSort(arr) {
 
 console.log(insertionSort([56, 1, 2, 56, 767, 9, 9732, 0, 99, 11, 34, 87, 234, 1, 54]));
 `,
-solution:
+
+  solution:
+
 `/**
   * @function insertionSort
   * @param {number[]} arr

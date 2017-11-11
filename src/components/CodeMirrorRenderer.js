@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CodeMirror from 'react-codemirror';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import Quicksort from '../assets/seed/algorithms/Quicksort';
 import { updateCode } from '../actions/editor';
 import options from '../utils/editorConfig';
@@ -21,33 +21,27 @@ import 'codemirror/addon/selection/active-line';
 import 'codemirror/theme/tomorrow-night-eighties.css';
 
 class CodeMirrorRenderer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      snippet: this.props.snippet
-    }
-  }
   componentDidUpdate(prevProps) {
     if (prevProps.snippet !== this.props.snippet) {
-      this.setState({ snippet: this.props.snippet }, () => {
-        const codemirror = this.CodeMirror.getCodeMirror();
-        codemirror.setValue(this.state.snippet);
-        this.props.updateCode(this.state.snippet, true);
-      });
+      this.props.updateCode(this.props.code, true);
     }
   }
-  updateCode = (newCode) => {
-    this.setState({ snippet: newCode }, () => {
-      this.props.updateCode(this.state.snippet, false);
-    });
+  handleChange = (editor, d) => {
+    if (this.props.currentId === 'BinarySearchTree' && this.props.isSolution) {
+      editor.foldCode(1);
+      editor.foldCode(9);
+    }
+  }
+  updateCode = (e, d, value) => {
+    this.props.updateCode(value, false);
   }
   render() {
     return (
       <CodeMirror
-        ref={ref => this.CodeMirror = ref }
+        onBeforeChange={this.updateCode}
+        onChange={this.handleChange}
         options={options}
-        value={this.state.snippet}
-        onChange={this.updateCode}
+        value={this.props.code}
       />
     );
   }
@@ -55,7 +49,9 @@ class CodeMirrorRenderer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    snippet: state.snippets.code
+    code: state.snippets.code,
+    currentId: state.snippets.id,
+    isSolution: state.snippets.isSolution
   }
 }
 

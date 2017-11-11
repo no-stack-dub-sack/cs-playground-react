@@ -1,10 +1,53 @@
-export default
+export default {
+
+  seed:
+
 `class Node {
     constructor(val) {
         this.value = val;
         this.next = null;
     }
 }
+
+class Queue {
+    constructor() {
+        this.root = null;
+    }
+    
+    // methods to implement:
+    
+    // enqueue()
+    // dequeue()
+    // front()
+    // isEmpty()
+    // get size()
+}
+`,
+
+  solution:
+
+`/**
+  * @class Node
+  * @property value The node's value
+  * @property next The next node in the queue
+  */
+
+class Node {
+    constructor(val) {
+        this.value = val;
+        this.next = null;
+    }
+}
+
+/**
+  * @class Queue
+  * @property {Object} root The root node of the queue
+  * @method enqueue @property {*} val @property {Object} [node=this.root]
+  * @method dequeue @return {*} Removes and returns the front node's value
+  * @method front @return {*} Returns but DOES NOT return the front node's value
+  * @method isEmpty @return {boolean}
+  * @method size @return {number} Returns the queues size
+  */
 
 class Queue {
     constructor() {
@@ -109,4 +152,5 @@ console.log(\`dequeue: \${q.dequeue()}\`);
 console.log(\`size: \${q.size}\`);
 console.log(\`isEmpty: \${q.isEmpty()}\`);
 console.log(\`dequeue: \${q.dequeue()}\`);
-`;
+`
+};

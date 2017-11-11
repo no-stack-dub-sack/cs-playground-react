@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+
 `/**
   * @function bubbleSort
   * @param {number[]} arr
@@ -12,7 +14,9 @@ function bubbleSort(arr) {
 
 console.log(bubbleSort([23, 563, 0, 0, 2, 29, 8, 67, 22, 345, 11, 9, 53, 8]));
 `,
-solution:
+
+  solution:
+
 `/**
   * @function bubbleSort
   * @param {number[]} arr

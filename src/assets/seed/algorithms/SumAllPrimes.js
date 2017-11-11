@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+  
 `// given a number, return the sum of all prime
 // numbers less than or equal to the number itself
 
@@ -15,7 +17,9 @@ function sumAllPrimes(num) {
 
 console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
 `,
-solution:
+
+  solution:
+  
 `// given a number, return the sum of all prime
 // numbers less than or equal to the number itself
 

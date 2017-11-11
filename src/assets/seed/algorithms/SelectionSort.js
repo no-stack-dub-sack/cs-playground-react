@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+
 `/**
   * @function selectionSort
   * @param {number[]} arr
@@ -12,7 +14,9 @@ function selectionSort(arr) {
 
 console.log(selectionSort([5, 23, 9876, 21, 0, 11, 2, 67, 89, 234, 0, 12, 43, 694]));
 `,
-solution:
+
+  solution:
+
 `/**
   * @function selectionSort
   * @param {number[]} arr

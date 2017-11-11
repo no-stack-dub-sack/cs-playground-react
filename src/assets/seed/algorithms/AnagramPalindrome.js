@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+  
 `// given a ramdom string of letters, return true if the letters
 // can be rearranged to form a palindrome, otherwise, return false
 
@@ -14,7 +16,7 @@ seed:
 /**
   * @function anagramPalindrome
   * @param {string} str
-  * @return {bool}
+  * @return {boolean}
   */
 
 function anagramPalindrome(str) {
@@ -26,7 +28,9 @@ console.log(anagramPalindrome('armdabsbmaboobrd')); // bombards a drab mob => fa
 console.log(anagramPalindrome('tdolgsaetagdliadaoasaasinvdeavn')); // a santa dog lived as a devil god at nasa => true
 console.log(anagramPalindrome('raoistddtagstonveakaaeawfewosln')); // a santa dog lived at nasa for two weeks => false
 `,
-solution:
+
+  solution:
+  
 `// given a ramdom string of letters, return true if the letters
 // can be rearranged to form a palindrome, otherwise, return false
 
@@ -41,7 +45,7 @@ solution:
 /**
   * @function anagramPalindrome
   * @param {string} str
-  * @return {bool}
+  * @return {boolean}
   */
 
 function anagramPalindrome(str) {

@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+
 `// MERGESORT / MERGE
 function mergeSort(arr) {
     if (arr.length < 2) {
@@ -289,5 +291,7 @@ function parseTime(start, end) {
     console.log('Array.sort: ' + parseTime(start, end)); // ~2ms WOW!!!
 }
 `,
-solution: null
+
+  solution: ''
+
 };

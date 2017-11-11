@@ -1,9 +1,42 @@
-export default
-`/** Binary Search Tree with the following functionality:
-        *
-*/
+export default {
 
-// queue helper class node
+  seed:
+
+`class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // methods to implement:
+    
+    // add()
+    // findMin()
+    // findMax()
+    // isPresent(int)
+    // findMaxHeight()
+    // findMinHeight()
+    // isBalanced()
+    // inOrder()
+    // preOrder()
+    // postOrder()
+    // levelOrder()
+    // reverseLevelOrder()
+    // remove()
+    // invert()
+}
+`,
+
+  solution:
+
+`// queue helper class node
 class QNode {
     constructor(val) {
         this.value = val;
@@ -52,6 +85,13 @@ class Queue {
 
 var q = new Queue();
 
+/**
+  * @class Node
+  * @property value The node's value
+  * @property left The node's left child
+  * @property right The node's right child
+  */
+
 class Node {
     constructor(value) {
         this.value = value;
@@ -59,6 +99,23 @@ class Node {
         this.right = null;
     }
 }
+
+/**
+  * @class BinarySearchTree
+  * @method add Adds a node to the tree @param {number}
+  * @method findMin @return {number} Returns the smallest value in the tree
+  * @method findMax @return {number} Returns the greatest value in the tree
+  * @method isPresent @param {number} @return {boolean} Whether or not a value is present in the tree
+  * @method findMaxHeight @return {number} Returns the greatest depth (from root to furthest leaf)
+  * @method findMinHeight @return {number} Returns the smallest depth (from root to furthest leaf)
+  * @method isBalanced @return {boolean} Whether or not the left and right depth difference is <= 1
+  * @method preOrder @return {number[]} An array of the tree's values arranged in preOrder
+  * @method postOrder @return {number[]} An array of the tree's values arranged in postOrder
+  * @method levelOrder @return {number[]} An array of the tree's values arranged in levelOrder
+  * @method reverseLevelOrder @return {number[]} An array of the tree's values arranged in reverseLevelOrder
+  * @method remove @param {number} val @return {number} Removes and returns the removed element
+  * @method invert Inverts the tree in place
+  */
 
 class BinarySearchTree {
     constructor() {
@@ -424,4 +481,5 @@ tree.invert();
 
 console.log('\\nafter deletion and inversion:\\n');
 console.log(JSON.stringify(tree, null, 2));
-`;
+`
+};

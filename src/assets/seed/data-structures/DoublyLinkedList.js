@@ -1,4 +1,39 @@
-export default
+export default {
+
+  seed:
+
+`class Node {
+    constructor(val) {
+        this.data = val;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    // methods to implement:
+    
+    // peekHead()
+    // peekTail()
+    // add()
+    // addAt()
+    // remove()
+    // removeAt()
+    // indexOf()
+    // elementAt()
+    // isEmpty()
+    // size()
+}
+`,
+
+  solution:
+
 `/**
   * @class Node
   * @property {number|string} value The node's value
@@ -16,18 +51,18 @@ class Node {
 
 /**
  * @class Doubly-Linked List data structure
- * @property {object} head Root element of collection
- * @property {object} tail Tail element of collection
+ * @property {Object} head Root element of collection
+ * @property {Object} tail Tail element of collection
  * @property {number} length The length of the list
- * @method peekHead @return {object} root element of collection
- * @method peekTail @return {object} tail element of collection
- * @method add @param {number|string} el Adds element to List
- * @method addAt @param {number} index @param {number|string} el Adds element at specific index
- * @method remove @param {number|string} el @return {number|string|null} removed element or null
- * @method removeAt @param {number} index @return {number|string|null} removed element at specific index or null
- * @method indexOf @param {number|string} el @return {number|null} index of a given element or null
- * @method elementAt @param {number} index @return {number|string|null} elementAt at specific index or null
- * @method isEmpty @return {bool}
+ * @method peekHead @return {Object} root element of collection
+ * @method peekTail @return {Object} tail element of collection
+ * @method add @param {*} el Adds element to List
+ * @method addAt @param {number} index @param {*} el Adds element at specific index
+ * @method remove @param {*} el @return {*} removed element or null
+ * @method removeAt @param {number} index @return {*} removed element at specific index or null
+ * @method indexOf @param {*} el @return {number} index of a given element or null
+ * @method elementAt @param {number} index @return {*} elementAt at specific index or null
+ * @method isEmpty @return {boolean}
  * @method size @return size of List
  */
 
@@ -357,4 +392,5 @@ console.log('reversed list: \\n\\n' + list.toString()  + '\\n');
 
 // or in a browser environment:
 // [object Object]
-`;
+`
+};

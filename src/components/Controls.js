@@ -43,7 +43,7 @@ class Controls extends Component {
     }
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.snippet !== this.props.snippet) {
+    if (prevProps.slice !== this.props.slice) {
       this.setState({ clear: true });
     }
   }
@@ -75,8 +75,8 @@ class Controls extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    code: state.currentCode.code,
-    snippet: state.snippets.code.slice(-20)
+    code: state.snippets.code,
+    slice: state.snippets.code.slice(-20)
   }
 };
 

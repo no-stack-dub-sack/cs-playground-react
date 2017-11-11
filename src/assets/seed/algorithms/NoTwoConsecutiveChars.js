@@ -1,5 +1,7 @@
 export default {
-seed:
+
+  seed:
+  
 `// Given a random string, return a new string containing all the
 // characters of the original string, but no 2 characters should
 // be consecutive. If such a string can't be created, return false.
@@ -30,7 +32,9 @@ console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd'));
 `,
-solution:
+
+  solution:
+  
 `// Given a random string, return a new string containing all the
 // characters of the original string, but no 2 characters should
 // be consecutive. If such a string can't be created, return false.

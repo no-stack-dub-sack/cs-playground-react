@@ -1,4 +1,23 @@
-export default
+export default {
+
+  seed:
+
+`class HashTable {
+    constructor() {
+        this.collection = {};
+    }
+    
+    // methods to implement:
+    
+    // hasher()
+    // add()
+    // remove()
+    // lookup()
+}
+`,
+
+  solution:
+
 `/**
  * @class Hash Table data structure
  * @property {object} collection
@@ -166,4 +185,5 @@ table.remove('Darin Shultz');
 console.log("lookup 'Nadia Mihst': " + table.lookup('Nadia Mihst') + '\\n\\n');
 
 table.print();
-`;
+`
+};
