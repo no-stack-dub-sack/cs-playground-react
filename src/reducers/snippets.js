@@ -28,10 +28,8 @@ const snippets = (state = initialState, action) => {
       const id = action.id.slice(2);
       const node = SnippetList.fetchNode(id);
       return {
-        id:   node.id,
+        ...state,
         code: node.solution,
-        prev: node.prev.id,
-        next: node.next.id,
         isSolution: true
       };
     }
