@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import snippets from './snippets';
+import code from './code';
 import consoleOutput from './console';
 
 const rootReducer = combineReducers({
-  snippets,
+  code,
   consoleOutput
 });
 

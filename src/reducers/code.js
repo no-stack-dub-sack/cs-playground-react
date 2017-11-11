@@ -17,7 +17,7 @@ const initialState = {
   isSolution: false
 }
 
-const snippets = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_CODE:
       return {
@@ -67,5 +67,3 @@ const snippets = (state = initialState, action) => {
       return state;
   }
 }
-
-export default snippets;

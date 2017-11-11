@@ -75,8 +75,8 @@ class Controls extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    code: state.snippets.code,
-    slice: state.snippets.code.slice(-20)
+    code: state.code.code,
+    slice: state.code.code.slice(-20)
   }
 };
 

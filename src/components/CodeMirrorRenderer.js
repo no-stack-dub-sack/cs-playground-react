@@ -49,9 +49,9 @@ class CodeMirrorRenderer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    code: state.snippets.code,
-    currentId: state.snippets.id,
-    isSolution: state.snippets.isSolution
+    code: state.code.code,
+    currentId: state.code.id,
+    isSolution: state.code.isSolution
   }
 }
 
