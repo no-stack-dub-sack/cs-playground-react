@@ -58,11 +58,12 @@ export const CODE = {
 };
 
 for (let type in CODE) {
-  CODE[type].forEach(snippet => {
+  CODE[type].forEach(item => {
     SnippetList.add(
-      snippet.title.replace(/\s/g, ''),
-      snippet.seed,
-      snippet.solution
+      item.title.replace(/\s/g, ''),
+      item.seed,
+      item.solution,
+      item.resources
     );
   });
 }

@@ -1,8 +1,9 @@
 class Node {
-  constructor(id, seed, solution) {
+  constructor(id, seed, solution, resources) {
     this.id = id;
     this.seed = seed;
     this.solution = solution;
+    this.resources = resources;
     this.prev = null;
     this.next = null;
   }
@@ -14,9 +15,9 @@ export default class List {
     this.tail = null;
   }
 
-  add(id, seed, solution) {
+  add(...args) {
     if (!this.head) {
-      this.head = new Node(id, seed, solution);
+      this.head = new Node(...args);
       this.tail = this.head;
       return;
     }
@@ -27,7 +28,7 @@ export default class List {
       currentNode = currentNode.next;
     }
 
-    currentNode.next = new Node(id, seed, solution);
+    currentNode.next = new Node(...args);
     currentNode.next.prev = currentNode;
     this.tail = currentNode.next;
   }

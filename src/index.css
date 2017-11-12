@@ -9,7 +9,7 @@ body {
   width: 100%;
 }
 
-#modal-container {
+#modal-root {
   position: absolute;
   top: 50%;
   left: 50%;

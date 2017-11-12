@@ -1,8 +1,15 @@
 import { store } from '../index';
 
+export const CLEAR_CONSOLE = 'CLEAR_CONSOLE';
 export const UPDATE_CONSOLE = 'UPDATE_CONSOLE';
 
-export default () => {
+export const clearConsole = () => {
+  return {
+    type: CLEAR_CONSOLE
+  }
+};
+
+export const hijackConsole = () => {
   const oldLog = console.log;
   console.log = function(message) {
     store.dispatch({

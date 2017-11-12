@@ -171,7 +171,7 @@ console.log(pQueue.print());
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/priority-queue-set-1-introduction/', caption: 'GeeksforGeeks.org'},
-    { href: 'http://www.geeksforgeeks.org/implementation-priority-queue-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'http://www.geeksforgeeks.org/implementation-priority-queue-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-priority-queue-class', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Priority_queue', caption: 'Wikipedia'},
   ]

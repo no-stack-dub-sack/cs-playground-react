@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { clearConsole } from '../actions/console';
 import {
-  clearConsole,
   nextSnippet,
   previousSnippet
-} from '../actions/editor';
+} from '../actions/code';
 
 class Controls extends Component {
   constructor(props) {

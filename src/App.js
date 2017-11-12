@@ -8,6 +8,7 @@ import Controls from './components/Controls';
 import Divider from './components/utils/Divider';
 import ConsoleOutput from './components/sidebar/ConsoleOutput';
 import CodeMirrorRenderer from './components/CodeMirrorRenderer';
+import Modal from './components/utils/Modal';
 
 class App extends Component {
   componentDidMount() {
@@ -42,7 +43,8 @@ class App extends Component {
         ref={ref => this.rightPane = ref }>
         <CodeMirrorRenderer className="main--editor" />
         <Controls />
-      </main>
+      </main>,
+      <Modal key={shortid.generate()} />
     ];
   }
 }

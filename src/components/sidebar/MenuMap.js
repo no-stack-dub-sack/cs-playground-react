@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ModalWrap from '../utils/Modal';
-import { selectSnippet, selectSolution } from '../../actions/editor';
+import { selectSnippet, selectSolution } from '../../actions/code';
+import { closeModal, openModal } from '../../actions/modal';
+import { selectTopic } from '../../actions/resources';
 import shortid from 'shortid';
 
 class MenuMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      renderModal: false
-    };
-  }
-  componentDidMount() {
-    document.addEventListener('click', this.closeModal);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('click', this.closeModal);
-  }
-  closeModal = ({ target }) => {
-    if (target.classList.contains('modal-trigger')) {
-      return;
-    } else if (!this.wrap.modal.contains(target) && this.state.renderModal) {
-      this.setState({ renderModal: false });
-    }
-  }
   selectSeed = (e) => {
     e.stopPropagation();
     this.props.selectSnippet(e.target.id);
@@ -35,9 +17,14 @@ class MenuMap extends Component {
   }
   renderModal = (e) => {
     e.stopPropagation();
-    this.setState({ renderModal: !this.state.renderModal });
+    this.props.selectTopic(e.target.id);
+    if (this.props.modalId === e.target.id) {
+      this.props.closeModal();
+    } else {
+      this.props.openModal(e.target.id);
+    }
   }
-  renderItem = (item, i) => (
+  renderItem = (item) => (
     <div
       className={`sidebar--menu--detail ${ this.props.xtraClass }`}
       id={item.title.replace(/\s/g, '')}
@@ -50,11 +37,12 @@ class MenuMap extends Component {
       <div className="sidebar--menu--detail--button--container">
         <span
           className="sidebar--menu--detail--button solution"
-          id={`__${ item.title.replace(/\s/g, '') }`}
+          id={`SOLUTION__${ item.title.replace(/\s/g, '') }`}
           onClick={this.selectSolution}>
           Solution
         </span>
         <span
+          id={`${ item.title.replace(/\s/g, '_') }`}
           className="sidebar--menu--detail--button resources modal-trigger"
           onClick={this.renderModal}>
           Resources
@@ -69,13 +57,6 @@ class MenuMap extends Component {
           {this.props.header}
         </summary>
         {this.props.items.map(this.renderItem)}
-        {/* ModalWrap is a portal rendered component */}
-        <ModalWrap ref={ref => this.wrap = ref}>
-          { this.state.renderModal &&
-          <div className="modal">
-            <a href="https://www.google.com" rel="noopener noreferrer" target="_blank">hello</a>
-          </div> }
-        </ModalWrap>
       </details>
     );
   }
@@ -91,4 +72,15 @@ MenuMap.defaultProps = {
   xtraClass: ''
 };
 
-export default connect(null, { selectSnippet, selectSolution })(MenuMap);
+const mapDispatchToProps = {
+  selectSnippet,
+  selectSolution,
+  selectTopic,
+  openModal,
+  closeModal
+};
+
+export default connect(
+  ({ modal: { modalId } }) => ({ modalId }),
+  mapDispatchToProps
+)(MenuMap);

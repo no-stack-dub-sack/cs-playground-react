@@ -1,5 +1,4 @@
-import { UPDATE_CONSOLE } from '../actions/hijackConsole';
-import { CLEAR_CONSOLE } from '../actions/editor';
+import { CLEAR_CONSOLE, UPDATE_CONSOLE } from '../actions/console';
 
 export default (state = [], action) => {
   switch(action.type) {

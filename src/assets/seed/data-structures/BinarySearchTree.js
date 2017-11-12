@@ -481,7 +481,7 @@ console.log(JSON.stringify(tree, null, 2));
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/binary-search-tree-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'http://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'http://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Binary_search_tree', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/algorithms/binary-search-trees', caption: 'freeCodeCamp Guides'},

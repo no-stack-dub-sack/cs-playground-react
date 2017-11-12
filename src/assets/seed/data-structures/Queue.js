@@ -152,7 +152,7 @@ console.log(\`dequeue: \${q.dequeue()}\`);
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/queue-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'http://www.geeksforgeeks.org/implementation-queue-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'http://www.geeksforgeeks.org/implementation-queue-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-queue-class', caption: 'freeCodeCamp Challenge'},
     { href: 'https://en.wikipedia.org/wiki/Queue_(abstract_data_type)', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/queues', caption: 'freeCodeCamp Guides'},

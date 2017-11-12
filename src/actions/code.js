@@ -1,6 +1,5 @@
 export const SELECT_SNIPPET = 'SELECT_SNIPPET';
 export const UPDATE_CODE = 'UPDATE_CODE';
-export const CLEAR_CONSOLE = 'CLEAR_CONSOLE';
 export const NEXT_SNIPPET = 'NEXT_SNIPPET';
 export const PREVIOUS_SNIPPET = 'PREVIOUS_SNIPPET';
 export const SELECT_SOLUTION = 'SELECT_SOLUTION';
@@ -8,13 +7,6 @@ export const SELECT_SOLUTION = 'SELECT_SOLUTION';
 export const selectSnippet = (id) => {
   return {
     type: SELECT_SNIPPET,
-    id
-  }
-};
-
-export const selectSolution = (id) => {
-  return {
-    type: SELECT_SOLUTION,
     id
   }
 };
@@ -31,16 +23,16 @@ export const previousSnippet = (id) => {
   }
 };
 
-export const updateCode = (code, mod) => {
+export const updateCode = (code) => {
   return {
     type: UPDATE_CODE,
-    code,
-    mod
+    code
   }
 };
 
-export const clearConsole = () => {
+export const selectSolution = (id) => {
   return {
-    type: CLEAR_CONSOLE
+    type: SELECT_SOLUTION,
+    id: id.slice(10)
   }
 };

@@ -37,10 +37,10 @@ const Menu = ({ attachRef }) => {
       </details>
     </section>
   );
-};
+}
 
 Menu.propTypes = {
-  attachRef: PropTypes.func.isRequired
+  attachRef: PropTypes.func.isRequired,
 };
 
 export default Menu;

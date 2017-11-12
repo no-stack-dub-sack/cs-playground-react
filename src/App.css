@@ -1,8 +1,15 @@
 .modal {
-  height: 200px;
-  width: 200px;
+  padding: 20px;
   background: white;
   border-radius: 10px;
+}
+
+.modal li {
+  margin: 5px 0 5px 0;
+}
+
+.modal--header {
+  text-align: center;
 }
 
 .main.right-pane {

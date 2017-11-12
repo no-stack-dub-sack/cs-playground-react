@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import Quicksort from '../assets/seed/algorithms/Quicksort';
-import { updateCode } from '../actions/editor';
+import { updateCode } from '../actions/code';
 import options from '../utils/editorConfig';
 
 // codemirror assets

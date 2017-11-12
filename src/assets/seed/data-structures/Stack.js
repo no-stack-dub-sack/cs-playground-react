@@ -151,7 +151,7 @@ console.log('\\ncleared:\\n\\n' + JSON.stringify(stack, null, 2));
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/stack-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'http://www.geeksforgeeks.org/implementation-stack-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'http://www.geeksforgeeks.org/implementation-stack-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-stack-class', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Stack_(abstract_data_type)', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/stacks', caption: 'freeCodeCamp Guides'},

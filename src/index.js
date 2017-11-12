@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 import simpleDrag from './utils/simpleDrag';
-import hijackConsole from './actions/hijackConsole';
+import { hijackConsole } from './actions/console';
 
 // enable resizable split panes
 simpleDrag();
