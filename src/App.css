@@ -1,3 +1,10 @@
+.modal {
+  height: 200px;
+  width: 200px;
+  background: white;
+  border-radius: 10px;
+}
+
 .main.right-pane {
   width: 69.5%;
   height: 100vh;
