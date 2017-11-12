@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Stack',
   seed:
-
 `class Node {
     constructor(value) {
         this.value = value;
@@ -14,9 +13,9 @@ class Stack {
         this.root = null;
         this.size = 0;
     }
-    
+
     // methods to implement:
-    
+
     // push()
     // pop()
     // peek()
@@ -25,9 +24,7 @@ class Stack {
     // print()
 }
 `,
-
   solution:
-
 `/**
   * @class Node
   * @property {(number|string)} value The node's value
@@ -151,5 +148,13 @@ console.log('\\n' + JSON.stringify(stack, null, 2));
 stack.clear();
 
 console.log('\\ncleared:\\n\\n' + JSON.stringify(stack, null, 2));
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/stack-data-structure/', caption: 'GeeksforGeeks.org'},
+    { href: 'http://www.geeksforgeeks.org/implementation-stack-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-stack-class', caption: 'freeCodeCamp Challenge Series'},
+    { href: 'https://en.wikipedia.org/wiki/Stack_(abstract_data_type)', caption: 'Wikipedia'},
+    { href: 'https://guide.freecodecamp.org/computer-science/data-structures/stacks', caption: 'freeCodeCamp Guides'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/StackLL.html', caption: 'Interactive Animated Visualization!'},
+  ]
 };

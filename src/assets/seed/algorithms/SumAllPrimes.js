@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Sum All Primes',
   seed:
-  
 `// given a number, return the sum of all prime
 // numbers less than or equal to the number itself
 
@@ -17,9 +16,7 @@ function sumAllPrimes(num) {
 
 console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
 `,
-
   solution:
-  
 `// given a number, return the sum of all prime
 // numbers less than or equal to the number itself
 
@@ -43,5 +40,9 @@ function sumAllPrimes(num) {
 }
 
 console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
-`
+`,
+  resources: [
+    { href: 'https://www.freecodecamp.org/challenges/sum-all-primes', caption: 'freeCodeCamp Challenge' },
+    { href: 'https://guide.freecodecamp.org/certificates/sum-all-primes', caption: 'freeCodeCamp Guides (solutions)' },
+  ]
 };

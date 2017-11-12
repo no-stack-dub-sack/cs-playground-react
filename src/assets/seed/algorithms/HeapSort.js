@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Heap Sort',
   seed:
-
 `class MinHeap {
     constructor() {
         this.heap = [];
@@ -25,9 +24,7 @@ const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
 // const sorted = heap.sort();
 // console.log('\\nheap sort: ' + JSON.stringify(sorted));
 `,
-
   solution:
-
 `/**
   * @class MinHeap
   * @property {number[]} heap A collection of integers
@@ -135,5 +132,13 @@ heap.print();
 
 const sorted = heap.sort();
 console.log('\\nheap sort: ' + JSON.stringify(sorted));
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/heap-sort/', caption: 'GeeksforGeeks.org'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/implement-heap-sort-with-a-min-heap', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://en.wikipedia.org/wiki/Heapsort', caption: 'Wikipedia'},
+    { href: 'https://guide.freecodecamp.org/algorithms/sorting-algorithms/heap-sort/', caption: 'freeCodeCamp Guides'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/HeapSort.html', caption: 'Awesome Animated Sorting Algo Visualizations!'},
+    { href: 'https://www.hackerearth.com/practice/algorithms/sorting/heap-sort/tutorial/', caption: 'Another cool visualization'},
+  ]
 };

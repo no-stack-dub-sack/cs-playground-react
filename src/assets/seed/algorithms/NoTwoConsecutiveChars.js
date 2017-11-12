@@ -1,7 +1,6 @@
 export default {
-
+  title: 'No Two Consecutive Chars',
   seed:
-  
 `// Given a random string, return a new string containing all the
 // characters of the original string, but no 2 characters should
 // be consecutive. If such a string can't be created, return false.
@@ -32,9 +31,7 @@ console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd'));
 `,
-
   solution:
-  
 `// Given a random string, return a new string containing all the
 // characters of the original string, but no 2 characters should
 // be consecutive. If such a string can't be created, return false.
@@ -103,5 +100,8 @@ console.log(noTwoConsecutiveChars('aaaaaaabbbbcc'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
 console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd'));
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/', caption: 'GeeksforGeeks.org'},
+  ]
 };

@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Doubly Linked List',
   seed:
-
 `class Node {
     constructor(val) {
         this.data = val;
@@ -18,7 +17,7 @@ class DoublyLinkedList {
     }
 
     // methods to implement:
-    
+
     // peekHead()
     // peekTail()
     // add()
@@ -31,9 +30,7 @@ class DoublyLinkedList {
     // size()
 }
 `,
-
   solution:
-
 `/**
   * @class Node
   * @property {number|string} value The node's value
@@ -392,5 +389,13 @@ console.log('reversed list: \\n\\n' + list.toString()  + '\\n');
 
 // or in a browser environment:
 // [object Object]
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/linkedlist-data-structure/', caption: 'GeeksforGeeks.org'},
+    { href: 'http://www.geeksforgeeks.org/implementation-linkedlist-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-doubly-linked-list', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://en.wikipedia.org/wiki/Linked_list', caption: 'Wikipedia'},
+    { href: 'https://guide.freecodecamp.org/computer-science/data-structures/linked-list', caption: 'freeCodeCamp Guides'},
+    { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/', caption: 'Interactive Animated Visualization!'},
+  ]
 };

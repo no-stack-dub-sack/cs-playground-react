@@ -1,24 +1,21 @@
 export default {
-
+  title: 'Max Heap',
   seed:
-
 `class MaxHeap {
     constructor() {
         this.heap = [];
         this.length = 0;
     }
-    
+
     // methods to implement
-    
+
     // insert()
     // remove()
     // print()
     // size()
 }
 `,
-
   solution:
-
 `/**
   * @class MaxHeap
   * @property {number[]} heap The heap's collection
@@ -119,5 +116,11 @@ console.log(\`\\nremove \${heap.remove()}\\n\\n\`);
 heap.print();
 console.log(\`\\nremove \${heap.remove()}\\n\\n\`);
 heap.print();
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/heap-data-structure/', caption: 'GeeksforGeeks.org'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/insert-an-element-into-a-max-heap', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://en.wikipedia.org/wiki/Heap_(data_structure)', caption: 'Wikipedia'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/Heap.html', caption: 'Interactive Animated Visualization!'},
+  ]
 };

@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Priority Queue',
   seed:
-
 `class PQNode {
     constructor(element, priority) {
         this.el = element;
@@ -26,9 +25,7 @@ class PriorityQueue {
     // print()
 }
 `,
-
   solution:
-
 `/**
   * @class Node
   * @property el The node's value / data
@@ -171,6 +168,11 @@ console.log('dequeue: ' + pQueue.dequeue());
 console.log('dequeue: ' + pQueue.dequeue());
 console.log('size: ' + pQueue.size + '\\n');
 console.log(pQueue.print());
-
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/priority-queue-set-1-introduction/', caption: 'GeeksforGeeks.org'},
+    { href: 'http://www.geeksforgeeks.org/implementation-priority-queue-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-priority-queue-class', caption: 'freeCodeCamp Challenge Series'},
+    { href: 'https://en.wikipedia.org/wiki/Priority_queue', caption: 'Wikipedia'},
+  ]
 }

@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Queue',
   seed:
-
 `class Node {
     constructor(val) {
         this.value = val;
@@ -23,9 +22,7 @@ class Queue {
     // get size()
 }
 `,
-
   solution:
-
 `/**
   * @class Node
   * @property value The node's value
@@ -152,5 +149,13 @@ console.log(\`dequeue: \${q.dequeue()}\`);
 console.log(\`size: \${q.size}\`);
 console.log(\`isEmpty: \${q.isEmpty()}\`);
 console.log(\`dequeue: \${q.dequeue()}\`);
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/queue-data-structure/', caption: 'GeeksforGeeks.org'},
+    { href: 'http://www.geeksforgeeks.org/implementation-queue-javascript/', caption: 'GeeksforGeeks.org JavaScript Implementation'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-queue-class', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://en.wikipedia.org/wiki/Queue_(abstract_data_type)', caption: 'Wikipedia'},
+    { href: 'https://guide.freecodecamp.org/computer-science/data-structures/queues', caption: 'freeCodeCamp Guides'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/QueueLL.html', caption: 'Interactive Animated Visualization!'},
+  ]
 };

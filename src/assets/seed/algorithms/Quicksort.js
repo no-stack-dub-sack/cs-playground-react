@@ -1,7 +1,6 @@
 export default {
-
+  title: 'Quicksort',
   seed:
-  
 `/**
   * @function quickSort
   * @param {number[]} arr
@@ -14,9 +13,7 @@ function quickSort(arr) {
 
 console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]));
 `,
-
   solution:
-  
 `/**
   * @function quickSort
   * @param {number[]} arr
@@ -74,5 +71,14 @@ function partition(arr, low, high) {
 }
 
 console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]));
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/quick-sort/', caption: 'GeeksforGeeks.org'},
+    { href: 'https://www.nczonline.net/blog/2012/11/27/computer-science-in-javascript-quicksort/', caption: 'NCZOnline Blog (JS Specific)'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-algorithm-questions/implement-quick-sort', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://en.wikipedia.org/wiki/Quicksort', caption: 'Wikipedia'},
+    { href: 'https://guide.freecodecamp.org/algorithms/sorting-algorithms/quick-sort', caption: 'freeCodeCamp Guides'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html', caption: 'Awesome Sorting Algo Visualizations!'},
+    { href: 'https://www.youtube.com/watch?v=MZaf_9IZCrc', caption: 'Youtube Quicksort Visualization'},
+  ]
 };

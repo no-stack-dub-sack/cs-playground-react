@@ -1,23 +1,20 @@
 export default {
-
+  title: 'Hash Table',
   seed:
-
 `class HashTable {
     constructor() {
         this.collection = {};
     }
-    
+
     // methods to implement:
-    
+
     // hasher()
     // add()
     // remove()
     // lookup()
 }
 `,
-
   solution:
-
 `/**
  * @class Hash Table data structure
  * @property {object} collection
@@ -185,5 +182,14 @@ table.remove('Darin Shultz');
 console.log("lookup 'Nadia Mihst': " + table.lookup('Nadia Mihst') + '\\n\\n');
 
 table.print();
-`
+`,
+  resources: [
+    { href: 'http://www.geeksforgeeks.org/hashing-data-structure/', caption: 'GeeksforGeeks.org'},
+    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-hash-table', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://en.wikipedia.org/wiki/Hash_table', caption: 'Wikipedia'},
+    { href: 'https://guide.freecodecamp.org/computer-science/data-structures/hash-tables', caption: 'freeCodeCamp Guides'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/OpenHash.html', caption: 'Interactive Animated Visualization 1'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/ClosedHash.html', caption: 'Interactive Animated Visualization 2'},
+    { href: 'https://www.cs.usfca.edu/~galles/visualization/ClosedHashBucket.html', caption: 'Interactive Animated Visualization 3'},
+  ]
 };
