@@ -1,17 +1,18 @@
+import CodeMirrorRenderer from './components/CodeMirrorRenderer';
+import ConsoleOutput from './components/sidebar/ConsoleOutput';
+import Controls from './components/Controls';
+import Divider from './components/utils/Divider';
+import Menu from './components/sidebar/Menu';
+import Modal from './components/utils/Modal';
 import React, { Component } from 'react';
 import resizePanes from './utils/resize';
 import shortid from 'shortid';
 import './App.css';
 
-import Menu from './components/sidebar/Menu';
-import Controls from './components/Controls';
-import Divider from './components/utils/Divider';
-import ConsoleOutput from './components/sidebar/ConsoleOutput';
-import CodeMirrorRenderer from './components/CodeMirrorRenderer';
-import Modal from './components/utils/Modal';
-
 class App extends Component {
   componentDidMount() {
+    // pass refs to simple drag function
+    // to allow for AWESOME pane resizing
     resizePanes(
       this.leftPane,
       this.topPane,
@@ -48,5 +49,8 @@ class App extends Component {
     ];
   }
 }
+
+// NOTE: Modal is Portal rendered within #modal-root, not the app #root
+// It WILL NOT be rendered alongside the other components in this tree
 
 export default App;

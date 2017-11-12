@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import Quicksort from '../assets/seed/algorithms/Quicksort';
-import { updateCode } from '../actions/code';
 import options from '../utils/editorConfig';
+import Quicksort from '../assets/seed/algorithms/Quicksort';
+import React, { Component } from 'react';
+import { updateCode } from '../actions/code';
 
 // codemirror assets
 import 'codemirror/keymap/sublime';
@@ -53,6 +53,6 @@ const mapStateToProps = (state) => {
     currentId: state.code.id,
     isSolution: state.code.isSolution
   }
-}
+};
 
 export default connect(mapStateToProps, { updateCode })(CodeMirrorRenderer);

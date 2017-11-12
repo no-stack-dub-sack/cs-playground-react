@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import { closeModal, openModal } from '../../actions/modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { selectSnippet, selectSolution } from '../../actions/code';
-import { closeModal, openModal } from '../../actions/modal';
 import { selectTopic } from '../../actions/resources';
 import shortid from 'shortid';
 

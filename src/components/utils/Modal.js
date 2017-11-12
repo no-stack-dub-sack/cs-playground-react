@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import shortid from 'shortid';
 

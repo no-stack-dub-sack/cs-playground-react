@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore } from 'redux';
+import { hijackConsole } from './actions/console';
 import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers/rootReducer';
 import simpleDrag from './utils/simpleDrag';
-import { hijackConsole } from './actions/console';
 
 // enable resizable split panes
 simpleDrag();
@@ -32,7 +32,9 @@ if (module.hot) {
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default;
     ReactDOM.render(
-      <NextApp />,
+      <Provider store={store} >
+        <NextApp />
+      </Provider>,
       document.getElementById('root')
     );
   });

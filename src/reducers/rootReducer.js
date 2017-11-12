@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
 import code from './code';
+import { combineReducers } from 'redux';
 import consoleOutput from './console';
-import resources from './resources';
 import modal from './modal';
+import resources from './resources';
 
 const rootReducer = combineReducers({
   code,

@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { clearConsole } from '../actions/console';
-import {
-  nextSnippet,
-  previousSnippet
-} from '../actions/code';
+import { connect } from 'react-redux';
+import { nextSnippet, previousSnippet } from '../actions/code';
+import React, { Component } from 'react';
 
 class Controls extends Component {
   constructor(props) {
