@@ -13,9 +13,9 @@ class Queue {
     constructor() {
         this.root = null;
     }
-    
+
     // methods to implement:
-    
+
     // enqueue()
     // dequeue()
     // front()
@@ -42,11 +42,11 @@ class Node {
 /**
   * @class Queue
   * @property {Object} root The root node of the queue
-  * @method enqueue @property {*} val @property {Object} [node=this.root]
+  * @method enqueue @param {*} val @param {Object} [node=this.root]
   * @method dequeue @return {*} Removes and returns the front node's value
   * @method front @return {*} Returns but DOES NOT return the front node's value
   * @method isEmpty @return {boolean}
-  * @method size @return {number} Returns the queues size
+  * @method size @return {number} Returns the queue's size
   */
 
 class Queue {

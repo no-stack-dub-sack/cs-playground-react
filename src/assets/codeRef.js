@@ -14,6 +14,7 @@ import DoublyLinkedList from './seed/data-structures/DoublyLinkedList';
 import HashTable from './seed/data-structures/HashTable';
 import LinkedList from './seed/data-structures/LinkedList';
 import MaxHeap from './seed/data-structures/MaxHeap';
+import PriorityQueue from './seed/data-structures/PriorityQueue';
 import Queue from './seed/data-structures/Queue';
 import Stack from './seed/data-structures/Stack';
 
@@ -36,6 +37,7 @@ export const CODE = {
   DATA_STRUCTURES: [
     { title: 'Stack', seed: Stack.seed, solution: Stack.solution  },
     { title: 'Queue', seed: Queue.seed, solution: Queue.solution  },
+    { title: 'Priority Queue', seed: PriorityQueue.seed, solution: PriorityQueue.solution  },
     { title: 'Linked List', seed: LinkedList.seed, solution: LinkedList.solution  },
     { title: 'Doubly Linked List', seed: DoublyLinkedList.seed, solution: DoublyLinkedList.solution  },
     { title: 'Binary Search Tree', seed: BinarySearchTree.seed, solution: BinarySearchTree.solution  },
