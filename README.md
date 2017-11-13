@@ -1,4 +1,4 @@
-# CS-Playground-React: Algos & Data Structures (work in progress)
+# CS-Playground-React: Algos & Data Structures
 
 An interactive overview of common sorting algorithms and data structures, implemented in JavaScript. Also includes several other miscellaneous algorithm challenges, similar to those asked in programming interviews. This is intended to help you brush up on your computer science fundamentals, algorithm, and problem solving skills as you prepare for interviews.
 
