@@ -1,5 +1,6 @@
 .main--controls {
   height: 50px;
+  background: #707070;
 }
 
 .main--controls--button {
@@ -19,7 +20,7 @@
 }
 
 .main--controls--button:active {
-  background: rgba(10, 87, 93, 0.7);
+  background: rgba(39, 145, 152, .52);
 }
 
 .main--controls--button.run-code {

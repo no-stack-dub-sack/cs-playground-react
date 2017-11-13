@@ -29,7 +29,7 @@ class MenuMap extends Component {
       : '#707070';
     return (
       <div
-        style={ { background: bgColor } }
+        style={ { background: bgColor, transition: 'background .3s !important' } }
         className={`sidebar--menu--detail ${ this.props.xtraClass }`}
         id={item.title.replace(/\s/g, '')}
         key={shortid.generate()}

@@ -14,7 +14,7 @@ class Modal extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if (!this.props.renderModal) {
-      this.modal.parentNode.style.zIndex = '0';
+      this.modal.parentNode.style.zIndex = '-4';
     } else {
       this.modal.parentNode.style.zIndex = '4';
     }
@@ -27,10 +27,21 @@ class Modal extends Component {
     }
   }
   renderListItem = (item) => (
+    // HACK: return items not links when !renderModal so that
+    // LI items still appear when modal is transitioning out.
+    // this is cause we are not actually unmounting the modal
+    // we are simply making it transparent instead, and even
+    // with a 0 z-index, the links could still be clicked on
+    // through the editor background. this is purely out of
+    // a mix of stuborness and laziness. I am too stuborn to
+    // do away with the effect, and too lazy to implement it
+    // properly with the react-transitions css package. Ughh!
     <li key={shortid.generate()}>
-      <a href={item.href} rel="noopener noreferrer" target="_blank">
-        {item.caption}
-      </a>
+      { this.props.renderModal
+        ? (<a href={item.href} rel="noopener noreferrer" target="_blank">
+            {item.caption}
+          </a>)
+        : item.caption }
     </li>
   )
   render() {

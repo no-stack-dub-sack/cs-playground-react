@@ -47,6 +47,7 @@
   font-size: 15px;
   padding: 5px;
   margin: 0;
+  transition: .2s !important;
 }
 
 .sidebar--menu--detail--button {
