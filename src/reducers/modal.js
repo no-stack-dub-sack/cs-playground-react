@@ -8,7 +8,10 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case CLOSE_MODAL:
-      return defaultState;
+      return {
+        ...state,
+        renderModal: false
+      };
     case OPEN_MODAL:
       return {
         renderModal: true,

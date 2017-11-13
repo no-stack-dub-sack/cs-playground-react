@@ -1,0 +1,32 @@
+.main--controls {
+  height: 50px;
+}
+
+.main--controls--button {
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  border-right: 2px solid black;
+  background: #707070;
+  color: #ccc;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: .2s;
+}
+
+.main--controls--button:active {
+  background: rgba(10, 87, 93, 0.7);
+}
+
+.main--controls--button.run-code {
+  width: 50%;
+}
+
+.main--controls--button.next,
+.main--controls--button.previous {
+  width: 25%;
+}

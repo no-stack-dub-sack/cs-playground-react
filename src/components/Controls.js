@@ -2,6 +2,7 @@ import { clearConsole } from '../actions/console';
 import { connect } from 'react-redux';
 import { nextSnippet, previousSnippet } from '../actions/code';
 import React, { Component } from 'react';
+import '../styles/controls.css';
 
 class Controls extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class Controls extends Component {
       this.setState({ clear: false });
     }
     try {
+      // eslint-disable-next-line
       eval(this.props.code);
     } catch (error) {
       console.log('Whoops! Your code has an error.\nFix it and try again!');

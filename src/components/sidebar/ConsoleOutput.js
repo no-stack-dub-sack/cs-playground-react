@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
 import shortid from 'shortid';
+import '../../styles/console.css';
 
 const ConsoleOutput = ({ attachRef, messages }) => {
   messages = messages.map(msg => (
@@ -30,6 +31,6 @@ const mapStateToProps = (state) => {
   return {
     messages: state.consoleOutput
   }
-}
+};
 
 export default connect(mapStateToProps)(ConsoleOutput);

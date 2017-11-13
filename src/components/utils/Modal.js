@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import shortid from 'shortid';
+import '../../styles/modal.css';
 
 class Modal extends Component {
   componentDidMount() {
@@ -10,6 +11,13 @@ class Modal extends Component {
   }
   componentWillUnmount() {
     document.removeEventListener('click', this.closeModal);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.props.renderModal) {
+      this.modal.parentNode.style.zIndex = '0';
+    } else {
+      this.modal.parentNode.style.zIndex = '4';
+    }
   }
   closeModal = ({ target }) => {
     if (!target.classList.contains('modal-trigger') &&
@@ -26,17 +34,15 @@ class Modal extends Component {
     </li>
   )
   render() {
+    const modalClass = this.props.renderModal ? 'show' : 'hide';
     return ReactDOM.createPortal(
       <div ref={ref => this.modal = ref}>
-        { this.props.renderModal &&
-        <div className="modal">
-          <p className="modal--header">
+        <div className={ `modal ${modalClass}` }>
+          <h2 className="modal--header">
             { `${this.props.modalId.replace(/_/g, ' ')} Resources` }
-          </p>
-          <ul>
-            { this.props.resources.map(this.renderListItem) }
-          </ul>
-        </div> }
+          </h2>
+          { this.props.resources.map(this.renderListItem) }
+        </div>
       </div>,
       document.getElementById('modal-root')
     );

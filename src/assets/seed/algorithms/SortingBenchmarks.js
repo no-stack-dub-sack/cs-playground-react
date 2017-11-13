@@ -232,8 +232,8 @@ function swap(arr, a, b) {
 }
 
 
-// generate randomly 5000 item array
-const BENCHED_ARRAY = (function randomizeArray(n) {
+// generate random 5000 item array for benchmarking against
+const BENCH_ARRAY = (function randomizeArray(n) {
     var arr = [];
 
     while (arr.length < n) {
@@ -250,46 +250,114 @@ function parseTime(start, end) {
 }
 
 // BENCHMARKS:
-
-{
-    let start = window.performance.now();
-    mergeSort([...BENCHED_ARRAY]);
-    let end = window.performance.now();
-    console.log('Mergesort: ' + parseTime(start, end)); // ~10ms
-}{
-    let start = window.performance.now();
-    quickSort([...BENCHED_ARRAY]);
-    let end = window.performance.now();
-    console.log('Quicksort: ' + parseTime(start, end)); // ~5ms
-}{
-    let start = window.performance.now();
-    bubbleSort([...BENCHED_ARRAY]);
-    let end = window.performance.now();
-    console.log('Bubble Sort: ' + parseTime(start, end)); // ~325ms
-}{
-    let start = window.performance.now();
-    selectionSort([...BENCHED_ARRAY]);
-    let end = window.performance.now();
-    console.log('Selection Sort: ' + parseTime(start, end)); // ~20ms
-}{
-    let start = window.performance.now();
-    insertionSort([...BENCHED_ARRAY]);
-    let end = window.performance.now();
-    console.log('Insertion Sort: ' + parseTime(start, end)); // ~120ms
-}{
-    const heap = new MinHeap();
-    let start = window.performance.now();
-    heap.sort([...BENCHED_ARRAY]);
-    let end = window.performance.now();
-    console.log('Heap Sort: ' + parseTime(start, end)); // ~13ms
-}{
+const algos = [
+    { title: 'Mergesort', func: mergeSort }, // ~10ms
+    { title: 'Quicksort', func: quickSort }, // ~5ms
+    { title: 'Bubble Sort', func: bubbleSort }, // ~325ms
+    { title: 'Selection Sort', func: selectionSort }, // ~20ms
+    { title: 'Insertion Sort', func: insertionSort }, // ~120ms
+    { title: 'Heap Sort', heap: new MinHeap() }, // ~13ms
     // Array.sort is implemented w/ a highly optimized merge sort in most engines
-    let start = window.performance.now();
-    [...BENCHED_ARRAY].sort((a, b) => a > b);
-    let end = window.performance.now();
-    console.log('Array.sort: ' + parseTime(start, end)); // ~2ms WOW!!!
-}
+    { title: 'Array.sort', array: [...BENCH_ARRAY] }, // ~2ms WOW!!!
+];
+
+algos.forEach(el => {
+    // we make sure to make a copy of the array
+    // on each iteration, otherwise it will
+    // already be sorted by the time we
+    // reach the second algorithm!
+    let sortMe = [...BENCH_ARRAY];
+
+    /******/ let START = window.performance.now(); /******/
+
+    if (el.array) {
+        el.array.sort((a, b) => a > b);
+    } else if (el.heap) {
+        el.heap.sort(sortMe)
+    } else {
+        el.func(sortMe);
+    }
+
+    /******/ let END = window.performance.now(); /******/
+
+    console.log(el.title + ': ' + parseTime(START, END));
+});
 `,
   solution: '',
   resources: []
 };
+
+
+
+// BENCHMARKS:
+// const algos = [
+//     { title: 'Mergesort', func: mergeSort }, // ~10ms
+//     { title: 'Quicksort', func: quickSort }, // ~5ms
+//     { title: 'Bubble Sort', func: bubbleSort }, // ~325ms
+//     { title: 'Selection Sort', func: selectionSort }, // ~20ms
+//     { title: 'Insertion Sort', func: insertionSort }, // ~120ms
+//     { title: 'Heap Sort', heap: new MinHeap() }, // ~13ms
+//     // Array.sort is implemented w/ a highly optimized merge sort in most engines
+//     { title: 'Array.sort', array: [...BENCH_ARRAY] }, // ~2ms WOW!!!
+// ];
+//
+// algos.forEach(el => {
+//     // be sure to make a copy of the benchmark
+//     // array on each iteration, otherwise it
+//     // will be sorted by the time we reach
+//     // the second algorithm!
+//     var sortMe = [...BENCH_ARRAY];
+//
+//     /******/ var START = window.performance.now(); /******/
+//
+//     if (el.array) {
+//         el.array.sort((a, b) => a > b);
+//     } else if (el.heap) {
+//         el.heap.sort(sortMe)
+//     } else {
+//         el.func(sortMe);
+//     }
+//
+//     /******/ var END = window.performance.now(); /******/
+//
+//     console.log(el.title + ': ' + parseTime(START, END));
+// });
+
+// {
+//     let start = window.performance.now();
+//     mergeSort([...BENCHED_ARRAY]);
+//     let end = window.performance.now();
+//     console.log('Mergesort: ' + parseTime(start, end)); // ~10ms
+// }{
+//     let start = window.performance.now();
+//     quickSort([...BENCHED_ARRAY]);
+//     let end = window.performance.now();
+//     console.log('Quicksort: ' + parseTime(start, end)); // ~5ms
+// }{
+//     let start = window.performance.now();
+//     bubbleSort([...BENCHED_ARRAY]);
+//     let end = window.performance.now();
+//     console.log('Bubble Sort: ' + parseTime(start, end)); // ~325ms
+// }{
+//     let start = window.performance.now();
+//     selectionSort([...BENCHED_ARRAY]);
+//     let end = window.performance.now();
+//     console.log('Selection Sort: ' + parseTime(start, end)); // ~20ms
+// }{
+//     let start = window.performance.now();
+//     insertionSort([...BENCHED_ARRAY]);
+//     let end = window.performance.now();
+//     console.log('Insertion Sort: ' + parseTime(start, end)); // ~120ms
+// }{
+//     const heap = new MinHeap();
+//     let start = window.performance.now();
+//     heap.sort([...BENCHED_ARRAY]);
+//     let end = window.performance.now();
+//     console.log('Heap Sort: ' + parseTime(start, end)); // ~13ms
+// }{
+//     // Array.sort is implemented w/ a highly optimized merge sort in most engines
+//     let start = window.performance.now();
+//     [...BENCHED_ARRAY].sort((a, b) => a > b);
+//     let end = window.performance.now();
+//     console.log('Array.sort: ' + parseTime(start, end)); // ~2ms WOW!!!
+// }

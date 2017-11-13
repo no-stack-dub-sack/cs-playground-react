@@ -7,7 +7,7 @@ import Modal from './components/utils/Modal';
 import React, { Component } from 'react';
 import resizePanes from './utils/resize';
 import shortid from 'shortid';
-import './App.css';
+import './styles/app.css';
 
 class App extends Component {
   componentDidMount() {

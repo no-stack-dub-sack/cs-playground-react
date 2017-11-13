@@ -1,0 +1,16 @@
+.react-codemirror2 {
+  height: calc(100vh - 50px);
+  margin: none;
+}
+
+.CodeMirror {
+  height: 100% !important;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid #d5d5d5 !important;
+}
+
+.cm-s-tomorrow-night-eighties .CodeMirror-activeline-background {
+  background: rgba(187, 141, 245, 0.1) !important;
+}

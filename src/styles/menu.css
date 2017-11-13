@@ -1,0 +1,68 @@
+.sidebar--menu.top-pane {
+  overflow-y: auto;
+  height: 70%;
+  flex: auto;
+  user-select: none;
+}
+
+.sidebar--menu--header {
+  cursor: default;
+  text-align: center;
+  border-top: 2px solid black !important;
+}
+
+.sidebar--menu--header,
+.sidebar--menu--sub-header,
+.sidebar--menu--detail {
+  cursor: pointer;
+  border: 1px solid black;
+  outline: none;
+}
+
+.sidebar--menu--sub-header:hover,
+.sidebar--menu--detail:hover {
+  background: rgba(39, 145, 152, 0.52) !important;
+}
+
+.sidebar--menu:last-child {
+  border: 2px solid black;
+}
+
+.sidebar--menu--header,
+.sidebar--menu--sub-header {
+  font-size: 20px;
+  padding: 2px 0 2px 10px;
+}
+
+.sidebar--menu--sub-header.sub,
+.sidebar--menu--detail.sub {
+  padding-left: 30px;
+}
+
+.sidebar--menu--detail--button--container {
+  float: right;
+}
+
+.sidebar--menu--detail {
+  font-size: 15px;
+  padding: 5px;
+  margin: 0;
+}
+
+.sidebar--menu--detail--button {
+  margin: 5px 0 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px 5px 2px 5px;
+  font-size: 13px;
+  color: #3e3e3e;
+}
+
+.sidebar--menu--detail--button.solution {
+  background: #f2777a;
+}
+
+.sidebar--menu--detail--button.resources {
+  background: #99cc99;
+  margin-right: 5px;
+}

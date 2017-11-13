@@ -1,0 +1,36 @@
+.sidebar--output.bottom-pane {
+  height: 30%;
+  margin: 0;
+}
+
+.sidebar--output--messages {
+  box-sizing: border-box;
+  height: 100%;
+  background: rgb(27, 29, 26);
+  color: rgb(7, 187, 4);
+  font-family: monospace;
+  overflow-y: auto;
+}
+
+.sidebar--output--messages--message {
+  white-space: pre;
+}
+
+.sidebar--output--messages--message:last-of-type {
+  margin-bottom: 5px;
+}
+
+.sidebar--output--messages--message {
+  margin: 0;
+  padding: 5px 0 0 8px;
+}
+
+.sidebar--output--message:last-of-type {
+  padding-bottom: 5px;
+}
+
+.sidebar--output--messages--default-message {
+  margin: 0;
+  padding: 5px 0 0 8px;
+  color: rgb(120, 117, 119);
+}

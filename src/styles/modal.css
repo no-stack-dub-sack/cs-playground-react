@@ -1,0 +1,36 @@
+.modal.hide {
+  opacity: 0.001;
+}
+
+.modal.show {
+  opacity: 1.0;
+}
+
+.modal {
+  display: block;
+  background: #5b5b5b;
+  color: #ccc;
+  padding: 2px 50px 30px 50px;
+  border-radius: 10px;
+  transition: .4s;
+  box-shadow: inset 0 0 2px black, 10px 1px 1px 1000px rgba(0, 0, 0, 0.5);
+}
+
+.modal li {
+  margin: 5px 0 5px 0;
+}
+
+.modal a {
+  text-decoration: none;
+  color: #46bc99;
+}
+
+.modal a:hover {
+  text-decoration: underline;
+  color: #99cc99;
+}
+
+.modal--header {
+  text-align: center;
+  user-select: none;
+}

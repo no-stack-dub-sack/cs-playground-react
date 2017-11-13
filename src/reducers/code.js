@@ -29,7 +29,7 @@ export default (state = defaultState, action) => {
     case SELECT_SOLUTION: {
       const node = SnippetList.fetchNode(action.id);
       return {
-        ...state,
+        ...getSimpleState(node),
         code: node.solution,
         isSolution: true
       };

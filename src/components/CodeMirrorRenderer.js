@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import options from '../utils/editorConfig';
-import Quicksort from '../assets/seed/algorithms/Quicksort';
 import React, { Component } from 'react';
 import { updateCode } from '../actions/code';
 
 // codemirror assets
+import '../styles/codemirror.css'
 import 'codemirror/keymap/sublime';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/fold/foldcode';

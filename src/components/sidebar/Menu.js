@@ -2,6 +2,7 @@ import { CODE } from '../../assets/codeRef';
 import MenuMap from './MenuMap';
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../../styles/menu.css';
 
 const {
   SORTING_ALGOS,

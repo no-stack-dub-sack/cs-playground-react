@@ -1,4 +1,3 @@
-import './index.css';
 import App from './App';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore } from 'redux';
@@ -9,6 +8,8 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers/rootReducer';
 import simpleDrag from './utils/simpleDrag';
+import './styles/index.css';
+import ErrorBoundary from './components/utils/ErrorBoundary';
 
 // enable resizable split panes
 simpleDrag();
@@ -23,7 +24,9 @@ export const store = createStore(
 
 ReactDOM.render(
   <Provider store={store} >
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </Provider>,
   document.getElementById('root')
 );

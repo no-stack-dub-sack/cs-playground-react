@@ -1,0 +1,34 @@
+.main.right-pane {
+  width: 69.5%;
+  height: 100vh;
+}
+
+.sidebar.left-pane {
+  top: 0;
+  left: 0;
+  width: 30%;
+  box-sizing: border-box;
+  height: 100vh;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  background: #707070;
+  color: #ccc;
+}
+
+.divider {
+  position: relative;
+  background-color: #a19c9c;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.vertical.divider {
+  width: 7px;
+  cursor: col-resize;
+}
+
+.horizontal.divider {
+  height: 7px;
+  cursor: row-resize;
+}
