@@ -74,11 +74,11 @@
 - https://en.wikipedia.org/wiki/Priority_queue
 
 ### Linked Lists / Doubly Linked Lists
-- http://www.geeksforgeeks.org/linkedlist-data-structure/
+- http://www.geeksforgeeks.org/data-structures/linked-list/
 - http://www.geeksforgeeks.org/implementation-linkedlist-javascript/
 - https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list __(interactive challenges)__
 - https://en.wikipedia.org/wiki/Linked_list
-- https://guide.freecodecamp.org/computer-science/data-structures/linked-list
+- https://guide.freecodecamp.org/computer-science/data-structures/linked-lists
 - http://www.geeksforgeeks.org/data-structures/linked-list/
 
 ### Hash Table

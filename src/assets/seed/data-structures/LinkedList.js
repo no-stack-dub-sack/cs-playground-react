@@ -218,11 +218,11 @@ console.log(\`indexOf trucks: \${list.indexOf('Trucks')}\`);
 console.log(\`size: \${list.size}\`);
 `,
   resources: [
-    { href: 'http://www.geeksforgeeks.org/linkedlist-data-structure/', caption: 'GeeksforGeeks.org'},
+    { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/', caption: 'GeeksforGeeks.org'},
     { href: 'http://www.geeksforgeeks.org/implementation-linkedlist-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Linked_list', caption: 'Wikipedia'},
-    { href: 'https://guide.freecodecamp.org/computer-science/data-structures/linked-list', caption: 'freeCodeCamp Guides'},
+    { href: 'https://guide.freecodecamp.org/computer-science/data-structures/linked-lists', caption: 'freeCodeCamp Guides'},
     { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/', caption: 'Interactive Animated Visualization!'},
   ]
 };

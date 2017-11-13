@@ -19,6 +19,7 @@ The live site is currently running here: https://cs-playground-react.surge.sh/
 ### Data Structures:
 - Stack
 - Queue
+- Priority Queue
 - Linked List
 - Doubly Linked List
 - Binary Search Tree
