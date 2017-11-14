@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal';
+import Fade from './Fader';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import shortid from 'shortid';
@@ -11,13 +12,6 @@ class Modal extends Component {
   }
   componentWillUnmount() {
     document.removeEventListener('click', this.closeModal);
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.props.renderModal) {
-      this.modal.parentNode.style.zIndex = '-4';
-    } else {
-      this.modal.parentNode.style.zIndex = '4';
-    }
   }
   closeModal = ({ target }) => {
     if (!target.classList.contains('modal-trigger') &&
@@ -32,28 +26,28 @@ class Modal extends Component {
     // this is cause we are not actually unmounting the modal
     // we are simply making it transparent instead, and even
     // with a 0 z-index, the links could still be clicked on
-    // through the editor background. this is purely out of
-    // a mix of stuborness and laziness. I am too stuborn to
-    // do away with the effect, and too lazy to implement it
-    // properly with the react-transitions css package. Ughh!
+    // through the editor background. Hmmmmmmmmmmmmmm.......
     <li key={shortid.generate()}>
-      { this.props.renderModal
-        ? (<a href={item.href} rel="noopener noreferrer" target="_blank">
-            {item.caption}
-          </a>)
-        : item.caption }
+    { this.props.renderModal
+    ? <a href={item.href} rel="noopener noreferrer" target="_blank">
+        {item.caption}
+      </a>
+    : <span>
+        {item.caption}
+      </span> }
     </li>
   )
   render() {
-    const modalClass = this.props.renderModal ? 'show' : 'hide';
     return ReactDOM.createPortal(
       <div ref={ref => this.modal = ref}>
-        <div className={ `modal ${modalClass}` }>
-          <h2 className="modal--header">
-            { `${this.props.modalId.replace(/_/g, ' ')} Resources` }
-          </h2>
-          { this.props.resources.map(this.renderListItem) }
-        </div>
+        <Fade in={this.props.renderModal}>
+          <div className="modal">
+            <h2 className="modal--header">
+              { `${this.props.modalId.replace(/_/g, ' ')} Resources` }
+            </h2>
+            { this.props.resources.map(this.renderListItem) }
+          </div>
+        </Fade>
       </div>,
       document.getElementById('modal-root')
     );

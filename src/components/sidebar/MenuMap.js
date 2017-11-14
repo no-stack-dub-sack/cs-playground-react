@@ -16,20 +16,21 @@ class MenuMap extends Component {
   }
   renderModal = (e) => {
     e.stopPropagation();
-    this.props.selectTopic(e.target.id);
-    if (this.props.modalId === e.target.id && this.props.renderModal) {
+    const modalId = e.target.id.slice(7);
+    this.props.selectTopic(modalId);
+    if (this.props.modalId === modalId && this.props.renderModal) {
       this.props.closeModal();
     } else {
-      this.props.openModal(e.target.id);
+      this.props.openModal(modalId);
     }
   }
-  renderItem = (item) => {
+  renderMenuItem = (item) => {
     const bgColor = item.title.replace(/\s/g, '') === this.props.codeId
       ? 'rgba(39, 145, 152, 0.52)'
       : '#707070';
     return (
       <div
-        style={ { background: bgColor, transition: 'background .3s !important' } }
+        style={ { background: bgColor } }
         className={`sidebar--menu--detail ${ this.props.xtraClass }`}
         id={item.title.replace(/\s/g, '')}
         key={shortid.generate()}
@@ -46,7 +47,7 @@ class MenuMap extends Component {
             Solution
           </span>
           <span
-            id={`${ item.title.replace(/\s/g, '_') }`}
+            id={`MODAL__${ item.title.replace(/\s/g, '_') }`}
             className="sidebar--menu--detail--button resources modal-trigger"
             onClick={this.renderModal}>
             Resources
@@ -61,7 +62,7 @@ class MenuMap extends Component {
         <summary className="sidebar--menu--sub-header">
           {this.props.header}
         </summary>
-        {this.props.items.map(this.renderItem)}
+        {this.props.items.map(this.renderMenuItem)}
       </details>
     );
   }
@@ -72,7 +73,7 @@ MenuMap.propTypes = {
   header: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   modalId: PropTypes.string.isRequired,
-  rednerModal: PropTypes.bool.isRequired,
+  renderModal: PropTypes.bool.isRequired,
   xtraClass: PropTypes.string
 };
 
@@ -83,7 +84,7 @@ MenuMap.defaultProps = {
 const mapStateToProps = (state) => {
   return {
     modalId: state.modal.modalId,
-    rednerModal: state.modal.renderModal,
+    renderModal: state.modal.renderModal,
     codeId: state.code.id
   }
 }

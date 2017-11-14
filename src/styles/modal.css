@@ -1,11 +1,3 @@
-.modal.hide {
-  opacity: 0.001;
-}
-
-.modal.show {
-  opacity: 1.0;
-}
-
 .modal {
   display: block;
   background: #5b5b5b;
@@ -21,7 +13,8 @@
   user-select: none;
 }
 
-.modal a {
+.modal a,
+.modal span {
   text-decoration: none;
   color: #46bc99;
   user-select: text;
