@@ -22,6 +22,17 @@ export const store = createStore(
   composeWithDevTools()
 );
 
+// set localStorage when navigating away from app
+window.onbeforeunload = function(e) {
+  const state = store.getState();
+  if (!/\/\/\sDO\sNOT\sSAVE/i.test(state.editor.current.code)) {
+    localStorage.setItem(
+      'cs-pg-react-editorState',
+      JSON.stringify(store.getState().editor)
+    );
+  }
+};
+
 ReactDOM.render(
   <Provider store={store} >
     <ErrorBoundary>

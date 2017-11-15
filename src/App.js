@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import resizePanes from './utils/resize';
 import shortid from 'shortid';
 import './styles/app.css';
+import { store } from './index';
 
 class App extends Component {
   componentDidMount() {

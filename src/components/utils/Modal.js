@@ -20,8 +20,15 @@ class Modal extends Component {
       this.props.closeModal();
     }
   }
+  componentDidUpdate() {
+    if (this.props.renderModal) {
+      this.modal.parentNode.style.zIndex = '4';
+    } else {
+      this.modal.parentNode.style.zIndex = '-4';
+    }
+  }
   renderListItem = (item) => (
-    // HACK: return items not links when !renderModal so that
+    // HACK: return spans not links when !renderModal so that
     // LI items still appear when modal is transitioning out.
     // this is cause we are not actually unmounting the modal
     // we are simply making it transparent instead, and even

@@ -2,7 +2,7 @@ import { closeModal, openModal } from '../../actions/modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { selectSnippet, selectSolution } from '../../actions/code';
+import { selectSnippet, selectSolution } from '../../actions/editor';
 import { selectTopic } from '../../actions/resources';
 import shortid from 'shortid';
 
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
   return {
     modalId: state.modal.modalId,
     renderModal: state.modal.renderModal,
-    codeId: state.code.id
+    codeId: state.editor.current.id
   }
 }
 const mapDispatchToProps = {

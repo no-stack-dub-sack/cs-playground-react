@@ -1,14 +1,16 @@
 import { clearConsole } from '../actions/console';
 import { connect } from 'react-redux';
-import { nextSnippet, previousSnippet } from '../actions/code';
+import { nextSnippet, previousSnippet, resetEditorState } from '../actions/editor';
 import React, { Component } from 'react';
 import '../styles/controls.css';
+import { store } from '../index';
 
 class Controls extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clear: false
+      clearConsole: false,
+      resetCount: 0
     }
   }
   componentDidMount() {
@@ -28,21 +30,44 @@ class Controls extends Component {
       this.props.nextSnippet();
     }
   }
-  runCode = () => {
-    if (this.state.clear) {
+  toggleClearConsole = () => {
+    if (this.state.clearConsole) {
       this.props.clearConsole();
-      this.setState({ clear: false });
+      this.setState({ clearConsole: false });
     }
-    try {
-      // eslint-disable-next-line
-      eval(this.props.code);
-    } catch (error) {
-      console.log('Whoops! Your code has an error.\nFix it and try again!');
+  }
+  handleResetSate = () => {
+    if (this.state.resetCount === 0) {
+      this.setState(state => ({ resetCount: state.resetCount+1 }));
+      console.log(
+        'WARNING: Are you sure you want to reset?\n' +
+        'This action CANNOT be reversed, and all of\n' +
+        'your solutions will be permanently deleted.\n' +
+        "To proceed, hit the 'Run Code' button again."
+       );
+    } else {
+      this.props.resetEditorState();
+      this.props.clearConsole();
+      this.setState({ resetCount: 0 });
+      console.log('State successfully reset!');
+    }
+  }
+  runCode = () => {
+    this.toggleClearConsole();
+    if (/resetState\(\)/.test(this.props.code)) {
+      this.handleResetSate();
+    } else {
+      try {
+        // eslint-disable-next-line
+        eval(this.props.code);
+      } catch (error) {
+        console.log('Whoops! Your code has an error.\nFix it and try again!');
+      }
     }
   }
   componentDidUpdate(prevProps) {
     if (prevProps.slice !== this.props.slice) {
-      this.setState({ clear: true });
+      this.setState({ clearConsole: true });
     }
   }
   render() {
@@ -73,15 +98,16 @@ class Controls extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    code: state.code.code,
-    slice: state.code.code.slice(-20)
+    code: state.editor.current.code,
+    slice: state.editor.current.code.slice(-20)
   }
 };
 
 const mapDispatchToProps = {
   clearConsole,
   nextSnippet,
-  previousSnippet
+  previousSnippet,
+  resetEditorState
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Controls);

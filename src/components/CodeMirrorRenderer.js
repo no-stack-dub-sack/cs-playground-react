@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import options from '../utils/editorConfig';
+import defaultOptions from '../utils/editorConfig';
 import React, { Component } from 'react';
-import { updateCode } from '../actions/code';
+import { updateCode } from '../actions/editor';
 
 // codemirror assets
 import '../styles/codemirror.css'
@@ -12,6 +12,7 @@ import 'codemirror/addon/fold/foldcode';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/addon/fold/brace-fold';
+import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/fold/comment-fold';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/edit/closebrackets';
@@ -36,6 +37,10 @@ class CodeMirrorRenderer extends Component {
     this.props.updateCode(value, false);
   }
   render() {
+    const options = this.props.welcome ? {
+      ...defaultOptions,
+      mode: 'markdown'
+    } : defaultOptions;
     return (
       <CodeMirror
         onBeforeChange={this.updateCode}
@@ -49,9 +54,10 @@ class CodeMirrorRenderer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    code: state.code.code,
-    currentId: state.code.id,
-    isSolution: state.code.isSolution
+    code: state.editor.current.code,
+    currentId: state.editor.current.id,
+    isSolution: state.editor.isSolution,
+    welcome: state.editor.welcome
   }
 };
 
