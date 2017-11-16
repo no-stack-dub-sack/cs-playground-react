@@ -15,9 +15,9 @@ This project uses [CodeMirror](https://codemirror.net/) and [React-CodeMirror](h
 ```
 - The editor has SublimeText keybindings.
 - Shortcut keys:
-  - Go to the next challenge: <kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd>
-  - Go to the previous challenge: <kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd>
-  - Run code: <kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd>
+  - Go to the next challenge: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>></kbd>
+  - Go to the previous challenge: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd><</kbd>
+  - Run code: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>ENTER</kbd>
 
 The app is currently live here: https://cs-playground-react.surge.sh/
 
@@ -64,3 +64,4 @@ Some of my solutions are less than perfect. If you come up with a better one, or
 ***
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+<kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd><kbd>
