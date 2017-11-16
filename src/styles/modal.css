@@ -10,14 +10,11 @@
 
 .modal li {
   margin: 5px 0 5px 0;
-  user-select: none;
 }
 
-.modal a,
-.modal span {
+.modal a {
   text-decoration: none;
   color: #46bc99;
-  user-select: text;
 }
 
 .modal a:hover {

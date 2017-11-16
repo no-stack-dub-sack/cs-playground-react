@@ -21,6 +21,12 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/selection/active-line';
 import 'codemirror/theme/tomorrow-night-eighties.css';
 
+import { JSHINT } from 'jshint';
+import 'codemirror/addon/lint/lint';
+import 'codemirror/addon/lint/lint.css';
+import 'codemirror/addon/lint/javascript-lint';
+window.JSHINT = JSHINT;
+
 class CodeMirrorRenderer extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.snippet !== this.props.snippet) {

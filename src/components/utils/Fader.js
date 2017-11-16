@@ -13,10 +13,10 @@ const transitionStyles = {
   entered: { opacity: 1 },
 };
 
-const Fade = ({ in: inProp, children }) => (
+const Fade = ({ in: inProp, children, attachRef }) => (
   <Transition in={inProp} timeout={duration}>
     {(state) => (
-      <div style={{
+      <div ref={attachRef} style={{
         ...defaultStyle,
         ...transitionStyles[state]
       }}>

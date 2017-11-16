@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "codemirror": "^5.31.0",
+    "jshint": "^2.9.5",
     "react": "^16.0.0",
     "react-codemirror2": "^3.0.7",
     "react-dom": "^16.0.0",

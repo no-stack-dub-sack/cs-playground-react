@@ -1,9 +1,13 @@
 import { clearConsole } from '../actions/console';
 import { connect } from 'react-redux';
-import { nextSnippet, previousSnippet, resetEditorState } from '../actions/editor';
 import React, { Component } from 'react';
 import '../styles/controls.css';
-import { store } from '../index';
+
+import {
+  nextSnippet,
+  previousSnippet,
+  resetEditorState
+} from '../actions/editor';
 
 class Controls extends Component {
   constructor(props) {

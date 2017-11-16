@@ -1,5 +1,4 @@
 export default {
-  mode:  "javascript",
   indentUnit: 4,
   foldGutter: true,
   lineNumbers: true,
@@ -7,7 +6,11 @@ export default {
   styleActiveLine: true,
   autoCloseBrackets: true,
   theme: 'tomorrow-night-eighties',
+  mode:  "javascript",
   keyMap: 'sublime',
+  lint: {
+    esversion: 6
+  },
   gutters: [
     'CodeMirror-linenumbers',
     'CodeMirror-foldgutter'

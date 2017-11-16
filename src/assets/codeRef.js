@@ -18,13 +18,9 @@ import PriorityQueue from './seed/data-structures/PriorityQueue';
 import Queue from './seed/data-structures/Queue';
 import Stack from './seed/data-structures/Stack';
 
-import List from '../utils/List';
-
-const SnippetList = new List();
-
 // order of arrays determines order of sidebar menu:
 
-export const CODE = {
+export default {
   SORTING_ALGOS: [
     Quicksort,
     Mergesort,
@@ -56,20 +52,3 @@ export const CODE = {
     // RotateAnImage,
   ]
 };
-
-for (let type in CODE) {
-  CODE[type].forEach(item => {
-    SnippetList.add(
-      item.title.replace(/\s/g, ''),
-      item.seed,
-      item.solution,
-      item.resources
-    );
-  });
-}
-
-/** make structure circular for
-circular navigation of snippets */
-SnippetList.makeCircular();
-
-export default SnippetList;

@@ -1,4 +1,4 @@
-import { CODE } from '../../assets/codeRef';
+import CODE from '../../assets/codeRef';
 import MenuMap from './MenuMap';
 import PropTypes from 'prop-types';
 import React from 'react';

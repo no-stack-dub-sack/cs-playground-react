@@ -28,34 +28,22 @@ class Modal extends Component {
     }
   }
   renderListItem = (item) => (
-    // HACK: return spans not links when !renderModal so that
-    // LI items still appear when modal is transitioning out.
-    // this is cause we are not actually unmounting the modal
-    // we are simply making it transparent instead, and even
-    // with a 0 z-index, the links could still be clicked on
-    // through the editor background. Hmmmmmmmmmmmmmm.......
     <li key={shortid.generate()}>
-    { this.props.renderModal
-    ? <a href={item.href} rel="noopener noreferrer" target="_blank">
+      <a href={item.href} rel="noopener noreferrer" target="_blank">
         {item.caption}
       </a>
-    : <span>
-        {item.caption}
-      </span> }
     </li>
   )
   render() {
     return ReactDOM.createPortal(
-      <div ref={ref => this.modal = ref}>
-        <Fade in={this.props.renderModal}>
-          <div className="modal">
-            <h2 className="modal--header">
-              { `${this.props.modalId.replace(/_/g, ' ')} Resources` }
-            </h2>
-            { this.props.resources.map(this.renderListItem) }
-          </div>
-        </Fade>
-      </div>,
+      <Fade attachRef={ref => this.modal = ref} in={this.props.renderModal}>
+        <div className="modal">
+          <h2 className="modal--header">
+            { `${this.props.modalId.replace(/_/g, ' ')} Resources` }
+          </h2>
+          { this.props.resources.map(this.renderListItem) }
+        </div>
+      </Fade>,
       document.getElementById('modal-root')
     );
   }

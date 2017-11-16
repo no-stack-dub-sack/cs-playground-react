@@ -1,7 +1,7 @@
 body {
+  font-family: Ubuntu;
   margin: 0;
   position: relative;
-  font-family: Ubuntu;
 }
 
 #root {
@@ -11,26 +11,25 @@ body {
 }
 
 #modal-root {
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  /*z-index: 6 !important;  */
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
-    height: 10px;
+  height: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+  border-radius: 5px;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
 }
 
 ::-webkit-scrollbar-corner {
