@@ -14,3 +14,7 @@
 .cm-s-tomorrow-night-eighties .CodeMirror-activeline-background {
   background: rgba(187, 141, 245, 0.1) !important;
 }
+
+.CodeMirror-scrollbar-filler {
+  background: black !important;
+}

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal';
 import Fade from './Fader';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import shortid from 'shortid';
@@ -49,12 +50,19 @@ class Modal extends Component {
   }
 }
 
+Modal.propTypes = {
+  resources: PropTypes.array.isRequired,
+  renderModal: PropTypes.bool.isRequired,
+  modalId: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = (state) => {
   return {
     resources: state.resources,
     renderModal: state.modal.renderModal,
     modalId: state.modal.modalId
   }
-};
+}
 
 export default connect(mapStateToProps, { closeModal })(Modal);

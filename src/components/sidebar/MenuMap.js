@@ -69,17 +69,22 @@ class MenuMap extends Component {
 };
 
 MenuMap.propTypes = {
+  closeModal: PropTypes.func.isRequired,
   codeId: PropTypes.string.isRequired,
   header: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   modalId: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
   renderModal: PropTypes.bool.isRequired,
-  xtraClass: PropTypes.string
-};
+  selectSnippet: PropTypes.func.isRequired,
+  selectSolution: PropTypes.func.isRequired,
+  selectTopic: PropTypes.func.isRequired,
+  xtraClass: PropTypes.string,
+}
 
 MenuMap.defaultProps = {
   xtraClass: ''
-};
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -88,12 +93,13 @@ const mapStateToProps = (state) => {
     codeId: state.editor.current.id
   }
 }
+
 const mapDispatchToProps = {
   selectSnippet,
   selectSolution,
   selectTopic,
   openModal,
   closeModal
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuMap);

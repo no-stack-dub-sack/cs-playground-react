@@ -31,6 +31,6 @@ const mapStateToProps = (state) => {
   return {
     messages: state.consoleOutput
   }
-};
+}
 
 export default connect(mapStateToProps)(ConsoleOutput);

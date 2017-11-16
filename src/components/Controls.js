@@ -105,13 +105,13 @@ const mapStateToProps = (state) => {
     code: state.editor.current.code,
     slice: state.editor.current.code.slice(-20)
   }
-};
+}
 
 const mapDispatchToProps = {
   clearConsole,
   nextSnippet,
   previousSnippet,
   resetEditorState
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Controls);

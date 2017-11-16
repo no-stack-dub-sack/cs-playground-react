@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import defaultOptions from '../utils/editorConfig';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { updateCode } from '../actions/editor';
 
@@ -33,13 +34,13 @@ class CodeMirrorRenderer extends Component {
       this.props.updateCode(this.props.code, true);
     }
   }
-  handleChange = (editor, d) => {
+  handleChange = (editor, data) => {
     if (this.props.currentId === 'BinarySearchTree' && this.props.isSolution) {
       editor.foldCode(1);
       editor.foldCode(9);
     }
   }
-  updateCode = (e, d, value) => {
+  updateCode = (editor, data, value) => {
     this.props.updateCode(value, false);
   }
   render() {
@@ -58,13 +59,21 @@ class CodeMirrorRenderer extends Component {
   }
 }
 
+CodeMirrorRenderer.propTypes = {
+  code: PropTypes.string.isRequired,
+  currentId: PropTypes.string.isRequired,
+  isSolution: PropTypes.bool.isRequired,
+  updateCode: PropTypes.func.isRequired,
+  welcome: PropTypes.bool.isRequired,
+}
+
 const mapStateToProps = (state) => {
   return {
     code: state.editor.current.code,
     currentId: state.editor.current.id,
-    isSolution: state.editor.isSolution,
+    isSolution: state.editor.current.isSolution,
     welcome: state.editor.welcome
   }
-};
+}
 
 export default connect(mapStateToProps, { updateCode })(CodeMirrorRenderer);
