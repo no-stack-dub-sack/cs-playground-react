@@ -7,6 +7,7 @@ __This is meant as a reference / review only &mdash; if you haven't already lear
 This project uses [CodeMirror](https://codemirror.net/) and [React-CodeMirror2](https://github.com/scniro/react-codemirror2/) to embed an editor into the browser (the original React-Codemirror is out of date, not maintained, and does not play well with React 16). It also uses a fun little hack to run the code and hijack `console.log`, creating a little REPL which outputs into a mock console. Oh, and a [little script](https://github.com/lingtalfi/simpledrag) I found to help with the resizable panes!
 
 ![image](https://user-images.githubusercontent.com/18563015/32872296-fe5a79c6-ca53-11e7-9fd4-446ea6b516cc.png)
+The app is currently live here: https://cs-playground-react.surge.sh/
 
 ## A few tips:
 - Any _NON-SOLUTION_ code you edit is persisted throughout the session via Redux, and state is persisted using local storage across sessions, so you can leave, close your browser, and come back later, and your code will still be there, without having to log in or create credentials. Be careful though! Once your browsers local storage is cleared, you will lose all of your work.
@@ -21,8 +22,6 @@ This project uses [CodeMirror](https://codemirror.net/) and [React-CodeMirror2](
   - Go to the previous challenge: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd><</kbd>
   - Run code: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>ENTER</kbd>
 
-
-The app is currently live here: https://cs-playground-react.surge.sh/
 
 ## Contents:
 ### Sorting Algorithms:
