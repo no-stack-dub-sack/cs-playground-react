@@ -6,7 +6,20 @@ __This is meant as a reference / review only &mdash; if you haven't already lear
 
 This project uses [CodeMirror](https://codemirror.net/) and [React-CodeMirror](https://github.com/JedWatson/react-codemirror/) to embed an editor into the browser, and a hack that hijacks the console's messages to output messages into a mock console so that you can see the code's output without having the browser's devtools open.
 
-The live site is currently running here: https://cs-playground-react.surge.sh/
+## A few tips:
+- Any _NON-SOLUTION_ code you edit is persisted throughout the session via Redux, and state is persisted using local storage across sessions, so you can leave, close your browser, and come back later, and your code will still be there, without having to log in or create credentials. Be careful though! Once your browsers local storage is cleared, you will lose all of your work.
+- To reset the application state from within the app, call the `resetState()` function in the embedded editor.
+- If for some reason you do not want to save your code, leave the following comment before navigating away or closing your browser:
+```js
+// DO NOT SAVE
+```
+- The editor has SublimeText keybindings.
+- Shortcut keys:
+  - Go to the next challenge: <kbd>CTRL<kbd> + <kbd>SHIFT<kbd> + <kbd>><kbd>
+  - Go to the previous challenge: <kbd>CTRL<kbd> + <kbd>SHIFT<kbd> + <kbd><<kbd>
+  - Run code: <kbd>CTRL<kbd> + <kbd>SHIFT<kbd> + <kbd>ENTER<kbd>
+
+The app is currently live here: https://cs-playground-react.surge.sh/
 
 ## Contents:
 ### Sorting Algorithms:
