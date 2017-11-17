@@ -34,8 +34,12 @@ class CodeMirrorRenderer extends Component {
       this.props.updateCode(this.props.code, true);
     }
   }
-  handleChange = (editor, data) => {
-    if (this.props.currentId === 'BinarySearchTree' && this.props.isSolution) {
+  handleFold = (editor, data) => {
+    // fold/hide BST solution's helper code
+    const { currentId, isSolution  } = this.props;
+    const line_1 = (editor.getLine(1) === 'class QNode {');
+    const line_9 = (editor.getLine(9) === 'class Queue {');
+    if (currentId === 'BinarySearchTree' && isSolution && line_1 && line_9) {
       editor.foldCode(1);
       editor.foldCode(9);
     }
@@ -51,7 +55,7 @@ class CodeMirrorRenderer extends Component {
     return (
       <CodeMirror
         onBeforeChange={this.updateCode}
-        onChange={this.handleChange}
+        onChange={this.handleFold}
         options={options}
         value={this.props.code}
       />

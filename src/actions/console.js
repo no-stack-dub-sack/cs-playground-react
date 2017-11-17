@@ -1,7 +1,7 @@
 import { store } from '../index';
 
 export const CLEAR_CONSOLE = 'CLEAR_CONSOLE';
-export const UPDATE_CONSOLE = 'UPDATE_CONSOLE';
+export const CONSOLE_LOG = 'CONSOLE_LOG';
 
 export const clearConsole = () => {
   return {
@@ -11,12 +11,15 @@ export const clearConsole = () => {
 
 export const hijackConsole = () => {
   const oldLog = console.log;
-  console.log = function(message) {
+  console.log = function(...args) {
+    const messages = [...args].map(msg => {
+      return typeof msg !== 'string'
+        ? JSON.stringify(msg)
+        : msg
+    }).join(' ');
     store.dispatch({
-      type: UPDATE_CONSOLE,
-      message: typeof message !== 'string'
-        ? JSON.stringify(message)
-        : message
+      type: CONSOLE_LOG,
+      messages
     });
     oldLog.apply(console, arguments);
   };
