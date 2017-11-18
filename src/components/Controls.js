@@ -60,6 +60,8 @@ class Controls extends Component {
     this.toggleClearConsole();
     if (/resetState\(\)/.test(this.props.code)) {
       this.handleResetSate();
+    } else if (/clearConsole\(\)/.test(this.props.code)) {
+      this.props.clearConsole();
     } else {
       try {
         // eslint-disable-next-line

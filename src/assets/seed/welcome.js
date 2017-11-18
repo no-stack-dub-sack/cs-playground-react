@@ -18,7 +18,6 @@ Have fun, thanks for visiting, and Happy Coding!
 
 # A couple of tips about the app:
 
-
 - _SAVING CODE_
 As you work on problems, don't worry about moving from one
 to the other, your code will be saved in a couple of ways:
@@ -39,6 +38,11 @@ prompted with a warning once in the in-browser "mock" console, before the code i
 - _NOT SAVING CODE_
 If for some reason you do not want your code to persist to the next session, just leave a
 single line DO NOT SAVE comment in the editor before you navigate away, e.g. \`// DO NOT SAVE\`
+
+
+- _CLEARING THE CONSOLE_
+The console messages will be cleared automatically when yo switch to a new problem and run your
+code, but if you want to clear it at any time, just run your code calling \`clearConsole()\`.
 
 
 - _SHORTCUT KEYS_

@@ -10,7 +10,7 @@ export const clearConsole = () => {
 };
 
 export const hijackConsole = () => {
-  const oldLog = console.log;
+  const OG_Log = console.log;
   console.log = function(...args) {
     const messages = [...args].map(msg => {
       return typeof msg !== 'string'
@@ -21,6 +21,6 @@ export const hijackConsole = () => {
       type: CONSOLE_LOG,
       messages
     });
-    oldLog.apply(console, arguments);
+    OG_Log.apply(console, [...args]);
   };
 };
