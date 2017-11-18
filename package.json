@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "codemirror": "^5.31.0",
     "jshint": "^2.9.5",
     "react": "^16.0.0",
@@ -14,6 +15,7 @@
     "redux": "^3.7.2",
     "shortid": "^2.2.8"
   },
+  "repository": "no-stack-dub-sack/cs-playground-react",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -7,6 +7,7 @@ import Modal from './components/utils/Modal';
 import React, { Component } from 'react';
 import resizePanes from './utils/resize';
 import shortid from 'shortid';
+import axios from 'axios';
 import './styles/app.css';
 
 class App extends Component {
@@ -21,6 +22,12 @@ class App extends Component {
       this.verticalDivider,
       this.horizontalDivider
     );
+    // count hits to live site using node server
+    if (process.env.NODE_ENV === 'production') {
+      axios.post('https://hit-count-server.herokuapp.com/register-count')
+      .then(() => null)
+      .catch(() => null);
+    }
   }
   render() {
     return [
