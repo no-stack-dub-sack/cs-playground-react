@@ -46,6 +46,13 @@ const defaultState = JSON.parse(
   localStorage.getItem('cs-pg-react-editorState')
 ) || initialState;
 
+// copy in any newly deployed changes to state saved in
+// localStorage for users not accessing site over HTTPS 
+defaultState.codeStore = {
+  ...defaultState.codeStore,
+  ...initialState.codeStore
+};
+
 // meaningless abstraction:
 const updateCodeStore = (state) => {
   if (!state.current.isSolution && !state.welcome) {
