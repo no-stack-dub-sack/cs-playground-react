@@ -31,6 +31,7 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 - Insertion Sort
 - Bubble Sort
 - Heap Sort
+- Bucket Sort
 - Sorting Algorithm Benchmarks
 
 ### Data Structures:

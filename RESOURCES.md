@@ -46,8 +46,14 @@
 - https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/implement-heap-sort-with-a-min-heap __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Heapsort
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/heap-sort/
-- https://www.hackerearth.com/practice/algorithms/sorting/heap-sort/tutorial/ (excellent visualization)
+- https://www.hackerearth.com/practice/algorithms/sorting/heap-sort/tutorial/ __(excellent visualization)__
 - https://www.cs.usfca.edu/~galles/visualization/HeapSort.html __(even better visualization!)__
+
+### Bucket Sort
+- http://www.geeksforgeeks.org/bucket-sort-2/
+- https://en.wikipedia.org/wiki/Bucket_sort
+- https://initjs.org/bucket-sort-in-javascript-dc040b8f0058
+- https://www.cs.usfca.edu/~galles/visualization/BucketSort.html __(excellent visualization)__
 
 # Data Structures
 
