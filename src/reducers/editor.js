@@ -42,16 +42,16 @@ const initialState = {
 // the user may also choose to NOT save their code to LS
 // by leaving a // DO NOT SAVE single line comment in the
 // editor before navigating away from the CSPG application
-const defaultState = JSON.parse(
+let defaultState = JSON.parse(
   localStorage.getItem('cs-pg-react-editorState')
 ) || initialState;
 
 // copy in any newly deployed changes to state saved in
-// localStorage for users not accessing site over HTTPS 
-defaultState.codeStore = {
+// localStorage for users not accessing site over HTTPS
+defaultState.codeStore = [
   ...defaultState.codeStore,
   ...initialState.codeStore
-};
+];
 
 // meaningless abstraction:
 const updateCodeStore = (state) => {
