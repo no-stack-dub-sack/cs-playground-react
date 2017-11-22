@@ -29,7 +29,7 @@ window.onbeforeunload = function(e) {
   if (!/\/\/\sDO\sNOT\sSAVE/i.test(state.editor.current.code)) {
     localStorage.setItem(
       'cs-pg-react-editorState',
-      JSON.stringify(store.getState().editor)
+      JSON.stringify(state.editor)
     );
   }
 };

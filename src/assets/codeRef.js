@@ -1,5 +1,6 @@
 import AnagramPalindrome from './seed/algorithms/AnagramPalindrome';
 import BubbleSort from './seed/algorithms/BubbleSort';
+import BucketSort from './seed/algorithms/BucketSort';
 import HeapSort from './seed/algorithms/HeapSort';
 import InsertionSort from './seed/algorithms/InsertionSort';
 import Mergesort from './seed/algorithms/Mergesort';
@@ -28,6 +29,7 @@ export default {
     InsertionSort,
     BubbleSort,
     HeapSort,
+    BucketSort,
     SortingAlgorithmBenchmarks,
   ],
   DATA_STRUCTURES: [
