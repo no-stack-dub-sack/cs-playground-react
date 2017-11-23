@@ -11,7 +11,7 @@ export default {
   */
 
 function sumAllPrimes(num) {
-    retun num;
+    return num;
 }
 
 console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
