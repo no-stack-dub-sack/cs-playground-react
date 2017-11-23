@@ -41,7 +41,7 @@ single line DO NOT SAVE comment in the editor before you navigate away, e.g. \`/
 
 
 - _CLEARING THE CONSOLE_
-The console messages will be cleared automatically when yo switch to a new problem and run your
+The console messages will be cleared automatically when you switch to a new problem and run your
 code, but if you want to clear it at any time, just run your code calling \`clearConsole()\`.
 
 
