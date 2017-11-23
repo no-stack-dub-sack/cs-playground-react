@@ -21,7 +21,7 @@ Have fun, thanks for visiting, and Happy Coding!
 - _SAVING CODE_
 As you work on problems, don't worry about moving from one
 to the other, your code will be saved in a couple of ways:
-  1) First, durring each session, any NON-SOLUTION code that you
+  1) First, during each session, any NON-SOLUTION code that you
      edit will be persisted by React and Redux. Feel free to mess around with the solutions,
      however, any changes that you make there WILL NOT be saved.
   2) Second, even if you navigate away from the page or close your browser, your code will be
