@@ -40,6 +40,9 @@ function selectionSort(arr) {
     return arr;
 }
 
+// NOTE: If your solution looks a little different than this, you can see a couple of other correct but
+// slightly modified implementations of selection sort here: https://repl.it/@no_stack_dub_sack/Selection-Sort. 
+
 console.log(selectionSort([5, 23, 9876, 21, 0, 11, 2, 67, 89, 234, 0, 12, 43, 694]));
 `,
   resources: [

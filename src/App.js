@@ -10,6 +10,9 @@ import shortid from 'shortid';
 import axios from 'axios';
 import './styles/app.css';
 
+// TODO: add clear console button
+// TODO: make it so clearConsole() can be commented out
+
 class App extends Component {
   componentDidMount() {
     // pass refs to simple drag function
