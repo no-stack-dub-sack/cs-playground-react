@@ -59,7 +59,7 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 
 ## To Install/Run:
 - Fork repo, clone locally, and run `npm install` or `yarn install`
-- In the root directory, run `yarn start` or `npm start`
+- In the root directory, run `npm start` or `yarn start`
 
 ## \*\*_Challenge!_
 Some of my solutions are less than perfect. If you come up with a better one, or want to add a new algorithm or data structure that I haven't covered, feel free to submit a PR!
