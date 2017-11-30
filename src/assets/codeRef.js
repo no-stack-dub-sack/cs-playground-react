@@ -1,14 +1,11 @@
-import AnagramPalindrome from './seed/algorithms/AnagramPalindrome';
 import BubbleSort from './seed/algorithms/BubbleSort';
 import BucketSort from './seed/algorithms/BucketSort';
 import HeapSort from './seed/algorithms/HeapSort';
 import InsertionSort from './seed/algorithms/InsertionSort';
 import Mergesort from './seed/algorithms/Mergesort';
-import NoTwoConsecutiveChars from './seed/algorithms/NoTwoConsecutiveChars';
 import Quicksort from './seed/algorithms/Quicksort';
 import SelectionSort from './seed/algorithms/SelectionSort';
 import SortingAlgorithmBenchmarks from './seed/algorithms/SortingBenchmarks';
-import SumAllPrimes from './seed/algorithms/SumAllPrimes';
 
 import BinarySearchTree from './seed/data-structures/BinarySearchTree';
 import DoublyLinkedList from './seed/data-structures/DoublyLinkedList';
@@ -19,7 +16,12 @@ import PriorityQueue from './seed/data-structures/PriorityQueue';
 import Queue from './seed/data-structures/Queue';
 import Stack from './seed/data-structures/Stack';
 
-// order of arrays determines order of sidebar menu:
+import AnagramPalindrome from './seed/algorithms/AnagramPalindrome';
+import NoTwoConsecutiveChars from './seed/algorithms/NoTwoConsecutiveChars';
+import SumAllPrimes from './seed/algorithms/SumAllPrimes';
+import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard';
+
+// NOTE: order of arrays determines order of sidebar menu
 
 export default {
   SORTING_ALGOS: [
@@ -44,6 +46,7 @@ export default {
   ],
   EASY_ALGOS: [
     SumAllPrimes,
+    GenerateCheckerboard,
     // IsPalindrome,
     // FizzBuzz,
   ],
