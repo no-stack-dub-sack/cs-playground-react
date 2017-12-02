@@ -1,4 +1,4 @@
-import { HORIZONTAL_GRIP, VERTICAL_GRIP } from './grips';
+import { HORIZONTAL_GRIP, VERTICAL_GRIP } from './base64';
 
 export default (horizontalDivider, verticalDivider) => {
   verticalDivider.addEventListener('mousedown', function(e) {

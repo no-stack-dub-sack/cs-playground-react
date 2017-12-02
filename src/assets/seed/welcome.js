@@ -42,7 +42,7 @@ single line DO NOT SAVE comment in the editor before you navigate away, e.g. \`/
 
 - _CLEARING THE CONSOLE_
 The console messages will be cleared automatically when you switch to a new problem and run your
-code, but if you want to clear it at any time, just run your code calling \`clearConsole()\`.
+code, but if you want to clear it at any time, just hit the button!
 
 
 - _SHORTCUT KEYS_
@@ -54,7 +54,7 @@ __Run Code:__          |   \`CTRL + SHIFT + Enter\`
 
 
 - _KEY BINDINGS_
-The CodeMirror instance is set up with Sublime key bindings.
+The CodeMirror instance is set up with SublimeText key bindings.
 
 
 - _CHALLENGE!_

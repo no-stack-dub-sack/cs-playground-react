@@ -48,7 +48,9 @@ if (module.hot) {
     const NextApp = require('./App').default;
     ReactDOM.render(
       <Provider store={store} >
-        <NextApp />
+        <ErrorBoundary>
+          <NextApp />
+        </ErrorBoundary>
       </Provider>,
       document.getElementById('root')
     );

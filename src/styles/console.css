@@ -1,15 +1,25 @@
 .sidebar--output.bottom-pane {
   height: 30%;
   margin: 0;
+  position: relative;
 }
 
 .sidebar--output--messages {
+  background: #1b1d1a;
   box-sizing: border-box;
-  height: 100%;
-  background: rgb(27, 29, 26);
-  color: rgb(7, 187, 4);
+  color: #07bb04;
   font-family: monospace;
+  height: 100%;
   overflow-y: auto;
+}
+
+.sidebar--output--clear-console {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 7px 6px 7px;
+  position: absolute;
+  top: 10px;
+  right: 18px;
 }
 
 .sidebar--output--messages--message {
@@ -32,5 +42,5 @@
 .sidebar--output--messages--default-message {
   margin: 0;
   padding: 5px 0 0 8px;
-  color: rgb(120, 117, 119);
+  color: #787577;
 }
