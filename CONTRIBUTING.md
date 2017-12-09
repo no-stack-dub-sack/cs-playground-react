@@ -9,7 +9,6 @@ To add a new algorithm or data structure, here's what you'll need:
 - Some seed, or default code (usually a function or class declaration). This code should not be a complete solution, but it should be able to run without breaking. 
 - A working (and ideally good) solution to the problem you are introducing. 
 - At least one resource (this could be an article, a youtube video, a link to an interactive challenge that covers the problem, an image, etc.). If your problem does not have any viable associated resources, think of something related as a placeholder (see the Generate Checkerboard Challenge).
-- That's it!
 
 To actually add it to the app, you only need to follow a few simple steps:
 - Create a new seed file in the appropriate directory: `src/assets/seed/<type>/<topic>.js`
