@@ -43,6 +43,7 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 - Binary Search Tree
 - Max Heap
 - Hash Table
+- Graph
 
 ### Algorithm Challenges
 **Easy:**

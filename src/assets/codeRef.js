@@ -9,6 +9,7 @@ import SortingAlgorithmBenchmarks from './seed/algorithms/SortingBenchmarks';
 
 import BinarySearchTree from './seed/data-structures/BinarySearchTree';
 import DoublyLinkedList from './seed/data-structures/DoublyLinkedList';
+import Graph from './seed/data-structures/Graph'
 import HashTable from './seed/data-structures/HashTable';
 import LinkedList from './seed/data-structures/LinkedList';
 import MaxHeap from './seed/data-structures/MaxHeap';
@@ -43,6 +44,7 @@ export default {
     BinarySearchTree,
     MaxHeap,
     HashTable,
+    Graph
   ],
   EASY_ALGOS: [
     SumAllPrimes,
