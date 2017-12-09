@@ -82,10 +82,12 @@
 ### Linked Lists / Doubly Linked Lists
 - http://www.geeksforgeeks.org/data-structures/linked-list/
 - http://www.geeksforgeeks.org/implementation-linkedlist-javascript/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list __(interactive challenges)__
+- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list __(interactive challenge series)__
 - https://en.wikipedia.org/wiki/Linked_list
+- https://en.wikipedia.org/wiki/Doubly_linked_list
 - https://guide.freecodecamp.org/computer-science/data-structures/linked-lists
-- http://www.geeksforgeeks.org/data-structures/linked-list/
+- http://www.geeksforgeeks.org/data-structures/linked-list/#doublyLinkedList/
+- https://www.nczonline.net/blog/2009/04/21/computer-science-in-javascript-doubly-linked-lists/
 
 ### Hash Table
 - http://www.geeksforgeeks.org/hashing-data-structure/
@@ -102,6 +104,8 @@
 - https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree __(interactive challenges)__
 - https://en.wikipedia.org/wiki/Binary_search_tree
 - https://guide.freecodecamp.org/algorithms/binary-search-trees
+- https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/
+- https://www.nczonline.net/blog/2009/06/16/computer-science-in-javascript-binary-search-tree-part-2/
 - https://www.cs.usfca.edu/~galles/visualization/BST.html __(interactive visualization)__
 
 ### Heaps
@@ -109,6 +113,12 @@
 - https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/insert-an-element-into-a-max-heap __(interactive challenges)__
 - https://en.wikipedia.org/wiki/Heap_(data_structure)
 - https://www.cs.usfca.edu/~galles/visualization/Heap.html __(interactive visualization)__
+
+### Graphs
+http://www.geeksforgeeks.org/graph-and-its-representations/
+http://www.geeksforgeeks.org/implementation-graph-javascript/
+https://en.wikipedia.org/wiki/Adjacency_list
+https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html __(interactive visualization)__
 
 # Other Algorithms
 

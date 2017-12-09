@@ -34,7 +34,7 @@ class Graph {
         this.list.set(vertex, []);
     }
 
-    // An undirected graph requires that a connection exists both ways    
+    // An undirected graph requires that a connection exists both ways
     addEdge(source, destination) {
         this.list.get(source).push(destination);
         this.list.get(destination).push(source);
@@ -56,7 +56,7 @@ class Graph {
     }
 }
 
-// Example Usage: 
+// Example Usage:
 
 var graph = new Graph(5);
 var vertices = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake'];
@@ -77,7 +77,8 @@ graph.printGraph();
 `,
   resources: [
       { href: 'http://www.geeksforgeeks.org/graph-and-its-representations/', caption: 'GeeksforGeeks.org'},
-      { href: 'http://www.geeksforgeeks.org/implementation-graph-javascript/', caption: 'GeeksforGeeks.org'},
+      { href: 'http://www.geeksforgeeks.org/implementation-graph-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
       { href: 'https://en.wikipedia.org/wiki/Adjacency_list', caption: 'Wikipedia'},
+      { href: 'https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html', caption: 'Interactive Animated Visualization'},
   ]
 };

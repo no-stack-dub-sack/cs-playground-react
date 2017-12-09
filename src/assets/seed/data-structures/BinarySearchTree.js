@@ -485,6 +485,8 @@ console.log(JSON.stringify(tree, null, 2));
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Binary_search_tree', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/algorithms/binary-search-trees', caption: 'freeCodeCamp Guides'},
+    { href: 'https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/', caption: 'NCZOnline Blog Pt. 1 (JS Specific)'},
+    { href: 'https://www.nczonline.net/blog/2009/06/16/computer-science-in-javascript-binary-search-tree-part-2/', caption: 'NCZOnline Blog Pt. 2 (JS Specific)'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/BST.html', caption: 'Interactive Animated Visualization!'},
   ]
 };

@@ -57,62 +57,40 @@ class Stack {
     }
 
 
-    push(val, node = this.root) {
-        if (!node) {
-            this.size++;
-            this.root = new Node(val);
+    push(value) {
+        const node = new Node(value);
+
+        if (this.root === null) {
+            this.root = node;
+        } else {
+            node.next = this.root;
+            this.root = node;
+        }
+
+        this.size++;
+    }
+
+
+    pop() {
+        if (this.isEmpty()) {
             return;
         }
 
-        if (!node.next) {
-            this.size++;
-            node.next = new Node(val);
-        } else {
-            this.push(val, node.next);
-        }
+        const value = this.root.value;
+        this.root = this.root.next;
+        this.size--;
+
+        return value;
     }
 
 
-    pop(node = this.root, previousNode = null) {
-        if (!node) {
-            return undefined;
-        }
-
-        if (this.size === 1) {
-            this.root = null;
-            this.size = 0;
-            return node.value;
-        }
-
-        if (node.next) {
-            return this.pop(node.next, node);
-        } else {
-            this.size--;
-            previousNode.next = null;
-            return node.value;
-        }
-    }
-
-
-    peek(node = this.root) {
-        if (!node) {
-            return undefined;
-        }
-
-        if (node.next) {
-            return this.peek(node.next);
-        } else {
-            return node.value;
-        }
+    peek() {
+        return this.root.value;
     }
 
 
     isEmpty() {
-        if (!this.root) {
-            return true;
-        }
-
-        return false;
+        return this.size === 0;
     }
 
 

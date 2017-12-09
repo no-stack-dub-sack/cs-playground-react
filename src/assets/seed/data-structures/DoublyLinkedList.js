@@ -391,11 +391,10 @@ console.log('reversed list: \\n\\n' + list.toString()  + '\\n');
 // [object Object]
 `,
   resources: [
-    { href: 'http://www.geeksforgeeks.org/linkedlist-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'http://www.geeksforgeeks.org/implementation-linkedlist-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
+    { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/#doublyLinkedList/', caption: 'GeeksforGeeks.org'},
+    { href: 'https://www.nczonline.net/blog/2009/04/21/computer-science-in-javascript-doubly-linked-lists/', caption: 'NCZOnline Blog (JS Specific)'},
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-doubly-linked-list', caption: 'freeCodeCamp Challenge'},
-    { href: 'https://en.wikipedia.org/wiki/Linked_list', caption: 'Wikipedia'},
+    { href: 'https://en.wikipedia.org/wiki/Doubly_linked_list', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/linked-list', caption: 'freeCodeCamp Guides'},
-    { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/', caption: 'Interactive Animated Visualization!'},
   ]
 };
