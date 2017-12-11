@@ -17,6 +17,8 @@ console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3,
 `/**
   * @function quickSort
   * @param {number[]} arr
+  * @param {number} [low=0]
+  * @param {number} [high=arr.length]
   * @return {number[]}
   */
 
@@ -39,8 +41,10 @@ function quickSort(arr, low = 0, high = arr.length-1) {
 }
 
 /**
-  * @function bubbleSort
+  * @function partition
   * @param {number[]} arr
+  * @param {number} [low=0]
+  * @param {number} [high=arr.length]
   * @return {number[]}
   */
 
