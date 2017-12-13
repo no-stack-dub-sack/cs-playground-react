@@ -42,7 +42,7 @@ class Node {
   * @class Stack data structure
   * @property {object} root The root of the collection
   * @property {number} size The size of the collection
-  * @method push @param {(number|string)} val Adds an element to the collection
+  * @method push @param {(number|string)} value Adds an element to the collection
   * @method pop Removes an element from the collection
   * @method peek Returns the element at the top of the Stack
   * @method isEmpty @return bool

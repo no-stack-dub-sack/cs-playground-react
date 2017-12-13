@@ -2,8 +2,8 @@ export default {
   title: 'Queue',
   seed:
 `class Node {
-    constructor(val) {
-        this.value = val;
+    constructor(value) {
+        this.value = value;
         this.next = null;
     }
 }
@@ -30,8 +30,8 @@ class Queue {
   */
 
 class Node {
-    constructor(val) {
-        this.value = val;
+    constructor(value) {
+        this.value = value;
         this.next = null;
     }
 }
@@ -39,7 +39,7 @@ class Node {
 /**
   * @class Queue
   * @property {Object} root The root node of the queue
-  * @method enqueue @param {*} val @param {Object} [node=this.root]
+  * @method enqueue @param {*} value @param {Object} [node=this.root]
   * @method dequeue @return {*} Removes and returns the front node's value
   * @method front @return {*} Returns but DOES NOT return the front node's value
   * @method isEmpty @return {boolean}
@@ -52,23 +52,23 @@ class Queue {
     }
 
 
-    enqueue(val, node = this.root) {
+    enqueue(value, node = this.root) {
         if (!node) {
-            this.root = new Node(val);
+            this.root = new Node(value);
             return;
         }
 
         if (node.next) {
-            return this.enqueue(val, node.next);
+            return this.enqueue(value, node.next);
         } else {
-            node.next = new Node(val);
+            node.next = new Node(value);
         }
     }
 
 
-    enqueueIterative(val, node = this.root) {
+    enqueueIterative(value, node = this.root) {
         if (!node) {
-            this.root = new Node(val);
+            this.root = new Node(value);
             return;
         }
 
@@ -76,7 +76,7 @@ class Queue {
             node = node.next;
         }
 
-        node.next = new Node(val);
+        node.next = new Node(value);
     }
 
 
@@ -85,10 +85,10 @@ class Queue {
             return null;
         }
 
-        const val = this.root.value;
+        const value = this.root.value;
         this.root = this.root.next;
 
-        return val;
+        return value;
     }
 
 

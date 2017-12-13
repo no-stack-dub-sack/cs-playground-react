@@ -3,7 +3,7 @@ export default {
   seed:
 `class PQNode {
     constructor(element, priority) {
-        this.el = element;
+        this.element = element;
         this.priority = priority;
         this.next = null;
     }
@@ -28,14 +28,14 @@ class PriorityQueue {
   solution:
 `/**
   * @class Node
-  * @property el The node's value / data
+  * @property element The node's value / data
   * @property priority The node's priority
   * @property next The next node in the queue
   */
 
 class PQNode {
     constructor(element, priority) {
-        this.el = element;
+        this.element = element;
         this.priority = priority;
         this.next = null;
     }
@@ -44,7 +44,7 @@ class PQNode {
 /**
   * @class Queue
   * @property {Object} root The root node of the priority queue
-  * @method enqueue @property {*} el @property {number} priority Enqueues node based on priority
+  * @method enqueue @property {*} element @property {number} priority Enqueues node based on priority
   * @method dequeue @return {*} Removes and returns the front node's value (lowest priority node)
   * @method front @return {*} Returns but DOES NOT return the front node's value
   * @method size @return {number} Returns the queue's size
@@ -63,11 +63,11 @@ class PriorityQueue {
     }
 
 
-    enqueue(el, priority) {
+    enqueue(element, priority) {
         this.length++;
 
         if (!this.head) {
-            this.head = new PQNode(el, priority);
+            this.head = new PQNode(element, priority);
             this.tail = this.head;
             return;
         }
@@ -75,21 +75,21 @@ class PriorityQueue {
         let currentNode = this.head;
 
         if (priority < currentNode.priority) {
-            const newNode = new PQNode(el, priority);
+            const newNode = new PQNode(element, priority);
             newNode.next = this.head;
             this.head = newNode;
             return;
         }
 
         if (priority > this.tail.priority) {
-            this.tail.next = new PQNode(el, priority);
+            this.tail.next = new PQNode(element, priority);
             this.tail = this.tail.next;
             return;
         }
 
         while (currentNode) {
             if (priority >= currentNode.priority && priority < currentNode.next.priority ) {
-                const newNode = new PQNode(el, priority);
+                const newNode = new PQNode(element, priority);
                 newNode.next = currentNode.next;
                 currentNode.next = newNode;
                 return;
@@ -105,11 +105,11 @@ class PriorityQueue {
             return null;
         }
 
-        const el = this.head.el;
+        const element = this.head.element;
         this.head = this.head.next;
         this.length--;
 
-        return el;
+        return element;
     }
 
 
@@ -118,7 +118,7 @@ class PriorityQueue {
             return null;
         }
 
-        return this.head.el;
+        return this.head.element;
     }
 
 

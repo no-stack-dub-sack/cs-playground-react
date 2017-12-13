@@ -2,8 +2,8 @@ export default {
   title: 'Linked List',
   seed:
 `class Node {
-    constructor(el) {
-        this.el = el;
+    constructor(element) {
+        this.element = element;
         this.next = null;
     }
 }
@@ -35,8 +35,8 @@ class LinkedList {
   */
 
 class Node {
-    constructor(el) {
-        this.el = el;
+    constructor(element) {
+        this.element = element;
         this.next = null;
     }
 }
@@ -47,11 +47,11 @@ class Node {
  * @property {number} length The length of the list
  * @method head @return {object} root element of collection
  * @method size @return size of List
- * @method add @param {number|string} el Adds element to List
- * @method addAt @param {number} index @param {number|string} el Adds element at specific index
- * @method remove @param {number|string} el @return {number|string} removed element
+ * @method add @param {number|string} element Adds element to List
+ * @method addAt @param {number} index @param {number|string} element Adds element at specific index
+ * @method remove @param {number|string} element @return {number|string} removed element
  * @method removeAt @param {number} index @return {number|string} removed element at specific index
- * @method indexOf @param {number|string} el @return {number} index of a given element
+ * @method indexOf @param {number|string} element @return {number} index of a given element
  * @method elementAt @param {number} index @return {number|string} elementAt at specific index
  * @method isEmpty @return {boolean}
  */
@@ -73,8 +73,8 @@ class LinkedList {
     }
 
 
-    add(el) {
-        var next = new Node(el);
+    add(element) {
+        var next = new Node(element);
         var currentNode = this.headNode;
         if (!currentNode) {
             this.headNode = next;
@@ -90,14 +90,14 @@ class LinkedList {
     }
 
 
-    addAt(index, el) {
+    addAt(index, element) {
         if (index < 0 || index >= this.size) {
             return null;
         }
 
         var currentNode = this.headNode, previousNode;
         var currentIndex = 0;
-        var next = new Node(el);
+        var next = new Node(element);
         if (index === 0) {
             next.next = this.headNode;
             this.headNode = next;
@@ -117,13 +117,13 @@ class LinkedList {
     }
 
 
-    remove(el) {
+    remove(element) {
         var currentNode = this.headNode, previousNode;
 
-        if (currentNode.el === el) {
+        if (currentNode.element === element) {
             this.headNode = currentNode.next;
         } else {
-            while (currentNode.el !== el) {
+            while (currentNode.element !== element) {
                 previousNode = currentNode;
                 currentNode = currentNode.next;
             }
@@ -147,7 +147,7 @@ class LinkedList {
         if (index === 0) {
             previousNode = this.headNode;
             this.headNode = currentNode.next;
-            return previousNode.el;
+            return previousNode.element;
         } else {
             while (currentIndex < index) {
                 previousNode = currentNode;
@@ -156,17 +156,17 @@ class LinkedList {
             }
 
             previousNode.next = currentNode.next;
-            return currentNode.el;
+            return currentNode.element;
         }
     }
 
 
-    indexOf(el) {
+    indexOf(element) {
         var count = 0;
         var currentNode = this.headNode;
         if (!currentNode) return -1;
 
-        while (el !== currentNode.el) {
+        while (element !== currentNode.element) {
             if (currentNode.next === null) {
                 return -1;
             }
@@ -191,7 +191,7 @@ class LinkedList {
             currentIndex++;
         }
 
-        return currentNode.el;
+        return currentNode.element;
     }
 
 

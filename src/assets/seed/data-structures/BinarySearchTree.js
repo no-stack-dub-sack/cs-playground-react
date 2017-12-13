@@ -35,8 +35,8 @@ class BinarySearchTree {
   solution:
 `// queue helper class node
 class QNode {
-    constructor(val) {
-        this.value = val;
+    constructor(value) {
+        this.value = value;
         this.next = null;
     }
 }
@@ -47,9 +47,9 @@ class Queue {
         this.root = null;
     }
 
-    enqueue(val) {
+    enqueue(value) {
         if (!this.root) {
-            this.root = new QNode(val);
+            this.root = new QNode(value);
             return;
         }
 
@@ -58,17 +58,17 @@ class Queue {
             node = node.next;
         }
 
-        node.next = new QNode(val);
+        node.next = new QNode(value);
     }
 
     dequeue() {
         if (!this.root) {
             return null;
         }
-        let val = this.root.value;
+        let value = this.root.value;
         this.root = this.root.next;
 
-        return val;
+        return value;
     }
 
     get isEmpty() {
@@ -110,7 +110,7 @@ class Node {
   * @method postOrder @return {number[]} An array of the tree's values arranged in postOrder
   * @method levelOrder @return {number[]} An array of the tree's values arranged in levelOrder
   * @method reverseLevelOrder @return {number[]} An array of the tree's values arranged in reverseLevelOrder
-  * @method remove @param {number} val @return {number} Removes and returns the removed element
+  * @method remove @param {number} value @return {number} Removes and returns the removed element
   * @method invert Inverts the tree in place
   */
 
@@ -321,12 +321,12 @@ class BinarySearchTree {
     }
 
 
-    remove(val) {
+    remove(value) {
         if (!this.root) {
             return null;
         }
 
-        const { target, parent } = this.searchTree(val, this.root);
+        const { target, parent } = this.searchTree(value, this.root);
 
         if (!target) {
             return null;
@@ -344,7 +344,7 @@ class BinarySearchTree {
                 return;
             }
 
-            if (parent.left && parent.left.value === val) {
+            if (parent.left && parent.left.value === value) {
                 parent.left = null;
             } else {
                 parent.right = null;
@@ -362,7 +362,7 @@ class BinarySearchTree {
                 return;
             }
 
-            if (parent.left && parent.left.value === val) {
+            if (parent.left && parent.left.value === value) {
                 if (target.left) {
                     parent.left = target.left;
                 } else {
@@ -412,16 +412,16 @@ class BinarySearchTree {
 
     // helper method for deletion actions
     // tracks matching node and parent node
-    searchTree(val, node, parent) {
-        if (val === node.value) {
+    searchTree(value, node, parent) {
+        if (value === node.value) {
             return {
                 target: node,
                 parent
             };
-        } else if (val < node.value && node.left) {
-            return this.searchTree(val, node.left, node);
-        } else if (val > node.value && node.right) {
-            return this.searchTree(val, node.right, node);
+        } else if (value < node.value && node.left) {
+            return this.searchTree(value, node.left, node);
+        } else if (value > node.value && node.right) {
+            return this.searchTree(value, node.right, node);
         }
 
         return {
@@ -452,7 +452,7 @@ var tree = new BinarySearchTree();
  */
 
  const vals = [20,9,49,5,23,52,15,50,17,18,16,13,10,11,12];
- vals.forEach(val => tree.add(val));
+ vals.forEach(value => tree.add(value));
 
 console.log(\`findMax: \${tree.findMax()}\`);
 console.log(\`findMin: \${tree.findMin()}\`);

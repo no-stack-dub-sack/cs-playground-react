@@ -99,7 +99,7 @@ export default {
             }
         }
 
-        // remove bucket if 1 val left
+        // remove bucket if 1 value left
         if (currentValue.length === 1) {
             this.collection[hash] = currentValue[0];
         }
