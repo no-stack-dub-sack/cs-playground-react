@@ -67,7 +67,7 @@ class Controls extends Component {
         // eslint-disable-next-line
         eval(this.props.code);
       } catch (error) {
-        console.log('Whoops! Your code has an error.\nFix it and try again!');
+        console.log(error.toString());
       }
     }
   }

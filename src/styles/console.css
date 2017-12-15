@@ -22,8 +22,8 @@
   right: 18px;
 }
 
-.sidebar--output--messages--message {
-  white-space: pre;
+.sidebar--output--messages--message.error {
+  color: #ff0000;
 }
 
 .sidebar--output--messages--message:last-of-type {
@@ -33,14 +33,10 @@
 .sidebar--output--messages--message {
   margin: 0;
   padding: 5px 0 0 8px;
-}
-
-.sidebar--output--message:last-of-type {
-  padding-bottom: 5px;
+  white-space: pre;
 }
 
 .sidebar--output--messages--default-message {
-  margin: 0;
   padding: 5px 0 0 8px;
   color: #787577;
 }

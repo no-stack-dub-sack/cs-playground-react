@@ -31,6 +31,8 @@ const _default = {
   icon: ICON_WHITE
 };
 
+const re = new RegExp('InternalError|RangeError|ReferenceError|EvalError|SyntaxError|TypeError|URIError');
+
 class ConsoleOutput extends Component {
   constructor(props) {
     super(props);
@@ -51,13 +53,17 @@ class ConsoleOutput extends Component {
     if (!this.props.messages.length) return;
     this.setState(hover);
   }
-  renderMessages = (msg) => (
-    <p
-      className="sidebar--output--messages--message"
-      key={shortid.generate()}>
-      {msg}
-    </p>
-  )
+  renderMessages = (msg) => {
+    let className = 'sidebar--output--messages--message';
+    if (re.test(msg)) className += ' error';
+    return (
+      <p
+        className={className}
+        key={shortid.generate()}>
+        {msg}
+      </p>
+    );
+  }
   render() {
 
     const { background, color, icon } = this.state;
