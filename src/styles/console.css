@@ -41,3 +41,8 @@
   padding: 5px 0 0 8px;
   color: #787577;
 }
+
+code {
+  color: #787577;
+  font-style: italic;
+}

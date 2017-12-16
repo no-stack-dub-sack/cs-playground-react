@@ -62,9 +62,8 @@ class ConsoleOutput extends Component {
     return (
       <p
         className={className}
-        key={shortid.generate()}>
-        {msg}
-      </p>
+        key={shortid.generate()}
+        dangerouslySetInnerHTML={{ __html: msg + ' ' }} />
     );
   }
   render() {

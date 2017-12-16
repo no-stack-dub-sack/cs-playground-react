@@ -6,19 +6,19 @@ export const tail = `
 export const tests = [
   {
     expression: "typeof generateCheckerboard === 'function'",
-    message: 'generateCheckerboard is a function'
+    message: '<code>generateCheckerboard</code> is a function'
   },
   {
     expression: "typeof board_1 === 'string'",
-    message: 'generateCheckerboard should return a string'
+    message: '<code>generateCheckerboard</code> should return a string'
   },
   {
      expression: "typeof board_1 === 'string' && board_1.match(/#/g).length === 64",
-     message: 'an 8x8 board should have 64 # chars'
+     message: 'an 8x8 board should have 64 <code>#</code> chars'
   },
   {
     expression: "typeof board_1 === 'string' && board_1.match(/\\n/g).length === 8",
-    message: 'an 8x8 board should have 8 \\n chars'
+    message: 'an 8x8 board should have 8 <code>\\n</code> chars'
   },
   {
     expression: "typeof board_1 === 'string' && board_1.match(/ /g).length === 64 || board_1.match(/ /g).length === 68",
@@ -26,11 +26,11 @@ export const tests = [
   },
   {
     expression: "typeof board_1 === 'string' && board_2.match(/#/g).length === 256",
-    message: 'a 16x16 board should have 256 # chars'
+    message: 'a 16x16 board should have 256 <code>#</code> chars'
   },
   {
     expression: "typeof board_1 === 'string' && board_2.match(/\\n/g).length === 16",
-    message: 'a 16x16 board should have 8 \\n chars'
+    message: 'a 16x16 board should have 8 <code>\\n</code> chars'
   },
   {
     expression: "typeof board_1 === 'string' && board_2.match(/ /g).length === 256 || board_2.match(/ /g).length === 264",
@@ -54,6 +54,6 @@ export const tests = [
       return isPassing;
     })()
     `,
-    message: 'each even row should begin with # and each odd row should begin with a space'
+    message: 'each even row should begin with <code>#</code> and each odd row should begin with a space'
   }
 ];
