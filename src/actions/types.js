@@ -1,0 +1,22 @@
+// console
+export const CLEAR_CONSOLE = 'CLEAR_CONSOLE'
+export const CONSOLE_LOG = 'CONSOLE_LOG'
+
+// editor
+export const NEXT_SNIPPET = 'NEXT_SNIPPET'
+export const PREVIOUS_SNIPPET = 'PREVIOUS_SNIPPET'
+export const RESET_STATE = 'RESET_STATE'
+export const SELECT_SNIPPET = 'SELECT_SNIPPET'
+export const SELECT_SOLUTION = 'SELECT_SOLUTION'
+export const UPDATE_CODE = 'UPDATE_CODE'
+export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION'
+
+// modal
+export const OPEN_RESOURCES_MODAL = 'OPEN_RESOURCES_MODAL'
+export const OPEN_ANNOUNCEMENT_MODAL = 'OPEN_ANNOUNCEMENT_MODAL'
+export const CLOSE_MODAL = 'CLOSE_MODAL'
+
+// panes
+export const DRAG_VERTICAL = 'DRAG_VERTICAL'
+export const DRAG_HORIZONTAL = 'DRAG_HORIZONTAL'
+export const DOUBLE_CLICK = 'DOUBLE_CLICK'

@@ -4,35 +4,35 @@ export default {
 `/**
   * @function insertionSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function insertionSort(arr) {
-    return arr;
+    return arr
 }
 
-console.log(insertionSort([56, 1, 2, 56, 767, 9, 9732, 0, 99, 11, 34, 87, 234, 1, 54]));
+console.log(insertionSort([56, 1, 2, 56, 767, 9, 9732, 0, 99, 11, 34, 87, 234, 1, 54]))
 `,
   solution:
 `/**
   * @function insertionSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function insertionSort(arr) {
     for (var i = 0; i < arr.length; i++) {
-        var j = i+1;
+        var j = i+1
         while (arr[j] < arr[j-1]) {
-            [ arr[j], arr[j-1] ] = [ arr[j-1], arr[j] ];
-            j--;
+            [ arr[j], arr[j-1] ] = [ arr[j-1], arr[j] ]
+            j--
         }
     }
 
-    return arr;
+    return arr
 }
 
-console.log(insertionSort([56, 1, 2, 56, 767, 9, 9732, 0, 99, 11, 34, 87, 234, 1, 54]));
+console.log(insertionSort([56, 1, 2, 56, 767, 9, 9732, 0, 99, 11, 34, 87, 234, 1, 54]))
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/insertion-sort/', caption: 'GeeksforGeeks.org'},
@@ -41,5 +41,6 @@ console.log(insertionSort([56, 1, 2, 56, 767, 9, 9732, 0, 99, 11, 34, 87, 234, 1
     { href: 'https://en.wikipedia.org/wiki/Insertion_sort', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/algorithms/sorting-algorithms/insertion-sort/', caption: 'freeCodeCamp Guides'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html', caption: 'Awesome Sorting Algo Visualizations!'},
+    { href: 'https://visualgo.net/en/sorting', caption: 'VisualAlgo.net Sorting Algo Visualizations!'},
   ]
-};
+}

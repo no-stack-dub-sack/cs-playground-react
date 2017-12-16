@@ -4,14 +4,14 @@ export default {
 `/**
   * @function quickSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function quickSort(arr) {
-    return arr;
+    return arr
 }
 
-console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]));
+console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]))
 `,
   solution:
 `/**
@@ -19,25 +19,25 @@ console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3,
   * @param {number[]} arr
   * @param {number} [low=0]
   * @param {number} [high=arr.length]
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function quickSort(arr, low = 0, high = arr.length-1) {
 
     if (arr.length > 1) {
 
-        var index = partition(arr, low, high);
+        var index = partition(arr, low, high)
 
         if (low < index - 1) {
-            quickSort(arr, low, index-1);
+            quickSort(arr, low, index-1)
         }
 
         if (high > index) {
-            quickSort(arr, index, high);
+            quickSort(arr, index, high)
         }
     }
 
-    return arr;
+    return arr
 }
 
 /**
@@ -45,36 +45,36 @@ function quickSort(arr, low = 0, high = arr.length-1) {
   * @param {number[]} arr
   * @param {number} [low=0]
   * @param {number} [high=arr.length]
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function partition(arr, low, high) {
     var pivot = arr[Math.floor((low+high)/2)],
         i = low,
-        j = high;
+        j = high
 
     while (i <= j) {
 
         while (arr[i] < pivot) {
-            i++;
+            i++
         }
 
         while (arr[j] > pivot) {
-            j--;
+            j--
         }
 
         if (i <= j) {
-            [ arr[i], arr[j] ] = [ arr[j], arr[i] ];
-            j--;
-            i++;
+            [ arr[i], arr[j] ] = [ arr[j], arr[i] ]
+            j--
+            i++
         }
 
     }
 
-    return i;
+    return i
 }
 
-console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]));
+console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3, 75]))
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/quick-sort/', caption: 'GeeksforGeeks.org'},
@@ -83,6 +83,7 @@ console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3,
     { href: 'https://en.wikipedia.org/wiki/Quicksort', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/algorithms/sorting-algorithms/quick-sort', caption: 'freeCodeCamp Guides'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html', caption: 'Awesome Sorting Algo Visualizations!'},
+    { href: 'https://visualgo.net/en/sorting', caption: 'VisualAlgo.net Sorting Algo Visualizations!'},
     { href: 'https://www.youtube.com/watch?v=MZaf_9IZCrc', caption: 'Youtube Quicksort Visualization'},
   ]
-};
+}

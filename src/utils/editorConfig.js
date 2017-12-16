@@ -5,14 +5,35 @@ export default {
   matchBrackets: true,
   styleActiveLine: true,
   autoCloseBrackets: true,
+  highlightSelectionMatches: true,
   theme: 'tomorrow-night-eighties',
   mode:  "javascript",
   keyMap: 'sublime',
-  lint: {
-    esversion: 6
-  },
   gutters: [
-    'CodeMirror-linenumbers',
-    'CodeMirror-foldgutter'
-  ]
-};
+   'CodeMirror-linenumbers',
+   'CodeMirror-foldgutter',
+   'CodeMirror-lint-markers'
+  ],
+  lint: {
+   // allow ES6 syntax
+   esversion: 6,
+   // suppress multi-line ternary warnings
+   laxbreak: true,
+   // suppress missing semi-colon warnings
+   asi: true
+  },
+  extraKeys: {
+   // prevent default
+   'Ctrl-Enter': () => {
+     return false
+   },
+   // prevent default
+   'Cmd-Enter': () => {
+     return false
+   },
+   // prevent default
+   'Ctrl-Space': (cm) => {
+     cm.showHint()
+   }
+  }
+}
