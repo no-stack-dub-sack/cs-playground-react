@@ -1,6 +1,8 @@
 import { clearConsole } from '../actions/console';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import testRunner from '../utils/test/test-runner';
+
 import '../styles/controls.css';
 
 import {
@@ -57,18 +59,14 @@ class Controls extends Component {
     }
   }
   runCode = () => {
+    const { code, id } = this.props;
     this.toggleClearConsole();
-    if (/resetState\(\)/.test(this.props.code)) {
+    if (/resetState\(\)/.test(code)) {
       this.handleResetSate();
-    } else if (/clearConsole\(\)/.test(this.props.code)) {
+    } else if (/clearConsole\(\)/.test(code)) {
       this.props.clearConsole();
     } else {
-      try {
-        // eslint-disable-next-line
-        eval(this.props.code);
-      } catch (error) {
-        console.log(error.toString());
-      }
+      testRunner(code, id);
     }
   }
   componentDidUpdate(prevProps) {
@@ -102,10 +100,11 @@ class Controls extends Component {
   }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ editor: { current } }) => {
   return {
-    code: state.editor.current.code,
-    slice: state.editor.current.code.slice(-20)
+    code: current.code,
+    slice: current.code.slice(-20),
+    id: current.id
   }
 }
 

@@ -1,0 +1,59 @@
+export const tail = `
+  const board_1 = generateCheckerboard(8, 8);
+  const board_2 = generateCheckerboard(16, 16);
+`;
+
+export const tests = [
+  {
+    expression: "typeof generateCheckerboard === 'function'",
+    message: 'generateCheckerboard is a function'
+  },
+  {
+    expression: "typeof board_1 === 'string'",
+    message: 'generateCheckerboard should return a string'
+  },
+  {
+     expression: "typeof board_1 === 'string' && board_1.match(/#/g).length === 64",
+     message: 'an 8x8 board should have 64 # chars'
+  },
+  {
+    expression: "typeof board_1 === 'string' && board_1.match(/\\n/g).length === 8",
+    message: 'an 8x8 board should have 8 \\n chars'
+  },
+  {
+    expression: "typeof board_1 === 'string' && board_1.match(/ /g).length === 64 || board_1.match(/ /g).length === 68",
+    message: 'an 8x8 board should have 64 or 68 spaces'
+  },
+  {
+    expression: "typeof board_1 === 'string' && board_2.match(/#/g).length === 256",
+    message: 'a 16x16 board should have 256 # chars'
+  },
+  {
+    expression: "typeof board_1 === 'string' && board_2.match(/\\n/g).length === 16",
+    message: 'a 16x16 board should have 8 \\n chars'
+  },
+  {
+    expression: "typeof board_1 === 'string' && board_2.match(/ /g).length === 256 || board_2.match(/ /g).length === 264",
+    message: 'a 16x16 board should have between 256 or 264 spaces'
+  },
+  {
+    expression: `
+      (() => {
+      let isPassing = true;
+      [board_1, board_2].forEach(board => {
+        board.split('\\n').forEach((row, i, arr) => {
+          if (row) {
+            if (i % 2 === 0) {
+              isPassing = row[0] === '#';
+            } else {
+              isPassing = row[0] === ' ';
+            }
+          }
+        });
+      });
+      return isPassing;
+    })()
+    `,
+    message: 'each even row should begin with # and each odd row should begin with a space'
+  }
+];

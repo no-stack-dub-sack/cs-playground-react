@@ -31,7 +31,9 @@ const _default = {
   icon: ICON_WHITE
 };
 
-const re = new RegExp('InternalError|RangeError|ReferenceError|EvalError|SyntaxError|TypeError|URIError');
+const re = new RegExp(
+  'Fail:|AssertionError|InternalError|RangeError|ReferenceError|EvalError|SyntaxError|TypeError|URIError'
+);
 
 class ConsoleOutput extends Component {
   constructor(props) {
@@ -54,8 +56,9 @@ class ConsoleOutput extends Component {
     this.setState(hover);
   }
   renderMessages = (msg) => {
-    let className = 'sidebar--output--messages--message';
-    if (re.test(msg)) className += ' error';
+    let className = re.test(msg)
+      ? 'sidebar--output--messages--message  error'
+      : 'sidebar--output--messages--message';
     return (
       <p
         className={className}
@@ -89,7 +92,7 @@ class ConsoleOutput extends Component {
             Clear <img style={margin} alt="backspace icon" src={icon} />
           </div>
           <p className="sidebar--output--messages--default-message">
-            {'// console output:'}
+            {'// console output / tests:'}
           </p>
           { this.props.messages.map(this.renderMessages) }
         </div>

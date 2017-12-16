@@ -222,10 +222,8 @@ class BinarySearchTree {
 
 
     isBalanced() {
-        var maxHeight = this.findMaxHeight();
-        var minHeight = this.findMinHeight();
-        if (maxHeight - minHeight >= 1) {
-            return false;
+        if (this.findMinHeight() > (this.findMaxHeight() - 1)) {
+            return false
         } else {
             return true;
         }

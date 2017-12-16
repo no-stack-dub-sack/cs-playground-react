@@ -54,7 +54,7 @@ defaultState.codeStore = [
 ];
 
 // meaningless abstraction:
-const updateCodeStore = (state) => {
+const updateUserCode = (state) => {
   if (!state.current.isSolution && !state.welcome) {
     return state.codeStore.map(codeObj => {
       if (state.current.id === codeObj.id) {
@@ -89,7 +89,7 @@ export default (state = defaultState, action) => {
         if (codeObj.id === action.id) {
           return {
             welcome: false,
-            codeStore: updateCodeStore(state),
+            codeStore: updateUserCode(state),
             current: {
               id: codeObj.id,
               code: codeObj.solutionCode,
@@ -104,7 +104,7 @@ export default (state = defaultState, action) => {
         if (codeObj.id === action.id) {
           return {
             welcome: false,
-            codeStore: updateCodeStore(state),
+            codeStore: updateUserCode(state),
             current: {
               id: codeObj.id,
               code: codeObj.userCode,
@@ -122,7 +122,7 @@ export default (state = defaultState, action) => {
           else next = i === state.codeStore.length - 1 ? 0 : i+1;
           return {
             welcome: false,
-            codeStore: updateCodeStore(state),
+            codeStore: updateUserCode(state),
             current: {
               id: state.codeStore[next].id,
               code: state.codeStore[next].userCode,
@@ -140,7 +140,7 @@ export default (state = defaultState, action) => {
           else prev = i === 0 ? state.codeStore.length - 1 : i-1;
           return {
             welcome: false,
-            codeStore: updateCodeStore(state),
+            codeStore: updateUserCode(state),
             current: {
               id: state.codeStore[prev].id,
               code: state.codeStore[prev].userCode,
