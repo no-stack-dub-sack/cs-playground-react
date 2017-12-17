@@ -3,27 +3,30 @@ import chalk from 'chalk';
 import {
   testsHead,
   testsTail,
-  executeTestScript,
-  declareTests
+  _executeTests,
+  declareTests,
+  blockConsole
 } from './test-scripts';
 
-export const concatStrings = (
+export const concatTests = (
   solution,
   codeTail,
   testsBody
 ) => {
-  return testsHead.concat(
+  return blockConsole.concat(
+    testsHead,
     solution,
     codeTail ? codeTail : '',
     declareTests,
     testsBody,
-    executeTestScript,
+    _executeTests,
     testsTail
   );
 }
 
-export const logResults = (passed, results) => {
+export const logResults = (passed, results, id) => {
   if (!passed) {
+    console.log(id + ':')
     results.forEach(t => {
       if (t[0] === 'F') {
         console.log(chalk.red(t));
@@ -32,6 +35,7 @@ export const logResults = (passed, results) => {
       }
     });
   } else {
+    console.log(id + ':')
     console.log(results);
   }
 }

@@ -1,44 +1,47 @@
 import TESTS from './assets/testRef';
 import CODE from './assets/codeRef';
-import { concatStrings, logResults } from './utils/test/test-utils';
+import { concatTests, logResults } from './utils/test/test-utils';
 
 // NOTE: AN ISSUE WITH JEST??? IS PREVENTING ME FROM DOING THIS
 // PROGRAMATICALLY. COME BACK TO THIS AND FIX THIS UGLY SHIT.
 
 describe('Solution Code Passes Challenge Tests', () => {
   it ('Binary Search Tree', () => {
+    const ID = 'BinarySearchTree';
     const { passed, results } = eval(
-      concatStrings(
+      concatTests(
         CODE.DATA_STRUCTURES[5].solution,
-        TESTS.BinarySearchTree.tail,
-        JSON.stringify(TESTS.BinarySearchTree.tests)
+        TESTS[ID].tail,
+        JSON.stringify(TESTS[ID].tests)
       )
     );
-    logResults(passed, results);
+    logResults(passed, results, ID);
     expect(passed).toBe(true);
   });
 
   it ('Generate Checkerboard', () => {
+    const ID = 'GenerateCheckerboard';
     const { passed, results } = eval(
-      concatStrings(
+      concatTests(
         CODE.EASY_ALGOS[1].solution,
-        TESTS.GenerateCheckerboard.tail,
-        JSON.stringify(TESTS.GenerateCheckerboard.tests)
+        TESTS[ID].tail,
+        JSON.stringify(TESTS[ID].tests)
       )
     );
-    logResults(passed, results);
+    logResults(passed, results, ID);
     expect(passed).toBe(true);
   });
 
   it ('Sum All Primes', () => {
+    const ID = 'SumAllPrimes';
     const { passed, results } = eval(
-      concatStrings(
+      concatTests(
         CODE.EASY_ALGOS[0].solution,
         null,
-        JSON.stringify(TESTS.SumAllPrimes.tests)
+        JSON.stringify(TESTS[ID].tests)
       )
     );
-    logResults(passed, results);
+    logResults(passed, results, ID);
     expect(passed).toBe(true);
   });
 });
