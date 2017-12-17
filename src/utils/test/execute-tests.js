@@ -1,6 +1,6 @@
-export default `
+function executeTests(tests) {
   if (tests) {
-    console.log('\\n/***** TESTS BEGIN *****/\\n');
+    console.log('\n/***** TESTS BEGIN *****/\n');
 
     tests.forEach((test, i) => {
       try {
@@ -16,6 +16,8 @@ export default `
       }
     });
 
-    console.log('\\n/***** TESTS END *****/\\n');
+    console.log('\n/***** TESTS END *****/\n');
   }
-`;
+};
+
+export default `\n${executeTests.toString()};\nexecuteTests(tests);\n`;

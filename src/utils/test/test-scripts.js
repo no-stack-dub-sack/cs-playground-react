@@ -1,3 +1,5 @@
+// for `yarn test` automated testing:
+
 function _blockConsole() {
   return {
     log: (arg) => {

@@ -8,6 +8,8 @@ import {
   blockConsole
 } from './test-scripts';
 
+// for `yarn test` automated testing:
+
 export const concatTests = (
   solution,
   codeTail,
