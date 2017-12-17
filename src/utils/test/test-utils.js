@@ -14,7 +14,7 @@ export const concatStrings = (
 ) => {
   return testsHead.concat(
     solution,
-    codeTail,
+    codeTail ? codeTail : '',
     declareTests,
     testsBody,
     executeTestScript,

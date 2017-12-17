@@ -29,4 +29,16 @@ describe('Solution Code Passes Challenge Tests', () => {
     logResults(passed, results);
     expect(passed).toBe(true);
   });
+
+  it ('Sum All Primes', () => {
+    const { passed, results } = eval(
+      concatStrings(
+        CODE.EASY_ALGOS[0].solution,
+        null,
+        JSON.stringify(TESTS.SumAllPrimes.tests)
+      )
+    );
+    logResults(passed, results);
+    expect(passed).toBe(true);
+  });
 });
