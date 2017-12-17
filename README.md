@@ -48,6 +48,8 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 ### Algorithm Challenges
 **Easy:**
 - Sum All Primes
+- Generate Checkerboard
+- Flatten An Array
 - Is Palindrome _(coming soon)_
 - Fizz Buzz _(coming soon)_
 

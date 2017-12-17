@@ -126,6 +126,9 @@ https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html __(intera
 - https://www.freecodecamp.org/challenges/sum-all-primes __(interactive challenge)__
 - https://guide.freecodecamp.org/certificates/sum-all-primes
 
+### Flatten An Array
+- https://www.codetuts.tech/flatten-deep-nested-array-object/
+
 ### No Two Consecutive Characters
 - http://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/
 
