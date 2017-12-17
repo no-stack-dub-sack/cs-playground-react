@@ -126,6 +126,9 @@ https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html __(intera
 - https://www.freecodecamp.org/challenges/sum-all-primes __(interactive challenge)__
 - https://guide.freecodecamp.org/certificates/sum-all-primes
 
+### Longest Common Prefix
+- https://leetcode.com/problems/longest-common-prefix/solution/
+
 ### Flatten An Array
 - https://www.codetuts.tech/flatten-deep-nested-array-object/
 

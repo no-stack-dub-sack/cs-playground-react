@@ -19,6 +19,7 @@ import Stack from './seed/data-structures/Stack';
 
 import AnagramPalindrome from './seed/algorithms/AnagramPalindrome';
 import FlattenAnArray from './seed/algorithms/FlattenAnArray';
+import LongestCommonPrefix from './seed/algorithms/LongestCommonPrefix';
 import NoTwoConsecutiveChars from './seed/algorithms/NoTwoConsecutiveChars';
 import SumAllPrimes from './seed/algorithms/SumAllPrimes';
 import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard';
@@ -55,6 +56,7 @@ export default {
     // FizzBuzz,
   ],
   MODERATE_ALGOS: [
+    LongestCommonPrefix,
     NoTwoConsecutiveChars,
     AnagramPalindrome,
     // SumPrimeFactors,

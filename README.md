@@ -54,11 +54,10 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 - Fizz Buzz _(coming soon)_
 
 **Moderate/Difficult:**
+- Longest Common Prefix
 - No Two Consecutive Chars
 - Anagram Palindrome
-- Sum Prime Factors _(coming soon)_
 - Rotate An Image _(coming soon)_
-- Sum Prime Factors _(coming soon)_
 
 ## To Install/Run:
 - Fork repo, clone locally, and run `npm install` or `yarn install`
