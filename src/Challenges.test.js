@@ -19,6 +19,19 @@ describe('Solution Code Passes Challenge Tests', () => {
     expect(passed).toBe(true);
   });
 
+  it ('Quicksort', () => {
+    const ID = 'Quicksort';
+    const { passed, results } = eval(
+      concatTests(
+        SOLUTIONS[ID],
+        null,
+        JSON.stringify(TESTS[ID].tests)
+      )
+    );
+    logResults(passed, results, ID);
+    expect(passed).toBe(true);
+  });
+
   it ('Generate Checkerboard', () => {
     const ID = 'GenerateCheckerboard';
     const { passed, results } = eval(

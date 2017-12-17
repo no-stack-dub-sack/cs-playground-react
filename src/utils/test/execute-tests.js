@@ -1,11 +1,12 @@
 export default `
   if (tests) {
-    console.log('\\n/***** TESTS *****/\\n\\n');
-    tests.forEach(test => {
+    console.log('\\n/***** TESTS BEGIN *****/\\n');
+
+    tests.forEach((test, i) => {
       try {
         // eslint-disable-next-line
         assert(eval(test.expression), test.message);
-        console.log('Pass: ' + test.message)
+        console.log('Pass: ' + test.message);
       } catch (e) {
         if (e.message !== test.message) {
           console.log('Fail: ' + test.message + ' <code>[ ' + e.toString() + ' ]</code>');
@@ -14,5 +15,7 @@ export default `
         }
       }
     });
+
+    console.log('\\n/***** TESTS END *****/\\n');
   }
 `;

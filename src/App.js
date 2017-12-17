@@ -1,4 +1,4 @@
-import { CODE }MirrorRenderer from './components/CodeMirrorRenderer';
+import CodeMirrorRenderer from './components/CodeMirrorRenderer';
 import ConsoleOutput from './components/sidebar/ConsoleOutput';
 import Controls from './components/Controls';
 import Divider from './components/utils/Divider';

@@ -26,7 +26,7 @@ export const concatTests = (
 
 export const logResults = (passed, results, id) => {
   if (!passed) {
-    console.log(id + ':')
+    console.log(chalk.keyword('salmon').underline(id + ':'));
     results.forEach(t => {
       if (t[0] === 'F') {
         console.log(chalk.red(t));
@@ -35,7 +35,7 @@ export const logResults = (passed, results, id) => {
       }
     });
   } else {
-    console.log(id + ':')
+    console.log(chalk.keyword('salmon').underline(id + ':'));
     console.log(results);
   }
 }
