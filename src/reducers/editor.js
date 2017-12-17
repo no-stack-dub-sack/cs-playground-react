@@ -1,4 +1,4 @@
-import CODE from '../assets/codeRef';
+import { CODE } from '../assets/codeRef';
 import WELCOME_MESSAGE from '../assets/seed/welcome';
 
 import {

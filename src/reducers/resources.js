@@ -1,4 +1,4 @@
-import CODE from '../assets/codeRef';
+import { CODE } from '../assets/codeRef';
 import { SELECT_TOPIC } from '../actions/resources';
 
 export default (state = [], action) => {

@@ -24,7 +24,7 @@ import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard';
 
 // NOTE: order of arrays determines order of sidebar menu
 
-export default {
+export const CODE = {
   SORTING_ALGOS: [
     Quicksort,
     Mergesort,
@@ -59,3 +59,17 @@ export default {
     // RotateAnImage,
   ]
 };
+
+const createSolutionsRef = () => {
+  const results = {};
+  for (let category in CODE) {
+    CODE[category].forEach(topic => {
+      results[
+        topic.title.replace(/\s/g, '')
+      ] = topic.solution;
+    });
+  }
+  return results;
+}
+
+export const SOLUTIONS = createSolutionsRef();

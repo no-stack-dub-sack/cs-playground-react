@@ -1,5 +1,5 @@
 import TESTS from './assets/testRef';
-import CODE from './assets/codeRef';
+import { SOLUTIONS } from './assets/codeRef';
 import { concatTests, logResults } from './utils/test/test-utils';
 
 // NOTE: AN ISSUE WITH JEST??? IS PREVENTING ME FROM DOING THIS
@@ -10,7 +10,7 @@ describe('Solution Code Passes Challenge Tests', () => {
     const ID = 'BinarySearchTree';
     const { passed, results } = eval(
       concatTests(
-        CODE.DATA_STRUCTURES[5].solution,
+        SOLUTIONS[ID],
         TESTS[ID].tail,
         JSON.stringify(TESTS[ID].tests)
       )
@@ -23,7 +23,7 @@ describe('Solution Code Passes Challenge Tests', () => {
     const ID = 'GenerateCheckerboard';
     const { passed, results } = eval(
       concatTests(
-        CODE.EASY_ALGOS[1].solution,
+        SOLUTIONS[ID],
         TESTS[ID].tail,
         JSON.stringify(TESTS[ID].tests)
       )
@@ -36,7 +36,7 @@ describe('Solution Code Passes Challenge Tests', () => {
     const ID = 'SumAllPrimes';
     const { passed, results } = eval(
       concatTests(
-        CODE.EASY_ALGOS[0].solution,
+        SOLUTIONS[ID],
         null,
         JSON.stringify(TESTS[ID].tests)
       )
