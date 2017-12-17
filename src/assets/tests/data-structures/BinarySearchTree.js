@@ -4,7 +4,7 @@ export const tail = `
     typeof new BinarySearchTree() === 'object'
   )
   BinarySearchTree.prototype.isBinarySearchTree = function() {
-    if (this.root == null) {
+    if (this.root === null) {
       return null;
     } else {
       var check = true;
@@ -37,12 +37,7 @@ export const tests = [
     message: 'The <code>BinarySearchTree</code> data structure exists'
   },
   {
-    expression: `
-    (() => {
-      var test = new BinarySearchTree();
-      return (typeof test.add == 'function')
-    })()
-    `,
+    expression: `typeof new BinarySearchTree().add === 'function'`,
     message: 'The binary search tree has a method called <code>add</code>'
   },
   {
@@ -67,27 +62,17 @@ export const tests = [
     (() => {
       var test = new BinarySearchTree();
       test.add(4);
-      return test.add(4) == null;
+      return test.add(4) === null;
     })()
     `,
     message: 'Adding an element that already exists returns <code>null</code>'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return (typeof test.findMin == 'function')
-      })()
-    `,
+    expression: `typeof new BinarySearchTree().findMin === 'function'`,
     message: 'The binary search tree has a method called <code>findMin</code>'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return (typeof test.findMax == 'function')
-      })()
-    `,
+    expression: `typeof new BinarySearchTree().findMax === 'function'`,
     message: 'The binary search tree has a method called <code>findMax</code>'
   },
   {
@@ -102,7 +87,7 @@ export const tests = [
         test.add(45);
         test.add(73);
         test.add(8);
-        return test.findMin() == 1;
+        return test.findMin() === 1;
       })()
     `,
     message: 'The <code>findMin</code> method returns the minimum value in the binary search tree'
@@ -119,7 +104,7 @@ export const tests = [
         test.add(45);
         test.add(73);
         test.add(8);
-        return test.findMax() == 87;
+        return test.findMax() === 87;
       })()
     `,
     message: 'The <code>findMax</code> method returns the maximum value in the binary search tree'
@@ -128,18 +113,13 @@ export const tests = [
     expression:
       `(() => {
         var test = new BinarySearchTree();
-        return (test.findMin() == null && test.findMax() == null)
+        return (test.findMin() === null && test.findMax() === null)
       })()
     `,
     message: 'The <code>findMin</code> and <code>findMax</code> methods return <code>null</code> for an empty tree'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return (typeof test.isPresent == 'function')
-      })()
-    `,
+    expression: `typeof new BinarySearchTree().isPresent === 'function'`,
     message: 'The binary search tree has a method called <code>isPresent</code>'
   },
   {
@@ -156,39 +136,19 @@ export const tests = [
     message: 'The <code>isPresent</code> method correctly checks for the presence or absence of elements added to the tree'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return test.isPresent(5) == false;
-      })()
-    `,
+    expression: `new BinarySearchTree().isPresent(5) === false`,
     message: '<code>isPresent</code> handles cases where the tree is empty'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return (typeof test.findMinHeight == 'function')
-      })()
-    `,
+    expression: `typeof new BinarySearchTree().findMinHeight === 'function'`,
     message: 'The binary search tree has a method called <code>findMinHeight</code>'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return (typeof test.findMaxHeight == 'function')
-      })()
-    `,
+    expression: `typeof new BinarySearchTree().findMaxHeight === 'function'`,
     message: 'The binary search tree has a method called <code>findMaxHeight</code>'
   },
   {
-    expression: `
-      (() => {
-        var test = new BinarySearchTree();
-        return (typeof test.isBalanced == 'function')
-      })()
-    `,
+    expression: `typeof new BinarySearchTree().isBalanced === 'function'`,
     message: 'The binary search tree has a method called <code>isBalanced</code>'
   },
   {
@@ -203,7 +163,7 @@ export const tests = [
         test.add(45);
         test.add(73);
         test.add(8);
-        return (test.findMinHeight() == 1);
+        return (test.findMinHeight() === 1);
       })()
     `,
     message: 'The <code>findMinHeight</code> method returns the minimum height of the tree'
@@ -220,13 +180,13 @@ export const tests = [
         test.add(45);
         test.add(73);
         test.add(8);
-        return (test.findMaxHeight() == 5);
+        return (test.findMaxHeight() === 5);
       })()
     `,
     message: 'The <code>findMaxHeight</code> method returns the maximum height of the tree'
   },
   {
-    expression: `new BinarySearchTree().findMaxHeight() == -1`,
+    expression: `new BinarySearchTree().findMaxHeight() === -1`,
     message: 'An empty tree returns a height of <code>-1</code>'
   },
   {
@@ -276,7 +236,7 @@ export const tests = [
         test.add(5);
         test.add(4);
         test.add(6);
-        return (test.inOrder().join('') == '012345678910');
+        return (test.inOrder().join('') === '012345678910');
       })()
     `,
     message: 'The <code>inOrder</code> method returns an array of the node values that result fr an <code>inOrder</code> traversal'
@@ -296,7 +256,7 @@ export const tests = [
         test.add(5);
         test.add(4);
         test.add(6);
-        return (test.preOrder().join('') == '710325469810');
+        return (test.preOrder().join('') === '710325469810');
       })()
     `,
     message: 'The <code>preOrder</code> method returns an array of the node values that result from a <code>preOrder</code> traversal'
@@ -316,7 +276,7 @@ export const tests = [
         test.add(5);
         test.add(4);
         test.add(6);
-        return (test.postOrder().join('') == '024653181097');
+        return (test.postOrder().join('') === '024653181097');
       })()
     `,
     message: 'The <code>postOrder</code> method returns an array of the node values that result from a <code>postOrder</code> traversal'
@@ -356,7 +316,7 @@ export const tests = [
         test.add(5);
         test.add(4);
         test.add(6);
-        return (test.levelOrder().join('') == '719038102546');
+        return (test.levelOrder().join('') === '719038102546');
       })()
     `,
     message: 'The <code>levelOrder</code> method returns an array of the tree node valu explored in level order'
@@ -376,7 +336,7 @@ export const tests = [
         test.add(5);
         test.add(4);
         test.add(6);
-        return (test.reverseLevelOrder().join('') == '791108305264');
+        return (test.reverseLevelOrder().join('') === '791108305264');
       })()
     `,
     message: 'The <code>reverseLevelOrder</code> method returns an array of the tree node values explored in reverse level order'
@@ -415,7 +375,7 @@ export const tests = [
         var test = new BinarySearchTree();
         test.add(500);
         test.remove(500);
-        return (test.inOrder() == null);
+        return (test.inOrder() === null);
       })()
     `,
     message: 'If the root node has no children, deleting it sets the root to <code>null</code>'
@@ -433,7 +393,7 @@ export const tests = [
         test.remove(3);
         test.remove(12);
         test.remove(10);
-        return (test.inOrder().join('') == '567');
+        return (test.inOrder().join('') === '567');
       })()
     `,
     message: 'The <code>remove</code> method removes leaf nodes from the tree'
@@ -449,7 +409,7 @@ export const tests = [
         test.remove(16);
         test.remove(7);
         test.remove(3);
-        return (test.inOrder().join('') == '-1');
+        return (test.inOrder().join('') === '-1');
       })()
     `,
     message: 'The <code>remove</code> method removes nodes with one child'
@@ -461,7 +421,7 @@ export const tests = [
         test.add(15);
         test.add(27);
         test.remove(15);
-        return (test.inOrder().join('') == '27');
+        return (test.inOrder().join('') === '27');
       })()
     `,
     message: 'Removing the root in a tree with two nodes sets the second to be the root'
@@ -508,7 +468,7 @@ export const tests = [
         if (!test.isBinarySearchTree()) {
           return false;
         };
-        return (test.inOrder().join('') == '147');
+        return (test.inOrder().join('') === '147');
       })()
     `,
     message: 'The <code>remove</code> method removes nodes with two children while maintaining the binary search tree structure'
@@ -521,7 +481,7 @@ export const tests = [
         test.add(50);
         test.add(300);
         test.remove(100);
-        return (test.inOrder().join('') == 50300);
+        return (test.inOrder().join('') === '50300');
       })()
     `,
     message: 'The root can be removed on a tree of three nodes'
@@ -543,7 +503,7 @@ export const tests = [
         test.add(73);
         test.add(8);
         test.invert();
-        return test.inOrder().join('') == '877345348741';
+        return test.inOrder().join('') === '877345348741';
       })()
     `,
     message: 'The <code>invert</code> method correctly inverts the tree structure'

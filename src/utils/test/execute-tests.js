@@ -7,7 +7,11 @@ export default `
         assert(eval(test.expression), test.message);
         console.log('Pass: ' + test.message)
       } catch (e) {
-        console.log('Fail: ' + test.message);
+        if (e.message !== test.message) {
+          console.log('Fail: ' + test.message + ' <code>[ ' + e.toString() + ' ]</code>');
+        } else {
+          console.log('Fail: ' + test.message);
+        }
       }
     });
   }

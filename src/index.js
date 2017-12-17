@@ -6,6 +6,7 @@ import { hijackConsole } from './actions/console';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { re_DO_NOT_SAVE } from './utils/regexp';
 import registerServiceWorker from './utils/registerServiceWorker';
 import rootReducer from './reducers/rootReducer';
 import simpleDrag from './utils/simpleDrag';
@@ -26,7 +27,7 @@ export const store = createStore(
 window.onbeforeunload = function(e) {
   const state = store.getState();
   // use // DO NOT SAVE comment to disable saving
-  if (!/\/\/\sDO\sNOT\sSAVE/i.test(state.editor.current.code)) {
+  if (!re_DO_NOT_SAVE.test(state.editor.current.code)) {
     localStorage.setItem(
       'cs-pg-react-editorState',
       JSON.stringify(state.editor)

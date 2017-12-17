@@ -24,6 +24,7 @@
     "deploy": "yarn run build && cd build && surge --domain cs-playground-react.surge.sh"
   },
   "devDependencies": {
+    "chalk": "^2.3.0",
     "prop-types": "^15.6.0",
     "redux-devtools-extension": "^2.13.2"
   }

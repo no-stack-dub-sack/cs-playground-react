@@ -1,27 +1,28 @@
 import TESTS from '../../assets/testRef';
 import executeTests from './execute-tests';
 
-export default (code, id) => {
+export default (code, id, suppressTests) => {
   try {
     const assert = require('assert');
 
-    const tail = TESTS[id] && TESTS[id].tail
-      ? TESTS[id].tail
-      : ''
+    let prepend = 'const tests = ',
+        tests = '',
+        tail = '';
 
-    const tests = TESTS[id]
-      ? 'const tests = ' + JSON.stringify(TESTS[id].tests)
-      : '';
+    if (!suppressTests && TESTS[id]) {
+      tests = prepend + JSON.stringify(TESTS[id].tests);
+      tail = TESTS[id].tail ? TESTS[id].tail : '';
+    }
 
     // eslint-disable-next-line
     eval(
       assert +
       code +
-      tests +
       tail +
+      tests +
       executeTests
     );
-    
+
   } catch (error) {
     console.log(error.toString());
   }

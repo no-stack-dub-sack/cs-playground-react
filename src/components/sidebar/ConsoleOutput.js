@@ -2,6 +2,7 @@ import { clearConsole } from '../../actions/console';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { re_errorTypes } from '../../utils/regexp';
 import shortid from 'shortid';
 import '../../styles/console.css';
 
@@ -31,10 +32,6 @@ const _default = {
   icon: ICON_WHITE
 };
 
-const re = new RegExp(
-  'Fail:|AssertionError|InternalError|RangeError|ReferenceError|EvalError|SyntaxError|TypeError|URIError'
-);
-
 class ConsoleOutput extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +53,7 @@ class ConsoleOutput extends Component {
     this.setState(hover);
   }
   renderMessages = (msg) => {
-    let className = re.test(msg)
+    let className = re_errorTypes.test(msg)
       ? 'sidebar--output--messages--message  error'
       : 'sidebar--output--messages--message';
     return (
