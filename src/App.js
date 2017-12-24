@@ -10,10 +10,38 @@ import shortid from 'shortid';
 import axios from 'axios';
 import './styles/app.css';
 
-// TODO: add clear console button
-// TODO: make it so clearConsole() can be commented out
+// TODO: Figure out how to disable highlight text on mousemove
+// had this so far:
+// prevent text highlighting when resizing panes
+// document.addEventListener('mousedown', this.handleMouseDownEvent);
+// document.addEventListener('mouseup', this.handleMouseUpEvent);
+// document.addEventListener('mousemove', this.handleMouseMoveEvent);
+// componentWillUnmount() {
+  // document.removeEventListener('mousedown', this.handleMouseDownEvent);
+  // document.removeEventListener('mouseup', this.handleMouseUpEvent);
+  // document.removeEventListener('mousemove', this.handleMouseMoveEvent);
+// }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disableHighlightText: false
+    }
+  }
+  handleMouseDownEvent = (e) => {
+    if (e.target.classList.contains('divider')) {
+        this.setState({ disableHighlightText: true });
+    }
+  }
+  handleMouseUpEvent = (e) => {
+    this.setState({ disableHighlightText: false });
+  }
+  handldeMouseMoveEvent = (e) => {
+    if (this.state.disableHighlightText) {
+      e.preventDefault();
+    }
+  }
   componentDidMount() {
     // pass refs to simple drag function
     // to allow for AWESOME pane resizing
@@ -52,7 +80,7 @@ class App extends Component {
         className="main right-pane"
         key={shortid.generate()}
         ref={ref => this.rightPane = ref }>
-        <CodeMirrorRenderer className="main--editor" />
+        <CodeMirrorRenderer />
         <Controls />
       </main>,
       <Modal key={shortid.generate()} />
