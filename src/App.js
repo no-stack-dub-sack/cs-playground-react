@@ -10,39 +10,42 @@ import shortid from 'shortid';
 import axios from 'axios';
 import './styles/app.css';
 
-// TODO: Figure out how to disable highlight text on mousemove
-// had this so far:
-// prevent text highlighting when resizing panes
-// document.addEventListener('mousedown', this.handleMouseDownEvent);
-// document.addEventListener('mouseup', this.handleMouseUpEvent);
-// document.addEventListener('mousemove', this.handleMouseMoveEvent);
-// componentWillUnmount() {
-  // document.removeEventListener('mousedown', this.handleMouseDownEvent);
-  // document.removeEventListener('mouseup', this.handleMouseUpEvent);
-  // document.removeEventListener('mousemove', this.handleMouseMoveEvent);
-// }
+// TODO: find a way around below hack
+
+// HACK: For preventing text highlighting on mousemove when
+// dragging dividers: setting this as a key in component state
+// & manipulating via the mousedown event handler caused the
+// component to throw an error about setting state on an unmounted
+// component, even though the state is being set in the top level
+// app and it must be mounted because it's still rendered to the
+// DOM. Not sure why this is happening right now, but this hack
+// is a workaround that I can live with for the time being.
+let disableHighlightText = false;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      disableHighlightText: false
-    }
-  }
-  handleMouseDownEvent = (e) => {
+  handleMousedownEvent = (e) => {
     if (e.target.classList.contains('divider')) {
-        this.setState({ disableHighlightText: true });
+        disableHighlightText = true;
     }
   }
-  handleMouseUpEvent = (e) => {
-    this.setState({ disableHighlightText: false });
+  handleMouseupEvent = (e) => {
+    disableHighlightText = false;
   }
-  handldeMouseMoveEvent = (e) => {
-    if (this.state.disableHighlightText) {
+  handleMousemoveEvent = (e) => {
+    if (disableHighlightText) {
       e.preventDefault();
     }
   }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleMousedownEvent);
+    document.removeEventListener('mouseup', this.handleMouseupEvent);
+    document.removeEventListener('mousemove', this.handleMousemoveEvent);
+  }
   componentDidMount() {
+    // prevent text highlighting when resizing panes
+    document.addEventListener('mousedown', this.handleMousedownEvent);
+    document.addEventListener('mouseup', this.handleMouseupEvent);
+    document.addEventListener('mousemove', this.handleMousemoveEvent);
     // pass refs to simple drag function
     // to allow for AWESOME pane resizing
     resizePanes(
