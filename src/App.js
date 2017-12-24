@@ -5,6 +5,7 @@ import Divider from './components/utils/Divider';
 import Menu from './components/sidebar/Menu';
 import Modal from './components/utils/Modal';
 import React, { Component } from 'react';
+import { renderAnnouncementUtil } from './actions/modal';
 import resizePanes from './utils/resize';
 import shortid from 'shortid';
 import axios from 'axios';
@@ -36,13 +37,9 @@ class App extends Component {
       e.preventDefault();
     }
   }
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleMousedownEvent);
-    document.removeEventListener('mouseup', this.handleMouseupEvent);
-    document.removeEventListener('mousemove', this.handleMousemoveEvent);
-  }
   componentDidMount() {
-    // prevent text highlighting when resizing panes
+    // register event listeners for preventing
+    // text highlighting when resizing panes
     document.addEventListener('mousedown', this.handleMousedownEvent);
     document.addEventListener('mouseup', this.handleMouseupEvent);
     document.addEventListener('mousemove', this.handleMousemoveEvent);
@@ -56,12 +53,20 @@ class App extends Component {
       this.verticalDivider,
       this.horizontalDivider
     );
-    // count hits to live site using node server
+    // render announcement modal
+    // 1st 3 visits after changes
+    renderAnnouncementUtil();
+    // register hits to hit-count-server
     if (process.env.NODE_ENV === 'production') {
       axios.post('https://hit-count-server.herokuapp.com/register-count')
       .then(() => null)
       .catch(() => null);
     }
+  }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleMousedownEvent);
+    document.removeEventListener('mouseup', this.handleMouseupEvent);
+    document.removeEventListener('mousemove', this.handleMousemoveEvent);
   }
   render() {
     return [

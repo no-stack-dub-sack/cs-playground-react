@@ -28,21 +28,38 @@ class Modal extends Component {
       this.modal.parentNode.style.zIndex = '-4';
     }
   }
-  renderListItem = (item) => (
-    <li key={shortid.generate()}>
-      <a href={item.href} rel="noopener noreferrer" target="_blank">
-        {item.caption}
-      </a>
-    </li>
-  )
+  renderListItem = (item) => {
+    if (this.props.modalType === 'resources') {
+      return (
+        <li key={shortid.generate()}>
+          <a href={item.href} rel="noopener noreferrer" target="_blank">
+            {item.caption}
+          </a>
+        </li>
+      );
+    }
+    // Announcement Modal:
+    return (
+      <li
+        dangerouslySetInnerHTML={{ __html: item }}
+        key={shortid.generate()}
+      />
+    );
+  }
   render() {
     return ReactDOM.createPortal(
       <Fade attachRef={ref => this.modal = ref} in={this.props.renderModal}>
         <div className="modal">
           <h2 className="modal--header">
-            { this.props.modalId }
+            { this.props.header }
           </h2>
-          { this.props.resources.map(this.renderListItem) }
+          { this.props.subHeader &&
+            <p>
+              <strong dangerouslySetInnerHTML={{ __html: this.props.subHeader }} />
+            </p> }
+          <ul>
+            { this.props.messages.map(this.renderListItem) }
+          </ul>
         </div>
       </Fade>,
       document.getElementById('modal-root')
@@ -51,17 +68,21 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  resources: PropTypes.array.isRequired,
+  messages: PropTypes.array.isRequired,
   renderModal: PropTypes.bool.isRequired,
-  modalId: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
+  subHeader: PropTypes.string.isRequired,
+  modalType: PropTypes.string.isRequired
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ modal }) => {
   return {
-    resources: state.modal.resources,
-    renderModal: state.modal.renderModal,
-    modalId: state.modal.modalId
+    messages: modal.messages,
+    renderModal: modal.renderModal,
+    header: modal.modalId,
+    subHeader: modal.subHeader,
+    modalType: modal.modalType
   }
 }
 

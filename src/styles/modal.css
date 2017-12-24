@@ -12,9 +12,14 @@
   margin: 5px 0 5px 0;
 }
 
-.modal a {
+.modal a,
+.modal span {
   text-decoration: none;
   color: #46bc99;
+}
+
+.modal code {
+  color: rgb(61, 58, 62)
 }
 
 .modal a:hover {
