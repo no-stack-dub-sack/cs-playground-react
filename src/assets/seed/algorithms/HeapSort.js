@@ -78,7 +78,7 @@ class MinHeap {
 
         var swap = (node, nodeIdx = 0) => {
             var childIdx;
-            if (this.size === 2) {
+            if (this.size === 3) {
                 childIdx = 1;
             } else if (this.heap[2 * nodeIdx + 1] < this.heap[2 * nodeIdx + 2]) {
                 childIdx = 2 * nodeIdx + 1;

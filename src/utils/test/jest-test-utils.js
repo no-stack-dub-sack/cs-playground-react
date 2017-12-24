@@ -6,7 +6,7 @@ import {
   _executeTests,
   declareTests,
   blockConsole
-} from './test-scripts';
+} from './jest-test-scripts';
 
 // for `yarn test` automated testing:
 
