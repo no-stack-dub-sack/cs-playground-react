@@ -1,10 +1,10 @@
-export const OPEN_MODAL = 'OPEN_MODAL';
+export const OPEN_RESOURCES_MODAL = 'OPEN_RESOURCES_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
-export const openModal = (id) => {
+export const openResourcesModal = (id) => {
   return {
-    type: OPEN_MODAL,
-    id
+    type: OPEN_RESOURCES_MODAL,
+    id: id.replace(/_/g, ' ')
   }
 };
 

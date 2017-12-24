@@ -40,7 +40,7 @@ class Modal extends Component {
       <Fade attachRef={ref => this.modal = ref} in={this.props.renderModal}>
         <div className="modal">
           <h2 className="modal--header">
-            { `${this.props.modalId.replace(/_/g, ' ')} Resources` }
+            { this.props.modalId }
           </h2>
           { this.props.resources.map(this.renderListItem) }
         </div>
@@ -59,7 +59,7 @@ Modal.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    resources: state.resources,
+    resources: state.modal.resources,
     renderModal: state.modal.renderModal,
     modalId: state.modal.modalId
   }

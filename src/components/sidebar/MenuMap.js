@@ -1,9 +1,8 @@
-import { closeModal, openModal } from '../../actions/modal';
+import { closeModal, openResourcesModal } from '../../actions/modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { selectSnippet, selectSolution } from '../../actions/editor';
-import { selectTopic } from '../../actions/resources';
 import shortid from 'shortid';
 
 class MenuMap extends Component {
@@ -16,12 +15,11 @@ class MenuMap extends Component {
   }
   renderModal = (e) => {
     e.stopPropagation();
-    const modalId = e.target.id.slice(7);
-    this.props.selectTopic(modalId);
+    const modalId = e.target.id.slice(7).replace(/_/g, ' ');
     if (this.props.modalId === modalId && this.props.renderModal) {
       this.props.closeModal();
     } else {
-      this.props.openModal(modalId);
+      this.props.openResourcesModal(modalId);
     }
   }
   renderMenuItem = (item) => {
@@ -74,11 +72,10 @@ MenuMap.propTypes = {
   header: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   modalId: PropTypes.string.isRequired,
-  openModal: PropTypes.func.isRequired,
+  openResourcesModal: PropTypes.func.isRequired,
   renderModal: PropTypes.bool.isRequired,
   selectSnippet: PropTypes.func.isRequired,
   selectSolution: PropTypes.func.isRequired,
-  selectTopic: PropTypes.func.isRequired,
   xtraClass: PropTypes.string,
 }
 
@@ -97,8 +94,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   selectSnippet,
   selectSolution,
-  selectTopic,
-  openModal,
+  openResourcesModal,
   closeModal
 }
 
