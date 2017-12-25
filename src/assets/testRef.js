@@ -9,6 +9,7 @@ import * as SelectionSort from './tests/algorithms/SelectionSort';
 import * as BinarySearchTree from './tests/data-structures/BinarySearchTree';
 
 import * as GenerateCheckerboard from './tests/algorithms/GenerateCheckerboard';
+import * as NoTwoConsecutiveChars from './tests/algorithms/NoTwoConsecutiveChars';
 import * as SumAllPrimes from './tests/algorithms/SumAllPrimes';
 
 export default {
@@ -24,5 +25,6 @@ export default {
   BinarySearchTree,
   // Algorithm Challenges
   SumAllPrimes,
+  NoTwoConsecutiveChars,
   GenerateCheckerboard,
 };
