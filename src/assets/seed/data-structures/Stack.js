@@ -73,7 +73,7 @@ class Stack {
 
     pop() {
         if (this.isEmpty()) {
-            return;
+            return null;
         }
 
         const value = this.root.value;
@@ -85,6 +85,10 @@ class Stack {
 
 
     peek() {
+        if (!this.root) {
+          return null;
+        }
+        
         return this.root.value;
     }
 
@@ -97,6 +101,10 @@ class Stack {
     clear() {
         this.root = null;
         this.size = 0;
+    }
+
+    print() {
+        console.log(JSON.stringify(this, null, 2));
     }
 }
 
@@ -119,13 +127,12 @@ console.log('pop: ' + stack.pop());
 
 console.log('peek: ' + stack.peek());
 console.log('size: ' + stack.size);
-console.log('isEmpty: ' + stack.isEmpty());
+console.log('isEmpty: ' + stack.isEmpty() + '\\n');
 
-console.log('\\n' + JSON.stringify(stack, null, 2));
-
+stack.print();
 stack.clear();
-
-console.log('\\ncleared:\\n\\n' + JSON.stringify(stack, null, 2));
+console.log('\\ncleared:\\n\\n');
+stack.print();
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/stack-data-structure/', caption: 'GeeksforGeeks.org'},
