@@ -57,7 +57,7 @@ export const tests = [
     message: 'whenever possible, <code>noTwoConsecutiveChars</code> should return a string that contains all the characters from the original string, rearranged so that no two consecutive characters are the same'
   },
   {
-    expression: `!noTwoConsecutiveChars('aaba') && !noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd') && noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd')`,
+    expression: `noTwoConsecutiveChars('aaba') === false && noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd') === false && typeof noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd') === 'string'`,
     message: '<code>noTwoConsecutiveChars</code> should return <code>false</code> when a string with no consecutive chars can\'t be constructed'
   },
 ];
