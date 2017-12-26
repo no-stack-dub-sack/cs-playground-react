@@ -4,7 +4,7 @@ describe('Algorithm Challenges Solution Code Passes Tests', () => {
 
   const IDS = [
     'GenerateCheckerboard',
-    // 'NoTwoConsecutiveChars',
+    'NoTwoConsecutiveChars',
     'SumAllPrimes',
   ];
 

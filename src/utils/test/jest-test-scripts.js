@@ -3,7 +3,9 @@
 function _blockConsole() {
   return {
     log: (arg) => {
-      if (!arg.includes('Pass:') || !arg.includes('Fail:'))
+      if (typeof arg === 'string' && (arg.includes('Pass:') || !arg.includes('Fail:'))) {
+        return arg;
+      }
       return null
     }
   };
