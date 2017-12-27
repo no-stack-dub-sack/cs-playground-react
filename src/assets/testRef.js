@@ -7,6 +7,7 @@ import * as Quicksort from './tests/algorithms/Quicksort';
 import * as SelectionSort from './tests/algorithms/SelectionSort';
 
 import * as BinarySearchTree from './tests/data-structures/BinarySearchTree';
+import * as LinkedList from './tests/data-structures/LinkedList';
 import * as Stack from './tests/data-structures/Stack';
 
 import * as GenerateCheckerboard from './tests/algorithms/GenerateCheckerboard';
@@ -24,6 +25,7 @@ export default {
   SelectionSort,
   // Data Structures
   BinarySearchTree,
+  LinkedList,
   Stack,
   // Algorithm Challenges
   SumAllPrimes,

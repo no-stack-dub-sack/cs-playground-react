@@ -69,7 +69,7 @@ class LinkedList {
 
 
     get size() {
-        return length;
+        return this.length;
     }
 
 
@@ -86,7 +86,7 @@ class LinkedList {
             currentNode.next = next;
         }
 
-        length++;
+        this.length++;
     }
 
 
@@ -113,7 +113,7 @@ class LinkedList {
             currentNode = next;
         }
 
-        length++;
+        this.length++;
     }
 
 
@@ -131,7 +131,7 @@ class LinkedList {
             previousNode.next = currentNode.next;
         }
 
-        length--;
+        this.length--;
     }
 
 
@@ -142,7 +142,7 @@ class LinkedList {
 
         var currentNode = this.headNode, previousNode;
         var currentIndex = 0;
-        length--;
+        this.length--;
 
         if (index === 0) {
             previousNode = this.headNode;
