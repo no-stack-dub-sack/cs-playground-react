@@ -55,7 +55,6 @@ export const CODE = {
   MODERATE_ALGOS: [
     NoTwoConsecutiveChars,
     AnagramPalindrome,
-    // SumPrimeFactors,
     // RotateAnImage,
   ]
 };

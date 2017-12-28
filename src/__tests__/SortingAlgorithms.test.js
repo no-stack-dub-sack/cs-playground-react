@@ -1,6 +1,6 @@
 import createJestTest from '../utils/test/create-jest-test';
 
-describe('Sorting Algorithm Solution Code Passes Tests', () => {
+describe('Sorting Algorithms: Solution Code Passes Tests', () => {
 
   const IDS = [
     'BubbleSort',
