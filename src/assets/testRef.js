@@ -10,6 +10,7 @@ import * as BinarySearchTree from './tests/data-structures/BinarySearchTree';
 import * as LinkedList from './tests/data-structures/LinkedList';
 import * as Stack from './tests/data-structures/Stack';
 
+import * as AnagramPalindrome from './tests/algorithms/AnagramPalindrome';
 import * as GenerateCheckerboard from './tests/algorithms/GenerateCheckerboard';
 import * as NoTwoConsecutiveChars from './tests/algorithms/NoTwoConsecutiveChars';
 import * as SumAllPrimes from './tests/algorithms/SumAllPrimes';
@@ -28,6 +29,7 @@ export default {
   LinkedList,
   Stack,
   // Algorithm Challenges
+  AnagramPalindrome,
   SumAllPrimes,
   NoTwoConsecutiveChars,
   GenerateCheckerboard,

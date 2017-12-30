@@ -48,11 +48,11 @@ console.log(anagramPalindrome('raoistddtagstonveakaaeawfewosln')); // a santa do
 function anagramPalindrome(str) {
   var freq = {}, odds = 0;
 
-  for (var letter of str) {
+  for (let letter of str) {
     freq[letter] = -~freq[letter];
   }
 
-  for (var letter in freq) {
+  for (let letter in freq) {
     if (freq[letter] % 2 !== 0) {
       odds++;
       if (odds > 1) {
