@@ -16,14 +16,6 @@ export const tests = [
     message: '<code>MinHeap</code> has a method called <code>insert</code>.'
   },
   {
-    expression: `typeof new MinHeap().remove == 'function'`,
-    message: '<code>MinHeap</code> has a method called <code>remove</code>.'
-  },
-  {
-    expression: `typeof new MinHeap().sort == 'function'`,
-    message: '<code>MinHeap</code> has a method called <code>sort</code>.'
-  },
-  {
     expression: `
       (() => {
         var test = new MinHeap();
@@ -36,6 +28,10 @@ export const tests = [
       })()
     `,
     message: 'The <code>insert</code> method adds elements according to the min heap property.'
+  },
+  {
+    expression: `typeof new MinHeap().remove == 'function'`,
+    message: '<code>MinHeap</code> has a method called <code>remove</code>.'
   },
   {
     expression: `
@@ -55,7 +51,19 @@ export const tests = [
         return length_1 === 5 && removed_1 === 32 && length_2 === 4 && removed_2 === 50 && length_3 === 3 && removed_3 === 51;
       })()
     `,
-    message: 'The <code>remove</code> method removes elements according to the min heap property.'
+    message: 'The <code>remove</code> method removes and returns elements according to the min heap property.'
+  },
+  {
+    expression: `
+    (() => {
+      const heap = new MinHeap();
+      return heap.remove() === null;
+    })()`,
+    message: 'The <code>remove</code> method returns <code>null</code> when called on an empty heap.'
+  },
+  {
+    expression: `typeof new MinHeap().sort == 'function'`,
+    message: '<code>MinHeap</code> has a method called <code>sort</code>.'
   },
   {
     expression: `

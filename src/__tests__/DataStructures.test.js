@@ -5,6 +5,7 @@ describe('Data Structures: Solution Code Passes Tests', () => {
   const IDS = [
     'BinarySearchTree',
     'LinkedList',
+    'MaxHeap',
     'Stack'
   ];
 
