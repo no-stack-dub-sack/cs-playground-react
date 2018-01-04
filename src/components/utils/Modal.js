@@ -46,6 +46,24 @@ class Modal extends Component {
       />
     );
   }
+  renderNumRemainingAnnouncements = () => {
+    let num;
+    switch (localStorage.getItem('cs-pg-react-render-only-thrice')) {
+      case '1':
+        num = 2;
+        break;
+      case '2':
+        num = 1;
+        break;
+      default:
+        num = 0;
+    }
+    return (
+      <span>
+        {`You will see this notification ${num} more time${num === '1' ? '' : 's'}`}
+      </span>
+    );
+  }
   render() {
     return ReactDOM.createPortal(
       <Fade attachRef={ref => this.modal = ref} in={this.props.renderModal}>
@@ -60,6 +78,7 @@ class Modal extends Component {
           <ul>
             { this.props.messages.map(this.renderListItem) }
           </ul>
+        { this.props.modalType === 'announcement' && this.renderNumRemainingAnnouncements() }
         </div>
       </Fade>,
       document.getElementById('modal-root')
