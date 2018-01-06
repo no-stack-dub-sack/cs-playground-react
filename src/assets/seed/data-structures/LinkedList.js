@@ -11,12 +11,12 @@ export default {
 class LinkedList {
     constructor() {
         this.length = 0;
-        this.headNode = null;
+        this.head = null;
     }
 
     // methods to implement:
 
-    // head()
+    // peakHead()
     // size()
     // add()
     // addAt()
@@ -43,9 +43,9 @@ class Node {
 
 /**
  * @class Singly-Linked List data structure
- * @property {object} headNode Root element of collection
+ * @property {object} head Root element of collection
  * @property {number} length The length of the list
- * @method head @return {object} root element of collection
+ * @method peakHead @return {object} root element of collection
  * @method size @return size of List
  * @method add @param {number|string} element Adds element to List
  * @method addAt @param {number} index @param {number|string} element Adds element at specific index
@@ -59,12 +59,12 @@ class Node {
 class LinkedList {
     constructor() {
         this.length = 0;
-        this.headNode = null;
+        this.head = null;
     }
 
 
-    head() {
-        return this.headNode;
+    peakHead() {
+        return this.head;
     }
 
 
@@ -75,9 +75,9 @@ class LinkedList {
 
     add(element) {
         var next = new Node(element);
-        var currentNode = this.headNode;
+        var currentNode = this.head;
         if (!currentNode) {
-            this.headNode = next;
+            this.head = next;
         } else {
             while (currentNode.next) {
                 currentNode = currentNode.next;
@@ -95,12 +95,12 @@ class LinkedList {
             return null;
         }
 
-        var currentNode = this.headNode, previousNode;
+        var currentNode = this.head, previousNode;
         var currentIndex = 0;
         var next = new Node(element);
         if (index === 0) {
-            next.next = this.headNode;
-            this.headNode = next;
+            next.next = this.head;
+            this.head = next;
         } else {
             while (currentIndex < index) {
                 previousNode = currentNode;
@@ -118,10 +118,10 @@ class LinkedList {
 
 
     remove(element) {
-        var currentNode = this.headNode, previousNode;
+        var currentNode = this.head, previousNode;
 
         if (currentNode.element === element) {
-            this.headNode = currentNode.next;
+            this.head = currentNode.next;
         } else {
             while (currentNode.element !== element) {
                 previousNode = currentNode;
@@ -140,13 +140,13 @@ class LinkedList {
             return null;
         }
 
-        var currentNode = this.headNode, previousNode;
+        var currentNode = this.head, previousNode;
         var currentIndex = 0;
         this.length--;
 
         if (index === 0) {
-            previousNode = this.headNode;
-            this.headNode = currentNode.next;
+            previousNode = this.head;
+            this.head = currentNode.next;
             return previousNode.element;
         } else {
             while (currentIndex < index) {
@@ -163,7 +163,7 @@ class LinkedList {
 
     indexOf(element) {
         var count = 0;
-        var currentNode = this.headNode;
+        var currentNode = this.head;
         if (!currentNode) return -1;
 
         while (element !== currentNode.element) {
@@ -184,7 +184,7 @@ class LinkedList {
         }
 
         var currentIndex = 0;
-        var currentNode = this.headNode;
+        var currentNode = this.head;
 
         while (currentIndex < index) {
             currentNode = currentNode.next;
@@ -196,7 +196,7 @@ class LinkedList {
 
 
     isEmpty(num) {
-        if (!this.headNode) {
+        if (!this.head) {
            return true;
         }
 
@@ -212,7 +212,7 @@ list.add('Planes');
 list.add('Trains');
 list.add('Automobiles');
 list.add('Magic Carpets');
-console.log(JSON.stringify(list.head(), null, 2));
+console.log(JSON.stringify(list.peakHead(), null, 2));
 console.log(\`indexOf trains: \${list.indexOf('Trains')}\`);
 console.log(\`indexOf trucks: \${list.indexOf('Trucks')}\`);
 console.log(\`size: \${list.size}\`);

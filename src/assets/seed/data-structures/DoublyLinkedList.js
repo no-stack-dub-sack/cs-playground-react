@@ -3,7 +3,7 @@ export default {
   seed:
 `class Node {
     constructor(value) {
-        this.data = value;
+        this.element = value;
         this.prev = null;
         this.next = null;
     }
@@ -27,20 +27,22 @@ class DoublyLinkedList {
     // indexOf()
     // elementAt()
     // isEmpty()
+    // reverse()
     // size()
 }
 `,
   solution:
 `/**
-  * @class Node
-  * @property {number|string} value The node's value
-  * @property {object} prev The previous node
-  * @property {object} next The next node
-  */
+ * @class Node
+ * @param {*} element
+ * @property {*} element The node's value
+ * @property {object} prev The previous node
+ * @property {object} next The next node
+ */
 
 class Node {
-    constructor(value) {
-        this.data = value;
+    constructor(element) {
+        this.element = element;
         this.prev = null;
         this.next = null;
     }
@@ -48,19 +50,20 @@ class Node {
 
 /**
  * @class Doubly-Linked List data structure
- * @property {Object} head Root element of collection
- * @property {Object} tail Tail element of collection
+ * @property {Object} head Root element of list
+ * @property {Object} tail Tail element of list
  * @property {number} length The length of the list
- * @method peekHead @return {Object} root element of collection
- * @method peekTail @return {Object} tail element of collection
- * @method add @param {*} element Adds element to List
+ * @method peekHead @return {Object} Peek at root element of list
+ * @method peekTail @return {Object} Peek at tail element of list
+ * @method add @param {*} element Appends element to tail of list
  * @method addAt @param {number} index @param {*} element Adds element at specific index
- * @method remove @param {*} element @return {*} removed element or null
- * @method removeAt @param {number} index @return {*} removed element at specific index or null
- * @method indexOf @param {*} element @return {number} index of a given element or null
- * @method elementAt @param {number} index @return {*} elementAt at specific index or null
- * @method isEmpty @return {boolean}
- * @method size @return size of List
+ * @method remove @param {*} element @return {*} Remove and return element from list, return null if no removal
+ * @method removeAt @param {number} index @return {*} Remove and return element at specific index, or null if no removal
+ * @method indexOf @param {*} element @return {number} Return index of a given element or null if element doesn't exist
+ * @method elementAt @param {number} index @return {*} Return element at specific index or null if element doesn't exist
+ * @method isEmpty @return {boolean} Return true if list is empty, false if not
+ * @method reverse Reverses the list structure
+ * @method size @return {number} Returns the size of List, can be used interchangably with list.length
  */
 
 class DoublyLinkedList {
@@ -168,14 +171,14 @@ class DoublyLinkedList {
         this.length--;
 
         // remove head
-        if (value === this.head.data) {
+        if (value === this.head.element) {
             this.head = this.head.next;
             this.head.prev = null;
             return value;
         }
 
         // remove tail
-        if (value === this.tail.data) {
+        if (value === this.tail.element) {
             this.tail = this.tail.prev;
             this.tail.next = null;
             return value;
@@ -183,7 +186,7 @@ class DoublyLinkedList {
 
         let currentNode = this.head;
 
-        while (currentNode.data !== value) {
+        while (currentNode.element !== value) {
             if (!currentNode.next) {
                 return null;
             }
@@ -209,7 +212,7 @@ class DoublyLinkedList {
 
         // remove at head
         if (index === 0) {
-            const deleted = this.head.data;
+            const deleted = this.head.element;
             this.head = this.head.next;
             this.head.prev = null;
             return deleted;
@@ -217,7 +220,7 @@ class DoublyLinkedList {
 
         // remove at tail
         if (index === this.size) {
-            const deleted = this.tail.data;
+            const deleted = this.tail.element;
             this.tail = this.tail.prev;
             this.tail.next = null;
             return deleted;
@@ -233,7 +236,7 @@ class DoublyLinkedList {
 
         previousNode.next = currentNode.next;
         currentNode.next.prev = previousNode;
-        return currentNode.data;
+        return currentNode.element;
     }
 
 
@@ -244,7 +247,7 @@ class DoublyLinkedList {
 
         let currentNode = this.head;
         let currentIndex = 0;
-        while (value !== currentNode.data) {
+        while (value !== currentNode.element) {
             currentNode = currentNode.next;
             currentIndex++;
             if (!currentNode) {
@@ -271,7 +274,7 @@ class DoublyLinkedList {
             currentIndex++;
         }
 
-        return currentNode.data;
+        return currentNode.element;
     }
 
 
@@ -314,13 +317,21 @@ class DoublyLinkedList {
         let currentNode = this.head;
 
         while (currentNode) {
-            result.push(Object.assign({}, currentNode));
-            currentNode = currentNode.next;
+            if (
+              this.isCircular &&
+              this.indexOf(currentNode.element) === this.size-1
+            ) {
+                result.push(objectAssign({}, currentNode));
+                currentNode = null;
+            } else {
+                result.push(objectAssign({}, currentNode));
+                currentNode = currentNode.next;
+            }
         }
 
         result.forEach(node => {
-           if (node.prev) node.prev = node.prev.data;
-           if (node.next) node.next = node.next.data;
+           if (node.prev) node.prev = node.prev.element;
+           if (node.next) node.next = node.next.element;
         });
 
         return JSON.stringify(result, null, 2);
@@ -379,13 +390,13 @@ console.log('reversed list: \\n\\n' + list.toString()  + '\\n');
 // In a Node environment:
 
 // Node {
-//   data: 'rab',
+//   element: 'rab',
 //   prev: null,
 //   next:
 //    Node {
-//      data: 'oof',
+//      element: 'oof',
 //      prev: [Circular],
-//      next: Node { data: 'new 4th index', prev: [Object], next: [Object] } } }
+//      next: Node { element: 'new 4th index', prev: [Object], next: [Object] } } }
 
 // or in a browser environment:
 // [object Object]

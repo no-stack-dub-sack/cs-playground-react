@@ -4,8 +4,8 @@ export const tests = [
     message: 'The <code>LinkedList</code> data structure exists'
   },
   {
-    expression: `new LinkedList().headNode === null && new LinkedList().length === 0`,
-    message: 'The <code>LinkedList</code> data structure should have <code>headNode</code> and <code>length</code> properties, which initialize to <code>null</code> and <code>0</code>, respectively'
+    expression: `new LinkedList().head === null && new LinkedList().length === 0`,
+    message: 'The <code>LinkedList</code> data structure should have <code>head</code> and <code>length</code> properties, which initialize to <code>null</code> and <code>0</code>, respectively'
   },
   {
     expression: `typeof new LinkedList().add === 'function'`,
@@ -16,9 +16,9 @@ export const tests = [
     (() => {
       const list = new LinkedList();
       list.add('cat');
-      return list.headNode.element === 'cat' && list.headNode.next === null;
+      return list.head.element === 'cat' && list.head.next === null;
     })()`,
-    message: 'The <code>add</code> method should assign the first node added (with <code>element</code> and <code>next</code> properties) to the <code>headNode</code> property.'
+    message: 'The <code>add</code> method should assign the first node added (with <code>element</code> and <code>next</code> properties) to the <code>head</code> property.'
   },
   {
     expression: `
@@ -26,11 +26,11 @@ export const tests = [
       const list = new LinkedList();
       list.add('cat');
       list.add('dog');
-      const test_1 = list.headNode.next.element === 'dog';
+      const test_1 = list.head.next.element === 'dog';
       list.add('bird');
       list.add('pig');
-      const test_2 = list.headNode.next.next.next.element === 'pig';
-      const test_3 = list.headNode.next.next.next.next === null;
+      const test_2 = list.head.next.next.next.element === 'pig';
+      const test_3 = list.head.next.next.next.next === null;
       return test_1 && test_2;
     })()`,
     message: 'Additional elements should be appended to the last element\'s <code>next</code> property, creating a reference between the previous last node <code>node</code> and the newest node created (which as the tail node, should have a <code>next</code> property of <code>null</code>).'
@@ -50,8 +50,8 @@ export const tests = [
     message: 'The <code>length</code> property of The <code>LinkedList</code> class should increment every time <code>add</code> is called to reflect the number of nodes in the linked list.'
   },
   {
-    expression: `typeof new LinkedList().head === 'function'`,
-    message: 'The <code>LinkedList</code> class should have a method called <code>head</code>.'
+    expression: `typeof new LinkedList().peakHead === 'function'`,
+    message: 'The <code>LinkedList</code> class should have a method called <code>peakHead</code>.'
   },
   {
     expression: `
@@ -59,9 +59,9 @@ export const tests = [
       const list = new LinkedList();
       list.add('cat');
       list.add('dog');
-      return JSON.stringify(list.head()) === '{"element":"cat","next":{"element":"dog","next":null}}';
+      return JSON.stringify(list.peakHead()) === '{"element":"cat","next":{"element":"dog","next":null}}';
     })()`,
-    message: 'The <code>head</code> method should return the <code>headNode</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
+    message: 'The <code>peakHead</code> method should return the <code>head</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
   },
   {
     expression: `typeof new LinkedList().size === 'number' || typeof new LinkedList().size === 'function'`,
@@ -89,12 +89,12 @@ export const tests = [
       list.add('cat');
       list.add('dog');
       list.remove('cat');
-      const test_1 = list.headNode.element === 'dog';
+      const test_1 = list.head.element === 'dog';
       list.remove('dog');
-      const test_2 = list.headNode === null;
+      const test_2 = list.head === null;
       return test_1 && test_2;
     })()`,
-    message: 'When the first node in the list is removed, head node should become equal to the removed node\'s <code>next</code> property (either the second node, or <code>null</code> if the list only has one element).'
+    message: 'When the first node in the list is removed, peakHead node should become equal to the removed node\'s <code>next</code> property (either the second node, or <code>null</code> if the list only has one element).'
   },
   {
     expression: `
@@ -103,7 +103,7 @@ export const tests = [
       list.add('cat');
       list.add('dog');
       list.remove('dog');
-      return list.headNode.next === null;
+      return list.head.next === null;
     })()`,
     message: 'When the last, or tail node of a list is removed, the previous node\'s <code>next</code> property should be set to <code>null</code>'
   },
@@ -115,9 +115,9 @@ export const tests = [
       list.add('dog');
       list.add('bird');
       list.remove('dog');
-      return list.headNode.next.element === 'bird'
+      return list.head.next.element === 'bird'
     })()`,
-    message: 'When an element that is neither the head or tail node is removed, the linked list structure should be maintained, such that the node previous to the removed node has a <code>next</code> property that references the node that came after the removed node.'
+    message: 'When an element that is neither the peakHead or tail node is removed, the linked list structure should be maintained, such that the node previous to the removed node has a <code>next</code> property that references the node that came after the removed node.'
   },
   {
     expression: `
@@ -217,9 +217,9 @@ export const tests = [
       list.add('dog');
       list.add('bird');
       list.add('fish');
-      const test_1 = list.removeAt(1) === 'dog' && list.headNode.next.element === 'bird';
-      const test_2 = list.removeAt(0) === 'cat' && list.headNode.element === 'bird';
-      const test_3 = list.removeAt(1) === 'fish' && list.headNode.next === null;
+      const test_1 = list.removeAt(1) === 'dog' && list.head.next.element === 'bird';
+      const test_2 = list.removeAt(0) === 'cat' && list.head.element === 'bird';
+      const test_3 = list.removeAt(1) === 'fish' && list.head.next === null;
       return test_1 && test_2 && test_3;
     })()`,
     message: 'The <code>removeAt</code> method should remove and return the element at the given index, while retaining the linked list structure/references.'
@@ -267,7 +267,7 @@ export const tests = [
       list.add('cat');
       list.add('dog');
       list.addAt(1, 'bird');
-      return list.headNode.element === 'cat' && list.headNode.next.element === 'bird' && list.headNode.next.next.element === 'dog';
+      return list.head.element === 'cat' && list.head.next.element === 'bird' && list.head.next.next.element === 'dog';
     })()`,
     message: 'The <code>addAt</code> method should add the given element to the list at the given index, while maintaining the linked-list structure/references.'
   },
@@ -277,9 +277,9 @@ export const tests = [
       const list = new LinkedList();
       list.add('cat');
       list.addAt(0, 'bird');
-      return list.headNode.element === 'bird' && list.headNode.next.element === 'cat' && list.headNode.next.next === null;
+      return list.head.element === 'bird' && list.head.next.element === 'cat' && list.head.next.next === null;
     })()`,
-    message: 'When the given index is <code>0</code>, the element passed to <code>addAt</code> should become the new head node, referencing the rest of the list in its <code>next</code> property.'
+    message: 'When the given index is <code>0</code>, the element passed to <code>addAt</code> should become the new peakHead node, referencing the rest of the list in its <code>next</code> property.'
   },
   {
     expression: `

@@ -11,7 +11,11 @@ import shortid from 'shortid';
 import axios from 'axios';
 import './styles/app.css';
 
-// TODO: find a way around below hack
+/** TODO:
+  * rework application structure, add most state to top level
+  * refactor modal into separate components: announcement, resources
+  * find a way around below hack
+  */
 
 // HACK: For preventing text highlighting on mousemove when
 // dragging dividers: setting this as a key in component state
