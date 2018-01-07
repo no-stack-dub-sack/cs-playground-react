@@ -1,5 +1,5 @@
 export default {
-  title: 'Doubly Linked List (Circular)',
+  title: 'Circular Doubly Linked List',
   seed:
 `/* Note that this implementation should differ from the previous doubly-linked list in it's ability to be forged
 into a circular structure, i.e., the tail's next property points to head, while the head's prev property points to
