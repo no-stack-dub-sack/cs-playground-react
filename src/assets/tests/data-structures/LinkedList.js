@@ -50,8 +50,8 @@ export const tests = [
     message: 'The <code>length</code> property of The <code>LinkedList</code> class should increment every time <code>add</code> is called to reflect the number of nodes in the linked list.'
   },
   {
-    expression: `typeof new LinkedList().peakHead === 'function'`,
-    message: 'The <code>LinkedList</code> class should have a method called <code>peakHead</code>.'
+    expression: `typeof new LinkedList().peekHead === 'function'`,
+    message: 'The <code>LinkedList</code> class should have a method called <code>peekHead</code>.'
   },
   {
     expression: `
@@ -59,9 +59,9 @@ export const tests = [
       const list = new LinkedList();
       list.add('cat');
       list.add('dog');
-      return JSON.stringify(list.peakHead()) === '{"element":"cat","next":{"element":"dog","next":null}}';
+      return JSON.stringify(list.peekHead()) === '{"element":"cat","next":{"element":"dog","next":null}}';
     })()`,
-    message: 'The <code>peakHead</code> method should return the <code>head</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
+    message: 'The <code>peekHead</code> method should return the <code>head</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
   },
   {
     expression: `typeof new LinkedList().size === 'number' || typeof new LinkedList().size === 'function'`,
@@ -94,7 +94,7 @@ export const tests = [
       const test_2 = list.head === null;
       return test_1 && test_2;
     })()`,
-    message: 'When the first node in the list is removed, peakHead node should become equal to the removed node\'s <code>next</code> property (either the second node, or <code>null</code> if the list only has one element).'
+    message: 'When the first node in the list is removed, peekHead node should become equal to the removed node\'s <code>next</code> property (either the second node, or <code>null</code> if the list only has one element).'
   },
   {
     expression: `
@@ -117,7 +117,7 @@ export const tests = [
       list.remove('dog');
       return list.head.next.element === 'bird'
     })()`,
-    message: 'When an element that is neither the peakHead or tail node is removed, the linked list structure should be maintained, such that the node previous to the removed node has a <code>next</code> property that references the node that came after the removed node.'
+    message: 'When an element that is neither the head or tail node is removed, the linked list structure should be maintained, such that the node previous to the removed node has a <code>next</code> property that references the node that came after the removed node.'
   },
   {
     expression: `
@@ -279,7 +279,7 @@ export const tests = [
       list.addAt(0, 'bird');
       return list.head.element === 'bird' && list.head.next.element === 'cat' && list.head.next.next === null;
     })()`,
-    message: 'When the given index is <code>0</code>, the element passed to <code>addAt</code> should become the new peakHead node, referencing the rest of the list in its <code>next</code> property.'
+    message: 'When the given index is <code>0</code>, the element passed to <code>addAt</code> should become the new peekHead node, referencing the rest of the list in its <code>next</code> property.'
   },
   {
     expression: `

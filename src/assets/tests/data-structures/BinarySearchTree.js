@@ -30,7 +30,8 @@ export const tail = `
       return check;
     };
   }
-`
+`;
+
 export const tests = [
   {
     expression: `typeof new BinarySearchTree() === 'object'`,
