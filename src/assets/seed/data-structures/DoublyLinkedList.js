@@ -168,27 +168,21 @@ class DoublyLinkedList {
             return null;
         }
 
-        this.length--;
-
-        // remove last node
-        if (this.size === 0) {
-            this.head = null;
-            this.tail = null;
-            return value;
-        }
-
         // remove head
         if (value === this.head.value) {
             this.head = this.head.next;
-            if (this.size !== 0) this.head.prev = null;
-            return value;
+            if ( this.head) this.head.prev = null;
+            if (!this.head) this.tail = null;
+            this.length--;
+            return true;
         }
 
         // remove tail
         if (value === this.tail.value) {
             this.tail = this.tail.prev;
             this.tail.next = null;
-            return value;
+            this.length--;
+            return true;
         }
 
         let currentNode = this.head;
@@ -201,10 +195,10 @@ class DoublyLinkedList {
             currentNode = currentNode.next;
         }
 
+        this.length--;
         currentNode.prev.next = currentNode.next;
         currentNode.next.prev = currentNode.prev;
-
-        return value;
+        return true;
     }
 
 
@@ -361,49 +355,62 @@ stringify an un-simplified doubly linked list due to the circular
 nature of its previous and next node references! (see bottom)\\n\`
 );
 
-list.add('foo');
-list.add('bar');
-list.add('baz');
-list.add('zab');
-list.add('oof');
-list.add('rab');
+list.add('one');
+list.add('two');
+list.add('three');
+list.add('five');
+list.add('six');
+list.addAt(3, 'four');
 
-console.log('\\nsize: ' + list.size);
 console.log('initial list: \\n\\n' + list.toString() + '\\n');
 
-list.remove('foo'); // remove head
-list.addAt(0, 'new head');
-list.addAt(4, 'new 4th index');
-list.addAt(7, 'new tail');
-
-console.log('\\nsize: ' + list.size);
-console.log('modified list: \\n\\n' + list.toString() + '\\n');
-
-console.log('\\nremoveAt index 7: ' + list.removeAt(7)); // remove tail
-console.log('elementAt index 2: ' + list.elementAt(2));
-console.log('indexOf "new tail": ' + list.indexOf('new tail'));
-console.log('indexOf "rab": ' + list.indexOf('rab'));
+// check node & remove
+if (list.elementAt(0) === 'one') {
+    console.log(list.remove('one'));
+}
 
 list.reverse();
 
-console.log('\\nsize: ' + list.size);
-console.log('reversed list: \\n\\n' + list.toString()  + '\\n');
+// loop and remove
+while (list.size > 1) {
+    console.log(\`removed: \${list.removeAt(list.size - 1)} at index: \${list.size-1}\`);
+}
 
-// NOTE: use the browser's console to log peekHead or peekTai;, you will
-// get a circular structure who's next/prev elements will expand infinitely
-// (since the just point at each other).
+console.log('\\n' + list.toString() + '\\n')
 
-// Logging an doubly linked list in a Node environment would look something like this:
-// (notice the [Circular] notation in Node.next.prev)
+// remove last node
+list.indexOf('six') === 0 && list.removeAt(0);
 
-// Node {
-//   value: 'rab',
-//   prev: null,
-//   next:
-//    Node {
-//      value: 'oof',
-//      prev: [Circular],
-//      next: Node { value: 'new 4th index', prev: [Object], next: [Object] } } }
+// removing the last node should reset both head and tail!
+console.log('head:', list.head)
+console.log('tail:', list.tail)
+
+/*
+ * These are very simple exammples. Can you think of some good real world
+ * use cases for a doubly linked list? How about navigating a playlist?
+ * A circular doubly linked list could be even more valuable for that!
+ * Check out the next challenge to see how we can implement one!
+ */
+
+/*
+ * NOTE: use the browser's console to log peekHead or peekTail; you will get
+ * a circular structure whose next/prev elements will expand infinitely (since
+ * they just point at each other) -> Node(A) = Node(A).next.prev = Node(A)
+ * see an example here: http://recordit.co/GT4XT5BVTh
+ *
+ * Since logging in a terminal is non-interactive, logging a doubly linked list
+ * in a Node environment would look something like this (notice the [Circular]
+ * notation in Node.next.prev):
+ *
+ * Node {
+ *   value: 'one',
+ *   prev: null,
+ *   next:
+ *    Node {
+ *      value: 'two',
+ *      prev: [Circular],
+ *      next: Node { value: 'three', prev: [Object], next: [Object] } } }
+ */
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/#doublyLinkedList/', caption: 'GeeksforGeeks.org'},

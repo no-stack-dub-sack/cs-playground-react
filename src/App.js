@@ -12,7 +12,9 @@ import axios from 'axios';
 import './styles/app.css';
 
 /** TODO:
-  * fix circular list, remove last node
+  * fix circular list edge cases:
+      - remove from single-node list with remove or removeAt
+      - no match for remove method, return null and don't decrement
   * any other LL fixes???
   * fix JSDoc comments to true JSDoc style??
   * add pane positions to redux state????

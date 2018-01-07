@@ -13,6 +13,10 @@ export const hijackConsole = () => {
   const OG_Log = console.log;
   console.log = function(...args) {
     const messages = [...args].map(msg => {
+      // NOTE: Do not attempt to stringify doubly linked list nodes
+      if (typeof msg === 'object' && msg.hasOwnProperty('prev')) {
+        return msg;
+      }
       return typeof msg !== 'string'
         ? JSON.stringify(msg)
         : msg

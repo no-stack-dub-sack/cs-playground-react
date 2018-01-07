@@ -136,7 +136,7 @@ export const tests = [
       const test_4 = list.remove('bird') && list.length === 0;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'Each time the <code>remove</code> method is called and a node is removed, it should return a truthy value and decrement the <code>length</code> of the linked list by one.'
+    message: 'For every node removed from the list, the <code>remove</code> method should return a truthy value and decrement the <code>length</code> of the list by one.'
   },
   {
     expression: `
@@ -148,7 +148,7 @@ export const tests = [
       const test_2 = list.remove('bird') === null;
       return test_1 && test_2 && list.length === 2;
     })()`,
-    message: 'If <code>remove</code> is called on an empty list, or finds no match to remove, <code>null</code> should be returned and the list\'s length property should remain unchanged.'
+    message: 'If <code>remove</code> is called on an empty list, or finds no matching value to remove, <code>null</code> should be returned and the list\'s length property should remain unchanged.'
   },
   {
     expression: `typeof new LinkedList().indexOf === 'function'`,
