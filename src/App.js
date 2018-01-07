@@ -12,6 +12,10 @@ import axios from 'axios';
 import './styles/app.css';
 
 /** TODO:
+  * fix circular list, remove last node
+  * any other LL fixes???
+  * fix JSDoc comments to true JSDoc style??
+  * add pane positions to redux state????
   * rework application structure, add most state to top level
   * refactor modal into separate components: announcement, resources
   * find a way around below hack

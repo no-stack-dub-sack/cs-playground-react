@@ -132,7 +132,7 @@ export const tests = [
       const test_2 = list.head === null && list.tail === null;
       return test_1 && test_2;
     })()`,
-    message: 'The first node can be removed, when the list has one or more nodes, , and references to previous & next nodes should be maintained.'
+    message: 'The first node can be removed, when the list has one or more nodes, and references to previous & next nodes should be maintained.'
   },
   {
     expression: `
@@ -148,7 +148,7 @@ export const tests = [
       list.remove('cat');
       return test_1 && test_2 && list.tail === null && list.head === null;
     })()`,
-    message: 'The last node can be removed, when the list has one or more nodes, , and references to previous & next nodes should be maintained.'
+    message: 'The last node can be removed, when the list has one or more nodes, and references to previous & next nodes should be maintained.'
   },
   {
     expression: `
