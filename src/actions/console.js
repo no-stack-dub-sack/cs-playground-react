@@ -14,7 +14,9 @@ export const hijackConsole = () => {
   console.log = function(...args) {
     const messages = [...args].map(msg => {
       // NOTE: Do not attempt to stringify doubly linked list nodes
-      if (typeof msg === 'object' && msg.hasOwnProperty('prev')) {
+      if (typeof msg === 'object' &&
+          msg !== null &&
+          msg.hasOwnProperty('prev')) {
         return msg;
       }
       return typeof msg !== 'string'

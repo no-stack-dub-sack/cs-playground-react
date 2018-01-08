@@ -91,7 +91,7 @@ Modal.propTypes = {
   renderModal: PropTypes.bool.isRequired,
   header: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
-  subHeader: PropTypes.string.isRequired,
+  subHeader: PropTypes.string,
   modalType: PropTypes.string.isRequired
 }
 

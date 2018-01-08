@@ -32,6 +32,18 @@ if (
     };
   }
 }
+
+const isTestDisabled = (method) => {
+  if (method === 'size') {
+    if (typeof new DoublyLinkedList().size === 'undefined') {
+      return true;
+    }
+  } else if (typeof new DoublyLinkedList()[method] !== 'function') {
+      return true;
+  }
+
+  return false;
+}
 `;
 
 export const tests = [
@@ -44,7 +56,7 @@ export const tests = [
     (() => {
       const list = new DoublyLinkedList();
       return list.head === null && list.tail === null && list.length === 0;
-    })()`,
+    })(tests)`,
     message: 'The <code>DoublyLinkedList</code> data structure should have <code>head</code>, <code>tail</code> and <code>length</code> properties, which initialize to <code>null</code>, <code>null</code> and <code>0</code>, respectively'
   },
   {
@@ -87,27 +99,11 @@ export const tests = [
     message: 'The <code>length</code> property of The <code>DoublyLinkedList</code> class should increment every time <code>add</code> is called to reflect the number of nodes in the linked list.'
   },
   {
-    expression: `typeof new DoublyLinkedList().peekHead === 'function'`,
-    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>peekHead</code>.'
-  },
-  {
     expression: `
     (() => {
-      const list = new DoublyLinkedList();
-      list.add('cat');
-      list.add('dog');
-      const peek = list.peekHead();
-      return peek.value === 'cat' && peek.next.value === 'dog'
-    })()`,
-    message: 'The <code>peekHead</code> method should return the <code>head</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
-  },
-  {
-    expression: `typeof new DoublyLinkedList().size === 'number' || typeof new DoublyLinkedList().size === 'function'`,
-    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>size</code>.'
-  },
-  {
-    expression: `
-    (() => {
+      if (isTestDisabled('size', tests[8])) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -191,79 +187,11 @@ export const tests = [
     message: 'If <code>remove</code> is called on an empty list, or finds no matching value to remove, <code>null</code> should be returned and the list\'s length property should remain unchanged.'
   },
   {
-    expression: `typeof new DoublyLinkedList().indexOf === 'function'`,
-    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>indexOf</code>, which accepts an element to search for as an argument.'
-  },
-  {
     expression: `
     (() => {
-      const list = new DoublyLinkedList();
-      list.add('cat');
-      list.add('dog');
-      list.add('bird');
-      const test_1 = list.indexOf('bird') === 2;
-      list.add('pig');
-      list.add('cow');
-      const test_2 = list.indexOf('cow') === 4;
-      list.remove('dog');
-      const test_3 = list.indexOf('bird') === 1;
-      return test_1 && test_2 && test_3;
-    })()`,
-    message: 'The <code>indexOf</code> method should return the zero-based index of the given element.'
-  },
-  {
-    expression: `
-    (() => {
-      const list = new DoublyLinkedList();
-      const test_2 = list.indexOf('dog') === -1;
-      list.add('cat');
-      const test_1 = list.indexOf('dog') === -1;
-      return test_1 && test_2;
-    })()`,
-    message: 'The <code>indexOf</code> method should return <code>-1</code> if the given element doesn\'t exist, or if the method is called on an empty list.'
-  },
-  {
-    expression: `typeof new DoublyLinkedList().elementAt === 'function'`,
-    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>elementAt</code>, which accepts a zero-based index as an argument.'
-  },
-  {
-    expression: `
-    (() => {
-      const list = new DoublyLinkedList();
-      list.add('cat');
-      list.add('dog');
-      const test_1 = list.elementAt(1) === 'dog';
-      const test_2 = list.elementAt(0) === 'cat';
-      list.add('pig');
-      list.add('bird');
-      list.add('toad');
-      const test_3 = list.elementAt(3) === 'bird';
-      list.remove('bird');
-      const test_4 = list.elementAt(3) === 'toad';
-      return test_1 && test_2 && test_3 && test_4;
-    })()`,
-    message: 'The <code>elementAt</code> method should return the element at the given index.'
-  },
-  {
-    expression: `
-    (() => {
-      const list = new DoublyLinkedList();
-      const test_1 = list.elementAt(0) === null;
-      list.add('cat');
-      const test_2 = list.elementAt(1) === null;
-      const test_3 = list.elementAt(5) === null;
-      const test_4 = list.elementAt(-5) === null;
-      return test_1 && test_2 && test_3 && test_4;
-    })()`,
-    message: 'The <code>elementAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
-  },
-  {
-    expression: `typeof new DoublyLinkedList().removeAt === 'function'`,
-    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>removeAt</code>, which accepts a zero-based index as an argument.'
-  },
-  {
-    expression: `
-    (() => {
+      if (isTestDisabled('removeAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -289,6 +217,9 @@ export const tests = [
   {
     expression: `
     (() => {
+      if (isTestDisabled('removeAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -308,6 +239,9 @@ export const tests = [
   {
     expression: `
     (() => {
+      if (isTestDisabled('removeAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       const test_1 = list.removeAt(0) === null;
       list.add('cat');
@@ -319,12 +253,11 @@ export const tests = [
     message: 'The <code>removeAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
-    expression: `typeof new DoublyLinkedList().addAt === 'function'`,
-    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>addAt</code>, which accepts a zero-based index and an value to add as arguments.'
-  },
-  {
     expression: `
     (() => {
+      if (isTestDisabled('addAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -340,6 +273,9 @@ export const tests = [
   {
     expression: `
     (() => {
+      if (isTestDisabled('addAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.addAt(0, 'bird');
@@ -354,6 +290,9 @@ export const tests = [
   {
     expression: `
     (() => {
+      if (isTestDisabled('addAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       const test_1 = list.addAt(0, 'cat') === null;
       list.add('cat');
@@ -367,6 +306,9 @@ export const tests = [
   {
     expression: `
     (() => {
+      if (isTestDisabled('addAt')) {
+        return 'DISABLED';
+      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -375,5 +317,104 @@ export const tests = [
       return list.length === 4;
     })()`,
     message: 'The <code>addAt</code> method should increment the <code>length</code> of the linked list by one for each new node added to the list.'
-  }
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled('peekHead')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      list.add('cat');
+      list.add('dog');
+      const peek = list.peekHead();
+      return peek.value === 'cat' && peek.next.value === 'dog'
+    })()`,
+    message: 'The <code>peekHead</code> method should return the <code>head</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled('peekTail')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      list.add('cat');
+      list.add('dog');
+      const peek = list.peekTail();
+      return peek.value === 'dog' && peek.prev.value === 'cat'
+    })()`,
+    message: 'The <code>peekTail</code> method should return the <code>tail</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled('indexOf')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      list.add('cat');
+      list.add('dog');
+      list.add('bird');
+      const test_1 = list.indexOf('bird') === 2;
+      list.add('pig');
+      list.add('cow');
+      const test_2 = list.indexOf('cow') === 4;
+      list.remove('dog');
+      const test_3 = list.indexOf('bird') === 1;
+      return test_1 && test_2 && test_3;
+    })()`,
+    message: 'The <code>indexOf</code> method should return the zero-based index of the given element.'
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled('indexOf')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      const test_2 = list.indexOf('dog') === -1;
+      list.add('cat');
+      const test_1 = list.indexOf('dog') === -1;
+      return test_1 && test_2;
+    })()`,
+    message: 'The <code>indexOf</code> method should return <code>-1</code> if the given element doesn\'t exist, or if the method is called on an empty list.'
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled('elementAt')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      list.add('cat');
+      list.add('dog');
+      const test_1 = list.elementAt(1) === 'dog';
+      const test_2 = list.elementAt(0) === 'cat';
+      list.add('pig');
+      list.add('bird');
+      list.add('toad');
+      const test_3 = list.elementAt(3) === 'bird';
+      list.remove('bird');
+      const test_4 = list.elementAt(3) === 'toad';
+      return test_1 && test_2 && test_3 && test_4;
+    })()`,
+    message: 'The <code>elementAt</code> method should return the element at the given index.'
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled('elementAt')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      const test_1 = list.elementAt(0) === null;
+      list.add('cat');
+      const test_2 = list.elementAt(1) === null;
+      const test_3 = list.elementAt(5) === null;
+      const test_4 = list.elementAt(-5) === null;
+      return test_1 && test_2 && test_3 && test_4;
+    })()`,
+    message: 'The <code>elementAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+  },
 ];

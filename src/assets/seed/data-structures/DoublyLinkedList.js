@@ -396,7 +396,7 @@ console.log('tail:', list.tail)
  * NOTE: use the browser's console to log peekHead or peekTail; you will get
  * a circular structure whose next/prev elements will expand infinitely (since
  * they just point at each other) -> Node(A) = Node(A).next.prev = Node(A)
- * see an example here: http://recordit.co/GT4XT5BVTh
+ * see an example of this here: http://recordit.co/GT4XT5BVTh
  *
  * Since logging in a terminal is non-interactive, logging a doubly linked list
  * in a Node environment would look something like this (notice the [Circular]
