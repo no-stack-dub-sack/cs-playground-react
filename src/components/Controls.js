@@ -33,14 +33,25 @@ class Controls extends Component {
     }
   }
   handleKeyPress = (e) => {
-    if (e.ctrlKey && e.keyCode === 13) {
+    // Run Code: CMD/CTRL + ENTER
+    if (e.ctrlKey && e.keyCode === 13 ||
+        e.metaKey && e.keyCode === 13) {
       this.handleRunCode(this.props);
     }
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 188) {
+    // Previous Snippet: CMD/CTRL + SHIFT + <
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 188 ||
+        e.metaKey && e.shiftKey && e.keyCode === 188) {
       this.props.previousSnippet();
     }
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 190) {
+    // Next Snippet: CMD/CTRL + SHIFT + >
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 190 ||
+        e.metaKey && e.shiftKey && e.keyCode === 190) {
       this.props.nextSnippet();
+    }
+    // Clear Console: ALT + SHIFT + BACKSPACE
+    if (e.altKey && e.shiftKey && e.keyCode === 8 ||
+        e.altKey && e.shiftKey && e.keyCode === 8) {
+      this.props.clearConsole();
     }
   }
   toggleClearConsole = () => {

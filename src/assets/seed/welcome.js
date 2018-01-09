@@ -48,9 +48,10 @@ code, but if you want to clear it at any time, just hit the button!
 - _SHORTCUT KEYS_
 Some basic hotkeys are built in to help you navigate:
 
-__Next Problem:__      |   \`CTRL + SHIFT + >\`
-__Previous Problem:__  |   \`CTRL + SHIFT + <\`
-__Run Code:__          |   \`CTRL + SHIFT + Enter\`
+__Next Problem:__      |   \`CMD/CTRL + SHIFT + >\`
+__Previous Problem:__  |   \`CMD/CTRL + SHIFT + <\`
+__Run Code:__          |   \`CMD/CTRL + SHIFT + ENTER\`
+__Clear Console:__     |   \`ALT + SHIFT + DELETE/BACKSPACE\`
 
 
 - _KEY BINDINGS_
