@@ -100,172 +100,295 @@ class Node {
 /**
   * @class BinarySearchTree
   * @method add Adds a node to the tree @param {number}
+  * @method remove @param {number} value @return {number} Removes and returns the removed element
   * @method findMin @return {number} Returns the smallest value in the tree
   * @method findMax @return {number} Returns the greatest value in the tree
   * @method isPresent @param {number} @return {boolean} Whether or not a value is present in the tree
   * @method findMaxHeight @return {number} Returns the greatest depth (from root to furthest leaf)
   * @method findMinHeight @return {number} Returns the smallest depth (from root to furthest leaf)
   * @method isBalanced @return {boolean} Whether or not the left and right depth difference is <= 1
+  * @method inOrder @return {number[]} An array of the tree's values arranged inOrder
   * @method preOrder @return {number[]} An array of the tree's values arranged in preOrder
   * @method postOrder @return {number[]} An array of the tree's values arranged in postOrder
   * @method levelOrder @return {number[]} An array of the tree's values arranged in levelOrder
   * @method reverseLevelOrder @return {number[]} An array of the tree's values arranged in reverseLevelOrder
-  * @method remove @param {number} value @return {number} Removes and returns the removed element
   * @method invert Inverts the tree in place
   */
 
 class BinarySearchTree {
     constructor() {
         this.root = null;
+        this.size = 0;
     }
 
 
-    add(int, node = this.root) {
+    add(int) {
         if (!this.root) {
+            this.size++;
             this.root = new Node(int);
             return;
         }
 
-        if (int > node.value) {
-            if (!node.right) {
-                node.right = new Node(int);
-                return;
-            } else {
-                return this.add(int, node.right);
+        const add = (int, node) => {
+            if (int > node.value) {
+                if (!node.right) {
+                    this.size++;
+                    node.right = new Node(int);
+                    return;
+                } else {
+                    return add(int, node.right);
+                }
+            } else if (int < node.value) {
+                if (!node.left) {
+                    this.size++;
+                    node.left = new Node(int);
+                    return;
+                } else {
+                    return add(int, node.left);
+                }
             }
-        } else if (int < node.value) {
-            if (!node.left) {
-                node.left = new Node(int);
-                return;
-            } else {
-                return this.add(int, node.left);
-            }
-        }
-
-        return null;
-    }
-
-
-    findMin(node = this.root) {
-        if (!node) {
+            // element already exists
             return null;
         }
 
-        if (node.left) {
-            return this.findMin(node.left);
-        }
-
-        return node.value;
+        return add(int, this.root);
     }
 
 
-    findMax(node = this.root) {
-        if (!node) {
+    remove(value) {
+        if (!this.root) {
             return null;
         }
 
-        if (node.right) {
-            return this.findMax(node.right);
+        const { target, parent } = this.__searchTree(value, this.root);
+
+        if (!target) {
+            return null;
         }
 
-        return node.value
+        // decrement size of list
+        this.size--;
+
+        // count children
+        let children = 0;
+        if (target.right) children++;
+        if (target.left) children++;
+
+        // remove leaf node
+        if (!children) {
+            if (!parent) {
+                this.root = null;
+                return;
+            }
+
+            if (parent.left && parent.left.value === value) {
+                parent.left = null;
+            } else {
+                parent.right = null;
+            }
+        }
+
+        // remove node with 1 child
+        if (children === 1) {
+            if (!parent) {
+                if (target.left) {
+                    this.root = target.left;
+                } else {
+                    this.root = target.right;
+                }
+                return;
+            }
+
+            if (parent.left && parent.left.value === value) {
+                if (target.left) {
+                    parent.left = target.left;
+                } else {
+                    parent.left = target.right;
+                }
+            } else {
+                if (target.left) {
+                    parent.right = target.left;
+                } else {
+                    parent.right = target.right;
+                }
+            }
+        }
+
+        // remove node w/ 2 children
+        if (children === 2) {
+            if (!parent && target.right && target.left) {
+                this.root.value = target.right.value;
+                target.right = null;
+                return;
+            }
+
+            var findMin = (minRight, minRightParent) => {
+                if (minRight.left) {
+                    return findMin(minRight.left, minRight);
+                }
+
+                return { minRight, minRightParent };
+            };
+
+            var { minRight, minRightParent } = findMin(target.right, target);
+
+            target.value = minRight.value;
+
+            if (!minRight.left && !minRight.right) {
+                if (minRightParent.left.value === minRight.value) {
+                    minRightParent.left = null;
+                } else {
+                    minRightParent.right = null;
+                }
+            } else {
+                minRightParent.left = minRight.right;
+            }
+        }
     }
 
 
-    isPresent(int, node = this.root) {
-        if (!node) {
+    findMin() {
+        if (!this.root) {
+            return null;
+        }
+
+        const findMin = (node) => {
+            return node.left
+                ? findMin(node.left)
+                : node.value;
+        }
+
+        return findMin(this.root);
+    }
+
+
+    findMax() {
+        if (!this.root) {
+            return null;
+        }
+
+        const findMax = (node) => {
+            return node.right
+                ? findMax(node.right)
+                : node.value;
+        }
+
+        return findMax(this.root);
+    }
+
+
+    isPresent(int) {
+        if (!this.root) {
             return false;
         }
 
-        if (int === node.value) {
-            return true;
-        } else if (int > node.value && node.right) {
-            return this.isPresent(int, node.right);
-        } else if (int < node.value && node.left) {
-            return this.isPresent(int, node.left);
+        const isPresent = (int, node) => {
+            if (int === node.value) {
+                return true;
+            } else if (int > node.value && node.right) {
+                return isPresent(int, node.right);
+            } else if (int < node.value && node.left) {
+                return isPresent(int, node.left);
+            }
+            return false;
         }
 
-        return false;
+        return isPresent(int, this.root);
     }
 
 
-    findMaxHeight(node = this.root) {
-        if (!node) {
-            return -1;
-        }
+    findMaxHeight() {
+        const height = (node) => {
+            if (!node) {
+                return -1;
+            }
 
-        var leftHeight = this.findMaxHeight(node.left);
-        var rightHeight = this.findMaxHeight(node.right);
+            var leftHeight = height(node.left);
+            var rightHeight = height(node.right);
 
-        if (leftHeight > rightHeight) {
-            return leftHeight + 1;
-        } else {
-            return rightHeight + 1;
+            return leftHeight > rightHeight
+                ? leftHeight + 1
+                : rightHeight + 1
         }
+        return height(this.root);
     }
 
 
-    findMinHeight(node = this.root) {
-        if (!node) {
-            return -1;
-        }
+    findMinHeight() {
+        const height = (node) => {
+            if (!node) {
+                return -1;
+            }
 
-        var leftHeight = this.findMinHeight(node.left);
-        var rightHeight = this.findMinHeight(node.right);
+            var leftHeight = height(node.left);
+            var rightHeight = height(node.right);
 
-        if (leftHeight < rightHeight) {
-            return leftHeight + 1;
-        } else {
-            return rightHeight + 1;
+            return leftHeight < rightHeight
+                ? leftHeight + 1
+                : rightHeight + 1
         }
+        return height(this.root);
     }
 
 
     isBalanced() {
-        if (this.findMinHeight() > (this.findMaxHeight() - 1)) {
-            return false
-        } else {
-            return true;
-        }
+        return this.findMinHeight() > (this.findMaxHeight() - 1)
+            ? false
+            : true
     }
 
 
-    inOrder(node = this.root, list = []) {
-        if (!node) {
+    inOrder() {
+        if (!this.root) {
             return null;
         }
 
-        this.inOrder(node.left, list);
-        list.push(node.value);
-        this.inOrder(node.right, list);
+        const traverse = (node, list) => {
+            if (node) {
+                traverse(node.left, list);
+                list.push(node.value);
+                traverse(node.right, list);
+                return list;
+            }
+        }
 
-        return list;
+        return traverse(this.root, []);
     }
 
 
-    preOrder(node = this.root, list = []) {
-        if (!node) {
+    preOrder() {
+        if (!this.root) {
             return null;
         }
 
-        list.push(node.value);
-        this.preOrder(node.left, list);
-        this.preOrder(node.right, list);
+        const traverse = (node, list) => {
+            if (node) {
+                list.push(node.value);
+                traverse(node.left, list);
+                traverse(node.right, list);
+                return list;
+            }
+        }
 
-        return list;
+        return traverse(this.root, []);
     }
 
 
-    postOrder(node = this.root, list = []) {
-        if (!node) {
-            return null;
+    postOrder() {
+        if (!this.root) {
+          return null;
         }
 
-        this.postOrder(node.left, list);
-        this.postOrder(node.right, list);
-        list.push(node.value);
+        const traverse = (node, list) => {
+            if (node) {
+                traverse(node.left, list);
+                traverse(node.right, list);
+                list.push(node.value);
+                return list;
+            }
+        }
 
-        return list;
+        return traverse(this.root, []);
     }
 
 
@@ -319,107 +442,37 @@ class BinarySearchTree {
     }
 
 
-    remove(value) {
+    invert() {
         if (!this.root) {
             return null;
         }
 
-        const { target, parent } = this.searchTree(value, this.root);
+        const invert = (node) => {
+            if (node) {
+              var tempNode = node.left;
+              node.left = node.right;
+              node.right = tempNode;
 
-        if (!target) {
-            return null;
-        }
-
-        // count children
-        let children = 0;
-        if (target.right) children++;
-        if (target.left) children++;
-
-        // remove leaf node
-        if (!children) {
-            if (!parent) {
-                this.root = null;
-                return;
-            }
-
-            if (parent.left && parent.left.value === value) {
-                parent.left = null;
-            } else {
-                parent.right = null;
+              invert(node.left);
+              invert(node.right);
             }
         }
 
-        // remove node with 1 child
-        if (children === 1) {
-            if (!parent) {
-                if (target.left) {
-                    this.root = target.left;
-                } else {
-                    this.root = target.right;
-                }
-                return;
-            }
-
-            if (parent.left && parent.left.value === value) {
-                if (target.left) {
-                    parent.left = target.left;
-                } else {
-                    parent.left = target.right;
-                }
-            } else {
-                if (target.left) {
-                    parent.right = target.left;
-                } else {
-                    parent.right = target.right;
-                }
-            }
-        }
-
-        // remove node w/ 2 children
-        if (children === 2) {
-            if (!parent && target.right && target.left && this.findMaxHeight() === 1) {
-                this.root.value = target.right.value;
-                target.right = null;
-                return;
-            }
-
-            var findMin = (minRight, minRightParent) => {
-                if (minRight.left) {
-                    return findMin(minRight.left, minRight);
-                }
-
-                return { minRight, minRightParent };
-            };
-
-            var { minRight, minRightParent } = findMin(target.right, target);
-
-            target.value = minRight.value;
-
-            if (!minRight.left && !minRight.right) {
-                if (minRightParent.left.value === minRight.value) {
-                    minRightParent.left = null;
-                } else {
-                    minRightParent.right = null;
-                }
-            } else {
-                minRightParent.left = minRight.right;
-            }
-        }
+        invert(this.root);
     }
-
 
     // helper method for deletion actions
     // tracks matching node and parent node
-    searchTree(value, node, parent) {
+    __searchTree(value, node, parent) {
         if (value === node.value) {
             return {
                 target: node,
                 parent
             };
         } else if (value < node.value && node.left) {
-            return this.searchTree(value, node.left, node);
+            return this.__searchTree(value, node.left, node);
         } else if (value > node.value && node.right) {
-            return this.searchTree(value, node.right, node);
+            return this.__searchTree(value, node.right, node);
         }
 
         return {
@@ -427,30 +480,14 @@ class BinarySearchTree {
             parent: null
         };
     }
-
-
-    invert(node = this.root) {
-        if (!node) {
-            return null;
-        }
-
-        var tempNode = node.left;
-        node.left = node.right;
-        node.right = tempNode;
-
-        this.invert(node.left);
-        this.invert(node.right);
-    }
 }
 
 var tree = new BinarySearchTree();
 
-/*
- * Tests
- */
+// example usage
 
- const vals = [20,9,49,5,23,52,15,50,17,18,16,13,10,11,12];
- vals.forEach(value => tree.add(value));
+const vals = [20,9,49,5,23,52,15,50,17,18,16,13,10,11,12];
+vals.forEach(value => tree.add(value));
 
 console.log(\`findMax: \${tree.findMax()}\`);
 console.log(\`findMin: \${tree.findMin()}\`);

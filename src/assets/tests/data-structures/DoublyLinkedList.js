@@ -187,11 +187,12 @@ export const tests = [
     message: 'If <code>remove</code> is called on an empty list, or finds no matching value to remove, <code>null</code> should be returned and the list\'s length property should remain unchanged.'
   },
   {
+    expression: `typeof new DoublyLinkedList().removeAt === 'function'`,
+    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>removeAt</code>, which accepts an index and an element to remove as arguments.'
+  },
+  {
     expression: `
     (() => {
-      if (isTestDisabled('removeAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -217,9 +218,6 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('removeAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -239,9 +237,6 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('removeAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       const test_1 = list.removeAt(0) === null;
       list.add('cat');
@@ -253,11 +248,12 @@ export const tests = [
     message: 'The <code>removeAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
+    expression: `typeof new DoublyLinkedList().addAt === 'function'`,
+    message: 'The <code>DoublyLinkedList</code> class should have a method called <code>addAt</code>, which accepts an index and an element to add as arguments.'
+  },
+  {
     expression: `
     (() => {
-      if (isTestDisabled('addAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
@@ -273,9 +269,6 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('addAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.addAt(0, 'bird');
@@ -290,9 +283,6 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('addAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       const test_1 = list.addAt(0, 'cat') === null;
       list.add('cat');
@@ -306,9 +296,6 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('addAt')) {
-        return 'DISABLED';
-      }
       const list = new DoublyLinkedList();
       list.add('cat');
       list.add('dog');
