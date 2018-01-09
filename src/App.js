@@ -16,6 +16,7 @@ import './styles/app.css';
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement
   * any other LL fixes???
+  * toggle SOLUTION/SEED!!! Shortcut key
   * add return null if element exists to all LL
   * fix JSDoc comments to true JSDoc style??
   * add pane positions to redux state????

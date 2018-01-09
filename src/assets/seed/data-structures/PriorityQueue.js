@@ -13,7 +13,7 @@ class PriorityQueue {
     constructor() {
         this.head = null;
         this.tail = null;
-        this.length = 0;
+        this.size = 0;
     }
 
     // methods to implement:
@@ -59,12 +59,12 @@ class PriorityQueue {
     constructor() {
         this.head = null;
         this.tail = null;
-        this.length = 0;
+        this.size = 0;
     }
 
 
     enqueue(element, priority) {
-        this.length++;
+        this.size++;
 
         if (!this.head) {
             this.head = new PQNode(element, priority);
@@ -72,31 +72,34 @@ class PriorityQueue {
             return;
         }
 
-        let currentNode = this.head;
-
-        if (priority < currentNode.priority) {
+        // insert at head
+        if (priority < this.head.priority) {
             const newNode = new PQNode(element, priority);
             newNode.next = this.head;
             this.head = newNode;
             return;
         }
 
+        // insert at tail
         if (priority > this.tail.priority) {
             this.tail.next = new PQNode(element, priority);
             this.tail = this.tail.next;
             return;
         }
 
-        while (currentNode) {
-            if (priority >= currentNode.priority && priority < currentNode.next.priority ) {
+        // insert in body
+        const insert = (node) => {
+            if (priority >= node.priority && priority < node.next.priority ) {
                 const newNode = new PQNode(element, priority);
-                newNode.next = currentNode.next;
-                currentNode.next = newNode;
+                newNode.next = node.next;
+                node.next = newNode;
                 return;
             }
 
-            currentNode = currentNode.next;
+            return insert(node.next)
         }
+
+        return insert(this.head);
     }
 
 
@@ -107,7 +110,7 @@ class PriorityQueue {
 
         const element = this.head.element;
         this.head = this.head.next;
-        this.length--;
+        this.size--;
 
         return element;
     }
@@ -131,8 +134,32 @@ class PriorityQueue {
     }
 
 
-    get size() {
-        return this.length;
+    contains(element) {
+        return this.__search(element) ? true : false;
+    }
+
+
+    priorityOf(element) {
+        const isNode = this.__search(element);
+        return !isNode ? null : isNode.priority;
+    }
+
+
+    elementAt(priority) {
+        const isNode = this.__search(null, priority);
+        return !isNode ? null : isNode.element;
+    }
+
+
+    // '__' dangle denotes "private"/internal use method
+    __search(element, priority, node = this.head) {
+        if (!node) {
+            return false;
+        }
+        if (node.element === element || node.priority === priority) {
+            return node;
+        }
+        return this.__search(element, priority, node.next);
     }
 
 
@@ -160,12 +187,16 @@ pQueue.enqueue('twenty-four', 24);
 console.log(pQueue.print() + '\\n');
 console.log('size: ' + pQueue.size);
 console.log('front: ' + pQueue.front());
-console.log('dequeue: ' + pQueue.dequeue());
-console.log('dequeue: ' + pQueue.dequeue());
-console.log('dequeue: ' + pQueue.dequeue());
-console.log('dequeue: ' + pQueue.dequeue());
-console.log('dequeue: ' + pQueue.dequeue());
-console.log('dequeue: ' + pQueue.dequeue());
+
+console.log('element at priority 3: ' + pQueue.elementAt(3));
+console.log('element at priority 4: ' + pQueue.elementAt(4));
+console.log('contains \\'nine\\': ' + pQueue.contains('nine'));
+console.log('contains \\'cool\\': ' + pQueue.contains('cool'));
+
+while (pQueue.size > 1) {
+    console.log('dequeue: ' + pQueue.dequeue());
+}
+
 console.log('size: ' + pQueue.size + '\\n');
 console.log(pQueue.print());
 `,
