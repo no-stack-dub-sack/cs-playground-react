@@ -1,4 +1,4 @@
-import { CODE } from '../assets/codeRef';
+import { CODE, SOLUTIONS } from '../assets/codeRef';
 import WELCOME_MESSAGE from '../assets/seed/welcome';
 
 import {
@@ -16,8 +16,7 @@ const populateCodeStore = (arr) => {
     CODE[category].forEach(item => {
       arr.push({
         id: item.title.replace(/\s/g, ''),
-        userCode: item.seed,
-        solutionCode: item.solution
+        userCode: item.seed
       });
     });
   }
@@ -85,14 +84,14 @@ export default (state = defaultState, action) => {
         }
       }
     case SELECT_SOLUTION:
-      for (let codeObj of state.codeStore) {
-        if (codeObj.id === action.id) {
+      for (let id in SOLUTIONS) {
+        if (id === action.id) {
           return {
             welcome: false,
             codeStore: updateUserCode(state),
             current: {
-              id: codeObj.id,
-              code: codeObj.solutionCode,
+              id,
+              code: SOLUTIONS[id],
               isSolution: true
             }
           }
