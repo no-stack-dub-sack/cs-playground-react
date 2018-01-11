@@ -34,23 +34,17 @@ class Controls extends Component {
   }
   handleKeyPress = (e) => {
     // Run Code: CMD/CTRL + ENTER
-    if (e.ctrlKey && e.keyCode === 13 ||
-        e.metaKey && e.keyCode === 13) {
+    if ((e.ctrlKey || e.metaKey) && e.keyCode === 13) {
       this.handleRunCode(this.props);
     }
-    // Previous Snippet: CMD/CTRL + SHIFT + <
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 188 ||
-        e.metaKey && e.shiftKey && e.keyCode === 188) {
-      this.props.previousSnippet();
-    }
     // Next Snippet: CMD/CTRL + SHIFT + >
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 190 ||
-        e.metaKey && e.shiftKey && e.keyCode === 190) {
-      this.props.nextSnippet();
+    // Previous Snippet: CMD/CTRL + SHIFT + <
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+      if (e.keyCode === 190) this.props.nextSnippet();
+      if (e.keyCode === 188) this.props.previousSnippet();
     }
     // Clear Console: ALT + SHIFT + BACKSPACE
-    if (e.altKey && e.shiftKey && e.keyCode === 8 ||
-        e.altKey && e.shiftKey && e.keyCode === 8) {
+    if (e.altKey && e.shiftKey && e.keyCode === 8) {
       this.props.clearConsole();
     }
   }
