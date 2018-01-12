@@ -41,20 +41,16 @@ export const tail = `
 
     return list;
   }
-
-  const isTestDisabled = (method) => {
-    if (typeof new BinarySearchTree()[method] !== 'function') {
-        return true;
-    }
-
-    return false;
-  }
 `;
 
 export const tests = [
   {
     expression: `typeof new BinarySearchTree() === 'object'`,
     message: 'The <code>BinarySearchTree</code> data structure exists'
+  },
+  {
+    expression: `typeof new BinarySearchTree().root === null`,
+    message: `The <code>BinarySearchTree</code> data structure has a <code>root</code> property which initializes to a value of <code>null</code>`
   },
   {
     expression: `typeof new BinarySearchTree().add === 'function'`,
@@ -326,7 +322,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('findMinHeight')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'findMinHeight')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(4);
         test.add(1);
@@ -344,7 +342,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('findMaxHeight')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'findMaxHeight')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(4);
         test.add(1);
@@ -362,7 +362,10 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('findMaxHeight') && isTestDisabled('findMaxHeight')) return 'DISABLED';
+      if (isTestDisabled(BinarySearchTree, 'findMaxHeight') &&
+          isTestDisabled(BinarySearchTree, 'findMaxHeight')) {
+        return 'DISABLED';
+      }
       const test = new BinarySearchTree();
       const minHeight = test.findMaxHeight() === -1;
       const maxHeight = test.findMaxHeight() === -1;
@@ -373,7 +376,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('isBalanced')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'isBalanced')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(50);
         test.add(17);
@@ -394,7 +399,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('preOrder')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'preOrder')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(7);
         test.add(1);
@@ -415,7 +422,9 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('preOrder')) return 'DISABLED';
+      if (isTestDisabled(BinarySearchTree, 'preOrder')) {
+        return 'DISABLED';
+      }
       return new BinarySearchTree().preOrder() === null
     })()`,
     message: 'The <code>preOrder</code> method returns <code>null</code> for an empty tree'
@@ -423,7 +432,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('postOrder')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'postOrder')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(7);
         test.add(1);
@@ -444,7 +455,9 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('postOrder')) return 'DISABLED';
+      if (isTestDisabled(BinarySearchTree, 'postOrder')) {
+        return 'DISABLED';
+      }
       return new BinarySearchTree().postOrder() === null
     })()`,
     message: 'The <code>postOrder</code> method returns <code>null</code> for an empty tree'
@@ -452,7 +465,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('levelOrder')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'levelOrder')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(7);
         test.add(1);
@@ -473,7 +488,9 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('levelOrder')) return 'DISABLED';
+      if (isTestDisabled(BinarySearchTree, 'levelOrder')) {
+        return 'DISABLED';
+      }
       return new BinarySearchTree().levelOrder() === null
     })()`,
     message: 'The <code>levelOrder</code> method returns <code>null</code> for an empty tree'
@@ -481,7 +498,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('reverseLevelOrder')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'reverseLevelOrder')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree();
         test.add(7);
         test.add(1);
@@ -502,7 +521,9 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('reverseLevelOrder')) return 'DISABLED';
+      if (isTestDisabled(BinarySearchTree, 'reverseLevelOrder')) {
+        return 'DISABLED';
+      }
       return new BinarySearchTree().reverseLevelOrder() === null
     })()`,
     message: 'The <code>reverseLevelOrder</code> method returns <code>null</code> for an empty tree'
@@ -510,7 +531,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (isTestDisabled('invert')) return 'DISABLED';
+        if (isTestDisabled(BinarySearchTree, 'invert')) {
+          return 'DISABLED';
+        }
         var test = new BinarySearchTree()
         test.add(4);
         test.add(1);
@@ -529,7 +552,9 @@ export const tests = [
   {
     expression:
     `(() => {
-      if (isTestDisabled('invert')) return 'DISABLED';
+      if (isTestDisabled(BinarySearchTree, 'invert')) {
+        return 'DISABLED';
+      }
       return new BinarySearchTree().invert() === null
     })()`,
     message: 'Inverting an empty tree returns <code>null</code>'

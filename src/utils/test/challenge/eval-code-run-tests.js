@@ -1,5 +1,6 @@
-import TESTS from '../../assets/testRef';
+import TESTS from '../../../assets/testRef';
 import executeTests from './execute-tests';
+import isTestDisabled from './is-test-disabled';
 
 // TODO: remove check for tests once all challenges have tests
 
@@ -8,14 +9,14 @@ export default (code, id, suppressTests) => {
     const assert = require('assert');
 
     let prepend = 'const tests = ',
-        tests = '',
-        tail = '';
+        tail = isTestDisabled,
+        tests = '';
 
     // if suppressTests is true, only eval code,
     // otherwise, eval code and run tests (if tests exist)
     if (!suppressTests && TESTS[id]) {
       tests = prepend + JSON.stringify(TESTS[id].tests);
-      tail = TESTS[id].tail ? TESTS[id].tail : '';
+      if (TESTS[id].tail) tail += TESTS[id].tail;
     }
 
     // eslint-disable-next-line

@@ -32,18 +32,6 @@ if (
     };
   }
 }
-
-const isTestDisabled = (method) => {
-  if (method === 'size') {
-    if (typeof new DoublyLinkedList().size === 'undefined') {
-      return true;
-    }
-  } else if (typeof new DoublyLinkedList()[method] !== 'function') {
-      return true;
-  }
-
-  return false;
-}
 `;
 
 export const tests = [
@@ -52,11 +40,7 @@ export const tests = [
     message: 'The <code>DoublyLinkedList</code> data structure exists'
   },
   {
-    expression: `
-    (() => {
-      const list = new DoublyLinkedList();
-      return list.head === null && list.tail === null && list.length === 0;
-    })(tests)`,
+    expression: `(() => { const list = new DoublyLinkedList(); return list.head === null && list.tail === null && list.length === 0 })()`,
     message: 'The <code>DoublyLinkedList</code> data structure should have <code>head</code>, <code>tail</code> and <code>length</code> properties, which initialize to <code>null</code>, <code>null</code> and <code>0</code>, respectively'
   },
   {
@@ -97,20 +81,6 @@ export const tests = [
       return test_1 && test_2;
     })()`,
     message: 'The <code>length</code> property of The <code>DoublyLinkedList</code> class should increment every time <code>add</code> is called to reflect the number of nodes in the linked list.'
-  },
-  {
-    expression: `
-    (() => {
-      if (isTestDisabled('size', tests[8])) {
-        return 'DISABLED';
-      }
-      const list = new DoublyLinkedList();
-      list.add('cat');
-      list.add('dog');
-      list.add('kitten');
-      return typeof list.size === 'number' ? list.size === 3 : list.size() === 3;
-    })()`,
-    message: 'The <code>size</code> method should return the length of the linked list'
   },
   {
     expression: `typeof new DoublyLinkedList().remove === 'function'`,
@@ -308,7 +278,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('peekHead')) {
+      if (isTestDisabled(DoublyLinkedList, 'peekHead')) {
         return 'DISABLED';
       }
       const list = new DoublyLinkedList();
@@ -322,7 +292,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('peekTail')) {
+      if (isTestDisabled(DoublyLinkedList, 'peekTail')) {
         return 'DISABLED';
       }
       const list = new DoublyLinkedList();
@@ -336,7 +306,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('indexOf')) {
+      if (isTestDisabled(DoublyLinkedList, 'indexOf')) {
         return 'DISABLED';
       }
       const list = new DoublyLinkedList();
@@ -356,7 +326,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('indexOf')) {
+      if (isTestDisabled(DoublyLinkedList, 'indexOf')) {
         return 'DISABLED';
       }
       const list = new DoublyLinkedList();
@@ -370,7 +340,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('elementAt')) {
+      if (isTestDisabled(DoublyLinkedList, 'elementAt')) {
         return 'DISABLED';
       }
       const list = new DoublyLinkedList();
@@ -391,7 +361,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (isTestDisabled('elementAt')) {
+      if (isTestDisabled(DoublyLinkedList, 'elementAt')) {
         return 'DISABLED';
       }
       const list = new DoublyLinkedList();

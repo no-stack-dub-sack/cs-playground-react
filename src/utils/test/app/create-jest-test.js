@@ -1,5 +1,5 @@
-import TESTS from '../../assets/testRef';
-import { SOLUTIONS } from '../../assets/codeRef';
+import TESTS from '../../../assets/testRef';
+import { SOLUTIONS } from '../../../assets/codeRef';
 import { concatTests, logResults } from './jest-test-utils';
 
 export default (ID) => {

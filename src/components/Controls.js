@@ -1,6 +1,6 @@
 import { clearConsole } from '../actions/console';
 import { connect } from 'react-redux';
-import evalCode from '../utils/test/eval-code-run-tests';
+import executeCode from '../utils/test/challenge/eval-code-run-tests';
 import React, { Component } from 'react';
 import { re_resetState, re_SUPPRESS_TESTS } from '../utils/regexp';
 import PropTypes from 'prop-types';
@@ -35,7 +35,7 @@ class Controls extends Component {
   handleKeyPress = (e) => {
     // Run Code: CMD/CTRL + ENTER
     if ((e.ctrlKey || e.metaKey) && e.keyCode === 13) {
-      this.handleRunCode(this.props);
+      this.handleExecuteCode(this.props);
     }
     // Next Snippet: CMD/CTRL + SHIFT + >
     // Previous Snippet: CMD/CTRL + SHIFT + <
@@ -81,7 +81,7 @@ class Controls extends Component {
       console.log('State successfully reset!');
     }
   }
-  handleRunCode = ({ code, id }) => {
+  handleExecuteCode = ({ code, id }) => {
     this.toggleClearConsole();
     if (re_resetState.test(code)) {
       this.handleResetSate();
@@ -90,7 +90,7 @@ class Controls extends Component {
       // has been deleted reset resetCount to prevent accidental resets
       this.state.resetCount === 1 && this.clearConsoleResetCount();
       // run code && execute tests
-      evalCode(
+      executeCode(
         code,
         id,
         re_SUPPRESS_TESTS.test(code)
@@ -101,7 +101,7 @@ class Controls extends Component {
     return (
       <section className="main--controls">
         <button
-          onClick={() => this.handleRunCode(this.props)}
+          onClick={() => this.handleExecuteCode(this.props)}
           className="main--controls--button run-code"
           title="Ctrl + Enter">
           Run Code

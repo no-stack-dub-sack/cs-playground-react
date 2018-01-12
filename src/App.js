@@ -12,9 +12,11 @@ import axios from 'axios';
 import './styles/app.css';
 
 /** TODO:
+  * ADD SHORTCUT KEYS TO CODEMIRROR SETUP!!!
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement
+  * add test case for reverse doubly linked list
   * any other LL fixes???
   * toggle SOLUTION/SEED!!! Shortcut key
   * add return null if element exists to all LL

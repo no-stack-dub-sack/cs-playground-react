@@ -1,4 +1,4 @@
-import createJestTest from '../utils/test/create-jest-test';
+import createJestTest from '../utils/test/app/create-jest-test';
 
 describe('Algorithm Challenges: Solution Code Passes Tests', () => {
 

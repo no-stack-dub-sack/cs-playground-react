@@ -1,5 +1,5 @@
-// for `yarn test` automated testing:
-
+// stringify functions, concat in correct order and
+// pass to eval for crappy way to test solution code
 function _blockConsole() {
   return {
     log: (arg) => {

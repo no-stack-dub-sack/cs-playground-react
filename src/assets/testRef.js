@@ -10,6 +10,7 @@ import * as BinarySearchTree from './tests/data-structures/BinarySearchTree';
 import * as LinkedList from './tests/data-structures/LinkedList';
 import * as DoublyLinkedList from './tests/data-structures/DoublyLinkedList';
 import * as MaxHeap from './tests/data-structures/MaxHeap';
+import * as PriorityQueue from './tests/data-structures/PriorityQueue';
 import * as Stack from './tests/data-structures/Stack';
 
 import * as AnagramPalindrome from './tests/algorithms/AnagramPalindrome';
@@ -31,6 +32,7 @@ export default {
   LinkedList,
   DoublyLinkedList,
   MaxHeap,
+  PriorityQueue,
   Stack,
   // Algorithm Challenges
   AnagramPalindrome,

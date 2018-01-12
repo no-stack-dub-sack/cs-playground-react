@@ -4,7 +4,7 @@ export const tests = [
     message: 'The <code>LinkedList</code> data structure exists'
   },
   {
-    expression: `new LinkedList().head === null && new LinkedList().length === 0`,
+    expression: `(() => { const list = new LinkedList(); return list.head === null && list.size === 0; })`,
     message: 'The <code>LinkedList</code> data structure should have <code>head</code> and <code>length</code> properties, which initialize to <code>null</code> and <code>0</code>, respectively'
   },
   {
@@ -62,21 +62,6 @@ export const tests = [
       return JSON.stringify(list.peekHead()) === '{"value":"cat","next":{"value":"dog","next":null}}';
     })()`,
     message: 'The <code>peekHead</code> method should return the <code>head</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
-  },
-  {
-    expression: `typeof new LinkedList().size === 'number' || typeof new LinkedList().size === 'function'`,
-    message: 'The <code>LinkedList</code> class should have a method called <code>size</code>.'
-  },
-  {
-    expression: `
-    (() => {
-      const list = new LinkedList();
-      list.add('cat');
-      list.add('dog');
-      list.add('kitten');
-      return typeof list.size === 'number' ? list.size === 3 : list.size() === 3;
-    })()`,
-    message: 'The <code>size</code> method should return the length of the linked list'
   },
   {
     expression: `typeof new LinkedList().remove === 'function'`,

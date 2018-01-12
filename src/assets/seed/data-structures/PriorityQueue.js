@@ -1,7 +1,11 @@
 export default {
   title: 'Priority Queue',
   seed:
-`class PQNode {
+`// Note: there are many ways to implement a priority queue, this implementation is very similar to a linked
+// list, except nodes are inserted according to priority and the lowest priority nodes are always dequeued first.
+// Other priority queue implementations might use a 2d array with priority/value pairs as the data store.
+
+class PQNode {
     constructor(element, priority) {
         this.element = element;
         this.priority = priority;
@@ -22,16 +26,19 @@ class PriorityQueue {
     // dequeue()
     // front()
     // isEmpty()
+    // contains(element)
+    // priorityOf(element)
+    // elementAt(priority)
     // print()
 }
 `,
   solution:
 `/**
-  * @class Node
-  * @property element The node's value / data
-  * @property priority The node's priority
-  * @property next The next node in the queue
-  */
+ * @class Node
+ * @property element The node's value / data
+ * @property priority The node's priority
+ * @property next The next node in the queue
+ */
 
 class PQNode {
     constructor(element, priority) {
@@ -42,18 +49,21 @@ class PQNode {
 }
 
 /**
-  * @class Queue
-  * @property {Object} root The root node of the priority queue
-  * @method enqueue @property {*} element @property {number} priority Enqueues node based on priority
-  * @method dequeue @return {*} Removes and returns the front node's value (lowest priority node)
-  * @method front @return {*} Returns but DOES NOT return the front node's value
-  * @method size @return {number} Returns the queue's size
-  * @method isEmpty @return {boolean}
-  */
+ * @class Queue priority queue data structure
+ * @property {Object} root The root node of the priority queue
+ * @property {number} size The priority queue's size
+ * @method enqueue @property {number|string} element @property {number} priority Enqueues node based on priority
+ * @method dequeue @return {number|string} Removes and returns the front node's value (lowest priority node)
+ * @method front @return {number|string} Returns but DOES NOT return the front node's value
+ * @method contains @param element {number|string} @return {boolean} Returns true/false if element is present in queue
+ * @method priorityOf @param element {number|string} @return {number|string} Returns priority of the given element
+ * @method elementAt @param priority {number} @return {number|string} Returns element at the given priority
+ * @method isEmpty @return {boolean}
+ */
 
-  // NOTE:
-  // lowest priority takes precedence
-  // equal priorities are dequeued by insertion order
+// NOTE:
+// lowest priority takes precedence
+// equal priorities are dequeued by insertion order
 
 class PriorityQueue {
     constructor() {
@@ -64,8 +74,13 @@ class PriorityQueue {
 
 
     enqueue(element, priority) {
+        if (typeof priority !== 'number') {
+          return null;
+        }
+        
         this.size++;
 
+        // insert first node
         if (!this.head) {
             this.head = new PQNode(element, priority);
             this.tail = this.head;
@@ -146,6 +161,7 @@ class PriorityQueue {
 
 
     elementAt(priority) {
+        if (typeof priority !== 'number') return null;
         const isNode = this.__search(null, priority);
         return !isNode ? null : isNode.element;
     }
@@ -165,7 +181,7 @@ class PriorityQueue {
 
     print() {
         if (!this.head) {
-            return true;
+            return null;
         }
 
         return JSON.stringify(this.head, null, 2);
@@ -190,6 +206,8 @@ console.log('front: ' + pQueue.front());
 
 console.log('element at priority 3: ' + pQueue.elementAt(3));
 console.log('element at priority 4: ' + pQueue.elementAt(4));
+console.log('priority of \\'five\\': ' + pQueue.priorityOf('five'));
+console.log('priority of \\'foo\\': ' + pQueue.priorityOf('foo'));
 console.log('contains \\'nine\\': ' + pQueue.contains('nine'));
 console.log('contains \\'cool\\': ' + pQueue.contains('cool'));
 
