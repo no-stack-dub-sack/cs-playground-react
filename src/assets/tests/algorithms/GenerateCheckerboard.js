@@ -10,7 +10,7 @@ export const tests = [
   },
   {
     expression: "typeof board_1 === 'string'",
-    message: '<code>generateCheckerboard</code> should return a string'
+    message: '<code>generateCheckerboard</code> returns a string'
   },
   {
      expression: "typeof board_1 === 'string' && board_1.match(/#/g).length === 64",

@@ -97,7 +97,7 @@ export const tests = [
       const four = test.enqueue(null, []) === null;
       return one && two && three && four;
     })()`,
-    message: `The <code>enqueue</code> method should return <code>null</code> if the second argument is anything except a number`
+    message: `The <code>enqueue</code> method returns <code>null</code> if the second argument is anything except a number`
   },
   {
     expression: `

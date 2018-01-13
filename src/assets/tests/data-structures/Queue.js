@@ -89,7 +89,7 @@ export const tests = [
         /two/.test(qstring) &&
         front;
     })()`,
-    message: 'The <code>front</code> method should return value of the front element of the queue, without removing it.'
+    message: 'The <code>front</code> method returns value of the front element of the queue, without removing it.'
   },
   {
     expression: `typeof new Queue().size === 'function' || typeof new Queue().size === 'number'`,
@@ -125,6 +125,6 @@ export const tests = [
       test.enqueue('one');
       return !test.isEmpty() && empty;
     })()`,
-    message: 'The <code>isEmpty</code> method should return <code>true</code> if the queue is empty, and <code>false</code> if not.'
+    message: 'The <code>isEmpty</code> method returns <code>true</code> if the queue is empty, and <code>false</code> if not.'
   },
 ];

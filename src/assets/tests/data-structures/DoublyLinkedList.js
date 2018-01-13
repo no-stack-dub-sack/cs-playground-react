@@ -14,7 +14,7 @@ if (
         node = node.next;
       };
       result.push(node.value);
-      return result;
+      return result.join('');
     };
   }
   DoublyLinkedList.prototype.__printReverse = function() {
@@ -28,7 +28,7 @@ if (
         node = node.prev;
       };
       result.push(node.value);
-      return result;
+      return result.join('');
     };
   }
 }
@@ -74,7 +74,7 @@ export const tests = [
       list.add('dog');
       list.add('bird');
       list.add('pig');
-      return list.__print().join('') === 'catdogbirdpig' && list.__printReverse().join('') === 'pigbirddogcat' && list.tail.next === null && list.head.prev === null;
+      return list.__print() === 'catdogbirdpig' && list.__printReverse() === 'pigbirddogcat' && list.tail.next === null && list.head.prev === null;
     })()`,
     message: 'Additional elements should be appended to the list\'s tail, and each node should keep track of both the next and previous nodes.'
   },
@@ -158,7 +158,7 @@ export const tests = [
       const test_4 = list.remove('bird') && list.length === 0;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'For every node removed from the list, the <code>remove</code> method should return a truthy value and decrement the <code>length</code> of the list by one.'
+    message: 'For every node removed from the list, the <code>remove</code> method returns a truthy value and decrement the <code>length</code> of the list by one.'
   },
   {
     expression: `
@@ -242,7 +242,7 @@ export const tests = [
       const test_4 = list.removeAt(-5) === null;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'The <code>removeAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+    message: 'The <code>removeAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
     expression: `typeof new DoublyLinkedList().addAt === 'function'`,
@@ -288,7 +288,7 @@ export const tests = [
       const test_3 = list.addAt(-4, 'cat') === null;
       return test_1 && test_2 && test_3;
     })()`,
-    message: 'The <code>addAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+    message: 'The <code>addAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
     expression: `
@@ -300,7 +300,24 @@ export const tests = [
       list.addAt(1, 'fish');
       return list.length === 4;
     })()`,
-    message: 'The <code>addAt</code> method should increment the <code>length</code> of the linked list by one for each new node added to the list.'
+    message: 'The <code>addAt</code> method increments the <code>length</code> of the linked list by one for each new node added to the list.'
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled(DoublyLinkedList, 'reverse')) {
+        return 'DISABLED';
+      }
+      const list = new DoublyLinkedList();
+      list.add('cat');
+      list.add('dog');
+      list.add('pig');
+      list.add('bird');
+      const reverse = list.__printReverse();
+      list.reverse();
+      return reverse === list.__print();
+    })()`,
+    message: 'The <code>reverse</code> method reverses the doubly linked list.'
   },
   {
     expression: `
@@ -314,7 +331,7 @@ export const tests = [
       const peek = list.peekHead();
       return peek.value === 'cat' && peek.next.value === 'dog'
     })()`,
-    message: 'The <code>peekHead</code> method should return the <code>head</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
+    message: 'The <code>peekHead</code> method returns the <code>head</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
   },
   {
     expression: `
@@ -328,7 +345,7 @@ export const tests = [
       const peek = list.peekTail();
       return peek.value === 'dog' && peek.prev.value === 'cat'
     })()`,
-    message: 'The <code>peekTail</code> method should return the <code>tail</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
+    message: 'The <code>peekTail</code> method returns the <code>tail</code> property of the <code>DoublyLinkedList</code> structure, so that you can easily and visually inspect the list.'
   },
   {
     expression: `
@@ -348,7 +365,7 @@ export const tests = [
       const test_3 = list.indexOf('bird') === 1;
       return test_1 && test_2 && test_3;
     })()`,
-    message: 'The <code>indexOf</code> method should return the zero-based index of the given element.'
+    message: 'The <code>indexOf</code> method returns the zero-based index of the given element.'
   },
   {
     expression: `
@@ -362,7 +379,7 @@ export const tests = [
       const test_1 = list.indexOf('dog') === -1;
       return test_1 && test_2;
     })()`,
-    message: 'The <code>indexOf</code> method should return <code>-1</code> if the given element doesn\'t exist, or if the method is called on an empty list.'
+    message: 'The <code>indexOf</code> method returns <code>-1</code> if the given element doesn\'t exist, or if the method is called on an empty list.'
   },
   {
     expression: `
@@ -383,7 +400,7 @@ export const tests = [
       const test_4 = list.elementAt(3) === 'toad';
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'The <code>elementAt</code> method should return the element at the given index.'
+    message: 'The <code>elementAt</code> method returns the element at the given index.'
   },
   {
     expression: `
@@ -399,6 +416,6 @@ export const tests = [
       const test_4 = list.elementAt(-5) === null;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'The <code>elementAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+    message: 'The <code>elementAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
 ];

@@ -71,7 +71,7 @@ export const tests = [
       list.add('dog');
       return JSON.stringify(list.peekHead()) === '{"value":"cat","next":{"value":"dog","next":null}}';
     })()`,
-    message: 'The <code>peekHead</code> method should return the <code>head</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
+    message: 'The <code>peekHead</code> method returns the <code>head</code> property of the <code>LinkedList</code> structure, so that you can easily and visually inspect the list.'
   },
   {
     expression: `typeof new LinkedList().remove === 'function'`,
@@ -131,7 +131,7 @@ export const tests = [
       const test_4 = list.remove('bird') && list.length === 0;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'For every node removed from the list, the <code>remove</code> method should return a truthy value and decrement the <code>length</code> of the list by one.'
+    message: 'For every node removed from the list, the <code>remove</code> method returns a truthy value and decrement the <code>length</code> of the list by one.'
   },
   {
     expression: `
@@ -164,7 +164,7 @@ export const tests = [
       const test_3 = list.indexOf('bird') === 1;
       return test_1 && test_2 && test_3;
     })()`,
-    message: 'The <code>indexOf</code> method should return the zero-based index of the given value.'
+    message: 'The <code>indexOf</code> method returns the zero-based index of the given value.'
   },
   {
     expression: `
@@ -175,7 +175,7 @@ export const tests = [
       const test_1 = list.indexOf('dog') === -1;
       return test_1 && test_2;
     })()`,
-    message: 'The <code>indexOf</code> method should return <code>-1</code> if the given value doesn\'t exist, or if the method is called on an empty list.'
+    message: 'The <code>indexOf</code> method returns <code>-1</code> if the given value doesn\'t exist, or if the method is called on an empty list.'
   },
   {
     expression: `typeof new LinkedList().elementAt === 'function'`,
@@ -197,7 +197,7 @@ export const tests = [
       const test_4 = list.elementAt(3) === 'toad';
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'The <code>elementAt</code> method should return the value at the given index.'
+    message: 'The <code>elementAt</code> method returns the value at the given index.'
   },
   {
     expression: `
@@ -210,7 +210,7 @@ export const tests = [
       const test_4 = list.elementAt(-5) === null;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'The <code>elementAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+    message: 'The <code>elementAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
     expression: `typeof new LinkedList().removeAt === 'function'`,
@@ -262,7 +262,7 @@ export const tests = [
       const test_4 = list.removeAt(-5) === null;
       return test_1 && test_2 && test_3 && test_4;
     })()`,
-    message: 'The <code>removeAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+    message: 'The <code>removeAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
     expression: `typeof new LinkedList().addAt === 'function'`,
@@ -300,7 +300,7 @@ export const tests = [
       const test_3 = list.addAt(-4, 'cat') === null;
       return test_1 && test_2 && test_3;
     })()`,
-    message: 'The <code>addAt</code> method should return <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
+    message: 'The <code>addAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
   {
     expression: `

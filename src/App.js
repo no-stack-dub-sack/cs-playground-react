@@ -12,7 +12,7 @@ import axios from 'axios';
 import './styles/app.css';
 
 /** TODO:
-  * ADD SHORTCUT KEYS TO CODEMIRROR SETUP!!!
+  * add // SUPPRESS TESTS comment to all user code
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement

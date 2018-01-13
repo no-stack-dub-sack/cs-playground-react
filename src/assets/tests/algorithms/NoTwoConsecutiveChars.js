@@ -54,10 +54,10 @@ export const tests = [
         const isSameChars_2 = compareChars(originalCharsMap_2, resultCharsMap_2);
         return test_1 && test_2 && test_3 && test_4 && isSameChars_1 && isSameChars_2;
       })()`,
-    message: 'whenever possible, <code>noTwoConsecutiveChars</code> should return a string that contains all the characters from the original string, rearranged so that no two consecutive characters are the same'
+    message: 'whenever possible, <code>noTwoConsecutiveChars</code> returns a string that contains all the characters from the original string, rearranged so that no two consecutive characters are the same'
   },
   {
     expression: `noTwoConsecutiveChars('aaba') === false && noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd') === false && typeof noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd') === 'string'`,
-    message: '<code>noTwoConsecutiveChars</code> should return <code>false</code> when a string with no consecutive chars can\'t be constructed'
+    message: '<code>noTwoConsecutiveChars</code> returns <code>false</code> when a string with no consecutive chars can\'t be constructed'
   },
 ];
