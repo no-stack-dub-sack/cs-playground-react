@@ -1,6 +1,6 @@
-// disable non-essential tests by default
+// disable non-mandatory tests by default
 // tests are enable when user defines method in question
-const isTestDisabled = (dataStructure, method) => {
+function isTestDisabled(dataStructure, method) {
   if (typeof new dataStructure()[method] === 'undefined') {
       return true;
   }

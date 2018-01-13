@@ -44,10 +44,10 @@ if (
 }
 
   const checkNodes = (tree) => {
-    if (typeof tree.head.next === 'undefined' ||
-        typeof tree.head.prev === 'undefined' ||
-        typeof tree.head.value === 'undefined') {
-      console.log('WARNING: Nodes must have <code>next</code>, <code>prev</code> and <code>value</code> properties for tests to work!');
+    if (typeof tree.root.value === 'undefined' ||
+        typeof tree.root.right === 'undefined' ||
+        typeof tree.root.left === 'undefined') {
+      console.log('WARNING: Nodes must have <code>value</code>, <code>left</code> and <code>right</code> properties for tests to work!');
     }
   }
 `;
@@ -58,7 +58,7 @@ export const tests = [
     message: 'The <code>BinarySearchTree</code> data structure exists'
   },
   {
-    expression: `typeof new BinarySearchTree().root === null`,
+    expression: `new BinarySearchTree().root === null`,
     message: `The <code>BinarySearchTree</code> data structure has a <code>root</code> property which initializes to a value of <code>null</code>`
   },
   {

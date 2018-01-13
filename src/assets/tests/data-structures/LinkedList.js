@@ -13,7 +13,7 @@ export const tests = [
     message: 'The <code>LinkedList</code> data structure exists'
   },
   {
-    expression: `(() => { const list = new LinkedList(); return list.head === null && list.size === 0; })`,
+    expression: `(() => { const list = new LinkedList(); return list.head === null && list.size === 0; })()`,
     message: 'The <code>LinkedList</code> data structure should have <code>head</code> and <code>length</code> properties, which initialize to <code>null</code> and <code>0</code>, respectively'
   },
   {

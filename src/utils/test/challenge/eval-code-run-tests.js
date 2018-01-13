@@ -1,6 +1,6 @@
 import TESTS from '../../../assets/testRef';
 import executeTests from './execute-tests';
-import isTestDisabled from './is-test-disabled';
+import isTestDisabled from '../common/is-test-disabled';
 
 // TODO: remove check for tests once all challenges have tests
 

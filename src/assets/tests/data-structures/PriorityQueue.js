@@ -33,8 +33,8 @@ if (
 }
 
   const checkNodes = (q) => {
-    if (typeof q.root.value === 'undefined' ||
-        typeof q.root.next === 'undefined') {
+    if (typeof q.head.value === 'undefined' ||
+        typeof q.head.next === 'undefined') {
       console.log('WARNING: Nodes must have <code>value</code> and <code>next</code> properties for tests to work!');
     }
   }

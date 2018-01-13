@@ -44,7 +44,7 @@ class PQNode {
     constructor(value, priority) {
         this.value = value;
         this.priority = priority;
-        this.__next = null;
+        this.next = null;
     }
 }
 
@@ -90,28 +90,28 @@ class PriorityQueue {
         // insert at head
         if (priority < this.head.priority) {
             const newNode = new PQNode(value, priority);
-            newNode.__next = this.head;
+            newNode.next = this.head;
             this.head = newNode;
             return;
         }
 
         // insert at tail
         if (priority > this.tail.priority) {
-            this.tail.__next = new PQNode(value, priority);
-            this.tail = this.tail.__next;
+            this.tail.next = new PQNode(value, priority);
+            this.tail = this.tail.next;
             return;
         }
 
         // insert in body
         const insert = (node) => {
-            if (priority >= node.priority && priority < node.__next.priority ) {
+            if (priority >= node.priority && priority < node.next.priority) {
                 const newNode = new PQNode(value, priority);
-                newNode.__next = node.__next;
-                node.__next = newNode;
+                newNode.next = node.next;
+                node.next = newNode;
                 return;
             }
 
-            return insert(node.__next)
+            return insert(node.next)
         }
 
         return insert(this.head);
@@ -124,7 +124,7 @@ class PriorityQueue {
         }
 
         const value = this.head.value;
-        this.head = this.head.__next;
+        this.head = this.head.next;
         this.size--;
 
         return value;
@@ -175,7 +175,7 @@ class PriorityQueue {
         if (node.value === value || node.priority === priority) {
             return node;
         }
-        return this.__search(value, priority, node.__next);
+        return this.__search(value, priority, node.next);
     }
 
 
