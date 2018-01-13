@@ -45,6 +45,8 @@ class Controls extends Component {
     }
     // Clear Console: ALT + SHIFT + BACKSPACE
     if (e.altKey && e.shiftKey && e.keyCode === 8) {
+      // prevent Backspace default
+      e.preventDefault();
       this.props.clearConsole();
     }
   }

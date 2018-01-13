@@ -7,12 +7,34 @@ export const tail = `
     let result = [];
     let node = this.head;
 
+    if (typeof node.next === 'undefined') {
+      console.log('WARNING: Nodes must have <code>next</code> property for tests to work!');
+      return null;
+    }
+
+    if (typeof node.element === 'undefined') {
+      console.log('WARNING: Nodes must have <code>element</code> property for tests to work!');
+      return null;
+    }
+
     while(node) {
       result.push(node.element);
       node = node.next;
     }
 
     return result.join('');
+  }
+
+  PriorityQueue.prototype.__dequeue = function() {
+    if (!this.head) {
+        return null;
+    }
+
+    const element = this.head.element;
+    this.head = this.head.next;
+    this.size--;
+
+    return element;
   }
 `;
 
@@ -146,6 +168,41 @@ export const tests = [
       return true;
     })()`,
     message: `The <code>dequeue</code> decrements the <code>size</code> property by <code>1</code> for every element removed from the queue`
+  },
+  {
+    expression: `typeof new PriorityQueue().front === 'function'`,
+    message: `The <code>PriorityQueue</code> has a method called <code>front</code>`
+  },
+  {
+    expression: `
+    (() => {
+      const test = new PriorityQueue();
+      test.enqueue(3, 3);
+      test.enqueue(0, 0);
+      test.enqueue(5, 5);
+      const one = test.front() === 0;
+      const two = test.__print().length === 3;
+      test.__dequeue();
+      const three = test.front() === 3;
+      const four = test.__print().length === 2;
+      return one && two && three && four;
+    })()`,
+    message: `The <code>front</code> method returns the element at the front, or top, of the queue, without removing it`
+  },
+  {
+    expression: `typeof new PriorityQueue().isEmpty === 'function'`,
+    message: `The <code>PriorityQueue</code> has a method called <code>isEmpty</code>`
+  },
+  {
+    expression: `
+    (() => {
+      const test = new PriorityQueue();
+      const one = test.isEmpty() === true;
+      test.enqueue(3, 3);
+      const two = test.isEmpty() === false;
+      return one && two;
+    })()`,
+    message: `The <code>isEmpty</code> method returns true is the queue is empty, and false if not`
   },
   {
     expression: `

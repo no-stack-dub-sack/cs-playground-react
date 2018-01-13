@@ -44,7 +44,7 @@ class PQNode {
     constructor(element, priority) {
         this.element = element;
         this.priority = priority;
-        this.next = null;
+        this.__next = null;
     }
 }
 
@@ -77,7 +77,7 @@ class PriorityQueue {
         if (typeof priority !== 'number') {
           return null;
         }
-        
+
         this.size++;
 
         // insert first node
@@ -90,28 +90,28 @@ class PriorityQueue {
         // insert at head
         if (priority < this.head.priority) {
             const newNode = new PQNode(element, priority);
-            newNode.next = this.head;
+            newNode.__next = this.head;
             this.head = newNode;
             return;
         }
 
         // insert at tail
         if (priority > this.tail.priority) {
-            this.tail.next = new PQNode(element, priority);
-            this.tail = this.tail.next;
+            this.tail.__next = new PQNode(element, priority);
+            this.tail = this.tail.__next;
             return;
         }
 
         // insert in body
         const insert = (node) => {
-            if (priority >= node.priority && priority < node.next.priority ) {
+            if (priority >= node.priority && priority < node.__next.priority ) {
                 const newNode = new PQNode(element, priority);
-                newNode.next = node.next;
-                node.next = newNode;
+                newNode.__next = node.__next;
+                node.__next = newNode;
                 return;
             }
 
-            return insert(node.next)
+            return insert(node.__next)
         }
 
         return insert(this.head);
@@ -124,7 +124,7 @@ class PriorityQueue {
         }
 
         const element = this.head.element;
-        this.head = this.head.next;
+        this.head = this.head.__next;
         this.size--;
 
         return element;
@@ -175,7 +175,7 @@ class PriorityQueue {
         if (node.element === element || node.priority === priority) {
             return node;
         }
-        return this.__search(element, priority, node.next);
+        return this.__search(element, priority, node.__next);
     }
 
 
