@@ -153,6 +153,13 @@ export const tests = [
       if (isTestDisabled(PriorityQueue, 'contains')) {
         return 'DISABLED';
       }
+      const test = new PriorityQueue();
+      const one = test.contains('a') === false;
+      test.enqueue(0, 0); test.enqueue('0', 6); test.enqueue(2, 2);
+      const two = test.contains(2) === true;
+      const three = test.contains('0') === true;
+      const four = test.contains(9) === false;
+      return one && two && three && four;
     })()`,
     message: `The <code>contains</code> method returns <code>true</code> if an element is present in the queue and <code>false</code> if not`
   },
@@ -162,6 +169,11 @@ export const tests = [
       if (isTestDisabled(PriorityQueue, 'priorityOf')) {
         return 'DISABLED';
       }
+      const test = new PriorityQueue();
+      test.enqueue(3, 3);
+      test.enqueue(0, 0);
+      test.enqueue('5', 5);
+      return test.priorityOf(3) === 3 && test.priorityOf('5') === 5;
     })()`,
     message: `The <code>priorityOf</code> method returns the priority of a given element`
   },
@@ -171,8 +183,13 @@ export const tests = [
       if (isTestDisabled(PriorityQueue, 'priorityOf')) {
         return 'DISABLED';
       }
+      const test = new PriorityQueue();
+      const one = test.priorityOf(3) === null;
+      test.enqueue(3, 3);
+      test.enqueue(0, 0);
+      return one && test.priorityOf(4) === null;
     })()`,
-    message: `The <code>priorityOf</code> method returns <code>null</code> if the given element doesn't exist`
+    message: `The <code>priorityOf</code> method returns <code>null</code> if the given element doesn't exist or if called on an empty queue`
   },
   {
     expression: `
@@ -180,6 +197,11 @@ export const tests = [
       if (isTestDisabled(PriorityQueue, 'elementAt')) {
         return 'DISABLED';
       }
+      const test = new PriorityQueue();
+      test.enqueue(3, 3);
+      test.enqueue(0, 0);
+      test.enqueue('5', 5);
+      return test.elementAt(3) === 3 && test.elementAt(5) === '5';
     })()`,
     message: `The <code>elementAt</code> method returns the element at a given priority`
   },
@@ -189,7 +211,23 @@ export const tests = [
       if (isTestDisabled(PriorityQueue, 'elementAt')) {
         return 'DISABLED';
       }
+      const test = new PriorityQueue();
+      const one = test.elementAt(2) === null;
+      test.enqueue(3, 3);
+      return one && test.elementAt(4) === null;
     })()`,
-    message: `The <code>elementAt</code> method returns <code>null</code> if passed an argument other than a number`
+    message: `The <code>elementAt</code> method returns <code>null</code> if the queue is empty or if the given priority does not exist`
+  },
+  {
+    expression: `
+    (() => {
+      if (isTestDisabled(PriorityQueue, 'elementAt')) {
+        return 'DISABLED';
+      }
+      const test = new PriorityQueue();
+      test.enqueue(3, 3);
+      return test.elementAt('3') === null && test.elementAt(true) === null;
+    })()`,
+    message: `The <code>elementAt</code> method returns <code>null</code> if passed an argument that has a type other than <code>'number'</code>`
   },
 ]
