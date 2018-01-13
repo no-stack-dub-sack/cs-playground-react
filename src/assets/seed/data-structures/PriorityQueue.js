@@ -6,8 +6,8 @@ export default {
 // Other priority queue implementations might use a 2d array with priority/value pairs as the data store.
 
 class PQNode {
-    constructor(element, priority) {
-        this.element = element;
+    constructor(value, priority) {
+        this.value = value;
         this.priority = priority;
         this.next = null;
     }
@@ -26,8 +26,8 @@ class PriorityQueue {
     // dequeue()
     // front()
     // isEmpty()
-    // contains(element)
-    // priorityOf(element)
+    // contains(value)
+    // priorityOf(value)
     // elementAt(priority)
     // print()
 }
@@ -35,14 +35,14 @@ class PriorityQueue {
   solution:
 `/**
  * @class Node
- * @property element The node's value / data
+ * @property value The node's value / data
  * @property priority The node's priority
  * @property next The next node in the queue
  */
 
 class PQNode {
-    constructor(element, priority) {
-        this.element = element;
+    constructor(value, priority) {
+        this.value = value;
         this.priority = priority;
         this.__next = null;
     }
@@ -52,11 +52,11 @@ class PQNode {
  * @class Queue priority queue data structure
  * @property {Object} root The root node of the priority queue
  * @property {number} size The priority queue's size
- * @method enqueue @property {number|string} element @property {number} priority Enqueues node based on priority
+ * @method enqueue @property {number|string} value @property {number} priority Enqueues node based on priority
  * @method dequeue @return {number|string} Removes and returns the front node's value (lowest priority node)
  * @method front @return {number|string} Returns but DOES NOT return the front node's value
- * @method contains @param element {number|string} @return {boolean} Returns true/false if element is present in queue
- * @method priorityOf @param element {number|string} @return {number|string} Returns priority of the given element
+ * @method contains @param value {number|string} @return {boolean} Returns true/false if element is present in queue
+ * @method priorityOf @param value {number|string} @return {number|string} Returns priority of the given element
  * @method elementAt @param priority {number} @return {number|string} Returns element at the given priority
  * @method isEmpty @return {boolean}
  */
@@ -73,7 +73,7 @@ class PriorityQueue {
     }
 
 
-    enqueue(element, priority) {
+    enqueue(value, priority) {
         if (typeof priority !== 'number') {
           return null;
         }
@@ -82,14 +82,14 @@ class PriorityQueue {
 
         // insert first node
         if (!this.head) {
-            this.head = new PQNode(element, priority);
+            this.head = new PQNode(value, priority);
             this.tail = this.head;
             return;
         }
 
         // insert at head
         if (priority < this.head.priority) {
-            const newNode = new PQNode(element, priority);
+            const newNode = new PQNode(value, priority);
             newNode.__next = this.head;
             this.head = newNode;
             return;
@@ -97,7 +97,7 @@ class PriorityQueue {
 
         // insert at tail
         if (priority > this.tail.priority) {
-            this.tail.__next = new PQNode(element, priority);
+            this.tail.__next = new PQNode(value, priority);
             this.tail = this.tail.__next;
             return;
         }
@@ -105,7 +105,7 @@ class PriorityQueue {
         // insert in body
         const insert = (node) => {
             if (priority >= node.priority && priority < node.__next.priority ) {
-                const newNode = new PQNode(element, priority);
+                const newNode = new PQNode(value, priority);
                 newNode.__next = node.__next;
                 node.__next = newNode;
                 return;
@@ -123,11 +123,11 @@ class PriorityQueue {
             return null;
         }
 
-        const element = this.head.element;
+        const value = this.head.value;
         this.head = this.head.__next;
         this.size--;
 
-        return element;
+        return value;
     }
 
 
@@ -136,7 +136,7 @@ class PriorityQueue {
             return null;
         }
 
-        return this.head.element;
+        return this.head.value;
     }
 
 
@@ -149,13 +149,13 @@ class PriorityQueue {
     }
 
 
-    contains(element) {
-        return this.__search(element) ? true : false;
+    contains(value) {
+        return this.__search(value) ? true : false;
     }
 
 
-    priorityOf(element) {
-        const isNode = this.__search(element);
+    priorityOf(value) {
+        const isNode = this.__search(value);
         return !isNode ? null : isNode.priority;
     }
 
@@ -163,19 +163,19 @@ class PriorityQueue {
     elementAt(priority) {
         if (typeof priority !== 'number') return null;
         const isNode = this.__search(null, priority);
-        return !isNode ? null : isNode.element;
+        return !isNode ? null : isNode.value;
     }
 
 
     // '__' dangle denotes "private"/internal use method
-    __search(element, priority, node = this.head) {
+    __search(value, priority, node = this.head) {
         if (!node) {
             return false;
         }
-        if (node.element === element || node.priority === priority) {
+        if (node.value === value || node.priority === priority) {
             return node;
         }
-        return this.__search(element, priority, node.__next);
+        return this.__search(value, priority, node.__next);
     }
 
 

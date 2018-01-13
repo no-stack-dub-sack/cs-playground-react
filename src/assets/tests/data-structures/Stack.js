@@ -4,35 +4,35 @@ export const tail = `
     typeof Stack === 'function' &&
     typeof new Stack() === 'object'
   ) {
-    Stack.prototype.printAsStringifiedArray = function() {
+  Stack.prototype.__print = function() {
 
-      if (!this.root) {
-        return '[]';
-      }
+    if (!this.root) {
+      return '[]';
+    }
 
-      const result = [];
-      let node = this.root;
-      while (node.next) {
-        result.push(node.value);
-        node = node.next;
-      }
-
+    const result = [];
+    let node = this.root;
+    while (node.next) {
       result.push(node.value);
-
-      return JSON.stringify(result);
+      node = node.next;
     }
 
-    Stack.prototype.testPop = function() {
-      if (!this.root) {
-        return null;
-      }
+    result.push(node.value);
 
-      const value = this.root.value;
-      this.root = this.root.next;
-
-      return value;
-    }
+    return result.join('');
   }
+
+  Stack.prototype.__pop = function() {
+    if (!this.root) {
+      return null;
+    }
+
+    const value = this.root.value;
+    this.root = this.root.next;
+
+    return value;
+  }
+}
 `;
 export const tests = [
   {
@@ -68,7 +68,7 @@ export const tests = [
       test.push(3);
       test.push(2);
       test.push(1);
-      return test.printAsStringifiedArray() === '[1,2,3,4,5]'
+      return test.__print() === '12345';
     })();
     `,
     message: 'The <code>push</code> method adds elements to the top of the stack, according to the first-in-first-out principle'
@@ -86,11 +86,11 @@ export const tests = [
       test.push(3);
       test.push(2);
       test.push(1);
-      const beforePop = test.printAsStringifiedArray() === '[1,2,3,4,5]';
+      const beforePop = test.__print() === '12345';
       const pop_1 = test.pop();
       const pop_2 = test.pop();
       const pop_3 = test.pop();
-      const afterPop = test.printAsStringifiedArray() === '[4,5]';
+      const afterPop = test.__print() === '45';
       return beforePop && pop_1 === 1 && pop_2 === 2 && pop_3 === 3 && afterPop;
     })();
     `,
@@ -114,10 +114,10 @@ export const tests = [
       test.push(2);
       test.push(1);
       const peek_1 = test.peek();
-      const afterPeek_1 = test.printAsStringifiedArray() === '[1,2,3,4,5]';
-      test.testPop(); test.testPop();
+      const afterPeek_1 = test.__print() === '12345';
+      test.__pop(); test.__pop();
       const peek_2 = test.peek();
-      const afterPeek_2 = test.printAsStringifiedArray() === '[3,4,5]';
+      const afterPeek_2 = test.__print() === '345';
       test.push(500);
       const peek_3 = test.peek();
       return peek_1 === 1 && afterPeek_1 && peek_2 === 3 && afterPeek_2 && peek_3 === 500;
@@ -163,7 +163,7 @@ export const tests = [
       test.push(3);
       test.push(2);
       test.push(1);
-      const before = test.printAsStringifiedArray() === '[1,2,3,4,5]';
+      const before = test.__print() === '12345';
       test.clear();
       const after = test.root === null;
       return before && after;

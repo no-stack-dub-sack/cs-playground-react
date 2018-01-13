@@ -32,6 +32,15 @@ if (
     };
   }
 }
+
+  const checkNodes = (list) => {
+    if (typeof list.head.next === 'undefined' ||
+        typeof list.head.prev === 'undefined' ||
+        typeof list.head.value === 'undefined') {
+      console.log('WARNING: Nodes must have <code>next</code>, <code>prev</code> and <code>value</code> properties for tests to work!');
+      return null;
+    }
+  }
 `;
 
 export const tests = [
@@ -52,9 +61,10 @@ export const tests = [
     (() => {
       const list = new DoublyLinkedList();
       list.add('cat');
+      checkNodes(list);
       return list.head.value === 'cat' && list.tail.value === 'cat';
     })()`,
-    message: 'The <code>add</code> method should assign the first node added (with <code>value</code>, <code>next</code> and <code>prev</code> properties) to the <code>head</code> and <code>tail</code> properties.'
+    message: 'The <code>add</code> method should assign the first node added to the <code>head</code> and <code>tail</code> properties.'
   },
   {
     expression: `
@@ -108,11 +118,15 @@ export const tests = [
       list.add('dog');
       list.add('bird');
       list.remove('bird');
-      const test_1 = list.tail.value === 'dog' && list.tail.prev.value === 'cat' && list.tail.next === null;
+      const test_1 = list.tail.value === 'dog' &&
+        list.tail.prev.value === 'cat' &&
+        list.tail.next === null;
       list.remove('dog');
       const test_2 = list.head.next === null;
       list.remove('cat');
-      return test_1 && test_2 && list.tail === null && list.head === null;
+      return test_1 && test_2 &&
+        list.tail === null &&
+        list.head === null;
     })()`,
     message: 'The tail node can be removed, when the list has <em>one or more nodes</em>, and references to previous & next nodes should be correctly maintained.'
   },
@@ -124,7 +138,9 @@ export const tests = [
       list.add('dog');
       list.add('bird');
       list.remove('dog');
-      return list.head.value === 'cat' && list.head.next.value === 'bird' && list.head.next.prev.value === 'cat';
+      return list.head.value === 'cat' &&
+        list.head.next.value === 'bird' &&
+        list.head.next.prev.value === 'cat';
     })()`,
     message: 'When an element that is neither the head or tail node is removed, the linked list structure, and references to previous & next nodes should be maintained.'
   },
@@ -170,16 +186,27 @@ export const tests = [
       list.add('fish');
 
       // remove 'dog' at index 1; second node is bird, and bird.prev is cat
-      const test_1 = list.removeAt(1) === 'dog' && list.head.next.value === 'bird' && list.head.next.prev.value === 'cat';
+      const test_1 = list.removeAt(1) === 'dog' &&
+        list.head.next.value === 'bird' &&
+        list.head.next.prev.value === 'cat';
 
       // remove 'cat' at head; new head is bird, bird.prev is null, second node is fish, fish.prev is bird
-      const test_2 = list.removeAt(0) === 'cat' && list.head.value === 'bird' && list.head.prev === null && list.head.next.value === 'fish' && list.head.next.prev.value === 'bird';
+      const test_2 = list.removeAt(0) === 'cat' &&
+        list.head.value === 'bird' &&
+        list.head.prev === null &&
+        list.head.next.value === 'fish' &&
+        list.head.next.prev.value === 'bird';
 
       // remove 'fish' at index 1; head is bird, bird.next is null, tail is also now bird, bird.prev is null
-      const test_3 = list.removeAt(1) === 'fish' && list.head.next === null && list.tail.value === 'bird' && list.tail.prev === null;
+      const test_3 = list.removeAt(1) === 'fish' &&
+        list.head.next === null &&
+        list.tail.value === 'bird' &&
+        list.tail.prev === null;
 
       // remove 'bird' from head/tail (last node), both head and tail are null
-      const test_4 = list.removeAt(0) === 'bird' && list.head === null && list.tail === null;
+      const test_4 = list.removeAt(0) === 'bird' &&
+        list.head === null &&
+        list.tail === null;
 
       return test_1 && test_2 && test_3 && test_4;
     })()`,

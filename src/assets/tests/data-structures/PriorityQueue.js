@@ -1,4 +1,8 @@
 export const tail = `
+if (
+  typeof PriorityQueue === 'function' &&
+  typeof new PriorityQueue() === 'object'
+) {
   PriorityQueue.prototype.__print = function() {
     if (!this.head) {
         return null;
@@ -7,18 +11,8 @@ export const tail = `
     let result = [];
     let node = this.head;
 
-    if (typeof node.next === 'undefined') {
-      console.log('WARNING: Nodes must have <code>next</code> property for tests to work!');
-      return null;
-    }
-
-    if (typeof node.element === 'undefined') {
-      console.log('WARNING: Nodes must have <code>element</code> property for tests to work!');
-      return null;
-    }
-
     while(node) {
-      result.push(node.element);
+      result.push(node.value);
       node = node.next;
     }
 
@@ -30,11 +24,19 @@ export const tail = `
         return null;
     }
 
-    const element = this.head.element;
+    const value = this.head.value;
     this.head = this.head.next;
     this.size--;
 
-    return element;
+    return value;
+  }
+}
+
+  const checkNodes = (q) => {
+    if (typeof q.root.value === 'undefined' ||
+        typeof q.root.next === 'undefined') {
+      console.log('WARNING: Nodes must have <code>value</code> and <code>next</code> properties for tests to work!');
+    }
   }
 `;
 
@@ -53,7 +55,7 @@ export const tests = [
   },
   {
     expression: `typeof new PriorityQueue().enqueue === 'function'`,
-    message: `The <code>PriorityQueue</code> has a method called <code>enqueue</code> which takes an element to enqueue and a priority {number} as arguments`
+    message: `The <code>PriorityQueue</code> has a method called <code>enqueue</code> which takes an value to enqueue and a priority {number} as arguments`
   },
   {
     expression: `
@@ -66,6 +68,7 @@ export const tests = [
       test.enqueue(10, 10);
       test.enqueue(5, 5);
       test.enqueue(2, 2);
+      checkNodes(test);
       return test.__print() === '023451050';
     })()`,
     message: `The <code>enqueue</code> method inserts values into the queue according to priority (lowest priority at the head, greatest priority at the tail)`

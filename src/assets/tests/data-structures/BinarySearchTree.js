@@ -1,8 +1,8 @@
 export const tail = `
-  if (
-    typeof BinarySearchTree === 'function' &&
-    typeof new BinarySearchTree() === 'object'
-  )
+if (
+  typeof BinarySearchTree === 'function' &&
+  typeof new BinarySearchTree() === 'object'
+) {
   BinarySearchTree.prototype.isBinarySearchTree = function() {
     if (this.root === null) {
       return null;
@@ -41,6 +41,15 @@ export const tail = `
 
     return list;
   }
+}
+
+  const checkNodes = (tree) => {
+    if (typeof tree.head.next === 'undefined' ||
+        typeof tree.head.prev === 'undefined' ||
+        typeof tree.head.value === 'undefined') {
+      console.log('WARNING: Nodes must have <code>next</code>, <code>prev</code> and <code>value</code> properties for tests to work!');
+    }
+  }
 `;
 
 export const tests = [
@@ -68,6 +77,7 @@ export const tests = [
       test.add(45);
       test.add(73);
       test.add(8);
+      checkNodes(test);
       return (test.isBinarySearchTree());
     })()
     `,

@@ -1,3 +1,12 @@
+export const tail = `
+  const checkNodes = (list) => {
+    if (typeof list.head.next === 'undefined' ||
+        typeof list.head.value === 'undefined') {
+      console.log('WARNING: Nodes must have <code>next</code> and <code>value</code> properties for tests to work!');
+      return null;
+    }
+  }
+`;
 export const tests = [
   {
     expression: `typeof new LinkedList() === 'object'`,
@@ -16,6 +25,7 @@ export const tests = [
     (() => {
       const list = new LinkedList();
       list.add('cat');
+      checkNodes(list);
       return list.head.value === 'cat' && list.head.next === null;
     })()`,
     message: 'The <code>add</code> method should assign the first node added (with <code>value</code> and <code>next</code> properties) to the <code>head</code> property.'

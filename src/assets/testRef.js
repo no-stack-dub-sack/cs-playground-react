@@ -12,6 +12,7 @@ import * as DoublyLinkedList from './tests/data-structures/DoublyLinkedList';
 import * as MaxHeap from './tests/data-structures/MaxHeap';
 import * as PriorityQueue from './tests/data-structures/PriorityQueue';
 import * as Stack from './tests/data-structures/Stack';
+import * as Queue from './tests/data-structures/Queue';
 
 import * as AnagramPalindrome from './tests/algorithms/AnagramPalindrome';
 import * as GenerateCheckerboard from './tests/algorithms/GenerateCheckerboard';
@@ -34,6 +35,7 @@ export default {
   MaxHeap,
   PriorityQueue,
   Stack,
+  Queue,
   // Algorithm Challenges
   AnagramPalindrome,
   SumAllPrimes,
