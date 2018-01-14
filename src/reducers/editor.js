@@ -1,5 +1,6 @@
 import { CODE, SOLUTIONS } from '../assets/codeRef';
 import WELCOME_MESSAGE from '../assets/seed/welcome';
+import { uniqWith, isEqual } from 'lodash';
 
 import {
   NEXT_SNIPPET,
@@ -45,12 +46,13 @@ let defaultState = JSON.parse(
   localStorage.getItem('cs-pg-react-editorState')
 ) || initialState;
 
-// copy in any newly deployed changes to state saved in
-// localStorage for users not accessing site over HTTPS
-defaultState.codeStore = [
+// copy in any newly deployed challenges to state saved
+// in localStorage for users not accessing site over HTTPS
+// and won't get new content notification from service worker
+defaultState.codeStore = uniqWith([
   ...defaultState.codeStore,
   ...initialState.codeStore
-];
+], isEqual);
 
 // meaningless abstraction:
 const updateUserCode = (state) => {
