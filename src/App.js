@@ -7,7 +7,7 @@ import { dragHorizontal, dragVertical } from './actions/drag';
 import { HORIZONTAL_GRIP, VERTICAL_GRIP } from './utils/base64';
 import Menu from './components/sidebar/Menu';
 import Modal from './components/utils/Modal';
-import Pane from './components/Pane';
+import Pane from './components/utile/Pane';
 import React, { Component } from 'react';
 import { renderAnnouncementUtil } from './actions/modal';
 import shortid from 'shortid';
