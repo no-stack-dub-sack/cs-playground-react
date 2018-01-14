@@ -1,7 +1,8 @@
 import { store } from '../index';
-
 export const DRAG_VERTICAL = 'DRAG_VERTICAL';
 export const DRAG_HORIZONTAL = 'DRAG_HORIZONTAL';
+export const DOUBLE_CLICK = 'DOUBLE_CLICK';
+export const doubleClick = () => ({ type: DOUBLE_CLICK });
 
 export const dragHorizontal = (el, pageX, startX, pageY, startY, resize) => {
   resize.skipX = true;

@@ -1,6 +1,7 @@
 .sidebar--output.bottom-pane {
   margin: 0;
   position: relative;
+  /* transition: .2s; */
 }
 
 .sidebar--output--messages {

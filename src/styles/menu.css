@@ -2,6 +2,7 @@
   overflow-y: auto;
   flex: auto;
   user-select: none;
+  /* transition: .2s ease-in; */
 }
 
 .sidebar--menu--header {

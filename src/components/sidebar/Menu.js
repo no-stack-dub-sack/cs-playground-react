@@ -12,11 +12,11 @@ const {
   MODERATE_ALGOS
 } = CODE;
 
-const Menu = ({ topHeight }) => {
+const Menu = ({ topHeight, transition }) => {
   return (
     <section
       className="sidebar--menu top-pane"
-      style={{ height: topHeight }}>
+      style={{ height: topHeight, transition }}>
       <header className="sidebar--menu--header">
         Contents
       </header>
@@ -44,9 +44,13 @@ const Menu = ({ topHeight }) => {
 }
 
 Menu.propTypes = {
-  topHeight: PropTypes.string.isRequired
-};
+  topHeight: PropTypes.string.isRequired,
+  transition: PropTypes.string.isRequired
+}
 
-export default connect(
-  ({ panes }) => ({topHeight: panes.topHeight})
-)(Menu);
+const mapStateToProps = ({ panes }) => ({
+  topHeight: panes.topHeight,
+  transition: panes.transition
+});
+
+export default connect(mapStateToProps)(Menu);

@@ -6,7 +6,8 @@ const Pane = ({
   children,
   className,
   leftWidth,
-  rightWidth
+  rightWidth,
+  transition
 }) => (
   <main
     className={className}
@@ -24,11 +25,9 @@ Pane.propTypes = {
   rightWidth: PropTypes.string.isRequired
 }
 
-const mapStateToProps = ({ panes }) => {
-  return {
-    leftWidth: panes.leftWidth,
-    rightWidth: panes.rightWidth
-  }
-}
+const mapStateToProps = ({ panes }) => ({
+  leftWidth: panes.leftWidth,
+  rightWidth: panes.rightWidth,
+});
 
 export default connect(mapStateToProps)(Pane);

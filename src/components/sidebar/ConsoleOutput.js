@@ -76,7 +76,10 @@ class ConsoleOutput extends Component {
     return (
       <section
         className="sidebar--output bottom-pane"
-        style={{ height: this.props.bottomHeight }}>
+        style={{
+          height: this.props.bottomHeight,
+          transition: this.props.transition
+        }}>
         <div id="output" className="sidebar--output--messages">
           <div
             className='sidebar--output--clear-console'
@@ -99,19 +102,20 @@ class ConsoleOutput extends Component {
 ConsoleOutput.propTypes = {
   bottomHeight: PropTypes.string.isRequired,
   clearConsole: PropTypes.func.isRequired,
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.array.isRequired,
+  transition: PropTypes.string.isRequired
 }
 
 const mapStateToProps = ({
   consoleOutput: messages,
   panes: {
-    bottomHeight
+    bottomHeight,
+    transition
   }
-}) => {
-  return {
-    messages,
-    bottomHeight
-  }
-}
+}) => ({
+  messages,
+  bottomHeight,
+  transition
+});
 
 export default connect(mapStateToProps, { clearConsole })(ConsoleOutput);

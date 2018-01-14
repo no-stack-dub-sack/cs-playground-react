@@ -1,18 +1,22 @@
-import * as π from './utils/styleListeners';
+import * as Ω from './utils/styleListeners';
 import CodeMirrorRenderer from './components/CodeMirrorRenderer';
+import { connect } from 'react-redux';
 import ConsoleOutput from './components/sidebar/ConsoleOutput';
 import Controls from './components/Controls';
 import Divider from './components/utils/Divider';
-import { dragHorizontal, dragVertical } from './actions/drag';
+import { dragHorizontal, dragVertical, doubleClick } from './actions/panes';
 import { HORIZONTAL_GRIP, VERTICAL_GRIP } from './utils/base64';
 import Menu from './components/sidebar/Menu';
 import Modal from './components/utils/Modal';
-import Pane from './components/utile/Pane';
+import Pane from './components/utils/Pane';
 import React, { Component } from 'react';
 import { renderAnnouncementUtil } from './actions/modal';
 import shortid from 'shortid';
 import axios from 'axios';
 import './styles/app.css';
+
+// TODO: LODASH START CASE
+// TODO: LODASH INRANGE PANES REDUCER CASE 
 
 /** TODO:
   * add // SUPPRESS TESTS comment to all user code
@@ -42,7 +46,7 @@ let disableHighlightText = false;
 class App extends Component {
   constructor(props) {
     super(props);
-    π.documentBodyClick = π.documentBodyClick.bind(this);
+    Ω.documentBodyClick = Ω.documentBodyClick.bind(this);
   }
   handleMousedownEvent = (e) => {
     if (e.target.classList.contains('divider')) {
@@ -59,12 +63,13 @@ class App extends Component {
   }
   componentDidMount() {
     // register event listeners:
-    document.addEventListener('mouseup', π.documentBodyClick);
+    document.addEventListener('mouseup', Ω.documentBodyClick);
     document.addEventListener('mouseup', this.handleMouseupEvent);
     document.addEventListener('mousemove', this.handleMousemoveEvent);
     document.addEventListener('mousedown', this.handleMousedownEvent);
-    this.verticalDivider.addEventListener('mousedown', π.verticalDivClick);
-    this.horizontalDivider.addEventListener('mousedown', π.horizontalDivClick);
+    this.verticalDivider.addEventListener('mousedown', Ω.verticalDivClick);
+    this.horizontalDivider.addEventListener('mousedown', Ω.horizontalDivClick);
+    this.horizontalDivider.addEventListener('dblclick', this.props.doubleClick);
     // apply simpleDrag to allow for AWESOME pane resizing:
     this.horizontalDivider.simpleDrag(dragVertical, null, 'vertical');
     this.verticalDivider.simpleDrag(dragHorizontal, null, 'horizontal');
@@ -82,12 +87,13 @@ class App extends Component {
   }
   componentWillUnmount() {
     // de-register event listeners:
-    document.removeEventListener('mouseup', π.documentBodyClick);
+    document.removeEventListener('mouseup', Ω.documentBodyClick);
     document.removeEventListener('mouseup', this.handleMouseupEvent);
     document.removeEventListener('mousedown', this.handleMousedownEvent);
     document.removeEventListener('mousemove', this.handleMousemoveEvent);
-    this.verticalDivider.removeEventListener('mousedown', π.verticalDivClick);
-    this.horizontalDivider.removeEventListener('mousedown', π.horizontalDivClick);
+    this.verticalDivider.removeEventListener('mousedown', Ω.verticalDivClick);
+    this.horizontalDivider.removeEventListener('mousedown', Ω.horizontalDivClick);
+    this.horizontalDivider.removeEventListener('dblclick', this.props.doubleClick);
   }
   render() {
     return [
@@ -118,4 +124,4 @@ class App extends Component {
 // NOTE: Modal is Portal rendered within #modal-root, not the app #root
 // It WILL NOT be rendered alongside the other components in this tree
 
-export default App;
+export default connect(null, { doubleClick })(App);
