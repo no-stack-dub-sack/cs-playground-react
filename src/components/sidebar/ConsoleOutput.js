@@ -73,11 +73,10 @@ class ConsoleOutput extends Component {
       color,
       outline: `1px solid ${color}`
     };
-
     return (
       <section
         className="sidebar--output bottom-pane"
-        ref={this.props.attachRef}>
+        style={{ height: this.props.bottomHeight }}>
         <div id="output" className="sidebar--output--messages">
           <div
             className='sidebar--output--clear-console'
@@ -98,14 +97,20 @@ class ConsoleOutput extends Component {
 }
 
 ConsoleOutput.propTypes = {
-  attachRef: PropTypes.func.isRequired,
+  bottomHeight: PropTypes.string.isRequired,
   clearConsole: PropTypes.func.isRequired,
   messages: PropTypes.array.isRequired
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({
+  consoleOutput: messages,
+  panes: {
+    bottomHeight
+  }
+}) => {
   return {
-    messages: state.consoleOutput
+    messages,
+    bottomHeight
   }
 }
 

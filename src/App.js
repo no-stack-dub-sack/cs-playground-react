@@ -1,12 +1,15 @@
+import * as π from './utils/styleListeners';
 import CodeMirrorRenderer from './components/CodeMirrorRenderer';
 import ConsoleOutput from './components/sidebar/ConsoleOutput';
 import Controls from './components/Controls';
 import Divider from './components/utils/Divider';
+import { dragHorizontal, dragVertical } from './actions/drag';
+import { HORIZONTAL_GRIP, VERTICAL_GRIP } from './utils/base64';
 import Menu from './components/sidebar/Menu';
 import Modal from './components/utils/Modal';
+import Pane from './components/Pane';
 import React, { Component } from 'react';
 import { renderAnnouncementUtil } from './actions/modal';
-import resizePanes from './utils/resize';
 import shortid from 'shortid';
 import axios from 'axios';
 import './styles/app.css';
@@ -16,7 +19,6 @@ import './styles/app.css';
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement
-  * add test case for reverse doubly linked list
   * any other LL fixes???
   * toggle SOLUTION/SEED!!! Shortcut key
   * add return null if element exists to all LL
@@ -38,9 +40,13 @@ import './styles/app.css';
 let disableHighlightText = false;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    π.documentBodyClick = π.documentBodyClick.bind(this);
+  }
   handleMousedownEvent = (e) => {
     if (e.target.classList.contains('divider')) {
-        disableHighlightText = true;
+      disableHighlightText = true;
     }
   }
   handleMouseupEvent = (e) => {
@@ -52,25 +58,22 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    // register event listeners for preventing
-    // text highlighting when resizing panes
-    document.addEventListener('mousedown', this.handleMousedownEvent);
+    // register event listeners:
+    document.addEventListener('mouseup', π.documentBodyClick);
     document.addEventListener('mouseup', this.handleMouseupEvent);
     document.addEventListener('mousemove', this.handleMousemoveEvent);
-    // pass refs to simple drag function
-    // to allow for AWESOME pane resizing
-    resizePanes(
-      this.leftPane,
-      this.topPane,
-      this.rightPane,
-      this.bottomPane,
-      this.verticalDivider,
-      this.horizontalDivider
-    );
-    // render announcement modal
-    // 1st 3 visits after changes
+    document.addEventListener('mousedown', this.handleMousedownEvent);
+    this.verticalDivider.addEventListener('mousedown', π.verticalDivClick);
+    this.horizontalDivider.addEventListener('mousedown', π.horizontalDivClick);
+    // apply simpleDrag to allow for AWESOME pane resizing:
+    this.horizontalDivider.simpleDrag(dragVertical, null, 'vertical');
+    this.verticalDivider.simpleDrag(dragHorizontal, null, 'horizontal');
+    // initialize divider grips:
+    this.verticalDivider.style.backgroundImage = VERTICAL_GRIP;
+    this.horizontalDivider.style.backgroundImage = HORIZONTAL_GRIP;
+    // render announcement modal 1st 3 visits after changes:
     renderAnnouncementUtil();
-    // register hits to hit-count-server
+    // register hits to hit-count-server:
     if (process.env.NODE_ENV === 'production') {
       axios.post('https://hit-count-server.herokuapp.com/register-count')
       .then(() => null)
@@ -78,33 +81,35 @@ class App extends Component {
     }
   }
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleMousedownEvent);
+    // de-register event listeners:
+    document.removeEventListener('mouseup', π.documentBodyClick);
     document.removeEventListener('mouseup', this.handleMouseupEvent);
+    document.removeEventListener('mousedown', this.handleMousedownEvent);
     document.removeEventListener('mousemove', this.handleMousemoveEvent);
+    this.verticalDivider.removeEventListener('mousedown', π.verticalDivClick);
+    this.horizontalDivider.removeEventListener('mousedown', π.horizontalDivClick);
   }
   render() {
     return [
-      <aside
+      <Pane
         className="sidebar left-pane"
-        key={shortid.generate()}
-        ref={ref => this.leftPane = ref }>
-        <Menu attachRef={ref => this.topPane = ref } />
+        key={shortid.generate()}>
+        <Menu />
         <Divider
-          attachRef={ref => this.horizontalDivider = ref }
+          attachRef={ref => this.horizontalDivider = ref}
           direction="horizontal" />
-        <ConsoleOutput attachRef={ ref => this.bottomPane = ref } />
-      </aside>,
+        <ConsoleOutput />
+      </Pane>,
       <Divider
-        attachRef={ref => this.verticalDivider = ref }
+        attachRef={ref => this.verticalDivider = ref}
         direction="vertical"
         key={shortid.generate()} />,
-      <main
+      <Pane
         className="main right-pane"
-        key={shortid.generate()}
-        ref={ref => this.rightPane = ref }>
+        key={shortid.generate()}>
         <CodeMirrorRenderer />
         <Controls />
-      </main>,
+      </Pane>,
       <Modal key={shortid.generate()} />
     ];
   }

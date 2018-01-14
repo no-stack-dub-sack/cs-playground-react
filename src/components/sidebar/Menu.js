@@ -1,4 +1,5 @@
 import { CODE } from '../../assets/codeRef';
+import { connect } from 'react-redux';
 import MenuMap from './MenuMap';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -11,9 +12,11 @@ const {
   MODERATE_ALGOS
 } = CODE;
 
-const Menu = ({ attachRef }) => {
+const Menu = ({ topHeight }) => {
   return (
-    <section ref={attachRef} className="sidebar--menu top-pane">
+    <section
+      className="sidebar--menu top-pane"
+      style={{ height: topHeight }}>
       <header className="sidebar--menu--header">
         Contents
       </header>
@@ -41,7 +44,9 @@ const Menu = ({ attachRef }) => {
 }
 
 Menu.propTypes = {
-  attachRef: PropTypes.func.isRequired,
+  topHeight: PropTypes.string.isRequired
 };
 
-export default Menu;
+export default connect(
+  ({ panes }) => ({topHeight: panes.topHeight})
+)(Menu);

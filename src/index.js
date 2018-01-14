@@ -32,7 +32,13 @@ window.onbeforeunload = function(e) {
       'cs-pg-react-editorState',
       JSON.stringify(state.editor)
     );
+    localStorage.setItem(
+      'cs-pg-react-panesState',
+      JSON.stringify(state.panes)
+    );
   }
+  // save pane state
+  console.log('CS-Playground-React-State Saved!');
 };
 
 ReactDOM.render(

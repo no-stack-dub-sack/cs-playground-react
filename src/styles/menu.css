@@ -1,6 +1,5 @@
 .sidebar--menu.top-pane {
   overflow-y: auto;
-  height: 70%;
   flex: auto;
   user-select: none;
 }

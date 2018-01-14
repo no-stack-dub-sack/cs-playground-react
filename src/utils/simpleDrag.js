@@ -6,13 +6,13 @@ export default function() {
      * Howto
      * ============
      *
-     * document.getElementById('my_target').sdrag();
+     * document.getElementById('my_target').simpleDrag();
      *
      * onDrag, onStop
      * -------------------
-     * document.getElementById('my_target').sdrag(onDrag, null);
-     * document.getElementById('my_target').sdrag(null, onStop);
-     * document.getElementById('my_target').sdrag(onDrag, onStop);
+     * document.getElementById('my_target').simpleDrag(onDrag, null);
+     * document.getElementById('my_target').simpleDrag(null, onStop);
+     * document.getElementById('my_target').simpleDrag(onDrag, onStop);
      *
      * Both onDrag and onStop callback take the following arguments:
      *
@@ -66,7 +66,7 @@ export default function() {
      */
 
   // simple drag
-  function sdrag(onDrag, onStop, direction) {
+  function simpleDrag(onDrag, onStop, direction) {
 
     var startX = 0;
     var startY = 0;
@@ -128,5 +128,5 @@ export default function() {
     });
   }
 
-  Element.prototype.sdrag = sdrag;
+  Element.prototype.simpleDrag = simpleDrag;
 };
