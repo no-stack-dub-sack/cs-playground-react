@@ -31,8 +31,8 @@ to the other, your code will be saved in a couple of ways:
 
 - _RESETTING CODE_
 To re-initialize the global state of the application (and clear all of your saved code), you
-can simply call the \`resetCode()\` function in the editor, and click 'Run Code'. You will be
-prompted with a warning once in the in-browser "mock" console, before the code is actually deleted.
+can simply call the \`resetState()\` function in the editor, and click 'Run Code'. You will be
+prompted with a warning once in the in-browser "mock" console, before the state is actually reset.
 
 
 - _NOT SAVING CODE_

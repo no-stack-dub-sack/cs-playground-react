@@ -15,17 +15,12 @@ class Modal extends Component {
     document.removeEventListener('click', this.closeModal);
   }
   closeModal = ({ target }) => {
-    if (!target.classList.contains('modal-trigger') &&
+    if (
+      this.props.renderModal &&
       !this.modal.contains(target) &&
-      this.props.renderModal) {
+      !target.classList.contains('modal-trigger')
+    ) {
       this.props.closeModal();
-    }
-  }
-  componentDidUpdate() {
-    if (this.props.renderModal) {
-      this.modal.parentNode.style.zIndex = '4';
-    } else {
-      this.modal.parentNode.style.zIndex = '-4';
     }
   }
   renderListItem = (item) => {
@@ -49,36 +44,32 @@ class Modal extends Component {
   renderNumRemainingAnnouncements = () => {
     let num;
     switch (localStorage.getItem('cs-pg-react-render-only-thrice')) {
-      case '1':
-        num = 2;
-        break;
-      case '2':
-        num = 1;
-        break;
-      default:
-        num = 0;
+      case '1': num = 2; break;
+      case '2': num = 1; break;
+      default: num = 0;
     }
     return (
       <span>
-        {`You will see this notification ${num} more time${num === '1' ? '' : 's'}`}
+        {`You will see this notification ${num} more time${num === 1 ? '' : 's'}`}
       </span>
     );
   }
   render() {
+    const { renderModal, subHeader } = this.props;
     return ReactDOM.createPortal(
-      <Fade attachRef={ref => this.modal = ref} in={this.props.renderModal}>
+      <Fade attachRef={ref => this.modal = ref} in={renderModal}>
         <div className="modal">
           <h2 className="modal--header">
             { this.props.header }
           </h2>
-          { this.props.subHeader &&
-            <p>
-              <strong dangerouslySetInnerHTML={{ __html: this.props.subHeader }} />
-            </p> }
+          { subHeader && <p>
+            <strong dangerouslySetInnerHTML={{ __html: subHeader }} />
+          </p> }
           <ul>
             { this.props.messages.map(this.renderListItem) }
           </ul>
-        { this.props.modalType === 'announcement' && this.renderNumRemainingAnnouncements() }
+          { this.props.modalType === 'announcement' &&
+              this.renderNumRemainingAnnouncements() }
         </div>
       </Fade>,
       document.getElementById('modal-root')

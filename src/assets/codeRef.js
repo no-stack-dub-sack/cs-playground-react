@@ -1,3 +1,5 @@
+import { replace } from 'lodash';
+
 import BubbleSort from './seed/algorithms/BubbleSort';
 import BucketSort from './seed/algorithms/BucketSort';
 import HeapSort from './seed/algorithms/HeapSort';
@@ -64,7 +66,7 @@ const createSolutionsRef = () => {
   for (let category in CODE) {
     CODE[category].forEach(topic => {
       results[
-        topic.title.replace(/\s/g, '')
+        replace(topic.title, /\s/g, '')
       ] = topic.solution;
     });
   }

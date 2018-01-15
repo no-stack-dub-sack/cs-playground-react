@@ -19,6 +19,15 @@
   background-color: #a19c9c;
   background-repeat: no-repeat;
   background-position: 50%;
+  transition: background-color .3s;
+}
+
+.divider:hover {
+  background-color: #279198;
+}
+
+.divider:active {
+  background-color: #10656b;
 }
 
 .vertical.divider {

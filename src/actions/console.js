@@ -3,11 +3,7 @@ import { store } from '../index';
 export const CLEAR_CONSOLE = 'CLEAR_CONSOLE';
 export const CONSOLE_LOG = 'CONSOLE_LOG';
 
-export const clearConsole = () => {
-  return {
-    type: CLEAR_CONSOLE
-  }
-};
+export const clearConsole = () => ({ type: CLEAR_CONSOLE });
 
 export const hijackConsole = () => {
   const OG_Log = console.log;

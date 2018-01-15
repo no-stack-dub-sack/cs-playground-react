@@ -29,5 +29,5 @@ export const updateCode = (code) => ({
 
 export const selectSolution = (id) => ({
   type: SELECT_SOLUTION,
-  id: id.slice(10)
+  id
 });

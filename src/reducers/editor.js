@@ -1,6 +1,6 @@
 import { CODE, SOLUTIONS } from '../assets/codeRef';
 import WELCOME_MESSAGE from '../assets/seed/welcome';
-import { uniqWith, isEqual } from 'lodash';
+import { uniqWith, isEqual, replace } from 'lodash';
 
 import {
   NEXT_SNIPPET,
@@ -16,7 +16,7 @@ const populateCodeStore = (arr) => {
   for (let category in CODE) {
     CODE[category].forEach(item => {
       arr.push({
-        id: item.title.replace(/\s/g, ''),
+        id: replace(item.title, /\s/g, ''),
         userCode: item.seed
       });
     });

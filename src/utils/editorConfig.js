@@ -8,13 +8,17 @@ export default {
    theme: 'tomorrow-night-eighties',
    mode:  "javascript",
    keyMap: 'sublime',
-   lint: {
-     esversion: 6
-   },
    gutters: [
      'CodeMirror-linenumbers',
-     'CodeMirror-foldgutter'
+     'CodeMirror-foldgutter',
+     'CodeMirror-lint-markers'
    ],
+   lint: {
+     // allow ES6 syntax
+     esversion: 6,
+     // suppress multi-line ternary warnings
+     laxbreak: true
+   },
    extraKeys: {
      // prevent default
      'Ctrl-Enter': () => {

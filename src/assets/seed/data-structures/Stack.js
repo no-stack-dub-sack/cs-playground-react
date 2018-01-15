@@ -72,9 +72,7 @@ class Stack {
 
 
     pop() {
-        if (this.isEmpty()) {
-            return null;
-        }
+        if (this.isEmpty()) return null;
 
         const value = this.root.value;
         this.root = this.root.next;
@@ -85,11 +83,9 @@ class Stack {
 
 
     peek() {
-        if (!this.root) {
-          return null;
-        }
-        
-        return this.root.value;
+        return this.root
+            ? this.root.value
+            : null;
     }
 
 
