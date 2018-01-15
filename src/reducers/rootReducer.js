@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import editor from './editor';
-import consoleOutput from './console';
+import console from './console';
 import modal from './modal';
 import panes from './panes';
 
 const rootReducer = combineReducers({
   editor,
-  consoleOutput,
+  console,
   modal,
   panes
 });

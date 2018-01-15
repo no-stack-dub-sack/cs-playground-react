@@ -32,7 +32,7 @@ const _default = {
   icon: ICON_WHITE
 };
 
-class ConsoleOutput extends Component {
+class Console extends Component {
   constructor(props) {
     super(props);
     this.state = disabled
@@ -99,7 +99,7 @@ class ConsoleOutput extends Component {
   }
 }
 
-ConsoleOutput.propTypes = {
+Console.propTypes = {
   bottomHeight: PropTypes.string.isRequired,
   clearConsole: PropTypes.func.isRequired,
   messages: PropTypes.array.isRequired,
@@ -107,7 +107,7 @@ ConsoleOutput.propTypes = {
 }
 
 const mapStateToProps = ({
-  consoleOutput: messages,
+  console: messages,
   panes: {
     bottomHeight,
     transition
@@ -118,4 +118,4 @@ const mapStateToProps = ({
   transition
 });
 
-export default connect(mapStateToProps, { clearConsole })(ConsoleOutput);
+export default connect(mapStateToProps, { clearConsole })(Console);

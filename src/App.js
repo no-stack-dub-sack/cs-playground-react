@@ -1,6 +1,6 @@
 import CodeMirrorRenderer from './components/CodeMirrorRenderer';
 import { connect } from 'react-redux';
-import ConsoleOutput from './components/sidebar/ConsoleOutput';
+import Console from './components/sidebar/Console';
 import Controls from './components/Controls';
 import Divider from './components/utils/Divider';
 import { dragHorizontal, dragVertical, doubleClick } from './actions/panes';
@@ -24,7 +24,6 @@ import './styles/app.css';
   * prevent text highlighting on divider drag
   */
 
-// TODO: LODASH START CASE
 // TODO: LODASH INRANGE PANES REDUCER CASE
 
 /** TODO:
@@ -100,7 +99,7 @@ class App extends Component {
         <Divider
           attachRef={ref => this.horizontalDivider = ref}
           direction="horizontal" />
-        <ConsoleOutput />
+        <Console />
       </Pane>,
       <Divider
         attachRef={ref => this.verticalDivider = ref}
