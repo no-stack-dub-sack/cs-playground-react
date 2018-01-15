@@ -121,3 +121,8 @@ class App extends Component {
 // It WILL NOT be rendered alongside the other components in this tree
 
 export default connect(null, { doubleClick })(App);
+
+// export default connect(
+//   ({ modal: { renderModal } }) => ({ renderModal }),
+//   { doubleClick })
+// (App);

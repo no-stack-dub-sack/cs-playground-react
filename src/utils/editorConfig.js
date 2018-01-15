@@ -17,7 +17,9 @@ export default {
      // allow ES6 syntax
      esversion: 6,
      // suppress multi-line ternary warnings
-     laxbreak: true
+     laxbreak: true,
+     // suppress missing semi-colon warnings
+     asi: true
    },
    extraKeys: {
      // prevent default

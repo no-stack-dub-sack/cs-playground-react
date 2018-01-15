@@ -8,7 +8,6 @@ import {
   blockConsole
 } from './jest-test-scripts';
 
-
 // for `yarn test` automated testing:
 
 export const concatTests = (

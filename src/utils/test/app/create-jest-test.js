@@ -1,5 +1,5 @@
 import { concatTests, logResults } from './jest-test-utils';
-import tail from '../common/is-test-disabled';
+// import tail from '../common/is-test-disabled';
 import TESTS from '../../../assets/testRef';
 import { SOLUTIONS } from '../../../assets/codeRef';
 
@@ -8,7 +8,7 @@ export default (ID) => {
     const { passed, results } = eval(
       concatTests(
         SOLUTIONS[ID],
-        TESTS[ID].tail ? tail + TESTS[ID].tail : tail,
+        TESTS[ID].tail ? TESTS[ID].tail : '',
         JSON.stringify(TESTS[ID].tests)
       )
     );

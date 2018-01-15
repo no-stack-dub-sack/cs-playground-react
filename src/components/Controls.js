@@ -2,7 +2,7 @@ import { clearConsole } from '../actions/console';
 import { connect } from 'react-redux';
 import executeCode from '../utils/test/challenge/eval-code-run-tests';
 import React, { Component } from 'react';
-import { re_resetState, re_SUPPRESS_TESTS } from '../utils/regexp';
+import { RESET_STATE } from '../utils/regexp';
 import PropTypes from 'prop-types';
 
 import {
@@ -85,7 +85,7 @@ class Controls extends Component {
   }
   handleExecuteCode = ({ code, id }) => {
     this.toggleClearConsole();
-    if (re_resetState.test(code)) {
+    if (RESET_STATE.test(code)) {
       this.handleResetSate();
     } else {
       // if last action was handleResetSate and the resetState() call
@@ -94,8 +94,7 @@ class Controls extends Component {
       // run code && execute tests
       executeCode(
         code,
-        id,
-        re_SUPPRESS_TESTS.test(code)
+        id
       );
     }
   }

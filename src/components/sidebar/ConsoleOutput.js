@@ -2,7 +2,7 @@ import { clearConsole } from '../../actions/console';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { re_errorTypes } from '../../utils/regexp';
+import { ERROR_TYPES } from '../../utils/regexp';
 import shortid from 'shortid';
 import '../../styles/console.css';
 
@@ -53,7 +53,7 @@ class ConsoleOutput extends Component {
     this.setState(hover);
   }
   renderMessages = (msg) => {
-    let className = re_errorTypes.test(msg)
+    let className = ERROR_TYPES.test(msg)
       ? 'sidebar--output--messages--message  error'
       : 'sidebar--output--messages--message';
     return (

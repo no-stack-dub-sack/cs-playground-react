@@ -14,6 +14,7 @@ function _blockConsole() {
 function executeTests(tests) {
   let passed = true;
   const results = [];
+  const isTestDisabled = require('../common/is-test-disabled');
   if (tests) {
     tests.forEach(test => {
       try {

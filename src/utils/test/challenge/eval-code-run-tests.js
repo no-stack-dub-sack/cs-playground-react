@@ -1,27 +1,30 @@
-import TESTS from '../../../assets/testRef';
 import executeTests from './execute-tests';
-import isTestDisabled from '../common/is-test-disabled';
+import { SUPPRESS_TESTS } from '../../regexp';
+import TESTS from '../../../assets/testRef';
 
 // TODO: remove check for tests once all challenges have tests
 
-export default (code, id, suppressTests) => {
+export default (code, id) => {
   try {
+
+    /* eslint-disable no-unused-vars */
     const assert = require('assert');
+    const isTestDisabled = require('../common/is-test-disabled');
+    /* eslint-enable no-unused-vars */
 
     let prepend = 'const tests = ',
-        tail = isTestDisabled,
+        tail = '',
         tests = '';
 
     // if suppressTests is true, only eval code,
     // otherwise, eval code and run tests (if tests exist)
-    if (!suppressTests && TESTS[id]) {
+    if (!SUPPRESS_TESTS.test(code) && TESTS[id]) {
       tests = prepend + JSON.stringify(TESTS[id].tests);
       if (TESTS[id].tail) tail += TESTS[id].tail;
     }
 
     // eslint-disable-next-line
     eval(
-      assert +
       code +
       tail +
       tests +
@@ -29,6 +32,6 @@ export default (code, id, suppressTests) => {
     );
 
   } catch (error) {
-    console.log(error.toString());
+    console.log('Test Suite Failed To Run: ' + error.toString());
   }
 }
