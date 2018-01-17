@@ -1,8 +1,5 @@
 export const tail = `
-if (
-  typeof Queue === 'function' &&
-  typeof new Queue() === 'object'
-) {
+if (typeof new Queue() === 'object') {
   Queue.prototype.__print = function() {
     if (!this.root) {
         return null;

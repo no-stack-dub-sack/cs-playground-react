@@ -1,8 +1,5 @@
 export const tail = `
-if (
-  typeof PriorityQueue === 'function' &&
-  typeof new PriorityQueue() === 'object'
-) {
+if (typeof new PriorityQueue() === 'object') {
   PriorityQueue.prototype.__print = function() {
     if (!this.head) {
         return null;

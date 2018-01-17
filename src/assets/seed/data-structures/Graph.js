@@ -6,7 +6,6 @@ export default {
         this.vertices = vertices;
         this.list = new Map();
     }
-}
 
     // Methods to Implement:
 

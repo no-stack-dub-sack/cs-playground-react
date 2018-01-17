@@ -1,8 +1,5 @@
 export const tail = `
-if (
-  typeof DoublyLinkedList === 'function' &&
-  typeof new DoublyLinkedList() === 'object'
-) {
+if (typeof new DoublyLinkedList() === 'object') {
   DoublyLinkedList.prototype.__print = function() {
     if (this.head == null) {
       return null;

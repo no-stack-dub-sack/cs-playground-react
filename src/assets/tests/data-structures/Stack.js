@@ -1,9 +1,6 @@
 // LIFO
 export const tail = `
-  if (
-    typeof Stack === 'function' &&
-    typeof new Stack() === 'object'
-  ) {
+  if (typeof new Stack() === 'object') {
   Stack.prototype.__print = function() {
 
     if (!this.root) {

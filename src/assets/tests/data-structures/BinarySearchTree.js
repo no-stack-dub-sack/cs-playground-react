@@ -1,8 +1,5 @@
 export const tail = `
-if (
-  typeof BinarySearchTree === 'function' &&
-  typeof new BinarySearchTree() === 'object'
-) {
+if (typeof new BinarySearchTree() === 'object') {
   BinarySearchTree.prototype.isBinarySearchTree = function() {
     if (this.root === null) {
       return null;

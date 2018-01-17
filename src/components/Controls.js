@@ -28,7 +28,7 @@ class Controls extends Component {
     document.removeEventListener('keydown', this.handleKeyPress);
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.codeSlice !== this.props.codeSlice) {
+    if (prevProps.id !== this.props.id) {
       this.setState({ clearConsole: true });
     }
   }
@@ -127,7 +127,6 @@ class Controls extends Component {
 Controls.propTypes = {
   clearConsole: PropTypes.func.isRequired,
   code: PropTypes.string.isRequired,
-  codeSlice: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   nextSnippet: PropTypes.func.isRequired,
   previousSnippet: PropTypes.func.isRequired,
@@ -137,7 +136,6 @@ Controls.propTypes = {
 const mapStateToProps = ({ editor: { current } }) => {
   return {
     code: current.code,
-    codeSlice: current.code.slice(-20),
     id: current.id
   }
 }

@@ -26,8 +26,11 @@ import './styles/app.css';
 
 // TODO: LODASH INRANGE PANES REDUCER CASE
 
+// TODO: IMPORTANT - FIX MERGE NEW CHANGES INTO EDITOR STATE (USE FILTER TO COMPARE KEYS)
+
 /** TODO:
   * add // SUPPRESS TESTS comment to all user code
+  * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement

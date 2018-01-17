@@ -1,6 +1,7 @@
 import { CODE, SOLUTIONS } from '../assets/codeRef';
+import composeCodeStore from './utils';
 import WELCOME_MESSAGE from '../assets/seed/welcome';
-import { uniqWith, isEqual, replace } from 'lodash';
+import { replace } from 'lodash';
 
 import {
   NEXT_SNIPPET,
@@ -36,23 +37,27 @@ const initialState = {
 
 // reducer's default state is either the initial state or
 // is pulled from local storage, which is set in index.js
-// each time the user navigates away from the page. user
-// may clear localStorage and reset this state by calling
-// resetState() in the CodeMirror editor (not a true func)
-// the user may also choose to NOT save their code to LS
-// by leaving a // DO NOT SAVE single line comment in the
-// editor before navigating away from the CSPG application
 let defaultState = JSON.parse(
   localStorage.getItem('cs-pg-react-editorState')
 ) || initialState;
 
-// copy in any newly deployed challenges to state saved
-// in localStorage for users not accessing site over HTTPS
-// and won't get new content notification from service worker
-defaultState.codeStore = uniqWith([
-  ...defaultState.codeStore,
-  ...initialState.codeStore
-], isEqual);
+// if lengths differ, call composeCodeStore to merge in
+// new challenges and remove dupes due to previous bug
+if (
+  initialState.codeStore.length !==
+  defaultState.codeStore.length
+) {
+  defaultState.codeStore = composeCodeStore(
+    initialState,
+    defaultState
+  );
+}
+// // copy in any newly deployed changes to state saved in
+// // localStorage for users not accessing site over HTTPS
+// defaultState.codeStore = [
+//   ...defaultState.codeStore,
+//   ...initialState.codeStore
+// ];
 
 // meaningless abstraction:
 const updateUserCode = (state) => {
