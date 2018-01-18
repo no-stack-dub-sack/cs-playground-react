@@ -50,6 +50,7 @@ Some basic hotkeys are built in to help you navigate:
 
 __Next Problem:__      |   \`CMD/CTRL + SHIFT + >\`
 __Previous Problem:__  |   \`CMD/CTRL + SHIFT + <\`
+__Jump to Solution:__  |   \`CMD/CTRL + SHIFT + S\`
 __Run Code:__          |   \`CMD/CTRL + SHIFT + ENTER\`
 __Clear Console:__     |   \`ALT + SHIFT + DELETE/BACKSPACE\`
 

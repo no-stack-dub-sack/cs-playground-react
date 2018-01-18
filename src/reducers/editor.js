@@ -9,7 +9,8 @@ import {
   RESET_STATE,
   SELECT_SNIPPET,
   SELECT_SOLUTION,
-  UPDATE_CODE
+  UPDATE_CODE,
+  TOGGLE_SOLUTION
 } from '../actions/editor'
 
 
@@ -72,7 +73,7 @@ const updateUserCode = (state) => {
 }
 
 
-export default (state = defaultState, action) => {
+const editor = (state = defaultState, action) => {
   switch(action.type) {
     case RESET_STATE:
       localStorage.removeItem('cs-pg-react-editorState')
@@ -108,6 +109,13 @@ export default (state = defaultState, action) => {
           isSolution: false
         }
       }
+    case TOGGLE_SOLUTION:
+      if (!SOLUTIONS[state.current.id])
+        return state
+      return !state.current.isSolution
+        ? editor(state, { type: SELECT_SOLUTION, id: state.current.id })
+        : editor(state, { type: SELECT_SNIPPET, id: state.current.id })
+      break
     case NEXT_SNIPPET: {
       let { orderKey } = state
       let i = indexOf(orderKey, state.current.id);
@@ -144,3 +152,5 @@ export default (state = defaultState, action) => {
       return state
   }
 }
+
+export default editor

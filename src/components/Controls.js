@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 import {
   nextSnippet,
   previousSnippet,
-  resetEditorState
+  resetEditorState,
+  toggleSolution
 } from '../actions/editor';
 
 import '../styles/controls.css';
@@ -39,9 +40,11 @@ class Controls extends Component {
     }
     // Next Snippet: CMD/CTRL + SHIFT + >
     // Previous Snippet: CMD/CTRL + SHIFT + <
+    // Toggle Solution: CMD/CTRL + SHIFT + S
     if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
       if (e.keyCode === 190) this.props.nextSnippet();
       if (e.keyCode === 188) this.props.previousSnippet();
+      if (e.keyCode === 83) this.props.toggleSolution();
     }
     // Clear Console: ALT + SHIFT + BACKSPACE
     if (e.altKey && e.shiftKey && e.keyCode === 8) {
@@ -131,6 +134,7 @@ Controls.propTypes = {
   nextSnippet: PropTypes.func.isRequired,
   previousSnippet: PropTypes.func.isRequired,
   resetEditorState: PropTypes.func.isRequired,
+  toggleSolution: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ editor: { current } }) => {
@@ -144,7 +148,8 @@ const mapDispatchToProps = {
   clearConsole,
   nextSnippet,
   previousSnippet,
-  resetEditorState
+  resetEditorState,
+  toggleSolution
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Controls);

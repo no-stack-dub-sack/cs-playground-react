@@ -4,6 +4,7 @@ export const RESET_STATE = 'RESET_STATE';
 export const SELECT_SNIPPET = 'SELECT_SNIPPET';
 export const SELECT_SOLUTION = 'SELECT_SOLUTION';
 export const UPDATE_CODE = 'UPDATE_CODE';
+export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION';
 
 export const nextSnippet = () => ({
   type: NEXT_SNIPPET
@@ -18,6 +19,16 @@ export const selectSnippet = (id) => ({
   id
 });
 
+export const selectSolution = (id) => ({
+  type: SELECT_SOLUTION,
+  id
+});
+
+export const toggleSolution = (id) => ({
+  type: TOGGLE_SOLUTION,
+  id
+});
+
 export const resetEditorState = () => ({
   type: RESET_STATE
 });
@@ -25,9 +36,4 @@ export const resetEditorState = () => ({
 export const updateCode = (code) => ({
   type: UPDATE_CODE,
   code
-});
-
-export const selectSolution = (id) => ({
-  type: SELECT_SOLUTION,
-  id
 });

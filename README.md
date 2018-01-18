@@ -20,6 +20,7 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 - Shortcut keys:
   - Go to the next challenge: <kbd>CTRL/CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>></kbd>
   - Go to the previous challenge: <kbd>CTRL/CMD</kbd> + <kbd>SHIFT</kbd> + <kbd><</kbd>
+  - Jump to solution/seed: <kbd>CTRL/CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>S</kbd>
   - Run code: <kbd>CTRL/CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>ENTER</kbd>
   - Clear Console: <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>DELTE/BACKSPACE</kbd>
 
