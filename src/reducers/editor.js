@@ -1,22 +1,12 @@
+import * as types from '../actions/types';
 import { CODE, SOLUTIONS } from '../assets/codeRef'
 import composeCodeStore, { createOrderKey, populateCodeStore } from './utils'
 import WELCOME_MESSAGE from '../assets/seed/welcome'
 import { findIndex, indexOf, replace } from 'lodash'
 
-import {
-  NEXT_SNIPPET,
-  PREVIOUS_SNIPPET,
-  RESET_STATE,
-  SELECT_SNIPPET,
-  SELECT_SOLUTION,
-  UPDATE_CODE,
-  TOGGLE_SOLUTION
-} from '../actions/editor'
-
-
 // temporarily disable CONSOLE_LOG
 // action in order to debug reducer
-export const disableLogAction = false
+export const disableLogAction = true
 
 
 // define reducer's initial state
@@ -75,10 +65,10 @@ const updateUserCode = (state) => {
 
 const editor = (state = defaultState, action) => {
   switch(action.type) {
-    case RESET_STATE:
+    case types.RESET_STATE:
       localStorage.removeItem('cs-pg-react-editorState')
       return initialState
-    case UPDATE_CODE:
+    case types.UPDATE_CODE:
       return {
         ...state,
         current: {
@@ -86,7 +76,7 @@ const editor = (state = defaultState, action) => {
           code: action.code
         }
       }
-    case SELECT_SOLUTION:
+    case types.SELECT_SOLUTION:
       return {
         ...state,
         welcome: false,
@@ -97,7 +87,7 @@ const editor = (state = defaultState, action) => {
           isSolution: true
         }
       }
-    case SELECT_SNIPPET:
+    case types.SELECT_SNIPPET:
       let idx = findIndex(state.codeStore, { id: action.id });
       return {
         ...state,
@@ -109,14 +99,14 @@ const editor = (state = defaultState, action) => {
           isSolution: false
         }
       }
-    case TOGGLE_SOLUTION:
+    case types.TOGGLE_SOLUTION:
       if (!SOLUTIONS[state.current.id])
         return state
       return !state.current.isSolution
-        ? editor(state, { type: SELECT_SOLUTION, id: state.current.id })
-        : editor(state, { type: SELECT_SNIPPET, id: state.current.id })
+        ? editor(state, { type: types.SELECT_SOLUTION, id: state.current.id })
+        : editor(state, { type: types.SELECT_SNIPPET, id: state.current.id })
       break
-    case NEXT_SNIPPET: {
+    case types.NEXT_SNIPPET: {
       let { orderKey } = state
       let i = indexOf(orderKey, state.current.id);
       let next = (state.welcome || i === orderKey.length - 1) ? 0 : i+1
@@ -132,7 +122,7 @@ const editor = (state = defaultState, action) => {
         }
       }
     }
-    case PREVIOUS_SNIPPET: {
+    case types.PREVIOUS_SNIPPET: {
       let { orderKey } = state
       let i = indexOf(orderKey, state.current.id);
       let prev = (state.welcome || i === 0) ? orderKey.length - 1 : i-1

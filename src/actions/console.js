@@ -1,10 +1,8 @@
+import * as types from './types';
 import { store } from '../index';
 import { disableLogAction } from '../reducers/editor';
 
-export const CLEAR_CONSOLE = 'CLEAR_CONSOLE';
-export const CONSOLE_LOG = 'CONSOLE_LOG';
-
-export const clearConsole = () => ({ type: CLEAR_CONSOLE });
+export const clearConsole = () => ({ type: types.CLEAR_CONSOLE });
 
 export const hijackConsole = () => {
   if (!disableLogAction) {
@@ -22,7 +20,7 @@ export const hijackConsole = () => {
           : msg
       }).join(' ');
       store.dispatch({
-        type: CONSOLE_LOG,
+        type: types.CONSOLE_LOG,
         messages
       });
       OG_Log.apply(console, [...args]);

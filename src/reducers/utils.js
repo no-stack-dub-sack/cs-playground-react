@@ -1,5 +1,6 @@
 import { uniqWith, isEqual, findIndex, flatten, replace } from 'lodash';
 
+// STORE INITIALIZATION UTILS:
 // codeStore initialization utility
 export function populateCodeStore(CODE, arr = []) {
   for (let category in CODE) {
@@ -32,6 +33,7 @@ export function createOrderKey(CODE) {
   );
 }
 
+// MERGE CODE STORE UTILS:
 // isolate new challenges, combine, remove exact dupes
 function mergeCodeStores({ codeStore: initialState }, { codeStore }) {
   return uniqWith([

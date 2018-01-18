@@ -1,39 +1,33 @@
-export const NEXT_SNIPPET = 'NEXT_SNIPPET';
-export const PREVIOUS_SNIPPET = 'PREVIOUS_SNIPPET';
-export const RESET_STATE = 'RESET_STATE';
-export const SELECT_SNIPPET = 'SELECT_SNIPPET';
-export const SELECT_SOLUTION = 'SELECT_SOLUTION';
-export const UPDATE_CODE = 'UPDATE_CODE';
-export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION';
+import * as types from './types';
 
 export const nextSnippet = () => ({
-  type: NEXT_SNIPPET
+  type: types.NEXT_SNIPPET
 });
 
 export const previousSnippet = () => ({
-  type: PREVIOUS_SNIPPET
+  type: types.PREVIOUS_SNIPPET
 });
 
 export const selectSnippet = (id) => ({
-  type: SELECT_SNIPPET,
+  type: types.SELECT_SNIPPET,
   id
 });
 
 export const selectSolution = (id) => ({
-  type: SELECT_SOLUTION,
+  type: types.SELECT_SOLUTION,
   id
 });
 
 export const toggleSolution = (id) => ({
-  type: TOGGLE_SOLUTION,
+  type: types.TOGGLE_SOLUTION,
   id
 });
 
 export const resetEditorState = () => ({
-  type: RESET_STATE
+  type: types.RESET_STATE
 });
 
 export const updateCode = (code) => ({
-  type: UPDATE_CODE,
+  type: types.UPDATE_CODE,
   code
 });

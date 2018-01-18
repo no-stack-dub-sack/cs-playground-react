@@ -1,22 +1,20 @@
+import * as types from './types';
 import { store } from '../index';
 import { startCase } from 'lodash';
-export const OPEN_RESOURCES_MODAL = 'OPEN_RESOURCES_MODAL';
-export const OPEN_ANNOUNCEMENT_MODAL = 'OPEN_ANNOUNCEMENT_MODAL';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 export const openResourcesModal = (id) => ({
-  type: OPEN_RESOURCES_MODAL,
+  type: types.OPEN_RESOURCES_MODAL,
   id: startCase(id)
 });
 
 export const openAnnouncementModal = () => ({
-  type: OPEN_ANNOUNCEMENT_MODAL,
+  type: types.OPEN_ANNOUNCEMENT_MODAL,
   id: 'Announcement!',
   subHeader: messages[0],
   messages: messages.slice(1)
 });
 
-export const closeModal = () => ({ type: CLOSE_MODAL });
+export const closeModal = () => ({ type: types.CLOSE_MODAL });
 
 // render announemnet util
 // render only first 3 visits

@@ -1,10 +1,5 @@
+import * as types from '../actions/types';
 import { CODE } from '../assets/codeRef';
-
-import {
-  OPEN_RESOURCES_MODAL,
-  CLOSE_MODAL,
-  OPEN_ANNOUNCEMENT_MODAL
-} from '../actions/modal';
 
 const defaultState = {
   renderModal: false,
@@ -16,12 +11,12 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case CLOSE_MODAL:
+    case types.CLOSE_MODAL:
       return {
         ...state,
         renderModal: false
       }
-    case OPEN_RESOURCES_MODAL:
+    case types.OPEN_RESOURCES_MODAL:
       // only toggle rederModal if
       // modal state already loaded
       if (state.modalId === action.id) {
@@ -45,7 +40,7 @@ export default (state = defaultState, action) => {
         }
       }
       break;
-    case OPEN_ANNOUNCEMENT_MODAL:
+    case types.OPEN_ANNOUNCEMENT_MODAL:
       return {
         modalId: action.id,
         modalType: 'announcement',

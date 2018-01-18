@@ -1,8 +1,7 @@
+import * as types from './types';
 import { store } from '../index';
-export const DRAG_VERTICAL = 'DRAG_VERTICAL';
-export const DRAG_HORIZONTAL = 'DRAG_HORIZONTAL';
-export const DOUBLE_CLICK = 'DOUBLE_CLICK';
-export const doubleClick = () => ({ type: DOUBLE_CLICK });
+
+export const doubleClick = () => ({ type: types.DOUBLE_CLICK });
 
 export const dragHorizontal = (el, pageX, startX, pageY, startY, resize) => {
   resize.skipX = true;
@@ -26,7 +25,7 @@ export const dragHorizontal = (el, pageX, startX, pageY, startY, resize) => {
 
   const right = 100 - cur - .5;
   store.dispatch({
-    type: DRAG_HORIZONTAL,
+    type: types.DRAG_HORIZONTAL,
     leftWidth: cur + "%",
     rightWidth: right + "%"
   });
@@ -54,7 +53,7 @@ export const dragVertical = (el, pageX, startX, pageY, startY, resize) => {
 
   const bottom = 100 - cur - 1;
   store.dispatch({
-    type: DRAG_VERTICAL,
+    type: types.DRAG_VERTICAL,
     topHeight: cur + "%",
     bottomHeight: bottom + "%"
   });

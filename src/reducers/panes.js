@@ -1,10 +1,4 @@
-import { RESET_STATE } from '../actions/editor';
-
-import {
-  DRAG_HORIZONTAL,
-  DRAG_VERTICAL,
-  DOUBLE_CLICK
-} from '../actions/panes';
+import * as types from '../actions/types';
 
 const initialState = {
   topHeight: '70%',
@@ -50,23 +44,23 @@ const hidePanes = (state) => {
 
 const panes = (state = defaultState, action) => {
   switch (action.type) {
-    case RESET_STATE:
+    case types.RESET_STATE:
       localStorage.removeItem('cs-pg-react-panesState');
       return initialState;
-    case DRAG_HORIZONTAL:
+    case types.DRAG_HORIZONTAL:
       return {
         ...state,
         leftWidth: action.leftWidth,
         rightWidth: action.rightWidth
       }
-    case DRAG_VERTICAL:
+    case types.DRAG_VERTICAL:
       return {
         ...state,
         topHeight: action.topHeight,
         bottomHeight: action.bottomHeight,
         transition: 'none'
       }
-    case DOUBLE_CLICK:
+    case types.DOUBLE_CLICK:
       return hidePanes(state);
     default:
       return state;
