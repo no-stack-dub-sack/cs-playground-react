@@ -26,7 +26,7 @@ import './styles/app.css';
 
 // TODO: LODASH INRANGE PANES REDUCER CASE
 
-// TODO: IMPORTANT - FIX MERGE NEW CHANGES INTO EDITOR STATE (USE FILTER TO COMPARE KEYS)
+// TODO: IMPORTANT - FIX MENU ITERATION... doubly linked list? / flatten CODE array
 
 /** TODO:
   * add // SUPPRESS TESTS comment to all user code

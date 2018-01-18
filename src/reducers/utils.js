@@ -1,12 +1,48 @@
-import { uniqWith, isEqual, findIndex } from 'lodash';
+import { uniqWith, isEqual, findIndex, flatten, replace } from 'lodash';
+
+// codeStore initialization utility
+export function populateCodeStore(CODE, arr = []) {
+  for (let category in CODE) {
+    CODE[category].forEach(item => {
+      arr.push({
+        id: replace(item.title, /\s/g, ''),
+        userCode: item.seed
+      })
+    })
+  }
+  return arr
+}
+
+// => arr of chal IDs in correct order
+export function createOrderKey(CODE) {
+  const {
+    SORTING_ALGOS,
+    DATA_STRUCTURES,
+    EASY_ALGOS,
+    MODERATE_ALGOS
+  } = CODE;
+  return flatten([
+    SORTING_ALGOS,
+    DATA_STRUCTURES,
+    EASY_ALGOS,
+    MODERATE_ALGOS
+  ])
+  .map(c =>
+    replace(c.title, /\s/g, '')
+  );
+}
 
 // isolate new challenges, combine, remove exact dupes
 function mergeCodeStores({ codeStore: initialState }, { codeStore }) {
   return uniqWith([
     ...codeStore,
-    ...initialState,
-    isEqual
-  ]);
+    ...initialState.filter(
+      challenge => findIndex(
+        codeStore,
+        { id: challenge.id }
+      ) === -1
+    )
+  ], isEqual);
 }
 
 // identify entries with duplicate ids

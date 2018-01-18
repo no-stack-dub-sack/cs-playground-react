@@ -1,7 +1,7 @@
-import { CODE, SOLUTIONS } from '../assets/codeRef';
-import composeCodeStore from './utils';
-import WELCOME_MESSAGE from '../assets/seed/welcome';
-import { replace } from 'lodash';
+import { CODE, SOLUTIONS } from '../assets/codeRef'
+import composeCodeStore, { createOrderKey, populateCodeStore } from './utils'
+import WELCOME_MESSAGE from '../assets/seed/welcome'
+import { findIndex, indexOf, replace } from 'lodash'
 
 import {
   NEXT_SNIPPET,
@@ -10,21 +10,15 @@ import {
   SELECT_SNIPPET,
   SELECT_SOLUTION,
   UPDATE_CODE
-} from '../actions/editor';
+} from '../actions/editor'
+
+
+// temporarily disable CONSOLE_LOG
+// action in order to debug reducer
+export const disableLogAction = false
+
 
 // define reducer's initial state
-const populateCodeStore = (arr) => {
-  for (let category in CODE) {
-    CODE[category].forEach(item => {
-      arr.push({
-        id: replace(item.title, /\s/g, ''),
-        userCode: item.seed
-      });
-    });
-  }
-  return arr;
-}
-
 const initialState = {
   welcome: true,
   current: {
@@ -32,14 +26,17 @@ const initialState = {
     code: WELCOME_MESSAGE,
     isSolution: false
   },
-  codeStore: populateCodeStore([])
-};
+  codeStore: populateCodeStore(CODE),
+  orderKey: createOrderKey(CODE)
+}
+
 
 // reducer's default state is either the initial state or
 // is pulled from local storage, which is set in index.js
 let defaultState = JSON.parse(
   localStorage.getItem('cs-pg-react-editorState')
-) || initialState;
+) || initialState
+
 
 // if lengths differ, call composeCodeStore to merge in
 // new challenges and remove dupes due to previous bug
@@ -47,17 +44,14 @@ if (
   initialState.codeStore.length !==
   defaultState.codeStore.length
 ) {
+  console.log('composing code store')
+  defaultState.orderKey = createOrderKey(CODE)
   defaultState.codeStore = composeCodeStore(
     initialState,
     defaultState
-  );
+  )
 }
-// // copy in any newly deployed changes to state saved in
-// // localStorage for users not accessing site over HTTPS
-// defaultState.codeStore = [
-//   ...defaultState.codeStore,
-//   ...initialState.codeStore
-// ];
+
 
 // meaningless abstraction:
 const updateUserCode = (state) => {
@@ -69,19 +63,20 @@ const updateUserCode = (state) => {
           userCode: state.current.code
         }
       } else {
-        return codeObj;
+        return codeObj
       }
-    });
+    })
   } else {
-    return state.codeStore;
+    return state.codeStore
   }
 }
+
 
 export default (state = defaultState, action) => {
   switch(action.type) {
     case RESET_STATE:
-      localStorage.removeItem('cs-pg-react-editorState');
-      return initialState;
+      localStorage.removeItem('cs-pg-react-editorState')
+      return initialState
     case UPDATE_CODE:
       return {
         ...state,
@@ -91,72 +86,61 @@ export default (state = defaultState, action) => {
         }
       }
     case SELECT_SOLUTION:
-      for (let id in SOLUTIONS) {
-        if (id === action.id) {
-          return {
-            welcome: false,
-            codeStore: updateUserCode(state),
-            current: {
-              id,
-              code: SOLUTIONS[id],
-              isSolution: true
-            }
-          }
+      return {
+        ...state,
+        welcome: false,
+        codeStore: updateUserCode(state),
+        current: {
+          id: action.id,
+          code: SOLUTIONS[action.id],
+          isSolution: true
         }
       }
-      break;
     case SELECT_SNIPPET:
-      for (let codeObj of state.codeStore) {
-        if (codeObj.id === action.id) {
-          return {
-            welcome: false,
-            codeStore: updateUserCode(state),
-            current: {
-              id: codeObj.id,
-              code: codeObj.userCode,
-              isSolution: false
-            }
-          }
+      let idx = findIndex(state.codeStore, { id: action.id });
+      return {
+        ...state,
+        welcome: false,
+        codeStore: updateUserCode(state),
+        current: {
+          id: action.id,
+          code: state.codeStore[idx].userCode,
+          isSolution: false
         }
       }
-      break;
-    case NEXT_SNIPPET:
-      for (let i = 0; i < state.codeStore.length; i++) {
-        if (state.codeStore[i].id === state.current.id) {
-          let next;
-          if (state.welcome) next = 0;
-          else next = i === state.codeStore.length - 1 ? 0 : i+1;
-          return {
-            welcome: false,
-            codeStore: updateUserCode(state),
-            current: {
-              id: state.codeStore[next].id,
-              code: state.codeStore[next].userCode,
-              isSolution: false
-            }
-          }
+    case NEXT_SNIPPET: {
+      let { orderKey } = state
+      let i = indexOf(orderKey, state.current.id);
+      let next = (state.welcome || i === orderKey.length - 1) ? 0 : i+1
+      next = findIndex(state.codeStore, { id: orderKey[next] })
+      return {
+        ...state,
+        welcome: false,
+        codeStore: updateUserCode(state),
+        current: {
+          id: state.codeStore[next].id,
+          code: state.codeStore[next].userCode,
+          isSolution: false
         }
       }
-      break;
-    case PREVIOUS_SNIPPET:
-      for (let i = 0; i < state.codeStore.length; i++) {
-        if (state.codeStore[i].id === state.current.id) {
-          let prev;
-          if (state.welcome) prev = 0;
-          else prev = i === 0 ? state.codeStore.length - 1 : i-1;
-          return {
-            welcome: false,
-            codeStore: updateUserCode(state),
-            current: {
-              id: state.codeStore[prev].id,
-              code: state.codeStore[prev].userCode,
-              isSolution: false
-            }
-          }
+    }
+    case PREVIOUS_SNIPPET: {
+      let { orderKey } = state
+      let i = indexOf(orderKey, state.current.id);
+      let prev = (state.welcome || i === 0) ? orderKey.length - 1 : i-1
+      prev = findIndex(state.codeStore, { id: orderKey[prev] })
+      return {
+        ...state,
+        welcome: false,
+        codeStore: updateUserCode(state),
+        current: {
+          id: state.codeStore[prev].id,
+          code: state.codeStore[prev].userCode,
+          isSolution: false
         }
       }
-      break;
+    }
     default:
-      return state;
+      return state
   }
 }
