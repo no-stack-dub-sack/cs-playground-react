@@ -1,6 +1,6 @@
 export const tail = `
 if (typeof new DoublyLinkedList() === 'object') {
-  DoublyLinkedList.prototype.__print = function() {
+  DoublyLinkedList.prototype.__print__ = function() {
     if (this.head == null) {
       return null;
     } else {
@@ -14,7 +14,7 @@ if (typeof new DoublyLinkedList() === 'object') {
       return result.join('');
     };
   }
-  DoublyLinkedList.prototype.__printReverse = function() {
+  DoublyLinkedList.prototype.__printReverse__ = function() {
     if (this.tail == null) {
       return null;
     } else {
@@ -71,7 +71,7 @@ export const tests = [
       list.add('dog');
       list.add('bird');
       list.add('pig');
-      return list.__print() === 'catdogbirdpig' && list.__printReverse() === 'pigbirddogcat' && list.tail.next === null && list.head.prev === null;
+      return list.__print__() === 'catdogbirdpig' && list.__printReverse__() === 'pigbirddogcat' && list.tail.next === null && list.head.prev === null;
     })()`,
     message: 'Additional elements should be appended to the list\'s tail, and each node should keep track of both the next and previous nodes.'
   },
@@ -310,9 +310,9 @@ export const tests = [
       list.add('dog');
       list.add('pig');
       list.add('bird');
-      const reverse = list.__printReverse();
+      const reverse = list.__printReverse__();
       list.reverse();
-      return reverse === list.__print();
+      return reverse === list.__print__();
     })()`,
     message: 'The <code>reverse</code> method reverses the doubly linked list.'
   },

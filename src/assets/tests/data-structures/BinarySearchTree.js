@@ -1,6 +1,6 @@
 export const tail = `
 if (typeof new BinarySearchTree() === 'object') {
-  BinarySearchTree.prototype.isBinarySearchTree = function() {
+  BinarySearchTree.prototype.__isBinarySearchTree__ = function() {
     if (this.root === null) {
       return null;
     } else {
@@ -27,18 +27,18 @@ if (typeof new BinarySearchTree() === 'object') {
       return check;
     };
   }
-  BinarySearchTree.prototype.__inOrder = function(node = this.root, list = []) {
+  BinarySearchTree.prototype.__inOrder__ = function(node = this.root, list = []) {
     if (!node) {
       return null;
     }
 
-    this.__inOrder(node.left, list);
+    this.__inOrder__(node.left, list);
     list.push(node.value);
-    this.__inOrder(node.right, list);
+    this.__inOrder__(node.right, list);
 
     return list;
   }
-  BinarySearchTree.prototype.__clearTree = function() {
+  BinarySearchTree.prototype.__clearTree__ = function() {
     this.root = null;
     return true;
   }
@@ -71,7 +71,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      testTree.__clearTree();
+      testTree.__clearTree__();
       testTree.add(4);
       testTree.add(1);
       testTree.add(7);
@@ -81,7 +81,7 @@ export const tests = [
       testTree.add(73);
       testTree.add(8);
       checkNodes(testTree);
-      return (testTree.isBinarySearchTree());
+      return (testTree.__isBinarySearchTree__());
     })()
     `,
     message: 'The <code>add</code> method adds elements according to the binary search tree rules'
@@ -89,7 +89,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      testTree.__clearTree();
+      testTree.__clearTree__();
       testTree.add(4);
       return testTree.add(4) === null;
     })()
@@ -103,7 +103,7 @@ export const tests = [
   {
     expression:
       `(() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(4);
         testTree.add(1);
         testTree.add(7);
@@ -124,7 +124,7 @@ export const tests = [
   {
     expression:
       `(() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(4);
         testTree.add(1);
         testTree.add(7);
@@ -141,7 +141,7 @@ export const tests = [
   {
     expression:
       `(() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         return testTree.findMin() === null && testTree.findMax() === null;
       })()
     `,
@@ -154,7 +154,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(4);
         testTree.add(7);
         testTree.add(411);
@@ -165,7 +165,7 @@ export const tests = [
     message: 'The <code>isPresent</code> method correctly checks for the presence or absence of elements added to the tree'
   },
   {
-    expression: `testTree.__clearTree() && testTree.isPresent(5) === false`,
+    expression: `testTree.__clearTree__() && testTree.isPresent(5) === false`,
     message: '<code>isPresent</code> handles cases where the tree is empty'
   },
   {
@@ -173,13 +173,13 @@ export const tests = [
     message: 'The binary search tree has a method called <code>remove</code>'
   },
   {
-    expression: `testTree.__clearTree() && testTree.remove(100) === null`,
+    expression: `testTree.__clearTree__() && testTree.remove(100) === null`,
     message: 'The <code>remove</code> method returns <code>null</code> for an empty tree'
   },
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(5);
         testTree.add(94);
         testTree.add(3);
@@ -191,10 +191,10 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(500);
         testTree.remove(500);
-        return (testTree.__inOrder() === null);
+        return (testTree.__inOrder__() === null);
       })()
     `,
     message: 'If the root node has no children, deleting it sets the root to <code>null</code>'
@@ -202,7 +202,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(5);
         testTree.add(3);
         testTree.add(7);
@@ -212,7 +212,7 @@ export const tests = [
         testTree.remove(3);
         testTree.remove(12);
         testTree.remove(10);
-        return testTree.__inOrder().join('') === '567';
+        return testTree.__inOrder__().join('') === '567';
       })()
     `,
     message: 'The <code>remove</code> method removes leaf nodes from the tree'
@@ -220,7 +220,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(-1);
         testTree.add(3);
         testTree.add(7);
@@ -228,7 +228,7 @@ export const tests = [
         testTree.remove(16);
         testTree.remove(7);
         testTree.remove(3);
-        return testTree.__inOrder().join('') === '-1';
+        return testTree.__inOrder__().join('') === '-1';
       })()
     `,
     message: 'The <code>remove</code> method removes nodes with one child'
@@ -236,11 +236,11 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(15);
         testTree.add(27);
         testTree.remove(15);
-        return testTree.__inOrder().join('') === '27';
+        return testTree.__inOrder__().join('') === '27';
       })()
     `,
     message: 'Removing the root in a tree with two nodes sets the second to be the root'
@@ -248,7 +248,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(1);
         testTree.add(4);
         testTree.add(3);
@@ -262,11 +262,11 @@ export const tests = [
         const removeNum = [9, 11, 14, 19, 3, 50, 15];
         for (let num of removeNum) {
           testTree.remove(num);
-          if (!testTree.isBinarySearchTree()) {
+          if (!testTree.__isBinarySearchTree__()) {
             return false;
           };
         }
-        return testTree.__inOrder().join('') === '147';
+        return testTree.__inOrder__().join('') === '147';
       })()
     `,
     message: 'The <code>remove</code> method removes nodes with two children while maintaining the binary search tree structure'
@@ -274,12 +274,12 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree()
+        testTree.__clearTree__()
         testTree.add(100);
         testTree.add(50);
         testTree.add(300);
         testTree.remove(100);
-        return testTree.__inOrder().join('') === '50300';
+        return testTree.__inOrder__().join('') === '50300';
       })()
     `,
     message: 'The root can be removed on a tree of three nodes'
@@ -287,7 +287,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(7);
         testTree.add(1);
         testTree.add(9);
@@ -307,7 +307,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      testTree.__clearTree();
+      testTree.__clearTree__();
       return testTree.inOrder() === null;
     })()`,
     message: 'The <code>inOrder</code> method returns <code>null</code> for an empty tree'
@@ -318,7 +318,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'findMinHeight')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(4);
         testTree.add(1);
         testTree.add(7);
@@ -338,7 +338,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'findMaxHeight')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(4);
         testTree.add(1);
         testTree.add(7);
@@ -359,7 +359,7 @@ export const tests = [
           isTestDisabled(BinarySearchTree, 'findMaxHeight')) {
         return 'DISABLED';
       }
-      testTree.__clearTree();
+      testTree.__clearTree__();
       const minHeight = testTree.findMaxHeight() === -1;
       const maxHeight = testTree.findMaxHeight() === -1;
       return minHeight && maxHeight;
@@ -372,7 +372,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'isBalanced')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(50);
         testTree.add(17);
         testTree.add(76);
@@ -395,7 +395,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'preOrder')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(7);
         testTree.add(1);
         testTree.add(9);
@@ -418,7 +418,7 @@ export const tests = [
       if (isTestDisabled(BinarySearchTree, 'preOrder')) {
         return 'DISABLED';
       }
-      testTree.__clearTree();
+      testTree.__clearTree__();
       return testTree.preOrder() === null
     })()`,
     message: 'The <code>preOrder</code> method returns <code>null</code> for an empty tree'
@@ -429,7 +429,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'postOrder')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(7);
         testTree.add(1);
         testTree.add(9);
@@ -452,7 +452,7 @@ export const tests = [
       if (isTestDisabled(BinarySearchTree, 'postOrder')) {
         return 'DISABLED';
       }
-      testTree.__clearTree();
+      testTree.__clearTree__();
       return testTree.postOrder() === null
     })()`,
     message: 'The <code>postOrder</code> method returns <code>null</code> for an empty tree'
@@ -463,7 +463,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'levelOrder')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(7);
         testTree.add(1);
         testTree.add(9);
@@ -486,7 +486,7 @@ export const tests = [
       if (isTestDisabled(BinarySearchTree, 'levelOrder')) {
         return 'DISABLED';
       }
-      testTree.__clearTree();
+      testTree.__clearTree__();
       return testTree.levelOrder() === null
     })()`,
     message: 'The <code>levelOrder</code> method returns <code>null</code> for an empty tree'
@@ -497,7 +497,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'reverseLevelOrder')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(7);
         testTree.add(1);
         testTree.add(9);
@@ -520,7 +520,7 @@ export const tests = [
       if (isTestDisabled(BinarySearchTree, 'reverseLevelOrder')) {
         return 'DISABLED';
       }
-      testTree.__clearTree();
+      testTree.__clearTree__();
       return new BinarySearchTree().reverseLevelOrder() === null;
     })()`,
     message: 'The <code>reverseLevelOrder</code> method returns <code>null</code> for an empty tree'
@@ -531,7 +531,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'invert')) {
           return 'DISABLED';
         }
-        testTree.__clearTree();
+        testTree.__clearTree__();
         testTree.add(4);
         testTree.add(1);
         testTree.add(7);
@@ -541,7 +541,7 @@ export const tests = [
         testTree.add(73);
         testTree.add(8);
         testTree.invert();
-        return testTree.__inOrder().join('') === '877345348741';
+        return testTree.__inOrder__().join('') === '877345348741';
       })()
     `,
     message: 'The <code>invert</code> method correctly inverts the tree structure'
@@ -552,7 +552,7 @@ export const tests = [
       if (isTestDisabled(BinarySearchTree, 'invert')) {
         return 'DISABLED';
       }
-      testTree.__clearTree();
+      testTree.__clearTree__();
       return new BinarySearchTree().invert() === null
     })()`,
     message: 'Inverting an empty tree returns <code>null</code>'

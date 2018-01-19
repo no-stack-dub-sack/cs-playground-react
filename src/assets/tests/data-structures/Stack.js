@@ -1,7 +1,7 @@
 // LIFO
 export const tail = `
   if (typeof new Stack() === 'object') {
-  Stack.prototype.__print = function() {
+  Stack.prototype.__print__ = function() {
 
     if (!this.root) {
       return '[]';
@@ -19,7 +19,7 @@ export const tail = `
     return result.join('');
   }
 
-  Stack.prototype.__pop = function() {
+  Stack.prototype.__pop__ = function() {
     if (!this.root) {
       return null;
     }
@@ -65,7 +65,7 @@ export const tests = [
       test.push(3);
       test.push(2);
       test.push(1);
-      return test.__print() === '12345';
+      return test.__print__() === '12345';
     })();
     `,
     message: 'The <code>push</code> method adds elements to the top of the stack, according to the first-in-first-out principle'
@@ -83,11 +83,11 @@ export const tests = [
       test.push(3);
       test.push(2);
       test.push(1);
-      const beforePop = test.__print() === '12345';
+      const beforePop = test.__print__() === '12345';
       const pop_1 = test.pop();
       const pop_2 = test.pop();
       const pop_3 = test.pop();
-      const afterPop = test.__print() === '45';
+      const afterPop = test.__print__() === '45';
       return beforePop && pop_1 === 1 && pop_2 === 2 && pop_3 === 3 && afterPop;
     })();
     `,
@@ -111,10 +111,10 @@ export const tests = [
       test.push(2);
       test.push(1);
       const peek_1 = test.peek();
-      const afterPeek_1 = test.__print() === '12345';
-      test.__pop(); test.__pop();
+      const afterPeek_1 = test.__print__() === '12345';
+      test.__pop__(); test.__pop__();
       const peek_2 = test.peek();
-      const afterPeek_2 = test.__print() === '345';
+      const afterPeek_2 = test.__print__() === '345';
       test.push(500);
       const peek_3 = test.peek();
       return peek_1 === 1 && afterPeek_1 && peek_2 === 3 && afterPeek_2 && peek_3 === 500;
@@ -160,7 +160,7 @@ export const tests = [
       test.push(3);
       test.push(2);
       test.push(1);
-      const before = test.__print() === '12345';
+      const before = test.__print__() === '12345';
       test.clear();
       const after = test.root === null;
       return before && after;

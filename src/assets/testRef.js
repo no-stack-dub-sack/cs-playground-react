@@ -7,6 +7,7 @@ import * as Quicksort from './tests/algorithms/Quicksort';
 import * as SelectionSort from './tests/algorithms/SelectionSort';
 
 import * as BinarySearchTree from './tests/data-structures/BinarySearchTree';
+import * as HashTable from './tests/data-structures/HashTable';
 import * as LinkedList from './tests/data-structures/LinkedList';
 import * as DoublyLinkedList from './tests/data-structures/DoublyLinkedList';
 import * as MaxHeap from './tests/data-structures/MaxHeap';
@@ -30,6 +31,7 @@ export default {
   SelectionSort,
   // Data Structures
   BinarySearchTree,
+  HashTable,
   LinkedList,
   DoublyLinkedList,
   MaxHeap,

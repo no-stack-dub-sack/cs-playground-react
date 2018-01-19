@@ -6,22 +6,8 @@ export default {
         this.collection = {};
     }
 
-    // for the tests to work please use
-    // this naive hashing function which
-    // will allow us to demonstrate collision
-    hasher(str) {
-      let hash = 0;
-      str = String(str);
-
-      for (var i in str) {
-        hash += str.charCodeAt(i);
-      }
-
-      return hash;
-    }
-
     // methods to implement:
-
+    // hasher()
     // add()
     // remove()
     // lookup()
@@ -31,7 +17,7 @@ export default {
 `/**
  * @class Hash Table data structure
  * @property {object} collection
- * @method hasher @param {string} str The function that produces our hash keys
+ * @method hash @param {string} str The function that produces our hash keys
  * @method add @param {string} key @param {*} value The key value pair to add to the hash table
  * @method remove @param {string} key @return {*} Accepts an un-hashed key, removes and returns associated value
  * @method lookup @param {string} key @return {*} Accepts an un-hashed key, returns associated value
@@ -45,7 +31,7 @@ export default {
     /* we use a naive hashing function
     to demonstrate the problems that
     can arise from collision */
-    hasher(str) {
+    hash(str) {
         let hash = 0;
         str = String(str);
 
@@ -58,7 +44,7 @@ export default {
 
 
     add(key, value) {
-        const hash = this.hasher(key);
+        const hash = this.hash(key);
         const currentValue = this.collection[hash];
 
         if (!currentValue) {
@@ -91,7 +77,7 @@ export default {
 
 
     remove(key) {
-        const hash = this.hasher(key);
+        const hash = this.hash(key);
         const currentValue = this.collection[hash];
 
         if (!currentValue) {
@@ -122,20 +108,20 @@ export default {
 
 
     lookup(key) {
-        const hash = this.hasher(key);
+        const hash = this.hash(key);
         const currentValue = this.collection[hash];
 
         if (!currentValue) {
             return null;
         }
 
-		// only one key/val pair stored at this hash key
-        if (!Array.isArray(currentValue)) {
+        // only one key/val pair stored at this hash key
+        if (currentValue.key === key) {
             return currentValue.value;
         }
 
-		// otherwise, collision
-		// iterate through bucket for match
+        // otherwise, collision
+        // iterate through bucket for match
         for (let i in currentValue) {
             if (currentValue[i].key === key) {
                 return currentValue[i].value;

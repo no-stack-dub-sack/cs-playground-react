@@ -1,6 +1,6 @@
 export const tail = `
 if (typeof new PriorityQueue() === 'object') {
-  PriorityQueue.prototype.__print = function() {
+  PriorityQueue.prototype.__print__ = function() {
     if (!this.head) {
         return null;
     }
@@ -16,7 +16,7 @@ if (typeof new PriorityQueue() === 'object') {
     return result.join('');
   }
 
-  PriorityQueue.prototype.__dequeue = function() {
+  PriorityQueue.prototype.__dequeue__ = function() {
     if (!this.head) {
         return null;
     }
@@ -66,7 +66,7 @@ export const tests = [
       test.enqueue(5, 5);
       test.enqueue(2, 2);
       checkNodes(test);
-      return test.__print() === '023451050';
+      return test.__print__() === '023451050';
     })()`,
     message: `The <code>enqueue</code> method inserts values into the queue according to priority (lowest priority at the head, greatest priority at the tail)`
   },
@@ -80,7 +80,7 @@ export const tests = [
       test.enqueue('two-a', 2);
       test.enqueue(5, 5);
       test.enqueue('two-b', 2);
-      return test.__print() === '0twotwo-atwo-b35';
+      return test.__print__() === '0twotwo-atwo-b35';
     })()`,
     message: `When two or more elements have the same priority, the <code>enqueue</code> method should treat the elements inserted first as having higher precedence (will be dequeued first)`
   },
@@ -132,7 +132,7 @@ export const tests = [
         result += test.dequeue();
         i--;
       }
-      return result === '01234' && test.__print() === '5';
+      return result === '01234' && test.__print__() === '5';
     })()`,
     message: `The <code>dequeue</code> method removes and returns elements according to their priority (lower priorites take precedence, and are dequeued first)`
   },
@@ -181,10 +181,10 @@ export const tests = [
       test.enqueue(0, 0);
       test.enqueue(5, 5);
       const one = test.front() === 0;
-      const two = test.__print().length === 3;
-      test.__dequeue();
+      const two = test.__print__().length === 3;
+      test.__dequeue__();
       const three = test.front() === 3;
-      const four = test.__print().length === 2;
+      const four = test.__print__().length === 2;
       return one && two && three && four;
     })()`,
     message: `The <code>front</code> method returns the element at the front, or top, of the queue, without removing it`

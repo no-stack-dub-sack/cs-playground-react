@@ -6,7 +6,7 @@ import { findIndex, indexOf, replace } from 'lodash'
 
 // temporarily disable CONSOLE_LOG
 // action in order to debug reducer
-export const disableLogAction = true
+export const disableLogAction = false
 
 
 // define reducer's initial state

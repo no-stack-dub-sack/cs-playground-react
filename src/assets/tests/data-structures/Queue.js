@@ -1,6 +1,6 @@
 export const tail = `
 if (typeof new Queue() === 'object') {
-  Queue.prototype.__print = function() {
+  Queue.prototype.__print__ = function() {
     if (!this.root) {
         return null;
     }
@@ -46,7 +46,7 @@ export const tests = [
       test.enqueue('two');
       test.enqueue('three');
       checkNodes(test);
-      const qstring = test.__print();
+      const qstring = test.__print__();
       return /one/.test(qstring) &&
         /two/.test(qstring) &&
         /three/.test(qstring) &&
@@ -66,7 +66,7 @@ export const tests = [
       test.enqueue('three');
       const one = test.dequeue() === 'one';
       const two = test.dequeue() === 'two';
-      return one && two && test.__print() === 'three';
+      return one && two && test.__print__() === 'three';
     })()`,
     message: 'The <code>dequeue</code> method should remove and return the elements from the queue according to the first-in-first-out principle'
   },
@@ -81,7 +81,7 @@ export const tests = [
       test.enqueue('one');
       test.enqueue('two');
       const front = test.front() === 'one';
-      const qstring = test.__print();
+      const qstring = test.__print__();
       return /one/.test(qstring) &&
         /two/.test(qstring) &&
         front;

@@ -22,6 +22,7 @@ import './styles/app.css';
   * Improved clearState() - timeout
   * fixed codeStore bug
   * prevent text highlighting on divider drag
+  * toggle solution shortcut keys
   */
 
 // TODO: LODASH INRANGE PANES REDUCER CASE
@@ -30,6 +31,8 @@ import './styles/app.css';
 
 /** TODO:
   * add // SUPPRESS TESTS comment to all user code
+  * CONSOLIDATE TESTS WITH MULTI-MESSAGING!!!
+  * add replacement util to update changed method names in user code (e.g. hasher to hash)
   * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
