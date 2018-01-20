@@ -35,8 +35,15 @@ class Graph {
     }
 
 
-    // An undirected graph requires that a connection exists both ways
     addEdge(source, destination) {
+        // prevent error if arg is not existing vertex
+        if (!this.list.get(source)    ||
+            !this.list.get(destination)) {
+            return null;
+        }
+
+        // An undirected graph requires
+        // that a connection exists both ways
         this.list.get(source).push(destination);
         this.list.get(destination).push(source);
     }
@@ -59,10 +66,12 @@ for (var i = 0; i < vertices.length; i++) {
 }
 
 graph.addEdge('Rat', 'Ox');
+graph.addEdge('Rat', 'Bear'); // no edge added
 graph.addEdge('Tiger', 'Rabbit');
 graph.addEdge('Rat', 'Dragon');
 graph.addEdge('Snake', 'Tiger');
 graph.addEdge('Tiger', 'Rat');
+graph.addEdge('Bear', 'Rat'); // no edge added
 graph.addEdge('Dragon', 'Ox');
 graph.addEdge('Rabbit', 'Snake');
 
