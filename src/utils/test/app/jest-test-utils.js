@@ -1,29 +1,29 @@
 import chalk from 'chalk';
 
 import {
-  testsHead,
-  testsTail,
-  _executeTests,
-  declareTests,
-  blockConsole
+  __executeTests__,
+  __suppressConsole__
 } from './jest-test-scripts';
-
-// for `yarn test` automated testing:
 
 export const concatTests = (
   solution,
-  codeTail,
-  testsBody
+  tail,
+  tests
 ) => {
-  return blockConsole.concat(
-    testsHead,
-    solution,
-    codeTail,
-    declareTests,
-    testsBody,
-    _executeTests,
-    testsTail
-  );
+  return `
+    // suppress logs during tests
+    const console = (${__suppressConsole__})();
+    // execute tests
+    (() => {
+      ${solution}
+      ${tail}
+      const tests = ${tests};
+      ${__executeTests__}
+      return typeof __beforeEach__ !== 'undefined'
+      ? executeTests(tests, __beforeEach__)
+      : executeTests(tests);
+    })();
+  `;
 }
 
 export const logResults = (passed, results, id) => {
@@ -36,8 +36,5 @@ export const logResults = (passed, results, id) => {
         console.log(t);
       }
     });
-  } else {
-    console.log(chalk.keyword('salmon').underline(id + ':'));
-    console.log(results);
   }
 }

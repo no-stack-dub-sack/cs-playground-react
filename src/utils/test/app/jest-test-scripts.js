@@ -1,23 +1,24 @@
 // stringify functions, concat in correct order and
 // pass to eval for crappy way to test solution code
-function _blockConsole() {
-  return {
-    log: (arg) => {
-      if (typeof arg === 'string' && (arg.includes('Pass:') || !arg.includes('Fail:'))) {
-        return arg;
-      }
-      return null
+const suppressConsole = () => ({
+  log: (arg) => {
+    if (typeof arg === 'string' &&
+       (arg.includes('Pass:') || !arg.includes('Fail:'))
+     ) {
+      return arg;
     }
-  };
-}
+    return null
+  }
+});
 
-function executeTests(tests) {
+function executeTests(tests, __beforeEach__) {
   let passed = true;
   const results = [];
   const isTestDisabled = require('../common/is-test-disabled');
   if (tests) {
     tests.forEach(test => {
       try {
+        __beforeEach__ && __beforeEach__();
         expect(eval(test.expression)).toBe(true);
         results.push('Pass: ' + test.message)
       } catch (e) {
@@ -29,8 +30,5 @@ function executeTests(tests) {
   return { passed, results };
 }
 
-export const testsHead = '\n(function() {\n'
-export const declareTests = 'const tests = ';
-export const testsTail = `return executeTests(tests); })()`;
-export const _executeTests = '\n' + executeTests.toString();
-export const blockConsole = `const console = (${_blockConsole.toString()})();\n`
+export const __suppressConsole__ = suppressConsole.toString();
+export const __executeTests__ = executeTests.toString();

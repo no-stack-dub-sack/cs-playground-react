@@ -2,14 +2,14 @@ import * as types from '../actions/types';
 import { CODE, SOLUTIONS } from '../assets/codeRef'
 import composeCodeStore, { createOrderKey, populateCodeStore } from './utils'
 import WELCOME_MESSAGE from '../assets/seed/welcome'
-import { findIndex, indexOf, replace } from 'lodash'
+import { findIndex, indexOf } from 'lodash'
 
-// temporarily disable CONSOLE_LOG
-// action in order to debug reducer
+
+// NOTE: use to temporarily disable
+// log action for reducer debugging
 export const disableLogAction = false
 
 
-// define reducer's initial state
 const initialState = {
   welcome: true,
   current: {
@@ -20,7 +20,6 @@ const initialState = {
   codeStore: populateCodeStore(CODE),
   orderKey: createOrderKey(CODE)
 }
-
 
 // reducer's default state is either the initial state or
 // is pulled from local storage, which is set in index.js
@@ -105,7 +104,6 @@ const editor = (state = defaultState, action) => {
       return !state.current.isSolution
         ? editor(state, { type: types.SELECT_SOLUTION, id: state.current.id })
         : editor(state, { type: types.SELECT_SNIPPET, id: state.current.id })
-      break
     case types.NEXT_SNIPPET: {
       let { orderKey } = state
       let i = indexOf(orderKey, state.current.id);

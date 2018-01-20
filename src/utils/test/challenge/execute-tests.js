@@ -1,6 +1,6 @@
 // test utility for in-browser challenge testing
 // stringify, concat with user code & tests, pass to eval
-function executeTests(tests) {
+function executeTests(tests, __beforeEach__ = null) {
   if (tests) {
     console.log('\n/***** TESTS BEGIN *****/\n');
     let numPassed = 0, numDisabled = 0;
@@ -12,6 +12,7 @@ function executeTests(tests) {
           numDisabled++;
           throw new Error('DISABLED');
         } else {
+          __beforeEach__ && __beforeEach__();
           // eslint-disable-next-line
           assert(eval(test.expression), test.message);
           // log passing test message
@@ -19,18 +20,19 @@ function executeTests(tests) {
           numPassed++;
         }
       } catch (e) {
-        switch (e.message) {
-          case 'DISABLED':
-            // log disabled / greyed out test message
-            console.log('<code>' + e.message + ': ' + test.message + '</code>');
-            break;
-          case test.message:
-            // log just failure message
-            console.log('Fail: ' + test.message);
-            break;
-          default:
-            // log failure message, plus any actual errors
-            console.log('Fail: ' + test.message + ' <code>[ ' + e.toString() + ' ]</code>');
+        if (e.message === 'DISABLED') {
+          // log disabled / greyed out test message
+          console.log('<code>' + e.message + ': ' + test.message + '</code>')
+        }
+
+        // ONLY FOR DEV TO DEBUG TESTS:
+        else if (e.message !== test.message) {
+          console.log('Fail: ' + e.message);
+        }
+
+        else {
+          // log just failure message
+          console.log('Fail: ' + test.message);
         }
       }
     });
@@ -45,4 +47,4 @@ function executeTests(tests) {
   }
 };
 
-export default `\n${executeTests.toString()};\nexecuteTests(tests);\n`;
+export default executeTests.toString();

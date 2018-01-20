@@ -6,7 +6,6 @@ import TESTS from '../../../assets/testRef';
 
 export default (code, id) => {
   try {
-
     /* eslint-disable no-unused-vars */
     const assert = require('assert');
     const isTestDisabled = require('../common/is-test-disabled');
