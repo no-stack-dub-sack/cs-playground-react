@@ -29,9 +29,11 @@ class Graph {
         this.list = new Map();
     }
 
+
     addVertex(vertex) {
         this.list.set(vertex, []);
     }
+
 
     // An undirected graph requires that a connection exists both ways
     addEdge(source, destination) {
@@ -39,18 +41,10 @@ class Graph {
         this.list.get(destination).push(source);
     }
 
+
     printGraph() {
-        var vertices = this.list.keys();
-
-    	for (var i of vertices) {
-        	var vertexAdjList = this.list.get(i);
-        	var vertexConnections = "";
-
-        	for (var j of vertexAdjList) {
-            	vertexConnections += (j + " ");
-        	}
-
-            console.log(i + " -> " + vertexConnections);
+        for (let [key, value] of this.list) {
+            console.log(\`\${key} -> [\${value.join(', ')}]\`)
         }
     }
 }
