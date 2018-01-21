@@ -33,13 +33,13 @@ import './styles/app.css';
   * add // SUPPRESS TESTS comment to all user code
   * CONSOLIDATE TESTS WITH MULTI-MESSAGING!!!
   * add arguments to methods to implement
+  * remove semi-colons
   * add replacement util to update changed method names in user code (e.g. hasher to hash)
   * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement
   * any other LL fixes???
-  * toggle SOLUTION/SEED!!! Shortcut key
   * add return null if element exists to all LL
   * fix JSDoc comments to true JSDoc style??
   * rework application structure, add most state to top level
@@ -98,28 +98,28 @@ class App extends Component {
     this.horizontalDivider.removeEventListener('dblclick', this.props.doubleClick);
   }
   render() {
-    return [
-      <Pane
-        className="sidebar left-pane"
-        key={shortid.generate()}>
-        <Menu />
+    return (
+      <React.Fragment>
+        <Pane
+          className="sidebar left-pane">
+          <Menu />
+          <Divider
+            attachRef={ref => this.horizontalDivider = ref}
+            direction="horizontal" />
+          <Console />
+        </Pane>
         <Divider
-          attachRef={ref => this.horizontalDivider = ref}
-          direction="horizontal" />
-        <Console />
-      </Pane>,
-      <Divider
-        attachRef={ref => this.verticalDivider = ref}
-        direction="vertical"
-        key={shortid.generate()} />,
-      <Pane
-        className="main right-pane"
-        key={shortid.generate()}>
-        <CodeMirrorRenderer />
-        <Controls />
-      </Pane>,
-      <Modal key={shortid.generate()} />
-    ];
+          attachRef={ref => this.verticalDivider = ref}
+          direction="vertical" />
+        <Pane
+          className="main right-pane"
+          key={shortid.generate()}>
+          <CodeMirrorRenderer />
+          <Controls />
+        </Pane>
+        <Modal />
+      </React.Fragment>
+    )
   }
 }
 

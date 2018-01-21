@@ -7,11 +7,11 @@
     "codemirror": "^5.31.0",
     "jshint": "^2.9.5",
     "lodash": "^4.17.4",
-    "react": "^16.0.0",
+    "react": "16.2.0",
     "react-codemirror2": "^3.0.7",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
-    "react-scripts": "1.0.15",
+    "react-scripts": "1.1.0",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "shortid": "^2.2.8"
