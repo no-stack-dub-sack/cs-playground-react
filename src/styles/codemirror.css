@@ -15,7 +15,7 @@
   border-left: 1px solid #d5d5d5 !important;
 }
 
-.CodeMirror-activeline-background {
+.cm-s-tomorrow-night-eighties .CodeMirror-activeline-background {
   background: rgba(187, 141, 245, 0.1) !important;
 }
 
