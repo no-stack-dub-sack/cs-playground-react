@@ -22,6 +22,12 @@ export default (code, id) => {
       if (TESTS[id].tail) tail += TESTS[id].tail;
     }
 
+    console.log(
+      code +
+      tail +
+      tests +
+      executeTests
+    );
     // eslint-disable-next-line
     eval(
       code +

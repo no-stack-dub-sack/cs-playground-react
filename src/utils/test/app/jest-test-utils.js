@@ -19,7 +19,7 @@ export const concatTests = (
       ${tail}
       const tests = ${tests};
       ${__executeTests__}
-      return typeof __beforeEach__ !== 'undefined'
+      return typeof __beforeEach__ === 'function'
       ? executeTests(tests, __beforeEach__)
       : executeTests(tests);
     })();

@@ -14,11 +14,14 @@ const suppressConsole = () => ({
 function executeTests(tests, __beforeEach__) {
   let passed = true;
   const results = [];
+  /* eslint-disable no-unused-vars */
   const isTestDisabled = require('../common/is-test-disabled');
+  /* eslint-enable no-unused-vars */
   if (tests) {
     tests.forEach(test => {
       try {
         __beforeEach__ && __beforeEach__();
+        // eslint-disable-next-line
         expect(eval(test.expression)).toBe(true);
         results.push('Pass: ' + test.message)
       } catch (e) {

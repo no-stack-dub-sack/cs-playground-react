@@ -26,9 +26,9 @@ function executeTests(tests, __beforeEach__ = null) {
         }
 
         // ONLY FOR DEV TO DEBUG TESTS:
-        else if (e.message !== test.message) {
-          console.log('Fail: ' + e.message);
-        }
+        // else if (e.message !== test.message) {
+        //   console.log('Fail: ' + e.message);
+        // }
 
         else {
           // log just failure message
@@ -45,6 +45,11 @@ function executeTests(tests, __beforeEach__ = null) {
 
     console.log('\n/***** TESTS END *****/\n');
   }
-};
+}
 
-export default executeTests.toString();
+export default `
+${executeTests.toString()}
+typeof __beforeEach__ === 'function'
+  ? executeTests(tests, __beforeEach__)
+  : executeTests(tests)
+`;
