@@ -5,6 +5,7 @@ export default {
    matchBrackets: true,
    styleActiveLine: true,
    autoCloseBrackets: true,
+   highlightSelectionMatches: true,
    theme: 'tomorrow-night-eighties',
    mode:  "javascript",
    keyMap: 'sublime',
@@ -29,6 +30,10 @@ export default {
      // prevent default
      'Cmd-Enter': () => {
        return false;
+     },
+     // prevent default
+     'Ctrl-Space': (cm) => {
+       cm.showHint();
      }
    }
 }

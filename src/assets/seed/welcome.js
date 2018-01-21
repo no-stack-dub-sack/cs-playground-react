@@ -48,11 +48,12 @@ code, but if you want to clear it at any time, just hit the button!
 - _SHORTCUT KEYS_
 Some basic hotkeys are built in to help you navigate:
 
-__Next Problem:__      |   \`CMD/CTRL + SHIFT + >\`
-__Previous Problem:__  |   \`CMD/CTRL + SHIFT + <\`
+__Next Problem:__      |   \`CMD/CTRL + SHIFT + >/.\`
+__Previous Problem:__  |   \`CMD/CTRL + SHIFT + </,\`
 __Jump to Solution:__  |   \`CMD/CTRL + SHIFT + S\`
 __Run Code:__          |   \`CMD/CTRL + SHIFT + ENTER\`
 __Clear Console:__     |   \`ALT + SHIFT + DELETE/BACKSPACE\`
+__Open Hint List:__    |   \`CTRL + SPACE\` (JSHint / Autocomplete)
 
 
 - _KEY BINDINGS_

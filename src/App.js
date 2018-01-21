@@ -34,6 +34,7 @@ import './styles/app.css';
   * CONSOLIDATE TESTS WITH MULTI-MESSAGING!!!
   * add arguments to methods to implement
   * remove semi-colons
+  * toggle editor theme!
   * add replacement util to update changed method names in user code (e.g. hasher to hash)
   * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:

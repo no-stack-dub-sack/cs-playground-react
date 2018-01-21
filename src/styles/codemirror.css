@@ -7,11 +7,15 @@
   height: 100% !important;
 }
 
+.CodeMirror .cm-matchhighlight {
+  background: rgba(222, 153, 174, 0.2);
+}
+
 .CodeMirror div.CodeMirror-cursor {
   border-left: 1px solid #d5d5d5 !important;
 }
 
-.cm-s-tomorrow-night-eighties .CodeMirror-activeline-background {
+.CodeMirror-activeline-background {
   background: rgba(187, 141, 245, 0.1) !important;
 }
 
