@@ -11,23 +11,15 @@ export default (code, id) => {
     const isTestDisabled = require('../common/is-test-disabled');
     /* eslint-enable no-unused-vars */
 
-    let prepend = 'const tests = ',
-        tail = '',
-        tests = '';
+    let prepend = 'const tests = ', tail = '', tests = ''
 
     // if suppressTests is true, only eval code,
     // otherwise, eval code and run tests (if tests exist)
     if (!SUPPRESS_TESTS.test(code) && TESTS[id]) {
-      tests = prepend + JSON.stringify(TESTS[id].tests);
-      if (TESTS[id].tail) tail += TESTS[id].tail;
+      tests = prepend + JSON.stringify(TESTS[id].tests)
+      if (TESTS[id].tail) tail += TESTS[id].tail
     }
 
-    console.log(
-      code +
-      tail +
-      tests +
-      executeTests
-    );
     // eslint-disable-next-line
     eval(
       code +
@@ -36,7 +28,7 @@ export default (code, id) => {
       executeTests
     );
 
-  } catch (error) {
-    console.log('Test Suite Failed To Run: ' + error.toString());
+  } catch (e) {
+    console.log(`Test Suite Failed To Run: ${e.toString()}`)
   }
 }

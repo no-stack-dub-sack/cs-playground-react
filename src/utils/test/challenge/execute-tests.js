@@ -48,7 +48,7 @@ function executeTests(tests, __beforeEach__ = null) {
 }
 
 export default `
-${executeTests.toString()}
+${executeTests}
 typeof __beforeEach__ === 'function'
   ? executeTests(tests, __beforeEach__)
   : executeTests(tests)
