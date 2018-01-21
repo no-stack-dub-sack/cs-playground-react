@@ -29,28 +29,9 @@ import 'codemirror/addon/lint/javascript-lint';
 window.JSHINT = JSHINT;
 
 class CodeMirrorRenderer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFolded: false
-    }
-  }
   componentDidUpdate(prevProps) {
     if (prevProps.snippet !== this.props.snippet) {
       this.props.updateCode(this.props.code, true);
-    }
-  }
-  handleFold = (editor, data) => {
-    if (!this.state.isFolded) {
-      // fold/hide BST solution's helper code
-      const { currentId, isSolution  } = this.props;
-      const line_1 = (editor.getLine(1) === 'class QNode {');
-      const line_9 = (editor.getLine(9) === 'class Queue {');
-      if (currentId === 'BinarySearchTree' && isSolution && line_1 && line_9) {
-        editor.foldCode(1);
-        editor.foldCode(9);
-        this.setState({ isFolded: true });
-      }
     }
   }
   updateCode = (editor, data, value) => {
@@ -64,7 +45,6 @@ class CodeMirrorRenderer extends Component {
     return (
       <CodeMirror
         onBeforeChange={this.updateCode}
-        onChange={this.handleFold}
         options={options}
         value={this.props.code}
       />

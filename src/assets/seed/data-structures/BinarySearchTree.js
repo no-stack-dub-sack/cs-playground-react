@@ -33,56 +33,7 @@ class BinarySearchTree {
 }
 `,
   solution:
-`// queue helper class node
-class QNode {
-    constructor(value) {
-        this.value = value;
-        this.next = null;
-    }
-}
-
-// helper class for levelOrder and reverseLevelOrder methods
-class Queue {
-    constructor() {
-        this.root = null;
-    }
-
-    enqueue(value) {
-        if (!this.root) {
-            this.root = new QNode(value);
-            return;
-        }
-
-        let node = this.root;
-        while (node.next) {
-            node = node.next;
-        }
-
-        node.next = new QNode(value);
-    }
-
-    dequeue() {
-        if (!this.root) {
-            return null;
-        }
-        let value = this.root.value;
-        this.root = this.root.next;
-
-        return value;
-    }
-
-    get isEmpty() {
-        if (!this.root) {
-            return true;
-        }
-
-        return false;
-    }
-}
-
-var q = new Queue();
-
-/**
+`/**
   * @class Node
   * @property value The node's value
   * @property left The node's left child
@@ -397,23 +348,23 @@ class BinarySearchTree {
             return null;
         }
 
-        const arr = [];
-        q.enqueue(this.root);
+        const results = [], q = [];
+        q.push(this.root);
 
-        while (!q.isEmpty) {
-            let node = q.dequeue();
-            arr.push(node.value);
+        while (q.length) {
+            let node = q.shift();
+            results.push(node.value);
 
             if (node.left) {
-                q.enqueue(node.left);
+                q.push(node.left);
             }
 
             if (node.right) {
-                q.enqueue(node.right);
+                q.push(node.right);
             }
         }
 
-        return arr;
+        return results;
     }
 
 
@@ -422,23 +373,24 @@ class BinarySearchTree {
             return null;
         }
 
-        const arr = [];
-        q.enqueue(this.root);
+        const results = [], q = [];
 
-        while (!q.isEmpty) {
-            let node = q.dequeue();
-            arr.push(node.value);
+        q.push(this.root);
+
+        while (q.length) {
+            let node = q.shift();
+            results.push(node.value);
 
             if (node.right) {
-                q.enqueue(node.right);
+                q.push(node.right);
             }
 
             if (node.left) {
-                q.enqueue(node.left);
+                q.push(node.left);
             }
         }
 
-        return arr;
+        return results;
     }
 
 
