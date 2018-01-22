@@ -47,44 +47,24 @@ function mergeCodeStores({ codeStore: initialState }, { codeStore }) {
   ], isEqual);
 }
 
-// identify entries with duplicate ids
-function identifyDuplicates(codeStore) {
-  const indexPairs = [];
+function removeDuplicates(codeStore) {
   for (let i = 0; i < codeStore.length; i++) {
-    const predicate = { id: codeStore[i].id };
-    const secondIdx = findIndex(codeStore, predicate, i+1);
-    if (secondIdx > i)
-      indexPairs.push([i, secondIdx]);
-  }
-  return { indexPairs, codeStore }
-}
-
-// remove superfluous entries, if code str is same as OG
-function removeDuplicates({ indexPairs, codeStore }, initialState) {
-  if (!indexPairs.length) return codeStore;
-  for (let [ idxOne, idxTwo ] of indexPairs) {
-    console.log(idxOne, idxTwo);
-    const OG = initialState[
-      findIndex(
-        initialState,
-        { id: codeStore[idxOne].id }
-      )
-    ].userCode
-    if (codeStore[idxTwo].userCode === OG)
-      codeStore[idxTwo] = null;
-    else if (codeStore[idxOne].userCode === OG)
-      codeStore[idxOne] = null;
+    if (codeStore[i]) {
+      const predicate = { id: codeStore[i].id };
+      while (findIndex(codeStore, predicate, i+1) > i) {
+        const idx = findIndex(codeStore, predicate, i+1);
+        codeStore[idx] = null;
+      }
+    }
   }
 
   return codeStore.filter(challenge => challenge !== null);
 }
 
 // compose utils, return dupe free code store
-export default function(initialState, defaultState) {
+export function composeCodeStore(initialState, defaultState) {
   return removeDuplicates(
-    identifyDuplicates(
-      mergeCodeStores(initialState, defaultState)
-    ),
+    mergeCodeStores(initialState, defaultState),
     initialState.codeStore
   );
 }

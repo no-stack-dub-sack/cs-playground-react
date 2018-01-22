@@ -1,6 +1,6 @@
 import * as types from '../actions/types';
 import { CODE, SOLUTIONS } from '../assets/codeRef'
-import composeCodeStore, { createOrderKey, populateCodeStore } from './utils'
+import { composeCodeStore, createOrderKey, populateCodeStore } from './utils'
 import WELCOME_MESSAGE from '../assets/seed/welcome'
 import { findIndex, indexOf } from 'lodash'
 
@@ -20,6 +20,7 @@ const initialState = {
   codeStore: populateCodeStore(CODE),
   orderKey: createOrderKey(CODE)
 }
+
 
 // reducer's default state is either the initial state or
 // is pulled from local storage, which is set in index.js
