@@ -48,17 +48,6 @@ const panes = (state = defaultState, action) => {
       localStorage.removeItem('cs-pg-react-panesState');
       return initialState;
     case types.DRAG_HORIZONTAL:
-      // HACK: note that this is a bandaid solution to poor responsiveness
-      // for the menu. A better solution less coupled with state is needed
-      // SEE: Menu & Console components for parts 2 & 3 of bandaid
-      if (parseInt(action.leftWidth, 10) < 39) {
-        return {
-          ...state,
-          leftWidth: action.leftWidth,
-          rightWidth: action.rightWidth,
-          transition: '.5s'
-        }
-      }
       return {
         ...state,
         leftWidth: action.leftWidth,

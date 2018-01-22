@@ -9,20 +9,20 @@ export default {
 
     // Methods to Implement:
 
-    addVertex(vertex)
-    removeVertex(vertex)
-    addEdge(source, destination)
-    removeEdge(source, destination)
-    isConnected(vertex, connection)
-    getConnections(vertex)
-    hasVertex(vertex)
-    hasVertices(vertexOne, vertexTwo)
-    clear()
-    isEmpty()
-    size ()
-    breadthFirst(start)
-    depthFirst(start)
-    print()
+    // addVertex(vertex)
+    // removeVertex(vertex)
+    // addEdge(source, destination)
+    // removeEdge(source, destination)
+    // isConnected(vertex, connection)
+    // getConnections(vertex)
+    // hasVertex(vertex)
+    // hasVertices(vertexOne, vertexTwo)
+    // clear()
+    // isEmpty()
+    // size ()
+    // breadthFirst(start)
+    // depthFirst(start)
+    // print()
 }
 `,
   solution:

@@ -12,11 +12,7 @@ const {
   MODERATE_ALGOS
 } = CODE;
 
-const Menu = ({ topHeight, leftWidth, transition }) => {
-  // HACK: note that this is a bandaid solution to poor responsiveness
-  // for the menu. A better solution less coupled with state is needed
-  // SEE: Menu & Console components for parts 2 & 3 of bandaid
-  topHeight = parseInt(leftWidth, 10) < 39 ? '0%' : topHeight
+const Menu = ({ topHeight, transition }) => {
   return (
     <section
       className="sidebar--menu top-pane"
@@ -48,13 +44,11 @@ const Menu = ({ topHeight, leftWidth, transition }) => {
 }
 
 Menu.propTypes = {
-  leftWidth: PropTypes.string.isRequired,
   topHeight: PropTypes.string.isRequired,
   transition: PropTypes.string.isRequired
 }
 
 const mapStateToProps = ({ panes }) => ({
-  leftWidth: panes.leftWidth,
   topHeight: panes.topHeight,
   transition: panes.transition
 });
