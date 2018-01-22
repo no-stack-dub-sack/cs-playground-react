@@ -68,6 +68,12 @@ class Console extends Component {
     const { background, color, icon } = this.state;
     const margin = { marginBottom: -4 };
 
+    // HACK: note that this is a bandaid solution to poor responsiveness
+    // for the menu. A better solution less coupled with state is needed
+    // SEE: Menu & Console components for parts 2 & 3 of bandaid
+    let { leftWidth, bottomHeight } = this.props;
+    bottomHeight = parseInt(leftWidth, 10) < 39 ? '99%' : bottomHeight;
+
     const buttonStyle = {
       background,
       color,
@@ -77,7 +83,7 @@ class Console extends Component {
       <section
         className="sidebar--output bottom-pane"
         style={{
-          height: this.props.bottomHeight,
+          height: bottomHeight,
           transition: this.props.transition
         }}>
         <div id="output" className="sidebar--output--messages">
@@ -102,6 +108,7 @@ class Console extends Component {
 Console.propTypes = {
   bottomHeight: PropTypes.string.isRequired,
   clearConsole: PropTypes.func.isRequired,
+  leftWidth: PropTypes.func.isRequired,
   messages: PropTypes.array.isRequired,
   transition: PropTypes.string.isRequired
 }
@@ -110,11 +117,13 @@ const mapStateToProps = ({
   console: messages,
   panes: {
     bottomHeight,
+    leftWidth,
     transition
   }
 }) => ({
   messages,
   bottomHeight,
+  leftWidth,
   transition
 });
 

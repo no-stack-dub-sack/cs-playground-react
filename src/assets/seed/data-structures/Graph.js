@@ -45,7 +45,7 @@ class Graph {
      * Adds a vertex to the Graph
      *
      * @memberOf Graph
-     * @param {*} vertex The vertex to be added to the Graph
+     * @param {(string|number)}  vertex The vertex to be added to the Graph
      * @returns {boolean} Returns true if vertex was added, otherwise false
      */
     addVertex(vertex) {
@@ -62,7 +62,7 @@ class Graph {
      * Removes a vertex from the Graph
      *
      * @memberOf Graph
-     * @param {*} vertex The vertex to be removed from the Graph
+     * @param {(string|number)}  vertex The vertex to be removed from the Graph
      * @returns {boolean} Returns true if vertex was removed, otherwise false
      */
     removeVertex(vertex) {
@@ -84,8 +84,8 @@ class Graph {
      * Adds an edge/connection between the source & destination vertices
      *
      * @memberOf Graph
-     * @param {*} source The vertex to add the connection to
-     * @param {*} destination The vertex being connected with source
+     * @param {(string|number)}  source The vertex to add the connection to
+     * @param {(string|number)}  destination The vertex being connected with source
      * @returns {boolean} Returns true/false if connection was successful
      */
     addEdge(source, destination) {
@@ -104,8 +104,8 @@ class Graph {
      * Removes an edge/connection between the source & destination vertices
      *
      * @memberOf Graph
-     * @param {*} source The vertex to remove the connection from
-     * @param {*} destination The vertex being disconnected from source
+     * @param {(string|number)}  source The vertex to remove the connection from
+     * @param {(string|number)}  destination The vertex being disconnected from source
      * @returns {boolean} Returns true/false if removal was successful
      */
     removeEdge(source, destination) {
@@ -132,8 +132,8 @@ class Graph {
      * Determines if two vertices share an edge/connection
      *
      * @memberOf Graph
-     * @param {*} vertex The vertex to check
-     * @param {*} connection The vertex being checked against source
+     * @param {(string|number)}  vertex The vertex to check
+     * @param {(string|number)}  connection The vertex being checked against source
      * @returns {boolean} Returns true/false if connection exists
      */
     isConnected(vertex, connection) {
@@ -148,7 +148,7 @@ class Graph {
      * List edges/connections of a given vertex
      *
      * @memberOf Graph
-     * @param {*} vertex The vertex to list connections for
+     * @param {(string|number)}  vertex The vertex to list connections for
      * @returns {Array} Returns an array of the vertex's connections
      */
     getConnections(vertex) {
@@ -161,7 +161,7 @@ class Graph {
      * Determine if the graph has a vertex
      *
      * @memberOf Graph
-     * @param {*} vertex The vertex to check for
+     * @param {(string|number)}  vertex The vertex to check for
      * @returns {boolean} Returns true/false if Graph has vertex
      */
     hasVertex(vertex) {
@@ -172,8 +172,8 @@ class Graph {
      * Internal/external helper to determine if Graph has 2 vertices
      *
      * @memberOf Graph
-     * @param {*} vertexOne The first vertex to check for
-     * @param {*} vertexTwo The second vertex to check for
+     * @param {(string|number)}  vertexOne The first vertex to check for
+     * @param {(string|number)}  vertexTwo The second vertex to check for
      * @returns {boolean} Returns true/false if Graph has vertices
      */
     hasVertices(vertexOne, vertexTwo) {
