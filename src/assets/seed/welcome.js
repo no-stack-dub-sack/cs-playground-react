@@ -53,7 +53,7 @@ __Previous Problem:__  |   \`CMD/CTRL + SHIFT + </,\`
 __Jump to Solution:__  |   \`CMD/CTRL + SHIFT + S\`
 __Run Code:__          |   \`CMD/CTRL + SHIFT + ENTER\`
 __Clear Console:__     |   \`ALT + SHIFT + DELETE/BACKSPACE\`
-__Open Hint List:__    |   \`CTRL + SPACE\` (JSHint / Autocomplete)
+__Open Autocomplete:__ |   \`CTRL + SPACE\`
 
 
 - _KEY BINDINGS_

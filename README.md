@@ -23,7 +23,7 @@ The app is currently live here: https://cs-playground-react.surge.sh/
   - Jump to solution/seed: <kbd>CTRL/CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>S</kbd>
   - Run code: <kbd>CTRL/CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>ENTER</kbd>
   - Clear Console: <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>DELTE/BACKSPACE</kbd>
-  - Open autocomplete / JSHint dropdown: <kbd>CTRL</kbd> + <kbd>SPACE</kbd>
+  - Open autocomplete dropdown: <kbd>CTRL</kbd> + <kbd>SPACE</kbd>
 
 ### NOTE:
 The [JSDoc](https://github.com/jsdoc3/jsdoc)-like documentation found throughout the editor's files are just that: JSDoc-_like_. These comments would not produce proper documentation if the JSDoc utility was ran on these source files. Proper JSDoc would have meant overcrowding the code itself with comments, which, for the purposes of this project, I did not want to do. These comments, instead, loosely follow the JSDoc style, and are just meant as a recognizable reference for users, so that they can easily see how each function, parameter, class, property, and method is meant to be used.

@@ -23,6 +23,11 @@ import './styles/app.css';
   * fixed codeStore bug
   * prevent text highlighting on divider drag
   * toggle solution shortcut keys
+  * Editor enhancements:
+      * Autocomplete
+      * linter suppressions
+      * gutter linter warnings
+      * match selection
   */
 
 // TODO: LODASH INRANGE PANES REDUCER CASE
@@ -30,12 +35,10 @@ import './styles/app.css';
 // TODO: IMPORTANT - FIX MENU ITERATION... doubly linked list? / flatten CODE array
 
 /** TODO:
+  * ADDRESS THE FACT THAT SOME SEED CODE HAS CHANGED!!!! Shit....
   * add // SUPPRESS TESTS comment to all user code
-  * CONSOLIDATE TESTS WITH MULTI-MESSAGING!!!
   * add arguments to methods to implement
   * remove semi-colons
-  * toggle editor theme!
-  * add Menu Searh / Filter - POST RELEASE!!
   * add replacement util to update changed method names in user code (e.g. hasher to hash)
   * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:
@@ -43,10 +46,15 @@ import './styles/app.css';
       - no match for remove method, return null and don't decrement
   * any other LL fixes???
   * add return null if element exists to all LL
-  * fix JSDoc comments to true JSDoc style??
-  * rework application structure, add most state to top level
-  * refactor modal into separate components: announcement, resources
-  * find a way around below hack
+  *
+  *
+  * POST UPDATE RELEASE:
+      * toggle editor theme
+      * add Menu Searh / Filter
+      * switch to real JSDoc, provide Markdown docs 
+      * refactor modal into separate components: announcement, resources
+      * rework application structure, add most state to top level
+      * find a way around below hack
   */
 
 // HACK: For preventing text highlighting on mousemove when

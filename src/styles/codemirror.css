@@ -9,6 +9,7 @@
 
 .CodeMirror .cm-matchhighlight {
   background: rgba(222, 153, 174, 0.2);
+  outline: .5px solid rgba(255, 255, 255, 0.6);
 }
 
 .CodeMirror div.CodeMirror-cursor {
