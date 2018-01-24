@@ -1,3 +1,8 @@
+# General
+Here's a great blog and compendium repo about computer science concepts in JavaScript, with posts covering many (if not all) of the concepts covered in this app (in both ES5 and ES6): 
+- https://github.com/benoitvallon/computer-science-in-javascript/tree/master/data-structures-in-javascript
+- http://blog.benoitvallon.com/
+
 # Sorting Algorithms
 
 ### Quicksort

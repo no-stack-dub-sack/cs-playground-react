@@ -30,13 +30,11 @@ import './styles/app.css';
       * match selection
   */
 
-// TODO: LODASH INRANGE PANES REDUCER CASE
-
 // TODO: IMPORTANT - FIX MENU ITERATION... doubly linked list? / flatten CODE array
 
-/** TODO:
-  * ADDRESS THE FACT THAT SOME SEED CODE HAS CHANGED!!!! Shit....
+/** TODO:.
   * add // SUPPRESS TESTS comment to all user code
+  * add type annotations to arguments in test messages
   * add arguments to methods to implement
   * remove semi-colons
   * add replacement util to update changed method names in user code (e.g. hasher to hash)
@@ -47,11 +45,10 @@ import './styles/app.css';
   * any other LL fixes???
   * add return null if element exists to all LL
   *
-  *
   * POST UPDATE RELEASE:
       * toggle editor theme
       * add Menu Searh / Filter
-      * switch to real JSDoc, provide Markdown docs 
+      * switch to real JSDoc, provide Markdown docs
       * refactor modal into separate components: announcement, resources
       * rework application structure, add most state to top level
       * find a way around below hack

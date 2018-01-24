@@ -2,9 +2,9 @@ export default {
     title: 'Graph',
     seed:
 `class Graph {
-    constructor(vertices) {
-        this.vertices = vertices;
-        this.list = new Map();
+    constructor() {
+        this.list = new Map()
+        this.numEdges = 0
     }
 
     // Methods to Implement:
@@ -13,7 +13,7 @@ export default {
     // removeVertex(vertex)
     // addEdge(source, destination)
     // removeEdge(source, destination)
-    // isConnected(vertex, connection)
+    // isDirectConnection(vertex, connection)
     // getConnections(vertex)
     // hasVertex(vertex)
     // hasVertices(vertexOne, vertexTwo)
@@ -34,26 +34,25 @@ class Graph {
      * Creates empty Map to store key-value pairs
      *
      * @property {Object} list
-     * @property {number} numVertices Number of vertices in the Graph
+     * @property {number} numEdges Number of edges/connections in the Graph
      */
     constructor() {
         this.list = new Map()
-        this.numVertices = 0
+        this.numEdges = 0
     }
 
     /**
      * Adds a vertex to the Graph
      *
      * @memberOf Graph
-     * @param {(string|number)}  vertex The vertex to be added to the Graph
-     * @returns {boolean} Returns true if vertex was added, otherwise false
+     * @param {(string|number)} vertex The vertex to be added to the Graph
+     * @returns {boolean} Returns true/false if vertex was added
      */
     addVertex(vertex) {
         return this.list.has(vertex)
           ? false
           : (
             this.list.set(vertex, []),
-            this.numVertices++,
             true
         )
     }
@@ -62,14 +61,13 @@ class Graph {
      * Removes a vertex from the Graph
      *
      * @memberOf Graph
-     * @param {(string|number)}  vertex The vertex to be removed from the Graph
-     * @returns {boolean} Returns true if vertex was removed, otherwise false
+     * @param {(string|number)} vertex The vertex to be removed from the Graph
+     * @returns {boolean} Returns true/false if vertex was removed
      */
     removeVertex(vertex) {
         return !this.list.has(vertex)
-          ? null
+          ? false
           : (
-            this.numVertices--,
             // remove map[vertex]
             this.list.delete(vertex),
             // remove associated edges
@@ -84,16 +82,17 @@ class Graph {
      * Adds an edge/connection between the source & destination vertices
      *
      * @memberOf Graph
-     * @param {(string|number)}  source The vertex to add the connection to
-     * @param {(string|number)}  destination The vertex being connected with source
+     * @param {(string|number)} source The vertex to add the connection to
+     * @param {(string|number)} destination The vertex being connected with source
      * @returns {boolean} Returns true/false if connection was successful
      */
     addEdge(source, destination) {
         return (
             !this.hasVertices(source, destination) ||
-            this.isConnected(source, destination)
+            this.isDirectConnection(source, destination)
         ) ? false
           : (
+            this.numEdges++,
             this.list.get(source).push(destination),
             this.list.get(destination).push(source),
             true
@@ -104,16 +103,17 @@ class Graph {
      * Removes an edge/connection between the source & destination vertices
      *
      * @memberOf Graph
-     * @param {(string|number)}  source The vertex to remove the connection from
-     * @param {(string|number)}  destination The vertex being disconnected from source
+     * @param {(string|number)} source The vertex to remove the connection from
+     * @param {(string|number)} destination The vertex being disconnected from source
      * @returns {boolean} Returns true/false if removal was successful
      */
     removeEdge(source, destination) {
         return (
             !this.hasVertices(source, destination) ||
-            !this.isConnected(source, destination)
-        ) ? null
+            !this.isDirectConnection(source, destination)
+        ) ? false
           : (
+            this.numEdges--,
             this.list.set(
                 source,
                 this.list.get(source)
@@ -132,14 +132,14 @@ class Graph {
      * Determines if two vertices share an edge/connection
      *
      * @memberOf Graph
-     * @param {(string|number)}  vertex The vertex to check
-     * @param {(string|number)}  connection The vertex being checked against source
-     * @returns {boolean} Returns true/false if connection exists
+     * @param {(string|number)} source The vertex to check
+     * @param {(string|number)} connection The vertex being checked against source
+     * @returns {boolean} Returns true/false if vertices share an edge
      */
-    isConnected(vertex, connection) {
-        return this.list.has(vertex)
+    isDirectConnection(source, connection) {
+        return this.list.has(source)
             ? this.list
-                .get(vertex)
+                .get(source)
                 .indexOf(connection) !== -1
             : false
     }
@@ -148,8 +148,8 @@ class Graph {
      * List edges/connections of a given vertex
      *
      * @memberOf Graph
-     * @param {(string|number)}  vertex The vertex to list connections for
-     * @returns {Array} Returns an array of the vertex's connections
+     * @param {(string|number)} vertex The vertex to list connections for
+     * @returns {(Array|null)} Returns an array of connections or null if vertex does not exist
      */
     getConnections(vertex) {
         return this.list.has(vertex)
@@ -161,7 +161,7 @@ class Graph {
      * Determine if the graph has a vertex
      *
      * @memberOf Graph
-     * @param {(string|number)}  vertex The vertex to check for
+     * @param {(string|number)} vertex The vertex to check for
      * @returns {boolean} Returns true/false if Graph has vertex
      */
     hasVertex(vertex) {
@@ -172,8 +172,8 @@ class Graph {
      * Internal/external helper to determine if Graph has 2 vertices
      *
      * @memberOf Graph
-     * @param {(string|number)}  vertexOne The first vertex to check for
-     * @param {(string|number)}  vertexTwo The second vertex to check for
+     * @param {(string|number)} vertexOne The first vertex to check for
+     * @param {(string|number)} vertexTwo The second vertex to check for
      * @returns {boolean} Returns true/false if Graph has vertices
      */
     hasVertices(vertexOne, vertexTwo) {
@@ -189,8 +189,8 @@ class Graph {
      * @memberOf Graph
      */
     clear() {
-        this.numVerticies = 0
         this.list.clear()
+        this.numEdges = 0
     }
 
     /**
@@ -212,21 +212,64 @@ class Graph {
      * @returns {number} Returns number of vertices in Graph
      */
     get size () {
-      return this.numVertices
+      return this.list.size
+    }
+
+    /**
+     * Determines the first resolvable path between two vertices
+     *
+     * @memberOf Graph
+     * @param {(string|number)} from The vertex to begin traversal from
+     * @param {(string|number)} to The vertex to traverse to
+     * @returns {string} Returns a string representing the first resolvable path, e.g. 'A -> B -> C'
+     */
+    pathFromTo(from, to) {
+        if (!this.hasVertices(from, to))
+            return null
+
+        const visited = {}
+
+        const resolvePath = (vertex, results = []) => {
+
+            results.push(vertex)
+            visited[vertex] = true
+            const adjList = this.list.get(vertex)
+
+            if (adjList.includes(to)) {
+                results.push(to)
+                return results.join(' -> ')
+            }
+
+            for (let el of adjList) {
+                if (!visited[el]) {
+                    return resolvePath(el, results)
+                }
+            }
+
+            console.log(
+              \`Path from \${from} to \${to} does not exist\`
+            )
+
+            return null
+        }
+
+        return resolvePath(from)
     }
 
     /**
      * Explore the Graph using a breadth-first search
      *
      * @memberOf Graph
+     * @param {(number|string)} start The vertex to begin traversal from
      * @returns {Array} Returns an array of vertices visited in BF order
      */
     breadthFirst(start){
+        if (!this.hasVertex(start))
+            return null
 
-        const visited = {}, results = [], queue = []
-
-        visited[start] = true
-        queue.push(start)
+        const visited = { [start]: true },
+              queue = [ start ],
+              results = []
 
         while (queue.length) {
             const nextVertex = queue.shift()
@@ -250,11 +293,14 @@ class Graph {
      * Explore the Graph using a depth-first search
      *
      * @memberOf Graph
+     * @param {(number|string)} start The vertex to begin traversal from
      * @returns {Array} Returns an array of vertices visited in DF order
      */
     depthFirst(start) {
+        if (!this.hasVertex(start))
+            return null
 
-        var visited = {}
+        const visited = {}
 
         const traverse = (vertex, results = []) => {
 
@@ -311,12 +357,14 @@ graph.addEdge('Rat', 'Ox') // dupe connection not added
 
 graph.print()
 
+console.log('Path from Rat to Snake:', graph.pathFromTo('Rat', 'Snake'))
+
 console.log('\\nSearches:')
 console.log('Depth First:', graph.depthFirst('Rat'))
 console.log('Breadth First:', graph.breadthFirst('Rat'))
 
-if (graph.isConnected('Rat', 'Dragon') &&
-    graph.isConnected('Dragon', 'Snake')
+if (graph.isDirectConnection('Rat', 'Dragon') &&
+    graph.isDirectConnection('Dragon', 'Snake')
    ) {
     graph.removeEdge('Rat', 'Dragon')
     graph.removeEdge('Snake', 'Dragon')
@@ -325,7 +373,7 @@ if (graph.isConnected('Rat', 'Dragon') &&
 console.log('\\nhandle removing non-existing connection:')
 console.log('graph.removeEdge(\\'Dragon\\', \\'Ox\\') ===', graph.removeEdge('Dragon', 'Ox'))
 
-if (graph.isConnected('Tiger', 'Dragon')) {
+if (graph.isDirectConnection('Tiger', 'Dragon')) {
 	console.log('\\nTiger\\'s connections:', graph.getConnections('Tiger'))
 	console.log('Dragon\\'s connections:', graph.getConnections('Dragon'))
 }

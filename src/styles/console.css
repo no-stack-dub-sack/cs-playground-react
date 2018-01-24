@@ -1,7 +1,6 @@
 .sidebar--output.bottom-pane {
   margin: 0;
   position: relative;
-  /* transition: .2s; */
 }
 
 .sidebar--output--messages {
@@ -41,7 +40,20 @@
   color: #787577;
 }
 
+.type {
+  color: rgb(241, 246, 9);
+}
+
 code {
   color: #787577;
   font-style: italic;
+}
+
+a {
+  color: #248064;
+  transition: .5s;
+}
+
+a:hover {
+  color: #46bc99;
 }
