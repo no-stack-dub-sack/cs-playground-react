@@ -29,6 +29,6 @@ export default (code, id) => {
     );
 
   } catch (e) {
-    console.log(`Test Suite Failed To Run: ${e.toString()}`)
+    console.log(e.toString())
   }
 }
