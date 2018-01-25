@@ -1,5 +1,5 @@
 # General
-Here's a great blog and compendium repo about computer science concepts in JavaScript, with posts covering many (if not all) of the concepts covered in this app (in both ES5 and ES6): 
+Here's a great blog and compendium repo about computer science concepts in JavaScript, with posts covering many (if not all) of the concepts covered in this app (in both ES5 and ES6):
 - https://github.com/benoitvallon/computer-science-in-javascript/tree/master/data-structures-in-javascript
 - http://blog.benoitvallon.com/
 
@@ -122,6 +122,7 @@ Here's a great blog and compendium repo about computer science concepts in JavaS
 ### Graphs
 http://www.geeksforgeeks.org/graph-and-its-representations/
 http://www.geeksforgeeks.org/implementation-graph-javascript/
+http://blog.benoitvallon.com/data-structures-in-javascript/the-graph-data-structure/
 https://en.wikipedia.org/wiki/Adjacency_list
 https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html __(interactive visualization)__
 
