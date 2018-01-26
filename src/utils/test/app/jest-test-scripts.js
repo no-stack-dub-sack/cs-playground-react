@@ -11,18 +11,26 @@ const suppressConsole = () => ({
   }
 });
 
-function executeTests(tests, __beforeEach__) {
+function executeTests(
+  tests,
+  beforeAll = null,
+  beforeEach = null,
+  afterEach = null
+) {
   let passed = true;
   const results = [];
   /* eslint-disable no-unused-vars */
   const isTestDisabled = require('../common/is-test-disabled');
   /* eslint-enable no-unused-vars */
+  beforeAll && beforeAll()
   if (tests) {
+    beforeAll && beforeAll()
     tests.forEach(test => {
       try {
-        __beforeEach__ && __beforeEach__();
+        beforeEach && beforeEach()
         // eslint-disable-next-line
         expect(eval(test.expression)).toBe(true);
+        afterEach && afterEach()
         results.push('Pass: ' + test.message)
       } catch (e) {
         results.push('Fail: ' + test.message);

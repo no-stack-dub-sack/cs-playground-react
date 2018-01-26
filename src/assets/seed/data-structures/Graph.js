@@ -83,6 +83,7 @@ class Graph {
 
     /**
      * Adds an edge/connection between the source & destination vertices
+     * As an undirected graph, the connection must exist both ways
      *
      * @memberOf Graph
      * @param {(string|number)} source The vertex to add the connection to
@@ -143,7 +144,7 @@ class Graph {
         return this.hasVertex(source)
             ? this.list
                 .get(source)
-                .indexOf(connection) !== -1
+                .includes(connection)
             : false
     }
 

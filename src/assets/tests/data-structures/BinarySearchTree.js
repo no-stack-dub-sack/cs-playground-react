@@ -42,18 +42,31 @@ if (typeof new BinarySearchTree() === 'object') {
     this.root = null;
     return true;
   }
-}
-
-const checkNodes = (tree) => {
-  if (typeof tree.root.value === 'undefined' ||
-      typeof tree.root.right === 'undefined' ||
-      typeof tree.root.left === 'undefined') {
-    console.log('WARNING: Nodes must have <code>value</code>, <code>left</code> and <code>right</code> properties for tests to work!');
+  BinarySearchTree.prototype.__isNodeValid__ = function() {
+    if (typeof this.root.value === 'undefined' ||
+        typeof this.root.right === 'undefined' ||
+        typeof this.root.left === 'undefined') {
+      console.log(
+        'WARNING: Nodes must have <code>value</code>, <code>left</code> and <code>right</code> properties for tests to work!'
+      )
+    }
   }
 }
 
 const __tree__ = new BinarySearchTree();
-const __beforeEach__ = () => __tree__.__clearTree__();
+
+let oldConsoleLog = null
+
+const testHooks = {
+  beforeEach: function() {
+    __tree__.__clearTree__()
+    oldConsoleLog = console.log
+    console.log = () => {}
+  },
+  afterEach: () => {
+    console.log = oldConsoleLog
+  }
+}
 `;
 
 export const tests = [
@@ -80,7 +93,7 @@ export const tests = [
       __tree__.add(45);
       __tree__.add(73);
       __tree__.add(8);
-      checkNodes(__tree__);
+      __tree__.__isNodeValid__()
       return (__tree__.__isBinarySearchTree__());
     })()
     `,
@@ -160,7 +173,7 @@ export const tests = [
     message: 'The <code>isPresent</code> method correctly checks for the presence or absence of elements added to the tree'
   },
   {
-    expression: `__tree__.__clearTree__() && __tree__.isPresent(5) === false`,
+    expression: `__tree__.isPresent(5) === false`,
     message: '<code>isPresent</code> handles cases where the tree is empty'
   },
   {
@@ -168,7 +181,7 @@ export const tests = [
     message: 'The binary search tree has a method called <code>remove</code>'
   },
   {
-    expression: `__tree__.__clearTree__() && __tree__.remove(100) === null`,
+    expression: `__tree__.remove(100) === null`,
     message: 'The <code>remove</code> method returns <code>null</code> for an empty tree'
   },
   {

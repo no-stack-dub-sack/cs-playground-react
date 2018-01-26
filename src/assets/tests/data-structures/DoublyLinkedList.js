@@ -28,16 +28,15 @@ if (typeof new DoublyLinkedList() === 'object') {
       return result.join('');
     };
   }
-}
-
-  const checkNodes = (list) => {
-    if (typeof list.head.next === 'undefined' ||
-        typeof list.head.prev === 'undefined' ||
-        typeof list.head.value === 'undefined') {
+  DoublyLinkedList.prototype.__isNodeValid__ = function() {
+    if (typeof this.head.next === 'undefined' ||
+        typeof this.head.prev === 'undefined' ||
+        typeof this.head.value === 'undefined') {
       console.log('WARNING: Nodes must have <code>next</code>, <code>prev</code> and <code>value</code> properties for tests to work!');
       return null;
     }
   }
+}
 `;
 
 export const tests = [
@@ -58,7 +57,7 @@ export const tests = [
     (() => {
       const list = new DoublyLinkedList();
       list.add('cat');
-      checkNodes(list);
+      list.__isNodeValid__()
       return list.head.value === 'cat' && list.tail.value === 'cat';
     })()`,
     message: 'The <code>add</code> method should assign the first node added to the <code>head</code> and <code>tail</code> properties.'

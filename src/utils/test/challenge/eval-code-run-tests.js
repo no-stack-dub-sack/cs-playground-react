@@ -1,14 +1,15 @@
-import executeTests from './execute-tests';
-import { SUPPRESS_TESTS } from '../../regexp';
-import TESTS from '../../../assets/testRef';
+import executeTests from './execute-tests'
+import { SUPPRESS_TESTS } from '../../regexp'
+import TESTS from '../../../assets/testRef'
 
 // TODO: remove check for tests once all challenges have tests
 
 export default (code, id) => {
   try {
     /* eslint-disable no-unused-vars */
-    const assert = require('assert');
-    const isTestDisabled = require('../common/is-test-disabled');
+    const assert = require('assert')
+    const logTestReport = require('./testReport')
+    const isTestDisabled = require('../common/is-test-disabled')
     /* eslint-enable no-unused-vars */
 
     let prepend = 'const tests = ', tail = '', tests = ''

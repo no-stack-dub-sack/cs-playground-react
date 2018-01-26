@@ -10,7 +10,12 @@ if (typeof new HashTable() === 'object') {
 }
 
 const __table__ = new HashTable();
-const __beforeEach__ = () => __table__.__clearTable__();
+
+const testHooks = {
+  beforeEach: () => {
+    __table__.__clearTable__()
+  }
+}
 
 const isProperlyHashed = (tests, index) => {
   if (!__table__.collection[1363]) {

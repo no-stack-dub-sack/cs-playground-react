@@ -19,8 +19,13 @@ export const concatTests = (
       ${tail}
       const tests = ${tests};
       ${__executeTests__}
-      return typeof __beforeEach__ === 'function'
-      ? executeTests(tests, __beforeEach__)
+      return typeof testHooks !== 'undefined'
+      ? executeTests(
+          tests,
+          testHooks.beforeAll,
+          testHooks.beforeEach,
+          testHooks.afterEach
+        )
       : executeTests(tests);
     })();
   `;
@@ -29,12 +34,12 @@ export const concatTests = (
 export const logResults = (passed, results, id) => {
   if (!passed) {
     console.log(chalk.keyword('salmon').underline(id + ':'));
-    results.forEach(t => {
-      if (t[0] === 'F') {
-        console.log(chalk.red(t));
-      } else {
-        console.log(t);
-      }
-    });
+    results.forEach(t => t[0] === 'F'
+      ? console.log(chalk.red(t))
+      : console.log(t)
+    )
+  } else {
+    // console.log(chalk.keyword('salmon').underline(id + ':'));
+    // results.forEach(t => console.log(t))
   }
 }
