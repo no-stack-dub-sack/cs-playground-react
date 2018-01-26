@@ -15,12 +15,13 @@ function executeTests(
   tests,
   beforeAll = null,
   beforeEach = null,
-  afterEach = null
+  afterEach = null,
+  afterAll = null
 ) {
   let passed = true;
   const results = [];
   /* eslint-disable no-unused-vars */
-  const isTestDisabled = require('../common/is-test-disabled');
+  const isTestDisabled = require('../common/is-test-disabled')
   /* eslint-enable no-unused-vars */
   beforeAll && beforeAll()
   if (tests) {
@@ -29,16 +30,17 @@ function executeTests(
       try {
         beforeEach && beforeEach()
         // eslint-disable-next-line
-        expect(eval(test.expression)).toBe(true);
+        expect(eval(test.expression)).toBe(true)
         afterEach && afterEach()
         results.push('Pass: ' + test.message)
       } catch (e) {
-        results.push('Fail: ' + test.message);
+        results.push('Fail: ' + test.message)
         passed = false;
       }
     });
   }
-  return { passed, results };
+  afterAll && afterAll()
+  return { passed, results }
 }
 
 export const __suppressConsole__ = suppressConsole.toString();

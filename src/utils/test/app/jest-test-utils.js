@@ -24,7 +24,8 @@ export const concatTests = (
           tests,
           testHooks.beforeAll,
           testHooks.beforeEach,
-          testHooks.afterEach
+          testHooks.afterEach,
+          testHooks.afterAll
         )
       : executeTests(tests);
     })();

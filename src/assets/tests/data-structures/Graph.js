@@ -11,17 +11,24 @@ if (typeof new Graph() === 'object') {
   }
 }
 
-const __graph__ = new Graph()
-let oldConsoleLog = null
+let __graph__
+let oldConsoleLog = console.log
 
 const testHooks = {
-  beforeEach: function() {
-    oldConsoleLog = console.log
+  beforeAll: () => {
+    __graph__ = new Graph()
+  },
+  beforeEach: () => {
     console.log = () => {}
     __graph__.__clearGraph__()
+    typeof __graph__.addVertex === 'function' &&
+      ['A', 'B', 'C', 1, 2, 3].forEach(v => __graph__.addVertex(v))
   },
   afterEach: () => {
     console.log = oldConsoleLog
+  },
+  afterAll: () => {
+    __graph__ = null
   }
 }
 `;
@@ -31,7 +38,10 @@ export const tests = [
     message: `The <code>Graph</code> data structure exists`
   },
   {
-    expression: `Object.prototype.toString.call(__graph__.list) === '[object Map]' && __graph__.list.size === 0 && __graph__.numEdges === 0`,
+    expression: `(() => {
+      const __newGraph__ = new Graph()
+      return Object.prototype.toString.call(__newGraph__.list) === '[object Map]' && __newGraph__.list.size === 0 && __newGraph__.numEdges === 0
+    })()`,
     message: `The <code>Graph</code> data structure has list and <code>numEdges</code> properties which initialize to a new <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" rel="noopener noreferrer" target="_blank">Map</a></code> and <code>0</code> respectively`
   },
   {
@@ -40,10 +50,7 @@ export const tests = [
   },
   {
     expression: `(() => {
-      __graph__.addVertex('A')
-      __graph__.addVertex('B')
-      __graph__.addVertex('C')
-      return __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]]]';
+      return __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]';
     })()`,
     message: `The <code>addVertex</code> method should add unique entries to the the Graph's internal Map object; the given vertex as the key, and an empty array (initalized adjacency list) as the value`
   },
@@ -53,28 +60,57 @@ export const tests = [
   },
   {
     expression: `(() => {
-      __graph__.addVertex(1)
-      __graph__.addVertex('B')
-      __graph__.addVertex(3)
-      __graph__.addEdge(1, 'B')
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
-      __graph__.addEdge(3, 'B')
-      return __graph__.__printAsJSON__() === '[[1,["B",3]],["B",[1,3]],[3,[1,"B"]]]'
+      __graph__.addEdge('A', 'B')
+      __graph__.addEdge('C', 'A')
+      return __graph__.__printAsJSON__() === '[["A",["B","C"]],["B",[3,"A"]],["C",["A"]],[1,[3]],[2,[]],[3,[1,"B"]]]'
     })()`,
     message: `The <code>addEdge</code> method adds an edge, or connection, between two existing vertices by adding the destination vertex to the source vertex's corresponding adjacency list, and vice versa`
   },
   {
     expression: `(() => {
-      __graph__.addVertex(1)
-      __graph__.addVertex('B')
       __graph__.addEdge(1, 'B')
       return __graph__.addEdge(1, 'B') === false && // duplicate edge
-             __graph__.addEdge(1, 'C') === false && // second arg is not vertex
-             __graph__.addEdge('D', 'B') === false && // first arg is not vertex
-             __graph__.__printAsJSON__() === '[[1,["B"]],["B",[1]]]'
+             __graph__.addEdge(1, 'Hi') === false && // second arg is not vertex
+             __graph__.addEdge('Yo', 'B') === false && // first arg is not vertex
+             __graph__.__printAsJSON__() === '[["A",[]],["B",[1]],["C",[]],[1,["B"]],[2,[]],[3,[]]]'
     })()`,
     message: `The <code>addEdge</code> method returns <code>false</code> and does not add a connection if an edge between the given vertices already exists, or if either of the given vertices do not exist`
+  },
+  {
+    expression: `(() => {
+      __graph__.addEdge(1, 3)
+      __graph__.addEdge('B', 3)
+      const test_1 = __graph__.numEdges === 2
+      __graph__.addEdge('A', 'B')
+      __graph__.addEdge('C', 'A')
+      return test_1 && __graph__.numEdges === 4
+    })()`,
+    message: `The <code>addEdge</code> method increments the graph's <code>numEdges</code> property by one for each edge added to the graph`
+  },
+  {
+    expression: `typeof __graph__.removeVertex === 'function'`,
+    message: `The <code>Graph</code> class has a <code>removeVertex</code> method: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
+  },
+  {
+    expression: `(() => {
+      __graph__.removeVertex('A')
+      return __graph__.__printAsJSON__() === '[["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]';
+    })()`,
+    message: `The <code>removeVertex</code> method removes the given vertex from the graph`
+  },
+  {
+    expression: `(() => {
+      __graph__.addVertex('A') // huh??????
+      __graph__.addEdge(1, 3)
+      __graph__.addEdge('B', 3)
+      __graph__.addEdge('A', 'B')
+      __graph__.addEdge('C', 'A')
+      __graph__.removeVertex('A')
+      return __graph__.__printAsJSON__() === '[["B",[3]],["C",[]],[1,[3]],[2,[]],[3,[1,"B"]]]';
+    })()`,
+    message: `The <code>removeVertex</code> method removes any edges/connections associated with the given vertex from the graph`
   },
   // {
   //   expression: ``,

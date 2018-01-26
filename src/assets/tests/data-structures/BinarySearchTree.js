@@ -55,12 +55,11 @@ if (typeof new BinarySearchTree() === 'object') {
 
 const __tree__ = new BinarySearchTree();
 
-let oldConsoleLog = null
+let oldConsoleLog = console.log
 
 const testHooks = {
   beforeEach: function() {
     __tree__.__clearTree__()
-    oldConsoleLog = console.log
     console.log = () => {}
   },
   afterEach: () => {
