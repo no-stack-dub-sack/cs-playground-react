@@ -36,7 +36,7 @@ function executeTests(
           // assert w/ method
           assert[test.method](
             eval(test.expression),
-            eval(test.expected),
+            test.expected,
             test.message
           )
         } else {

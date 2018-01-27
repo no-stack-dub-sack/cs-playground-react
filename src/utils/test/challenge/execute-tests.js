@@ -32,7 +32,7 @@ function executeTests(
             // assert w/ method
             assert[test.method](
               eval(test.expression),
-              eval(test.expected),
+              test.expected,
               test.message
             )
           } else {
@@ -54,9 +54,9 @@ function executeTests(
           console.log('<code>' + e.message + ': ' + test.message + '</code>')
         }
         // ONLY FOR DEV TO DEBUG TESTS:
-        else if (e.message !== test.message) {
-          console.log('Fail: ' + e.message)
-        }
+        // else if (e.message !== test.message) {
+        //   console.log('Fail: ' + e.message)
+        // }
         else {
           // log just failure message
           console.log('Fail: ' + test.message)

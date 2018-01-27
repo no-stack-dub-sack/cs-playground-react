@@ -9,6 +9,9 @@ if (typeof new Graph() === 'object') {
       [...this.list.entries()]
     )
   }
+  Graph.prototype.__entries__ = function() {
+    return [...this.list.entries()]
+  }
 }
 
 let __graph__
@@ -19,10 +22,10 @@ const testHooks = {
     __graph__ = new Graph()
   },
   beforeEach: () => {
-    console.log = () => {};
-    __graph__.__clearGraph__();
+    console.log = () => {}
+    __graph__.__clearGraph__()
     typeof __graph__.addVertex === 'function' &&
-      ['A', 'B', 'C', 1, 2, 3].forEach(v => __graph__.addVertex(v));
+      ['A', 'B', 'C', 1, 2, 3].forEach(v => __graph__.addVertex(v))
   },
   afterEach: () => {
     console.log = oldConsoleLog
@@ -49,9 +52,9 @@ export const tests = [
     message: `The <code>Graph</code> class has an <code>addVertex</code> method: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
   },
   {
-    expression: `(() => {
-      return __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]';
-    })()`,
+    method: 'deepEqual',
+    expression: `__graph__.__entries__()`,
+    expected: [["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]],
     message: `The <code>addVertex</code> method should add unique entries to the the Graph's internal Map object; the given <code>vertex</code> as the key, and an empty array (initalized adjacency list) as the value`
   },
   {
@@ -59,35 +62,36 @@ export const tests = [
     message: `The <code>Graph</code> class has an <code>addEdge</code> method: <span class="type">@param {(string|number)}</span> <code>source</code> <span class="type">@param {(string|number)}</span> <code>destination</code>`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
       __graph__.addEdge('A', 'B')
       __graph__.addEdge('C', 'A')
-      return __graph__.__printAsJSON__() === '[["A",["B","C"]],["B",[3,"A"]],["C",["A"]],[1,[3]],[2,[]],[3,[1,"B"]]]'
+      return __graph__.__entries__()
     })()`,
+    expected: [["A",["B","C"]],["B",[3,"A"]],["C",["A"]],[1,[3]],[2,[]],[3,[1,"B"]]],
     message: `The <code>addEdge</code> method adds an edge, or connection, between two existing vertices by adding the <code>destination</code> vertex to the <code>source</code> vertex's corresponding adjacency list, and vice versa`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 'B')
-      return __graph__.addEdge(1, 'B') === false && // duplicate edge
-             __graph__.addEdge(1, 'Hi') === false && // second arg is not vertex
-             __graph__.addEdge('Yo', 'B') === false && // first arg is not vertex
-             __graph__.__printAsJSON__() === '[["A",[]],["B",[1]],["C",[]],[1,["B"]],[2,[]],[3,[]]]'
+      const test_1 = __graph__.addEdge(1, 'B') === false // duplicate edge
+      const test_2 = __graph__.addEdge(1, 'Hi') === false // second arg is not vertex
+      const test_3 = __graph__.addEdge('Yo', 'B') === false // first arg is not vertex
+      return test_1 && test_2 && test_3 && __graph__.__entries__()
     })()`,
+    expected: [["A",[]],["B",[1]],["C",[]],[1,["B"]],[2,[]],[3,[]]],
     message: `The <code>addEdge</code> method returns <code>false</code> and does not add a connection if an edge between the given vertices already exists, or if either of the given vertices do not exist`
   },
   {
     expression: `(() => {
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
-
       const test_1 = __graph__.numEdges === 2
-
       __graph__.addEdge('A', 'B')
       __graph__.addEdge('C', 'A')
-
       return test_1 && __graph__.numEdges === 4
     })()`,
     message: `The <code>addEdge</code> method increments the graph's <code>numEdges</code> property by one for each edge added to the graph`
@@ -100,27 +104,30 @@ export const tests = [
     method: 'deepEqual',
     expression: `(() => {
       __graph__.removeVertex('A')
-      return [...__graph__.list.entries()]
+      return __graph__.__entries__()
     })()`,
-    expected: '[["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]',
+    expected: [["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]],
     message: `The <code>removeVertex</code> method removes the given <code>vertex</code> from the graph`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
       __graph__.addEdge('A', 'B')
       __graph__.addEdge('C', 'A')
       __graph__.removeVertex('A')
-      return __graph__.__printAsJSON__() === '[["B",[3]],["C",[]],[1,[3]],[2,[]],[3,[1,"B"]]]'
+      return __graph__.__entries__()
     })()`,
+    expected: [["B",[3]],["C",[]],[1,[3]],[2,[]],[3,[1,"B"]]],
     message: `The <code>removeVertex</code> method removes any edges/connections associated with the given <code>vertex</code> from the graph`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
-      return __graph__.removeVertex('J') === false &&
-        __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]'
+      return __graph__.removeVertex('J') === false && __graph__.__entries__()
     })()`,
+    expected: [["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]],
     message: `The <code>removeVertex</code> method does not mutate the graph and returns <code>false</code> if the given <code>vertex</code> does not exist`
   },
   {
@@ -128,6 +135,7 @@ export const tests = [
     message: `The <code>Graph</code> class has a <code>removeEdge</code> method: <span class="type">@param {(string|number)}</span> <code>source</code> <span class="type">@param {(string|number)}</span> <code>destination</code>`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
@@ -137,8 +145,9 @@ export const tests = [
       __graph__.removeEdge(3, 'B')
       __graph__.removeEdge(3, 1)
       __graph__.removeEdge('C', 'A')
-      return __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]'
+      return __graph__.__entries__()
     })()`,
+    expected: [["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]],
     message: `The <code>removeEdge</code> method removes the edge/connection between the given <code>source</code> and <code>destination</code> vertices, and vice versa`
   },
   {
@@ -149,33 +158,25 @@ export const tests = [
       __graph__.addEdge('C', 'A')
       __graph__.removeEdge('B', 'A')
       __graph__.removeEdge(3, 'B')
-
       const test_1 = __graph__.numEdges === 2
-
       __graph__.removeEdge(3, 1)
       __graph__.removeEdge('C', 'A')
-
       const test_2 = __graph__.numEdges === 0
-
-      return test_1 &&
-             test_2 &&
-             __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]'
+      return test_1 && test_2
     })()`,
     message: `The <code>removeEdge</code> method decrements the graph's <code>numEdges</code> property by one for each edge removed from the graph`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 3)
       const test_1 = __graph__.removeEdge(1, 'A') === false
       const test_2 = __graph__.removeEdge('Annoying', 'A') === false
       const test_3 = __graph__.removeEdge('A', 'Test') === false
       const test_4 = __graph__.removeEdge('Logs', 'Logs') === false
-      return test_1 &&
-             test_2 &&
-             test_3 &&
-             test_4 &&
-             __graph__.__printAsJSON__() === '[["A",[]],["B",[]],["C",[]],[1,[3]],[2,[]],[3,[1]]]'
+      return test_1 && test_2 && test_3 && test_4 && __graph__.__entries__()
     })()`,
+    expected: [["A",[]],["B",[]],["C",[]],[1,[3]],[2,[]],[3,[1]]],
     message: `The <code>removeEdge</code> method does not mutate the graph and returns <code>false</code> if the given <code>source</code> and <code>destination</code> vertices do not share an edge or if either of the given vertices do not exist`
   },
   {
@@ -187,16 +188,13 @@ export const tests = [
       const test_1 = typeof __graph__.size === 'function'
         ? __graph__.size() === 6
         : __graph__.size === 6
-
       __graph__.addVertex('P')
       __graph__.addVertex('W')
       __graph__.addVertex('P')
       __graph__.addVertex('W')
-
       const test_2 = typeof __graph__.size === 'function'
         ? __graph__.size() === 8
         : __graph__.size === 8
-
       return test_1 && test_2
     })()`,
     message: `The <code>size</code> method or propery correctly tracks and returns the graph's current size (number of vertices)`
@@ -211,20 +209,16 @@ export const tests = [
       __graph__.addEdge('B', 3)
       __graph__.addEdge('A', 'B')
       __graph__.addEdge('C', 'A')
-
       const test_1 = typeof __graph__.relations === 'function'
         ? __graph__.relations() === 4
         : __graph__.relations === 4
-
       __graph__.addEdge('C', 1)
       __graph__.addEdge('C', 2)
       __graph__.addEdge('C', 1)
       __graph__.addEdge('C', 2)
-
       const test_2 = typeof __graph__.relations === 'function'
         ? __graph__.relations() === 6
         : __graph__.relations === 6
-
       return test_1 && test_2
     })()`,
     message: `The <code>relations</code> method or propery correctly tracks and returns the graph's current number of relations (number of edges/connections)`
@@ -342,13 +336,46 @@ export const tests = [
     })()`,
     message: `The <code>getConnections</code> method returns the adjacency list for the given <code>vertex</code> or <code>null</code> if the vertex doesn't exist: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
   },
-  // {
-  //   expression: `(() => {
-  //     if (isTestDisabled(Graph, 'isEmpty')) return 'DISABLED'
-  //     console.log(__graph__.__printAsJSON__())
-  //   })()`,
-  //   message: ``
-  // },
+  {
+    expression: `(() => {
+      if (isTestDisabled(Graph, 'isEmpty')) return 'DISABLED'
+      const test_1 = __graph__.isEmpty() === false
+      __graph__.__clearGraph__()
+      const test_2 = __graph__.isEmpty() === true
+      return test_1 && test_2
+    })()`,
+    message: `The <code>Graph</code> class has an <code>isEmpty</code> method which returns <code>true</code> if the graph is empty, <code>false</code> if not`
+  },
+  {
+    method: 'deepEqual',
+    expression: `(() => {
+      if (isTestDisabled(Graph, 'clear')) return 'DISABLED'
+      __graph__.clear()
+      return  __graph__.numEdges === 0 && __graph__.__entries__()
+    })()`,
+    expected: [],
+    message: `The <code>Graph</code> class has a <code>clear</code> method which clears the graph's internal Map object and resets the <code>numEdges</code> propery to <code>0</code>`
+  },
+  {
+    expression: `(() => {
+      if (isTestDisabled(Graph, 'hasVertex')) return 'DISABLED'
+      const test_1 = __graph__.hasVertex('A') === true
+      const test_2 = __graph__.hasVertex('J') === false
+      return test_1 && test_2
+    })()`,
+    message: `The <code>Graph</code> class has a <code>hasVertex</code> method which returns <code>true</code> if the graph has the given vertex, <code>false</code> if not: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
+  },
+  {
+    expression: `(() => {
+      if (isTestDisabled(Graph, 'hasVertices')) return 'DISABLED'
+      const test_1 = __graph__.hasVertices('A', 'B') === true
+      const test_2 = __graph__.hasVertices('A', 'J') === false
+      const test_3 = __graph__.hasVertices('J', 'A') === false
+      const test_4 = __graph__.hasVertices('J', 'J') === false
+      return test_1 && test_2 && test_3 && test_4
+    })()`,
+    message: `The <code>Graph</code> class has a <code>hasVertices</code> method which returns <code>true</code> if the graph has both given vertices, <code>false</code> if not: <span class="type">@param {(string|number)}</span> <code>vertexOne</code> <span class="type">@param {(string|number)}</span> <code>vertexTwo</code>`
+  },
   // {
   //   expression: `(() => {
   //     if (isTestDisabled(Graph, '')) return 'DISABLED'
