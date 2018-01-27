@@ -4,7 +4,6 @@ export default {
 `class MaxHeap {
     constructor() {
         this.heap = [];
-        this.length = 0;
     }
 
     // methods to implement
@@ -19,7 +18,6 @@ export default {
 `/**
   * @class MaxHeap
   * @property {number[]} heap The heap's collection
-  * @property {number} length The heap's length
   * @method insert {number} node Inserts number according to max heap principle
   * @method remove @return {number} Returns the max value of the heap
   * @method print Prints the heap to the console
@@ -28,14 +26,12 @@ export default {
 
 class MaxHeap {
     constructor() {
-        this.heap = [];
-        this.length = 0;
+      this.heap = [];
     }
 
 
     insert(node) {
         this.heap.push(node);
-        this.length++;
 
         var swap = (nodeIdx) => {
 
@@ -49,8 +45,8 @@ class MaxHeap {
             }
         };
 
-        if (this.length > 1) {
-            return swap(this.length-1);
+        if (this.heap.length > 1) {
+            return swap(this.heap.length-1);
         }
     }
 
@@ -82,7 +78,6 @@ class MaxHeap {
                 return swap(childIdx);
             }
 
-            this.length--;
             return max;
 
         };
@@ -97,7 +92,7 @@ class MaxHeap {
 
 
     get size() {
-        return this.length;
+        return this.heap.length;
     }
 }
 

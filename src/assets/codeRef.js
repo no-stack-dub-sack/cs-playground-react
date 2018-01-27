@@ -1,3 +1,5 @@
+import { replace } from 'lodash';
+
 import BubbleSort from './seed/algorithms/BubbleSort';
 import BucketSort from './seed/algorithms/BucketSort';
 import HeapSort from './seed/algorithms/HeapSort';
@@ -27,7 +29,7 @@ import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard';
 
 // NOTE: order of arrays determines order of sidebar menu
 
-export default {
+export const CODE = {
   SORTING_ALGOS: [
     Quicksort,
     Mergesort,
@@ -61,7 +63,20 @@ export default {
     LongestCommonPrefix,
     NoTwoConsecutiveChars,
     AnagramPalindrome,
-    // SumPrimeFactors,
     // RotateAnImage,
   ]
 };
+
+const createSolutionsRef = () => {
+  const results = {};
+  for (let category in CODE) {
+    CODE[category].forEach(topic => {
+      results[
+        replace(topic.title, /\s/g, '')
+      ] = topic.solution;
+    });
+  }
+  return results;
+}
+
+export const SOLUTIONS = createSolutionsRef();

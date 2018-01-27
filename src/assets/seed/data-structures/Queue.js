@@ -19,7 +19,7 @@ class Queue {
     // dequeue()
     // front()
     // isEmpty()
-    // get size()
+    // size()
 }
 `,
   solution:
@@ -39,44 +39,57 @@ class Node {
 /**
   * @class Queue
   * @property {Object} root The root node of the queue
-  * @method enqueue @param {*} value @param {Object} [node=this.root]
+  * @property {Object} tail The tail node of the queue
+  * @property {number} length The length of the queue
+  * @method enqueue @param {*} value Insert elements into the queue, O(1)
+  * @method enqueueLinearTime @param {*} value Insert elements into the queue, O(n) 
   * @method dequeue @return {*} Removes and returns the front node's value
   * @method front @return {*} Returns but DOES NOT return the front node's value
   * @method isEmpty @return {boolean}
-  * @method size @return {number} Returns the queue's size
+  * @method size @return {number} Returns the queue's length
   */
 
 class Queue {
     constructor() {
         this.root = null;
+        this.tail = null;
+        this.length = 0;
     }
 
 
-    enqueue(value, node = this.root) {
-        if (!node) {
-            this.root = new Node(value);
-            return;
-        }
-
-        if (node.next) {
-            return this.enqueue(value, node.next);
+    /* without a reference to the tail node,
+    this structure would only have O(1) deletion.
+    By simply adding a tail, we can efficiently
+    insert and delete elements from the queue in
+    constant time. See the below method for how
+    this looks in linear, O(n) time. */
+    enqueue(value) {
+        const node = new Node(value);
+        if (!this.root) {
+            this.root = node;
+            this.tail = node;
         } else {
+            this.tail.next = node;
+            this.tail = this.tail.next;
+        }
+        this.length++
+    }
+
+
+    /* We must iterate over the list to
+    enqueue, resulting in O(n) time, a
+    major disadvantage for large lists */
+    enqueueLinearTime(value) {
+        if (!this.root) {
+            this.root = new Node(value);
+        } else {
+            let node = this.root;
+            while (node.next) {
+                node = node.next;
+            }
             node.next = new Node(value);
         }
-    }
-
-
-    enqueueIterative(value, node = this.root) {
-        if (!node) {
-            this.root = new Node(value);
-            return;
-        }
-
-        while (node.next) {
-            node = node.next;
-        }
-
-        node.next = new Node(value);
+        this.length++
     }
 
 
@@ -85,9 +98,9 @@ class Queue {
             return null;
         }
 
+        this.length--;
         const value = this.root.value;
         this.root = this.root.next;
-
         return value;
     }
 
@@ -111,20 +124,11 @@ class Queue {
 
 
     get size() {
-        if (!this.root) {
-            return 0;
-        }
-
-        let size = 1;
-        let node = this.root;
-        while (node.next) {
-            node = node.next;
-            size++;
-        }
-
-        return size;
+        return this.length;
     }
 }
+
+// example usage:
 
 const q = new Queue();
 

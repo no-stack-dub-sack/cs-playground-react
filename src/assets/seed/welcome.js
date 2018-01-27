@@ -31,8 +31,8 @@ to the other, your code will be saved in a couple of ways:
 
 - _RESETTING CODE_
 To re-initialize the global state of the application (and clear all of your saved code), you
-can simply call the \`resetCode()\` function in the editor, and click 'Run Code'. You will be
-prompted with a warning once in the in-browser "mock" console, before the code is actually deleted.
+can simply call the \`resetState()\` function in the editor, and click 'Run Code'. You will be
+prompted with a warning once in the in-browser "mock" console, before the state is actually reset.
 
 
 - _NOT SAVING CODE_
@@ -48,9 +48,12 @@ code, but if you want to clear it at any time, just hit the button!
 - _SHORTCUT KEYS_
 Some basic hotkeys are built in to help you navigate:
 
-__Next Problem:__      |   \`CTRL + SHIFT + >\`
-__Previous Problem:__  |   \`CTRL + SHIFT + <\`
-__Run Code:__          |   \`CTRL + SHIFT + Enter\`
+__Next Problem:__      |   \`CMD/CTRL + SHIFT + >/.\`
+__Previous Problem:__  |   \`CMD/CTRL + SHIFT + </,\`
+__Jump to Solution:__  |   \`CMD/CTRL + SHIFT + S\`
+__Run Code:__          |   \`CMD/CTRL + SHIFT + ENTER\`
+__Clear Console:__     |   \`ALT + SHIFT + DELETE/BACKSPACE\`
+__Open Autocomplete:__ |   \`CTRL + SPACE\`
 
 
 - _KEY BINDINGS_

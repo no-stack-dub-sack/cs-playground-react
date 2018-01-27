@@ -1,8 +1,8 @@
 .sidebar--menu.top-pane {
   overflow-y: auto;
-  height: 70%;
   flex: auto;
   user-select: none;
+  /* transition: .2s ease-in; */
 }
 
 .sidebar--menu--header {
@@ -48,6 +48,7 @@
   padding: 5px;
   margin: 0;
   transition: .2s !important;
+  overflow-x: hidden;
 }
 
 .sidebar--menu--detail--button {

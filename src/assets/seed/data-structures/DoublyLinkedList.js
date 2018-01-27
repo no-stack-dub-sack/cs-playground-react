@@ -3,7 +3,7 @@ export default {
   seed:
 `class Node {
     constructor(value) {
-        this.data = value;
+        this.value = value;
         this.prev = null;
         this.next = null;
     }
@@ -27,20 +27,22 @@ class DoublyLinkedList {
     // indexOf()
     // elementAt()
     // isEmpty()
+    // reverse()
     // size()
 }
 `,
   solution:
 `/**
-  * @class Node
-  * @property {number|string} value The node's value
-  * @property {object} prev The previous node
-  * @property {object} next The next node
-  */
+ * @class Node
+ * @param {*} element
+ * @property {*} element The node's value
+ * @property {object} prev The previous node
+ * @property {object} next The next node
+ */
 
 class Node {
     constructor(value) {
-        this.data = value;
+        this.value = value;
         this.prev = null;
         this.next = null;
     }
@@ -48,19 +50,20 @@ class Node {
 
 /**
  * @class Doubly-Linked List data structure
- * @property {Object} head Root element of collection
- * @property {Object} tail Tail element of collection
+ * @property {Object} head Root element of list
+ * @property {Object} tail Tail element of list
  * @property {number} length The length of the list
- * @method peekHead @return {Object} root element of collection
- * @method peekTail @return {Object} tail element of collection
- * @method add @param {*} element Adds element to List
+ * @method peekHead @return {Object} Peek at root element of list
+ * @method peekTail @return {Object} Peek at tail element of list
+ * @method add @param {*} element Appends element to tail of list
  * @method addAt @param {number} index @param {*} element Adds element at specific index
- * @method remove @param {*} element @return {*} removed element or null
- * @method removeAt @param {number} index @return {*} removed element at specific index or null
- * @method indexOf @param {*} element @return {number} index of a given element or null
- * @method elementAt @param {number} index @return {*} elementAt at specific index or null
- * @method isEmpty @return {boolean}
- * @method size @return size of List
+ * @method remove @param {*} element @return {*} Remove and return element from list, return null if no removal
+ * @method removeAt @param {number} index @return {*} Remove and return element at specific index, or null if no removal
+ * @method indexOf @param {*} element @return {number} Return index of a given element or null if element doesn't exist
+ * @method elementAt @param {number} index @return {*} Return element at specific index or null if element doesn't exist
+ * @method isEmpty @return {boolean} Return true if list is empty, false if not
+ * @method reverse Reverses the list structure
+ * @method size @return {number} Returns the size of List, can be used interchangably with list.length
  */
 
 class DoublyLinkedList {
@@ -165,25 +168,26 @@ class DoublyLinkedList {
             return null;
         }
 
-        this.length--;
-
         // remove head
-        if (value === this.head.data) {
+        if (value === this.head.value) {
             this.head = this.head.next;
-            this.head.prev = null;
-            return value;
+            if ( this.head) this.head.prev = null;
+            if (!this.head) this.tail = null;
+            this.length--;
+            return true;
         }
 
         // remove tail
-        if (value === this.tail.data) {
+        if (value === this.tail.value) {
             this.tail = this.tail.prev;
             this.tail.next = null;
-            return value;
+            this.length--;
+            return true;
         }
 
         let currentNode = this.head;
 
-        while (currentNode.data !== value) {
+        while (currentNode.value !== value) {
             if (!currentNode.next) {
                 return null;
             }
@@ -191,10 +195,10 @@ class DoublyLinkedList {
             currentNode = currentNode.next;
         }
 
+        this.length--;
         currentNode.prev.next = currentNode.next;
         currentNode.next.prev = currentNode.prev;
-
-        return value;
+        return true;
     }
 
 
@@ -209,7 +213,13 @@ class DoublyLinkedList {
 
         // remove at head
         if (index === 0) {
-            const deleted = this.head.data;
+            const deleted = this.head.value;
+            // remove last node
+            if (this.size === 0) {
+                this.head = null;
+                this.tail = null;
+                return deleted;
+            }
             this.head = this.head.next;
             this.head.prev = null;
             return deleted;
@@ -217,7 +227,7 @@ class DoublyLinkedList {
 
         // remove at tail
         if (index === this.size) {
-            const deleted = this.tail.data;
+            const deleted = this.tail.value;
             this.tail = this.tail.prev;
             this.tail.next = null;
             return deleted;
@@ -233,18 +243,18 @@ class DoublyLinkedList {
 
         previousNode.next = currentNode.next;
         currentNode.next.prev = previousNode;
-        return currentNode.data;
+        return currentNode.value;
     }
 
 
     indexOf(value) {
         if (this.isEmpty()) {
-            return null;
+            return -1;
         }
 
         let currentNode = this.head;
         let currentIndex = 0;
-        while (value !== currentNode.data) {
+        while (value !== currentNode.value) {
             currentNode = currentNode.next;
             currentIndex++;
             if (!currentNode) {
@@ -271,7 +281,7 @@ class DoublyLinkedList {
             currentIndex++;
         }
 
-        return currentNode.data;
+        return currentNode.value;
     }
 
 
@@ -319,8 +329,8 @@ class DoublyLinkedList {
         }
 
         result.forEach(node => {
-           if (node.prev) node.prev = node.prev.data;
-           if (node.next) node.next = node.next.data;
+           if (node.prev) node.prev = node.prev.value;
+           if (node.next) node.next = node.next.value;
         });
 
         return JSON.stringify(result, null, 2);
@@ -345,50 +355,62 @@ stringify an un-simplified doubly linked list due to the circular
 nature of its previous and next node references! (see bottom)\\n\`
 );
 
-list.add('foo');
-list.add('bar');
-list.add('baz');
-list.add('zab');
-list.add('oof');
-list.add('rab');
+list.add('one');
+list.add('two');
+list.add('three');
+list.add('five');
+list.add('six');
+list.addAt(3, 'four');
 
-console.log('\\nsize: ' + list.size);
 console.log('initial list: \\n\\n' + list.toString() + '\\n');
 
-list.remove('foo'); // remove head
-list.addAt(0, 'new head');
-list.addAt(4, 'new 4th index');
-list.addAt(7, 'new tail');
-
-console.log('\\nsize: ' + list.size);
-console.log('modified list: \\n\\n' + list.toString() + '\\n');
-
-console.log('\\nremoveAt index 7: ' + list.removeAt(7)); // remove tail
-console.log('elementAt index 2: ' + list.elementAt(2));
-console.log('indexOf "new tail": ' + list.indexOf('new tail'));
-console.log('indexOf "rab": ' + list.indexOf('rab'));
+// check node & remove
+if (list.elementAt(0) === 'one') {
+    console.log(list.remove('one'));
+}
 
 list.reverse();
 
-console.log('\\nsize: ' + list.size);
-console.log('reversed list: \\n\\n' + list.toString()  + '\\n');
+// loop and remove
+while (list.size > 1) {
+    console.log(\`removed: \${list.removeAt(list.size - 1)} at index: \${list.size-1}\`);
+}
 
-// Logging an unmodified doubly linked list would look something like this:
-// (notice the [Circular] notation in Node.next.prev)
+console.log('\\n' + list.toString() + '\\n')
 
-// In a Node environment:
+// remove last node
+list.indexOf('six') === 0 && list.removeAt(0);
 
-// Node {
-//   data: 'rab',
-//   prev: null,
-//   next:
-//    Node {
-//      data: 'oof',
-//      prev: [Circular],
-//      next: Node { data: 'new 4th index', prev: [Object], next: [Object] } } }
+// removing the last node should reset both head and tail!
+console.log('head:', list.head)
+console.log('tail:', list.tail)
 
-// or in a browser environment:
-// [object Object]
+/*
+ * These are very simple exammples. Can you think of some good real world
+ * use cases for a doubly linked list? How about navigating a playlist?
+ * A circular doubly linked list could be even more valuable for that!
+ * Check out the next challenge to see how we can implement one!
+ */
+
+/*
+ * NOTE: use the browser's console to log peekHead or peekTail; you will get
+ * a circular structure whose next/prev elements will expand infinitely (since
+ * they just point at each other) -> Node(A) = Node(A).next.prev = Node(A)
+ * see an example of this here: http://recordit.co/GT4XT5BVTh
+ *
+ * Since logging in a terminal is non-interactive, logging a doubly linked list
+ * in a Node environment would look something like this (notice the [Circular]
+ * notation in Node.next.prev):
+ *
+ * Node {
+ *   value: 'one',
+ *   prev: null,
+ *   next:
+ *    Node {
+ *      value: 'two',
+ *      prev: [Circular],
+ *      next: Node { value: 'three', prev: [Object], next: [Object] } } }
+ */
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/#doublyLinkedList/', caption: 'GeeksforGeeks.org'},

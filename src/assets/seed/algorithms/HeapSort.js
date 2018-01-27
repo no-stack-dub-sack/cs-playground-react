@@ -4,7 +4,6 @@ export default {
 `class MinHeap {
     constructor() {
         this.heap = [];
-        this.length = 0;
     }
 
     // methods to implement:
@@ -28,7 +27,6 @@ const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
 `/**
   * @class MinHeap
   * @property {number[]} heap A collection of integers
-  * @property {number} length The length of the collection
   * @method insert @param {numnber} node
   * @method remove @return {?number} returns null or the removed item
   * @method print Logs the heap to the console
@@ -39,13 +37,11 @@ const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
 class MinHeap {
     constructor() {
         this.heap = [];
-        this.length = 0;
     }
 
 
     insert(node) {
         this.heap.push(node);
-        this.length++;
 
         var swap = (node, nodeIdx) => {
 
@@ -59,8 +55,8 @@ class MinHeap {
             }
         };
 
-        if (this.length > 1) {
-            return swap(node, this.length-1);
+        if (this.heap.length > 1) {
+            return swap(node, this.heap.length-1);
         }
     }
 
@@ -92,7 +88,6 @@ class MinHeap {
                 return swap(node, childIdx);
             }
 
-            this.length--;
             return min;
 
         };
@@ -119,7 +114,7 @@ class MinHeap {
 
 
     get size() {
-        return this.length;
+        return this.heap.length;
     }
 }
 

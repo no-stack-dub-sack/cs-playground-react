@@ -10,16 +10,21 @@ import '../styles/codemirror.css'
 import 'codemirror/keymap/sublime';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/fold/foldcode';
+import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/mode/markdown/markdown';
+import 'codemirror/addon/hint/anyword-hint';
 import 'codemirror/addon/fold/comment-fold';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/hint/show-hint.css';
 import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/hint/javascript-hint';
 import 'codemirror/addon/selection/active-line';
+import 'codemirror/addon/search/match-highlighter';
 import 'codemirror/theme/tomorrow-night-eighties.css';
 
 import { JSHINT } from 'jshint';
@@ -34,16 +39,6 @@ class CodeMirrorRenderer extends Component {
       this.props.updateCode(this.props.code, true);
     }
   }
-  handleFold = (editor, data) => {
-    // fold/hide BST solution's helper code
-    const { currentId, isSolution  } = this.props;
-    const line_1 = (editor.getLine(1) === 'class QNode {');
-    const line_9 = (editor.getLine(9) === 'class Queue {');
-    if (currentId === 'BinarySearchTree' && isSolution && line_1 && line_9) {
-      editor.foldCode(1);
-      editor.foldCode(9);
-    }
-  }
   updateCode = (editor, data, value) => {
     this.props.updateCode(value, false);
   }
@@ -55,7 +50,6 @@ class CodeMirrorRenderer extends Component {
     return (
       <CodeMirror
         onBeforeChange={this.updateCode}
-        onChange={this.handleFold}
         options={options}
         value={this.props.code}
       />

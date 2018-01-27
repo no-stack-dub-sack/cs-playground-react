@@ -2,6 +2,7 @@ import { clearConsole } from '../../actions/console';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { ERROR_TYPES } from '../../utils/regexp';
 import shortid from 'shortid';
 import '../../styles/console.css';
 
@@ -31,9 +32,7 @@ const _default = {
   icon: ICON_WHITE
 };
 
-const re = new RegExp('InternalError|RangeError|ReferenceError|EvalError|SyntaxError|TypeError|URIError');
-
-class ConsoleOutput extends Component {
+class Console extends Component {
   constructor(props) {
     super(props);
     this.state = disabled
@@ -54,18 +53,17 @@ class ConsoleOutput extends Component {
     this.setState(hover);
   }
   renderMessages = (msg) => {
-    let className = 'sidebar--output--messages--message';
-    if (re.test(msg)) className += ' error';
+    let className = ERROR_TYPES.test(msg)
+      ? 'sidebar--output--messages--message  error'
+      : 'sidebar--output--messages--message';
     return (
       <p
         className={className}
-        key={shortid.generate()}>
-        {msg}
-      </p>
+        key={shortid.generate()}
+        dangerouslySetInnerHTML={{ __html: msg + ' ' }} />
     );
   }
   render() {
-
     const { background, color, icon } = this.state;
     const margin = { marginBottom: -4 };
 
@@ -74,11 +72,13 @@ class ConsoleOutput extends Component {
       color,
       outline: `1px solid ${color}`
     };
-
     return (
       <section
         className="sidebar--output bottom-pane"
-        ref={this.props.attachRef}>
+        style={{
+          height: this.props.bottomHeight,
+          transition: this.props.transition
+        }}>
         <div id="output" className="sidebar--output--messages">
           <div
             className='sidebar--output--clear-console'
@@ -89,7 +89,7 @@ class ConsoleOutput extends Component {
             Clear <img style={margin} alt="backspace icon" src={icon} />
           </div>
           <p className="sidebar--output--messages--default-message">
-            {'// console output:'}
+            {'// console output / tests:'}
           </p>
           { this.props.messages.map(this.renderMessages) }
         </div>
@@ -98,16 +98,23 @@ class ConsoleOutput extends Component {
   }
 }
 
-ConsoleOutput.propTypes = {
-  attachRef: PropTypes.func.isRequired,
+Console.propTypes = {
+  bottomHeight: PropTypes.string.isRequired,
   clearConsole: PropTypes.func.isRequired,
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.array.isRequired,
+  transition: PropTypes.string.isRequired
 }
 
-const mapStateToProps = (state) => {
-  return {
-    messages: state.consoleOutput
+const mapStateToProps = ({
+  console: messages,
+  panes: {
+    bottomHeight,
+    transition
   }
-}
+}) => ({
+  messages,
+  bottomHeight,
+  transition
+});
 
-export default connect(mapStateToProps, { clearConsole })(ConsoleOutput);
+export default connect(mapStateToProps, { clearConsole })(Console);

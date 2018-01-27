@@ -1,13 +1,13 @@
-import { CLEAR_CONSOLE, CONSOLE_LOG } from '../actions/console';
+import * as types from '../actions/types';
 
 export default (state = [], action) => {
   switch(action.type) {
-    case CONSOLE_LOG:
+    case types.CONSOLE_LOG:
       return [
         ...state,
         action.messages
       ];
-    case CLEAR_CONSOLE:
+    case types.CLEAR_CONSOLE:
       return [];
     default:
       return state;

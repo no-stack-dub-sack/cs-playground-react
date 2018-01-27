@@ -36,6 +36,11 @@ function sumAllPrimes(num) {
         }
         return true;
     });
+
+    if (!onlyPrimes.length) {
+      return 0;
+    }
+    
     return onlyPrimes.reduce((a, b) => a + b);
 }
 

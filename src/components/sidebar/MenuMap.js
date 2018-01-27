@@ -1,10 +1,17 @@
-import { closeModal, openModal } from '../../actions/modal';
+import { closeModal, openResourcesModal } from '../../actions/modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { selectSnippet, selectSolution } from '../../actions/editor';
-import { selectTopic } from '../../actions/resources';
 import shortid from 'shortid';
+import _ from 'lodash';
+
+_.mixin({
+  'pascalCase': _.flow(
+    _.camelCase,
+    _.upperFirst
+  )
+});
 
 class MenuMap extends Component {
   selectSeed = ({ currentTarget: { id }}) => {
@@ -12,27 +19,25 @@ class MenuMap extends Component {
   }
   selectSolution = (e) => {
     e.stopPropagation();
-    this.props.selectSolution(e.target.id);
+    this.props.selectSolution(e.target.id.slice(10));
   }
   renderModal = (e) => {
     e.stopPropagation();
-    const modalId = e.target.id.slice(7);
-    this.props.selectTopic(modalId);
-    if (this.props.modalId === modalId && this.props.renderModal) {
-      this.props.closeModal();
-    } else {
-      this.props.openModal(modalId);
-    }
+    const modalId = _.startCase(e.target.id.slice(7));
+    this.props.modalId === modalId && this.props.renderModal
+      ? this.props.closeModal()
+      : this.props.openResourcesModal(modalId);
   }
   renderMenuItem = (item) => {
-    const bgColor = item.title.replace(/\s/g, '') === this.props.codeId
+    const id = _.pascalCase(item.title);
+    const background = id === this.props.codeId
       ? 'rgba(39, 145, 152, 0.52)'
       : '#707070';
     return (
       <div
-        style={ { background: bgColor } }
+        style={{ background }}
         className={`sidebar--menu--detail ${ this.props.xtraClass }`}
-        id={item.title.replace(/\s/g, '')}
+        id={id}
         key={shortid.generate()}
         onClick={this.selectSeed}>
         <span>
@@ -42,12 +47,12 @@ class MenuMap extends Component {
         <div className="sidebar--menu--detail--button--container">
           <span
             className="sidebar--menu--detail--button solution"
-            id={`SOLUTION__${ item.title.replace(/\s/g, '') }`}
+            id={'SOLUTION__' + id}
             onClick={this.selectSolution}>
             Solution
           </span>
           <span
-            id={`MODAL__${ item.title.replace(/\s/g, '_') }`}
+            id={'MODAL__' + _.snakeCase(item.title)}
             className="sidebar--menu--detail--button resources modal-trigger"
             onClick={this.renderModal}>
             Resources
@@ -74,11 +79,10 @@ MenuMap.propTypes = {
   header: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   modalId: PropTypes.string.isRequired,
-  openModal: PropTypes.func.isRequired,
+  openResourcesModal: PropTypes.func.isRequired,
   renderModal: PropTypes.bool.isRequired,
   selectSnippet: PropTypes.func.isRequired,
   selectSolution: PropTypes.func.isRequired,
-  selectTopic: PropTypes.func.isRequired,
   xtraClass: PropTypes.string,
 }
 
@@ -86,19 +90,16 @@ MenuMap.defaultProps = {
   xtraClass: ''
 }
 
-const mapStateToProps = (state) => {
-  return {
-    modalId: state.modal.modalId,
-    renderModal: state.modal.renderModal,
-    codeId: state.editor.current.id
-  }
-}
+const mapStateToProps = (state) => ({
+  modalId: state.modal.modalId,
+  renderModal: state.modal.renderModal,
+  codeId: state.editor.current.id
+});
 
 const mapDispatchToProps = {
   selectSnippet,
   selectSolution,
-  selectTopic,
-  openModal,
+  openResourcesModal,
   closeModal
 }
 

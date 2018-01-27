@@ -7,7 +7,6 @@ export default {
     }
 
     // methods to implement:
-
     // hasher()
     // add()
     // remove()
@@ -18,7 +17,7 @@ export default {
 `/**
  * @class Hash Table data structure
  * @property {object} collection
- * @method hasher @param {string} str The function that produces our hash keys
+ * @method hash @param {string} str The function that produces our hash keys
  * @method add @param {string} key @param {*} value The key value pair to add to the hash table
  * @method remove @param {string} key @return {*} Accepts an un-hashed key, removes and returns associated value
  * @method lookup @param {string} key @return {*} Accepts an un-hashed key, returns associated value
@@ -32,7 +31,7 @@ export default {
     /* we use a naive hashing function
     to demonstrate the problems that
     can arise from collision */
-    hasher(str) {
+    hash(str) {
         let hash = 0;
         str = String(str);
 
@@ -45,7 +44,7 @@ export default {
 
 
     add(key, value) {
-        const hash = this.hasher(key);
+        const hash = this.hash(key);
         const currentValue = this.collection[hash];
 
         if (!currentValue) {
@@ -55,7 +54,7 @@ export default {
 
         // handle first instance of collision
         if (!Array.isArray(currentValue)) {
-            // prevent duplicate keys
+            // prevent duplicate keys (see note on line 171)
             if (key === currentValue.key) {
                 return null;
             }
@@ -78,7 +77,7 @@ export default {
 
 
     remove(key) {
-        const hash = this.hasher(key);
+        const hash = this.hash(key);
         const currentValue = this.collection[hash];
 
         if (!currentValue) {
@@ -109,17 +108,20 @@ export default {
 
 
     lookup(key) {
-        const hash = this.hasher(key);
+        const hash = this.hash(key);
         const currentValue = this.collection[hash];
 
         if (!currentValue) {
             return null;
         }
 
+        // only one key/val pair stored at this hash key
         if (currentValue.key === key) {
             return currentValue.value;
         }
 
+        // otherwise, collision
+        // iterate through bucket for match
         for (let i in currentValue) {
             if (currentValue[i].key === key) {
                 return currentValue[i].value;
@@ -145,6 +147,7 @@ const table = new HashTable();
 // for example, even though the data is unique,
 // these key-value pairs produce the same hash key:
 table.add('Aidan Smith', '(555) 876-2344');
+table.add('Aidan Smith', '(555) 234-4247');
 table.add('Nadia Mihst', '(555) 934-5288');
 
 // there are some other tricky examples here too. can you spot them?
@@ -166,11 +169,12 @@ console.log("\\nlookup 'Thomas Brock': " + table.lookup('Thomas Brock'));
 console.log("lookup 'Sayid Shirra': " + table.lookup('Sayid Shirra'));
 
 /* since there are other elements that share the same hash this key-value
-pair produces, our lookup function must iterate through that bucket of
-key-value pairs until it finds a match. this is why a good hashing function
-will strive to avoid collision as much as possible - collision defeats the
-efficiency that makes hash tables great! can you think of a simple solution
-for improving the hashing function to avoid this collision? */
+ * pair produces, our lookup function must iterate through that bucket of
+ * key-value pairs until it finds a match. this is why a good hashing function
+ * will strive to avoid collision as much as possible - collision defeats the
+ * efficiency that makes hash tables great! can you think of a simple solution
+ * for improving the hashing function to avoid this collision?
+ */
 
 // in cases of removal, our hash table is susceptible to
 // the same efficiency drawbacks if collision is present:
@@ -182,6 +186,20 @@ table.remove('Darin Shultz');
 console.log("lookup 'Nadia Mihst': " + table.lookup('Nadia Mihst') + '\\n\\n');
 
 table.print();
+
+/* NOTE FROM LINE 41:
+ * in a real phone book example, dupe keys would
+ * need to be handled. It might make more sense
+ * to use the phone number as the key since they
+ * are guaranteed to be unique. But then that begs
+ * the question, why use a hashtable at all and not
+ * a regular JS object with phone numbers as keys and
+ * names as values? This would provide constant lookup
+ * time and be less complicated. As you can see, this
+ * is just for example purposes, and a real-world hash
+ * table implementation will have to make sense and be
+ * justified by your particular needs and use-case.
+ */
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/hashing-data-structure/', caption: 'GeeksforGeeks.org'},
