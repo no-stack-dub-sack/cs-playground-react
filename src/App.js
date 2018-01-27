@@ -35,6 +35,7 @@ import './styles/app.css';
 /** TODO:.
   * add // SUPPRESS TESTS comment to all user code
   * add type annotations to arguments in test messages
+  * ADD VisualAlgo visualizations to RESOURCES!!! 
   * add arguments to methods to implement
   * remove semi-colons
   * add replacement util to update changed method names in user code (e.g. hasher to hash)
