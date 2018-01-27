@@ -8,7 +8,8 @@ export default (code, id) => {
   try {
     /* eslint-disable no-unused-vars */
     const assert = require('assert')
-    const logTestReport = require('./testReport')
+    const logTestReport = require('./testReport').logTestReport
+    const beginTests = require('./testReport').beginTests
     const isTestDisabled = require('../common/is-test-disabled')
     /* eslint-enable no-unused-vars */
 

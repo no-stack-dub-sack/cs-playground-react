@@ -1,3 +1,5 @@
+/* eslint-disable no-eval */
+
 // stringify functions, concat in correct order and
 // pass to eval for crappy way to test solution code
 const suppressConsole = () => ({
@@ -22,6 +24,7 @@ function executeTests(
   const results = [];
   /* eslint-disable no-unused-vars */
   const isTestDisabled = require('../common/is-test-disabled')
+  const assert = require('assert')
   /* eslint-enable no-unused-vars */
   beforeAll && beforeAll()
   if (tests) {
@@ -29,8 +32,17 @@ function executeTests(
     tests.forEach(test => {
       try {
         beforeEach && beforeEach()
-        // eslint-disable-next-line
-        expect(eval(test.expression)).toBe(true)
+        if (test.method) {
+          // assert w/ method
+          assert[test.method](
+            eval(test.expression),
+            eval(test.expected),
+            test.message
+          )
+        } else {
+          // assert w/o method
+          assert(eval(test.expression), test.message);
+        }
         afterEach && afterEach()
         results.push('Pass: ' + test.message)
       } catch (e) {

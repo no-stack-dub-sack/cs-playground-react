@@ -20,7 +20,7 @@ const testHooks = {
   },
   beforeEach: () => {
     console.log = () => {};
-    __graph__ = new Graph();
+    __graph__.__clearGraph__();
     typeof __graph__.addVertex === 'function' &&
       ['A', 'B', 'C', 1, 2, 3].forEach(v => __graph__.addVertex(v));
   },
@@ -28,7 +28,7 @@ const testHooks = {
     console.log = oldConsoleLog
   },
   afterAll: () => {
-    __graph__ = null
+    // __graph__ = null
   }
 }
 `;
@@ -97,15 +97,16 @@ export const tests = [
     message: `The <code>Graph</code> class has a <code>removeVertex</code> method: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
   },
   {
+    method: 'deepEqual',
     expression: `(() => {
       __graph__.removeVertex('A')
-      return __graph__.__printAsJSON__() === '[["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]'
+      return [...__graph__.list.entries()]
     })()`,
+    expected: '[["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]]',
     message: `The <code>removeVertex</code> method removes the given <code>vertex</code> from the graph`
   },
   {
     expression: `(() => {
-      __graph__.addVertex('A') // huh?????? beforeEach should make this uneccesarry
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
       __graph__.addEdge('A', 'B')
@@ -297,11 +298,7 @@ export const tests = [
     expression: `(() => {
       if (isTestDisabled(Graph, 'pathFromTo')) return 'DISABLED'
       __graph__.__clearGraph__();
-      [0,1,2,3,4,5,6,7,8,9,10].forEach(v => __graph__.addVertex(v))
-      const edges = [[0, 1],[0, 3],[0, 4],[3, 4],[4, 5],[4, 2],[2, 5],[7, 6],[8, 7],[2, 6],[2, 6],[9, 10]]
-      for (let [s, d] of edges) {
-        __graph__.addEdge(s, d)
-      }
+      [0,9].forEach(v => __graph__.addVertex(v))
       return __graph__.pathFromTo(0, 9) === null && __graph__.pathFromTo(11, 2) === null
     })()`,
     message: `The <code>pathFromTo</code> method returns <code>null</code> if a path does not exist between the given vertices, or if the given <code>fromVertex</code> does not exist`
@@ -346,12 +343,21 @@ export const tests = [
     message: `The <code>getConnections</code> method returns the adjacency list for the given <code>vertex</code> or <code>null</code> if the vertex doesn't exist: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
   },
   // {
-  //   expression: ``,
+  //   expression: `(() => {
+  //     if (isTestDisabled(Graph, 'isEmpty')) return 'DISABLED'
+  //     console.log(__graph__.__printAsJSON__())
+  //   })()`,
   //   message: ``
   // },
   // {
   //   expression: `(() => {
-  //
+  //     if (isTestDisabled(Graph, '')) return 'DISABLED'
+  //   })()`,
+  //   message: ``
+  // },
+  // {
+  //   expression: `(() => {
+  //     if (isTestDisabled(Graph, '')) return 'DISABLED'
   //   })()`,
   //   message: ``
   // },

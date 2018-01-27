@@ -1,5 +1,4 @@
 import { concatTests, logResults } from './jest-test-utils';
-// import tail from '../common/is-test-disabled';
 import TESTS from '../../../assets/testRef';
 import { SOLUTIONS } from '../../../assets/codeRef';
 
