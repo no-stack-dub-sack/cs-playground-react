@@ -225,11 +225,11 @@ export const tests = [
   },
   {
     expression: `typeof __graph__.depthFirst === 'function'`,
-    message: `The <code>Graph</code> class has a <code>depthFirst</code> method: <span class="type">@param {(string|number)}</span> <code>startingVertex</code>`
+    message: `The <code>Graph</code> class has a <code>depthFirst</code> search method: <span class="type">@param {(string|number)}</span> <code>startingVertex</code>`
   },
   {
     expression: `typeof __graph__.breadthFirst === 'function'`,
-    message: `The <code>Graph</code> class has a <code>breadthFirst</code> method: <span class="type">@param {(string|number)}</span> <code>startingVertex</code>`
+    message: `The <code>Graph</code> class has a <code>breadthFirst</code> search method: <span class="type">@param {(string|number)}</span> <code>startingVertex</code>`
   },
   {
     expression: `(() => {
