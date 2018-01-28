@@ -30,17 +30,12 @@ let defaultState = JSON.parse(
 
 
 // if lengths differ, call composeCodeStore to merge in
-// new challenges and remove dupes due to previous bug
-if (
-  initialState.codeStore.length !==
-  defaultState.codeStore.length
-) {
-  console.log('composing code store')
+// new challenges and/or remove dupes from previous bug
+if (initialState.codeStore.length !== defaultState.codeStore.length) {
+  const { codeStore, current } = composeCodeStore(initialState, defaultState)
   defaultState.orderKey = createOrderKey(CODE)
-  defaultState.codeStore = composeCodeStore(
-    initialState,
-    defaultState
-  )
+  defaultState.codeStore = codeStore
+  defaultState.current = current
 }
 
 
