@@ -22,7 +22,7 @@ import './styles/app.css';
   * Improved clearState() - timeout
   * fixed codeStore bug
   * prevent text highlighting on divider drag
-  * toggle solution shortcut keys
+  * new shortcut keys
   * Editor enhancements:
       * Autocomplete
       * linter suppressions
@@ -30,15 +30,14 @@ import './styles/app.css';
       * match selection
   */
 
-// TODO: IMPORTANT - FIX MENU ITERATION... doubly linked list? / flatten CODE array
-
 /** TODO:.
-  * add // SUPPRESS TESTS comment to all user code
+  * ADD WARNINGS for changed properties
   * add type annotations to arguments in test messages
-  * ADD VisualAlgo visualizations to RESOURCES!!! 
+  * ADD VisualAlgo visualizations to RESOURCES!!!
   * add arguments to methods to implement
   * remove semi-colons
-  * add replacement util to update changed method names in user code (e.g. hasher to hash)
+  * refactor for use of deepEqual
+  * change modal message to something more appropriate -> create and point to "change log"
   * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt

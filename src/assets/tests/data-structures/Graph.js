@@ -1,16 +1,11 @@
 export const tail = `
 if (typeof new Graph() === 'object') {
   Graph.prototype.__clearGraph__ = function () {
-    this.list.clear()
+    this.__data__.clear()
     this.numEdges = 0
   }
-  Graph.prototype.__printAsJSON__ = function() {
-    return JSON.stringify(
-      [...this.list.entries()]
-    )
-  }
   Graph.prototype.__entries__ = function() {
-    return [...this.list.entries()]
+    return [...this.__data__.entries()]
   }
 }
 
@@ -20,6 +15,12 @@ let oldConsoleLog = console.log
 const testHooks = {
   beforeAll: () => {
     __graph__ = new Graph()
+    if (typeof __graph__.__data__ === 'undefined' ||
+        typeof __graph__.numEdges === 'undefined' ) {
+      console.log(
+        'WARNING: Graph must have properties <code>__data__</code> and <code>numEdges</code> for tests to work!\\n'
+      )
+    }
   },
   beforeEach: () => {
     console.log = () => {}
@@ -31,7 +32,7 @@ const testHooks = {
     console.log = oldConsoleLog
   },
   afterAll: () => {
-    // __graph__ = null
+    __graph__ = null
   }
 }
 `;
@@ -43,9 +44,9 @@ export const tests = [
   {
     expression: `(() => {
       const __newGraph__ = new Graph()
-      return Object.prototype.toString.call(__newGraph__.list) === '[object Map]' && __newGraph__.list.size === 0 && __newGraph__.numEdges === 0
+      return Object.prototype.toString.call(__newGraph__.__data__) === '[object Map]' && __newGraph__.__data__.size === 0 && __newGraph__.numEdges === 0
     })()`,
-    message: `The <code>Graph</code> data structure has list and <code>numEdges</code> properties which initialize to a new <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" rel="noopener noreferrer" target="_blank">Map</a></code> and <code>0</code> respectively`
+    message: `The <code>Graph</code> data structure has <code>__data__</code> and <code>numEdges</code> properties which initialize to a new <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" rel="noopener noreferrer" target="_blank">Map</a></code> and <code>0</code> respectively`
   },
   {
     expression: `typeof __graph__.addVertex === 'function'`,
@@ -375,23 +376,5 @@ export const tests = [
       return test_1 && test_2 && test_3 && test_4
     })()`,
     message: `The <code>Graph</code> class has a <code>hasVertices</code> method which returns <code>true</code> if the graph has both given vertices, <code>false</code> if not: <span class="type">@param {(string|number)}</span> <code>vertexOne</code> <span class="type">@param {(string|number)}</span> <code>vertexTwo</code>`
-  },
-  // {
-  //   expression: `(() => {
-  //     if (isTestDisabled(Graph, '')) return 'DISABLED'
-  //   })()`,
-  //   message: ``
-  // },
-  // {
-  //   expression: `(() => {
-  //     if (isTestDisabled(Graph, '')) return 'DISABLED'
-  //   })()`,
-  //   message: ``
-  // },
-  // {
-  //   expression: `(() => {
-  //     if (isTestDisabled(Graph, '')) return 'DISABLED'
-  //   })()`,
-  //   message: ``
-  // },
+  }
 ]

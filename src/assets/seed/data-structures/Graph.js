@@ -3,7 +3,7 @@ export default {
     seed:
 `class Graph {
     constructor() {
-        this.list = new Map()
+        this.__data__ = new Map()
         this.numEdges = 0
     }
 
@@ -36,11 +36,11 @@ class Graph {
     /**
      * Creates empty Map to store key-value pairs
      *
-     * @property {Object} list
+     * @property {Map<(number|string), Array>} __data__
      * @property {number} numEdges Number of edges/connections in the Graph
      */
     constructor() {
-        this.list = new Map()
+        this.__data__ = new Map()
         this.numEdges = 0
     }
 
@@ -52,10 +52,10 @@ class Graph {
      * @returns {boolean} Returns true/false if vertex was added
      */
     addVertex(vertex) {
-        return this.list.has(vertex)
+        return this.__data__.has(vertex)
           ? false
           : (
-            this.list.set(vertex, []),
+            this.__data__.set(vertex, []),
             true
         )
     }
@@ -68,13 +68,13 @@ class Graph {
      * @returns {boolean} Returns true/false if vertex was removed
      */
     removeVertex(vertex) {
-        return !this.list.has(vertex)
+        return !this.__data__.has(vertex)
           ? false
           : (
             // remove map[vertex]
-            this.list.delete(vertex),
+            this.__data__.delete(vertex),
             // remove associated edges
-            this.list.forEach((v, k, m) =>
+            this.__data__.forEach((v, k, m) =>
                 m.set(k, v.filter(v => v !== vertex))
             ),
             true
@@ -97,8 +97,8 @@ class Graph {
         ) ? false
           : (
             this.numEdges++,
-            this.list.get(source).push(destination),
-            this.list.get(destination).push(source),
+            this.__data__.get(source).push(destination),
+            this.__data__.get(destination).push(source),
             true
         )
     }
@@ -118,14 +118,14 @@ class Graph {
         ) ? false
           : (
             this.numEdges--,
-            this.list.set(
+            this.__data__.set(
                 source,
-                this.list.get(source)
+                this.__data__.get(source)
                 .filter(v => v !== destination)
             ),
-            this.list.set(
+            this.__data__.set(
                 destination,
-                this.list.get(destination)
+                this.__data__.get(destination)
                 .filter(v => v !== source)
             ),
             true
@@ -142,7 +142,7 @@ class Graph {
      */
     isDirectConnection(source, connection) {
         return this.hasVertex(source)
-            ? this.list
+            ? this.__data__
                 .get(source)
                 .includes(connection)
             : false
@@ -172,7 +172,7 @@ class Graph {
      */
     getConnections(vertex) {
         return this.hasVertex(vertex)
-            ? this.list.get(vertex)
+            ? this.__data__.get(vertex)
             : null
     }
 
@@ -184,7 +184,7 @@ class Graph {
      * @returns {boolean} Returns true/false if Graph has vertex
      */
     hasVertex(vertex) {
-        return this.list.has(vertex)
+        return this.__data__.has(vertex)
             ? true
             : (
               this.__printMsg(vertex),
@@ -213,7 +213,7 @@ class Graph {
      * @memberOf Graph
      */
     clear() {
-        this.list.clear()
+        this.__data__.clear()
         this.numEdges = 0
     }
 
@@ -225,7 +225,7 @@ class Graph {
      */
     isEmpty() {
         return ![
-          ...this.list.keys()
+          ...this.__data__.keys()
         ].length
     }
 
@@ -236,7 +236,7 @@ class Graph {
      * @returns {number} Returns number of vertices in Graph
      */
     get size() {
-      return this.list.size
+      return this.__data__.size
     }
 
     /**
@@ -267,7 +267,7 @@ class Graph {
 
         while (queue.length) {
             const vertex = queue.shift()
-            const edges = this.list.get(vertex)
+            const edges = this.__data__.get(vertex)
             for (let i in edges) {
                 if (!visited[edges[i]]) {
                     visited[edges[i]] = true
@@ -310,7 +310,7 @@ class Graph {
 
         while (queue.length) {
             const nextVertex = queue.shift()
-            const adjList = this.list.get(nextVertex)
+            const adjList = this.__data__.get(nextVertex)
 
             results.push(nextVertex)
 
@@ -343,7 +343,7 @@ class Graph {
 
             results.push(vertex)
             visited[vertex] = true
-            const adjList = this.list.get(vertex)
+            const adjList = this.__data__.get(vertex)
 
             for (let el of adjList) {
                 if (!visited[el]) {
@@ -364,7 +364,7 @@ class Graph {
      * @memberOf Graph
      */
     print() {
-        for (let [key, value] of this.list) {
+        for (let [key, value] of this.__data__) {
             console.log(\`\${key} -> \${value.join(', ')}\`)
         }
     }
