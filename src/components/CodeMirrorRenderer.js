@@ -34,6 +34,17 @@ import 'codemirror/addon/lint/javascript-lint';
 window.JSHINT = JSHINT;
 
 class CodeMirrorRenderer extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress)
+  }
+  handleKeyPress = (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.keyCode === 220) {
+      this.editor.focus()
+    }
+  }
   componentDidUpdate(prevProps) {
     if (prevProps.snippet !== this.props.snippet) {
       this.props.updateCode(this.props.code, true);
@@ -42,6 +53,9 @@ class CodeMirrorRenderer extends Component {
   updateCode = (editor, data, value) => {
     this.props.updateCode(value, false);
   }
+  assignEditor = (editor) => {
+    this.editor = editor
+  }
   render() {
     const options = this.props.welcome ? {
       ...defaultOptions,
@@ -49,6 +63,7 @@ class CodeMirrorRenderer extends Component {
     } : defaultOptions;
     return (
       <CodeMirror
+        editorDidMount={this.assignEditor}
         onBeforeChange={this.updateCode}
         options={options}
         value={this.props.code}

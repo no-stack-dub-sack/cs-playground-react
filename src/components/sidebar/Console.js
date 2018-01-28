@@ -70,8 +70,10 @@ class Console extends Component {
     const buttonStyle = {
       background,
       color,
-      outline: `1px solid ${color}`
+      outline: `1px solid ${color}`,
+      userSelect: 'none'
     };
+    
     return (
       <section
         className="sidebar--output bottom-pane"

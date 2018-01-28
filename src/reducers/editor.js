@@ -62,6 +62,7 @@ const editor = (state = defaultState, action) => {
   switch(action.type) {
     case types.RESET_STATE:
       localStorage.removeItem('cs-pg-react-editorState')
+      localStorage.removeItem('cs-pg-react-suppress-tests-only-once')
       return initialState
     case types.UPDATE_CODE:
       return {

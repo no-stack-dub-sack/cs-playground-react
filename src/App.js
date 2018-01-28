@@ -24,6 +24,7 @@ import './styles/app.css';
   * prevent text highlighting on divider drag
   * new shortcut keys
   * Editor enhancements:
+      * focus shortcut
       * Autocomplete
       * linter suppressions
       * gutter linter warnings
