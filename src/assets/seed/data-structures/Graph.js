@@ -36,7 +36,7 @@ class Graph {
     /**
      * Creates empty Map to store key-value pairs
      *
-     * @property {Map<(number|string), Array>} __data__
+     * @property {Map.<(number|string), (number|string)[]>} __data__
      * @property {number} numEdges Number of edges/connections in the Graph
      */
     constructor() {
@@ -49,7 +49,7 @@ class Graph {
      *
      * @memberOf Graph
      * @param {(string|number)} vertex The vertex to be added to the Graph
-     * @returns {boolean} Returns true/false if vertex was added
+     * @returnss {boolean} Returns true/false if vertex was added
      */
     addVertex(vertex) {
         return this.__data__.has(vertex)
@@ -65,7 +65,7 @@ class Graph {
      *
      * @memberOf Graph
      * @param {(string|number)} vertex The vertex to be removed from the Graph
-     * @returns {boolean} Returns true/false if vertex was removed
+     * @returnss {boolean} Returns true/false if vertex was removed
      */
     removeVertex(vertex) {
         return !this.__data__.has(vertex)
@@ -88,7 +88,7 @@ class Graph {
      * @memberOf Graph
      * @param {(string|number)} source The vertex to add the connection to
      * @param {(string|number)} destination The vertex being connected with source
-     * @returns {boolean} Returns true/false if connection was successful
+     * @returnss {boolean} Returns true/false if connection was successful
      */
     addEdge(source, destination) {
         return (
@@ -109,7 +109,7 @@ class Graph {
      * @memberOf Graph
      * @param {(string|number)} source The vertex to remove the connection from
      * @param {(string|number)} destination The vertex being disconnected from source
-     * @returns {boolean} Returns true/false if removal was successful
+     * @returnss {boolean} Returns true/false if removal was successful
      */
     removeEdge(source, destination) {
         return (
@@ -138,7 +138,7 @@ class Graph {
      * @memberOf Graph
      * @param {(string|number)} source The vertex to check
      * @param {(string|number)} connection The vertex being checked against source
-     * @returns {boolean} Returns true/false if vertices share an edge
+     * @returnss {boolean} Returns true/false if vertices share an edge
      */
     isDirectConnection(source, connection) {
         return this.hasVertex(source)
@@ -154,7 +154,7 @@ class Graph {
      * @memberOf Graph
      * @param {(string|number)} source The vertex to check
      * @param {(string|number)} connection The vertex being checked against source
-     * @returns {boolean} Returns true/false if vertices share an indirect edge/connection
+     * @returnss {boolean} Returns true/false if vertices share an indirect edge/connection
      */
     isIndirectConnection(source, connection) {
         return this.hasVertex(source)
@@ -168,7 +168,7 @@ class Graph {
      *
      * @memberOf Graph
      * @param {(string|number)} vertex The vertex to list connections for
-     * @returns {(Array|null)} Returns an array of connections or null if vertex does not exist
+     * @returnss {(Array|null)} Returns an array of connections or null if vertex does not exist
      */
     getConnections(vertex) {
         return this.hasVertex(vertex)
@@ -181,7 +181,7 @@ class Graph {
      *
      * @memberOf Graph
      * @param {(string|number)} vertex The vertex to check for
-     * @returns {boolean} Returns true/false if Graph has vertex
+     * @returnss {boolean} Returns true/false if Graph has vertex
      */
     hasVertex(vertex) {
         return this.__data__.has(vertex)
@@ -198,7 +198,7 @@ class Graph {
      * @memberOf Graph
      * @param {(string|number)} vertexOne The first vertex to check for
      * @param {(string|number)} vertexTwo The second vertex to check for
-     * @returns {boolean} Returns true/false if Graph has vertices
+     * @returnss {boolean} Returns true/false if Graph has vertices
      */
     hasVertices(vertexOne, vertexTwo) {
         return this.hasVertex(vertexOne)
@@ -221,7 +221,7 @@ class Graph {
      * Helper to determine if Graph is empty
      *
      * @memberOf Graph
-     * @returns {boolean} Returns true/false if Graph is empty
+     * @returnss {boolean} Returns true/false if Graph is empty
      */
     isEmpty() {
         return ![
@@ -233,7 +233,7 @@ class Graph {
      * Helper to determine size of Graph
      *
      * @memberOf Graph
-     * @returns {number} Returns number of vertices in Graph
+     * @returnss {number} Returns number of vertices in Graph
      */
     get size() {
       return this.__data__.size
@@ -243,7 +243,7 @@ class Graph {
      * Helper to determine number of edges/connections in Graph
      *
      * @memberOf Graph
-     * @returns {number} Returns number of edges in Graph
+     * @returnss {number} Returns number of edges in Graph
      */
     get relations() {
       return this.numEdges
@@ -255,7 +255,7 @@ class Graph {
      * @memberOf Graph
      * @param {(string|number)} from The vertex to begin traversal from
      * @param {(string|number)} to The vertex to traverse to
-     * @returns {string} Returns a string representing the shortest resolvable path, e.g. 'A -> B -> C'
+     * @returnss {string} Returns a string representing the shortest resolvable path, e.g. 'A -> B -> C'
      */
     pathFromTo(source, destination) {
         if (!this.hasVertex(source))
@@ -298,7 +298,7 @@ class Graph {
      *
      * @memberOf Graph
      * @param {(number|string)} start The vertex to begin traversal from
-     * @returns {Array} Returns an array of vertices visited in BF order
+     * @returnss {Array} Returns an array of vertices visited in BF order
      */
     breadthFirst(start){
         if (!this.hasVertex(start))
@@ -331,7 +331,7 @@ class Graph {
      *
      * @memberOf Graph
      * @param {(number|string)} start The vertex to begin traversal from
-     * @returns {Array} Returns an array of vertices visited in DF order
+     * @returnss {Array} Returns an array of vertices visited in DF order
      */
     depthFirst(start) {
         if (!this.hasVertex(start))

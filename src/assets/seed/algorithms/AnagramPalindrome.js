@@ -15,7 +15,7 @@ export default {
 /**
   * @function anagramPalindrome
   * @param {string} str
-  * @return {boolean}
+  * @returns {boolean}
   */
 
 function anagramPalindrome(str) {
@@ -42,7 +42,7 @@ console.log(anagramPalindrome('raoistddtagstonveakaaeawfewosln')); // a santa do
 /**
   * @function anagramPalindrome
   * @param {string} str
-  * @return {boolean}
+  * @returns {boolean}
   */
 
 function anagramPalindrome(str) {

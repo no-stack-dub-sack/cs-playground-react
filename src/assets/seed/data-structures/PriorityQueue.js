@@ -52,13 +52,13 @@ class PQNode {
  * @class Queue priority queue data structure
  * @property {Object} root The root node of the priority queue
  * @property {number} size The priority queue's size
- * @method enqueue @property {number|string} value @property {number} priority Enqueues node based on priority
- * @method dequeue @return {number|string} Removes and returns the front node's value (lowest priority node)
- * @method front @return {number|string} Returns but DOES NOT return the front node's value
- * @method contains @param value {number|string} @return {boolean} Returns true/false if element is present in queue
- * @method priorityOf @param value {number|string} @return {number|string} Returns priority of the given element
- * @method elementAt @param priority {number} @return {number|string} Returns element at the given priority
- * @method isEmpty @return {boolean}
+ * @method enqueue @property {(number|string)} value @property {number} priority Enqueues node based on priority
+ * @method dequeue @returns {(number|string)} Removes and returns the front node's value (lowest priority node)
+ * @method front @returns {(number|string)} Returns but DOES NOT return the front node's value
+ * @method contains @param value {(number|string)} @returns {boolean} Returns true/false if element is present in queue
+ * @method priorityOf @param value {(number|string)} @returns {(number|string)} Returns priority of the given element
+ * @method elementAt @param priority {number} @returns {(number|string)} Returns element at the given priority
+ * @method isEmpty @returns {boolean}
  */
 
 // NOTE:

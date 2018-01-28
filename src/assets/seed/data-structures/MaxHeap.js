@@ -19,9 +19,9 @@ export default {
   * @class MaxHeap
   * @property {number[]} heap The heap's collection
   * @method insert {number} node Inserts number according to max heap principle
-  * @method remove @return {number} Returns the max value of the heap
+  * @method remove @returns {number} Returns the max value of the heap
   * @method print Prints the heap to the console
-  * @method size @return {number} Returns the size of the heap
+  * @method size @returns {number} Returns the size of the heap
   */
 
 class MaxHeap {

@@ -16,7 +16,7 @@ export default {
 /**
  * @function noTwoConsecutiveChars
  * @param {string} str The String to operate on
- * @return {(string|bool)} Rearranged string or false
+ * @returns {(string|bool)} Rearranged string or false
  */
 
 function noTwoConsecutiveChars(str) {
@@ -47,7 +47,7 @@ console.log(noTwoConsecutiveChars('aaabaaabbbbbbbbbbbccccbbcbsd'));
 /**
  * @function noTwoConsecutiveChars
  * @param {string} str The String to operate on
- * @return {(string|bool)} Rearranged string or false
+ * @returns {(string|bool)} Rearranged string or false
  */
 
 function noTwoConsecutiveChars(str) {

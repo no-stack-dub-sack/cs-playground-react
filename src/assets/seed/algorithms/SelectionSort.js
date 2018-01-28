@@ -4,7 +4,7 @@ export default {
 `/**
   * @function selectionSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function selectionSort(arr) {
@@ -17,7 +17,7 @@ console.log(selectionSort([5, 23, 9876, 21, 0, 11, 2, 67, 89, 234, 0, 12, 43, 69
 `/**
   * @function selectionSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function selectionSort(arr) {

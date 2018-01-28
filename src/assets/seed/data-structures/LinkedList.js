@@ -18,20 +18,20 @@ class LinkedList {
 
     // peekHead()
     // size()
-    // add()
-    // addAt()
-    // remove()
-    // removeAt()
-    // indexOf()
-    // elementAt()
+    // add(value)
+    // addAt(index)
+    // remove(value)
+    // removeAt(index)
+    // indexOf(value)
+    // elementAt(index)
     // isEmpty()
 }
 `,
   solution:
 `/**
   * @class Node
-  * @property {number|string} value The node's value
-  * @property {object} next The next node
+  * @property {(number|string)} value The node's value
+  * @property {?Object.<Node>} next The next node
   */
 
 class Node {
@@ -43,17 +43,17 @@ class Node {
 
 /**
  * @class Singly-Linked List data structure
- * @property {object} head Root node of collection
+ * @property {?Object.<Node>} head Root node of collection
  * @property {number} length The length of the list
- * @method peekHead @return {object} root node of collection
- * @method size @return size of List
- * @method add @param {number|string} value Adds node to List
- * @method addAt @param {number} index @param {number|string} value Adds node at specific index
- * @method remove @param {number|string} value @return {number|string} removed element
- * @method removeAt @param {number} index @return {number|string} removed element at specific index
- * @method indexOf @param {number|string} value @return {number} index of a given element
- * @method elementAt @param {number} index @return {number|string} elementAt at specific index
- * @method isEmpty @return {boolean}
+ * @method peekHead @returns {?Object.<Node>} root node of collection
+ * @method size @returns {number} size of List
+ * @method add @param {(number|string)} value Adds node to List
+ * @method addAt @param {number} index @param {(number|string)} value Adds node at specific index
+ * @method remove @param {(number|string)} value @returns {?(number|string)} removed element
+ * @method removeAt @param {number} index @returns {?(number|string)} removed element at specific index
+ * @method indexOf @param {(number|string)} value @returns {number} index of a given element
+ * @method elementAt @param {number} index @returns {?(number|string)} elementAt at specific index
+ * @method isEmpty @returns {boolean}
  */
 
 class LinkedList {
@@ -87,6 +87,7 @@ class LinkedList {
         }
 
         this.length++;
+        return true;
     }
 
 
@@ -114,6 +115,7 @@ class LinkedList {
         }
 
         this.length++;
+        return true;
     }
 
 

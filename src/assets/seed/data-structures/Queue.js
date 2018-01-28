@@ -11,11 +11,12 @@ export default {
 class Queue {
     constructor() {
         this.root = null;
+        this.length = 0;
     }
 
     // methods to implement:
 
-    // enqueue()
+    // enqueue(value)
     // dequeue()
     // front()
     // isEmpty()
@@ -42,11 +43,11 @@ class Node {
   * @property {Object} tail The tail node of the queue
   * @property {number} length The length of the queue
   * @method enqueue @param {*} value Insert elements into the queue, O(1)
-  * @method enqueueLinearTime @param {*} value Insert elements into the queue, O(n) 
-  * @method dequeue @return {*} Removes and returns the front node's value
-  * @method front @return {*} Returns but DOES NOT return the front node's value
-  * @method isEmpty @return {boolean}
-  * @method size @return {number} Returns the queue's length
+  * @method enqueueLinearTime @param {*} value Insert elements into the queue, O(n)
+  * @method dequeue @returns {*} Removes and returns the front node's value
+  * @method front @returns {*} Returns but DOES NOT return the front node's value
+  * @method isEmpty @returns {boolean}
+  * @method size @returns {number} Returns the queue's length
   */
 
 class Queue {

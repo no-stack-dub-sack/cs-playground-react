@@ -4,7 +4,7 @@ export default {
 `/**
   * @function bucketSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 // there are many different implementations of this algorithm, this is just one!
@@ -30,7 +30,7 @@ console.log(
 `/**
   * @function bucketSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 // there are many different implementations of this algorithm, this is just one!
@@ -61,7 +61,7 @@ function bucketSort(arr) {
 /**
   * @function insertionSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 // we use insertion sort to sort each bucket.

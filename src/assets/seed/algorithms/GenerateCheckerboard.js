@@ -4,7 +4,7 @@ export default {
 `/** @function generateCheckerboard
   * @param {number} h The height of the board
   * @param {number} w The width of the board
-  * @return {string}
+  * @returns {string}
   *
   * create an algorithm that takes two ints as
   * arguments, height and width, and returns a
@@ -37,7 +37,7 @@ solution:
 `/** @function generateCheckerBoard
   * @param {number} h The height of the board
   * @param {number} w The width of the board
-  * @return {string}
+  * @returns {string}
   */
 
 function generateCheckerboard(h, w) {

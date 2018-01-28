@@ -25,7 +25,7 @@ export default {
 `/**
   * @function superDifficultSortingAlgo
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
   
 function superDifficultSortingAlgo(arr) {
@@ -36,7 +36,7 @@ function superDifficultSortingAlgo(arr) {
 `/**
   * @function superDifficultSortingAlgo
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
   
 function superDifficultSortingAlgo(arr) {

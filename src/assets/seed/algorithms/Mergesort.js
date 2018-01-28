@@ -4,7 +4,7 @@ export default {
 `/**
   * @function mergeSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function mergeSort(arr) {
@@ -17,7 +17,7 @@ console.log(mergeSort([27698, 234, 98, 0, 23, 11, 9, 65, 3, 4, 0, 2, 1]));
 `/**
   * @function mergeSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function mergeSort(arr) {
@@ -35,7 +35,7 @@ function mergeSort(arr) {
   * @function merge
   * @param {number[]} left
   * @param {number[]} right
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function merge(left, right) {

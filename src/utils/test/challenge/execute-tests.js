@@ -52,8 +52,10 @@ function executeTests(
           // log disabled / greyed out test message
           console.log('<code>' + e.message + ': ' + test.message + '</code>')
         }
-        // ONLY FOR DEV TO DEBUG TESTS:
-        else if (e.message !== test.message) {
+        else if ( // ONLY FOR DEV TO DEBUG TESTS:
+          process.env.NODE_ENV !== 'production' && 
+          e.message !== test.message
+        ) {
           console.log('Fail: ' + e.message)
         }
         else {

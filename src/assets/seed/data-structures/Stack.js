@@ -45,7 +45,7 @@ class Node {
   * @method push @param {(number|string)} value Adds an element to the collection
   * @method pop Removes an element from the collection
   * @method peek Returns the element at the top of the Stack
-  * @method isEmpty @return bool
+  * @method isEmpty @returns bool
   * @method clear Clears the stack
   * @method print Prints the collection to the console
   */

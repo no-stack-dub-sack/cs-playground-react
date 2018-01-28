@@ -20,12 +20,12 @@ class DoublyLinkedList {
 
     // peekHead()
     // peekTail()
-    // add()
-    // addAt()
-    // remove()
-    // removeAt()
-    // indexOf()
-    // elementAt()
+    // add(value)
+    // addAt(index, value)
+    // remove(value)
+    // removeAt(index)
+    // indexOf(value)
+    // elementAt(index)
     // isEmpty()
     // reverse()
     // size()
@@ -53,17 +53,17 @@ class Node {
  * @property {Object} head Root element of list
  * @property {Object} tail Tail element of list
  * @property {number} length The length of the list
- * @method peekHead @return {Object} Peek at root element of list
- * @method peekTail @return {Object} Peek at tail element of list
+ * @method peekHead @returns {Object} Peek at root element of list
+ * @method peekTail @returns {Object} Peek at tail element of list
  * @method add @param {*} element Appends element to tail of list
  * @method addAt @param {number} index @param {*} element Adds element at specific index
- * @method remove @param {*} element @return {*} Remove and return element from list, return null if no removal
- * @method removeAt @param {number} index @return {*} Remove and return element at specific index, or null if no removal
- * @method indexOf @param {*} element @return {number} Return index of a given element or null if element doesn't exist
- * @method elementAt @param {number} index @return {*} Return element at specific index or null if element doesn't exist
- * @method isEmpty @return {boolean} Return true if list is empty, false if not
+ * @method remove @param {*} element @returns {*} Remove and return element from list, return null if no removal
+ * @method removeAt @param {number} index @returns {*} Remove and return element at specific index, or null if no removal
+ * @method indexOf @param {*} element @returns {number} Return index of a given element or null if element doesn't exist
+ * @method elementAt @param {number} index @returns {*} Return element at specific index or null if element doesn't exist
+ * @method isEmpty @returns {boolean} Return true if list is empty, false if not
  * @method reverse Reverses the list structure
- * @method size @return {number} Returns the size of List, can be used interchangably with list.length
+ * @method size @returns {number} Returns the size of List, can be used interchangably with list.length
  */
 
 class DoublyLinkedList {

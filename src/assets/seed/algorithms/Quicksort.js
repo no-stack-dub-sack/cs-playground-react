@@ -4,7 +4,7 @@ export default {
 `/**
   * @function quickSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function quickSort(arr) {
@@ -19,7 +19,7 @@ console.log(quickSort([6, 9, 23, 3564, 0, 4, 99, 11, 25, 74, 939, 35, 1, 643, 3,
   * @param {number[]} arr
   * @param {number} [low=0]
   * @param {number} [high=arr.length]
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function quickSort(arr, low = 0, high = arr.length-1) {
@@ -45,7 +45,7 @@ function quickSort(arr, low = 0, high = arr.length-1) {
   * @param {number[]} arr
   * @param {number} [low=0]
   * @param {number} [high=arr.length]
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 function partition(arr, low, high) {

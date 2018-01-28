@@ -16,10 +16,11 @@ class BinarySearchTree {
 
     // methods to implement:
 
-    // add()
+    // add(value)
+    // remove(value)
     // findMin()
     // findMax()
-    // isPresent(int)
+    // isPresent(value)
     // findMaxHeight()
     // findMinHeight()
     // isBalanced()
@@ -28,7 +29,6 @@ class BinarySearchTree {
     // postOrder()
     // levelOrder()
     // reverseLevelOrder()
-    // remove()
     // invert()
 }
 `,
@@ -51,18 +51,18 @@ class Node {
 /**
   * @class BinarySearchTree
   * @method add Adds a node to the tree @param {number}
-  * @method remove @param {number} value @return {number} Removes and returns the removed element
-  * @method findMin @return {number} Returns the smallest value in the tree
-  * @method findMax @return {number} Returns the greatest value in the tree
-  * @method isPresent @param {number} @return {boolean} Whether or not a value is present in the tree
-  * @method findMaxHeight @return {number} Returns the greatest depth (from root to furthest leaf)
-  * @method findMinHeight @return {number} Returns the smallest depth (from root to furthest leaf)
-  * @method isBalanced @return {boolean} Whether or not the left and right depth difference is <= 1
-  * @method inOrder @return {number[]} An array of the tree's values arranged inOrder
-  * @method preOrder @return {number[]} An array of the tree's values arranged in preOrder
-  * @method postOrder @return {number[]} An array of the tree's values arranged in postOrder
-  * @method levelOrder @return {number[]} An array of the tree's values arranged in levelOrder
-  * @method reverseLevelOrder @return {number[]} An array of the tree's values arranged in reverseLevelOrder
+  * @method remove @param {number} value @returns {number} Removes and returns the removed element
+  * @method findMin @returns {number} Returns the smallest value in the tree
+  * @method findMax @returns {number} Returns the greatest value in the tree
+  * @method isPresent @param {number} @returns {boolean} Whether or not a value is present in the tree
+  * @method findMaxHeight @returns {number} Returns the greatest depth (from root to furthest leaf)
+  * @method findMinHeight @returns {number} Returns the smallest depth (from root to furthest leaf)
+  * @method isBalanced @returns {boolean} Whether or not the left and right depth difference is <= 1
+  * @method inOrder @returns {number[]} An array of the tree's values arranged inOrder
+  * @method preOrder @returns {number[]} An array of the tree's values arranged in preOrder
+  * @method postOrder @returns {number[]} An array of the tree's values arranged in postOrder
+  * @method levelOrder @returns {number[]} An array of the tree's values arranged in levelOrder
+  * @method reverseLevelOrder @returns {number[]} An array of the tree's values arranged in reverseLevelOrder
   * @method invert Inverts the tree in place
   */
 
@@ -73,36 +73,36 @@ class BinarySearchTree {
     }
 
 
-    add(int) {
+    add(value) {
         if (!this.root) {
             this.size++;
-            this.root = new Node(int);
+            this.root = new Node(value);
             return;
         }
 
-        const add = (int, node) => {
-            if (int > node.value) {
+        const add = (value, node) => {
+            if (value > node.value) {
                 if (!node.right) {
                     this.size++;
-                    node.right = new Node(int);
+                    node.right = new Node(value);
                     return;
                 } else {
-                    return add(int, node.right);
+                    return add(value, node.right);
                 }
-            } else if (int < node.value) {
+            } else if (value < node.value) {
                 if (!node.left) {
                     this.size++;
-                    node.left = new Node(int);
+                    node.left = new Node(value);
                     return;
                 } else {
-                    return add(int, node.left);
+                    return add(value, node.left);
                 }
             }
             // element already exists
             return null;
         }
 
-        return add(int, this.root);
+        return add(value, this.root);
     }
 
 
@@ -228,23 +228,23 @@ class BinarySearchTree {
     }
 
 
-    isPresent(int) {
+    isPresent(value) {
         if (!this.root) {
             return false;
         }
 
-        const isPresent = (int, node) => {
-            if (int === node.value) {
+        const isPresent = (value, node) => {
+            if (value === node.value) {
                 return true;
-            } else if (int > node.value && node.right) {
-                return isPresent(int, node.right);
-            } else if (int < node.value && node.left) {
-                return isPresent(int, node.left);
+            } else if (value > node.value && node.right) {
+                return isPresent(value, node.right);
+            } else if (value < node.value && node.left) {
+                return isPresent(value, node.left);
             }
             return false;
         }
 
-        return isPresent(int, this.root);
+        return isPresent(value, this.root);
     }
 
 

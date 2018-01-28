@@ -28,10 +28,10 @@ const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
   * @class MinHeap
   * @property {number[]} heap A collection of integers
   * @method insert @param {numnber} node
-  * @method remove @return {?number} returns null or the removed item
+  * @method remove @returns {?number} returns null or the removed item
   * @method print Logs the heap to the console
-  * @method sort @return {number[]} returns the sorted heap
-  * @method size @return {number} returns the size of the heap
+  * @method sort @returns {number[]} returns the sorted heap
+  * @method size @returns {number} returns the size of the heap
   */
 
 class MinHeap {

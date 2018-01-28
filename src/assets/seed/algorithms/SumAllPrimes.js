@@ -7,7 +7,7 @@ export default {
 /**
   * @function sumAllPrimes
   * @param {number} num
-  * @return {number}
+  * @returns {number}
   */
 
 function sumAllPrimes(num) {
@@ -23,7 +23,7 @@ console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
 /**
   * @function sumAllPrimes
   * @param {number} num
-  * @return {number}
+  * @returns {number}
   */
 
 function sumAllPrimes(num) {
