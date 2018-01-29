@@ -41,9 +41,9 @@ export const tests = [
   },
   {
     expression: `(() => {
-      const test_1 = __table__.hash('cool') === 429;
-      const test_2 = __table__.hash('whoah, I cant believe this actually works!') === 3900;
-      return test_1 && test_2;
+      const TEST_1 = __table__.hash('cool') === 429;
+      const TEST_2 = __table__.hash('whoah, I cant believe this actually works!') === 3900;
+      return TEST_1 && TEST_2;
     })()`,
     message: `For the tests to work properly, the <code>hash</code> method must return the sum of the given string's UTF-16 code units ( e.g. <code>table.hash('cool') === 429</code> ). HINT: use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt" rel="noopener noreferrer" target="_blank">String.charCodeAt()</a>. NOTE: This is a naive hashing function, meant to demonstrate the concept of collision!`
   },
@@ -82,11 +82,11 @@ export const tests = [
   },
   {
     expression: `(() => {
-      const test_1 = __table__.lookup('Peter Weinberg') === null;
+      const TEST_1 = __table__.lookup('Peter Weinberg') === null;
       __table__.add('Peter Weinberg', 7686);
       if (!isProperlyHashed(tests, 9)) return false;
-      const test_2 = __table__.lookup('Cool') === null;
-      return test_1 && test_2;
+      const TEST_2 = __table__.lookup('Cool') === null;
+      return TEST_1 && TEST_2;
     })()`,
     message: `The <code>lookup</code> method returns null when called on an empty hash table or when no key/value pair is found at the given key.`
   },
@@ -123,15 +123,15 @@ export const tests = [
         return false;
       }
 
-      const test_1 = __table__.lookup('Weinberg Peter') === 8000;
-      const test_2 = __table__.lookup('Peter Weinberg') === 7686;
-      if (!test_1 || !test_2) {
+      const TEST_1 = __table__.lookup('Weinberg Peter') === 8000;
+      const TEST_2 = __table__.lookup('Peter Weinberg') === 7686;
+      if (!TEST_1 || !TEST_2) {
         tests[13].message = 'The <code>lookup</code> method correctly looks up two key/value pairs stored at the same hash key.';
         return false;
       }
 
-      const test_3 = __table__.remove('Peter Weinberg') === 7686;
-      if (!test_3) {
+      const TEST_3 = __table__.remove('Peter Weinberg') === 7686;
+      if (!TEST_3) {
         tests[13].message = 'The <code>remove</code> method correctly removes/returns values in instances of collision.';
         return false;
       }
@@ -141,16 +141,16 @@ export const tests = [
         return false;
       }
 
-      const test_4 = __table__.lookup('Peter Weinberg') === null;
-      const test_5 = __table__.lookup('Weinberg Peter') === 8000;
-      if (!test_4 || !test_5) {
+      const TEST_4 = __table__.lookup('Peter Weinberg') === null;
+      const TEST_5 = __table__.lookup('Weinberg Peter') === 8000;
+      if (!TEST_4 || !TEST_5) {
         tests[13].message = 'When 2 key/value pairs are stored at the same hash key and one is removed, looking up the removed key returns <code>null</code>, looking up the other correctly returns the associated value.';
         return false;
       }
 
-      const test_6 = __table__.remove('Weinberg Peter') === 8000;
-      const test_7 = !__table__.collection[1363];
-      if (!test_6 || !test_7) {
+      const TEST_6 = __table__.remove('Weinberg Peter') === 8000;
+      const TEST_7 = !__table__.collection[1363];
+      if (!TEST_6 || !TEST_7) {
         tests[13].message = 'The <code>remove</code> method correctly removes/returns values in instances of collision.';
         return false;
       }

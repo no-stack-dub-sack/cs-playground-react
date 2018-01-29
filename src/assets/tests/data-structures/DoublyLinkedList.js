@@ -95,11 +95,11 @@ export const tests = [
     (() => {
       __list__.add('cat');
       __list__.add('dog');
-      const test_1 = __list__.length;
+      const TEST_1 = __list__.length;
       __list__.add('bird');
       __list__.add('pig');
-      const test_2 = __list__.length === 4;
-      return test_1 && test_2;
+      const TEST_2 = __list__.length === 4;
+      return TEST_1 && TEST_2;
     })()`,
     message: 'The <code>length</code> property of The <code>DoublyLinkedList</code> class should increment every time <code>add</code> is called to reflect the number of nodes in the linked list.'
   },
@@ -113,10 +113,10 @@ export const tests = [
       __list__.add('cat');
       __list__.add('dog');
       __list__.remove('cat');
-      const test_1 = __list__.head.value === 'dog' && __list__.head.prev === null;
+      const TEST_1 = __list__.head.value === 'dog' && __list__.head.prev === null;
       __list__.remove('dog');
-      const test_2 = __list__.head === null && __list__.tail === null;
-      return test_1 && test_2;
+      const TEST_2 = __list__.head === null && __list__.tail === null;
+      return TEST_1 && TEST_2;
     })()`,
     message: 'When the first node is removed, <code>head</code> should assume the value of the removed node\'s <code>next</code> value, and if truthy, should have a <code>prev</code> value set to <code>null</code>.'
   },
@@ -127,13 +127,13 @@ export const tests = [
       __list__.add('dog');
       __list__.add('bird');
       __list__.remove('bird');
-      const test_1 = __list__.tail.value === 'dog' &&
+      const TEST_1 = __list__.tail.value === 'dog' &&
         __list__.tail.prev.value === 'cat' &&
         __list__.tail.next === null;
       __list__.remove('dog');
-      const test_2 = __list__.head.next === null;
+      const TEST_2 = __list__.head.next === null;
       __list__.remove('cat');
-      return test_1 && test_2 &&
+      return TEST_1 && TEST_2 &&
         __list__.tail === null &&
         __list__.head === null;
     })()`,
@@ -159,22 +159,22 @@ export const tests = [
       __list__.add('bird');
       __list__.add('pig');
       __list__.add('cow');
-      const test_1 = __list__.remove('cat') && __list__.length === 3;
-      const test_2 = __list__.remove('pig') && __list__.length === 2;
-      const test_3 = __list__.remove('cow') && __list__.length === 1;
-      const test_4 = __list__.remove('bird') && __list__.length === 0;
-      return test_1 && test_2 && test_3 && test_4;
+      const TEST_1 = __list__.remove('cat') && __list__.length === 3;
+      const TEST_2 = __list__.remove('pig') && __list__.length === 2;
+      const TEST_3 = __list__.remove('cow') && __list__.length === 1;
+      const TEST_4 = __list__.remove('bird') && __list__.length === 0;
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4;
     })()`,
     message: 'For every node removed from the list, the <code>remove</code> method returns a truthy value and decrement the <code>length</code> of the list by one.'
   },
   {
     expression: `
     (() => {
-      const test_1 = __list__.remove('cat') === null;
+      const TEST_1 = __list__.remove('cat') === null;
       __list__.add('dog');
       __list__.add('cat');
-      const test_2 = __list__.remove('bird') === null;
-      return test_1 && test_2 && __list__.length === 2;
+      const TEST_2 = __list__.remove('bird') === null;
+      return TEST_1 && TEST_2 && __list__.length === 2;
     })()`,
     message: 'If <code>remove</code> is called on an empty list, or finds no matching value to remove, <code>null</code> should be returned and the list\'s length property should remain unchanged.'
   },
@@ -191,29 +191,29 @@ export const tests = [
       __list__.add('fish');
 
       // remove 'dog' at index 1; second node is bird, and bird.prev is cat
-      const test_1 = __list__.removeAt(1) === 'dog' &&
+      const TEST_1 = __list__.removeAt(1) === 'dog' &&
         __list__.head.next.value === 'bird' &&
         __list__.head.next.prev.value === 'cat';
 
       // remove 'cat' at head; new head is bird, bird.prev is null, second node is fish, fish.prev is bird
-      const test_2 = __list__.removeAt(0) === 'cat' &&
+      const TEST_2 = __list__.removeAt(0) === 'cat' &&
         __list__.head.value === 'bird' &&
         __list__.head.prev === null &&
         __list__.head.next.value === 'fish' &&
         __list__.head.next.prev.value === 'bird';
 
       // remove 'fish' at index 1; head is bird, bird.next is null, tail is also now bird, bird.prev is null
-      const test_3 = __list__.removeAt(1) === 'fish' &&
+      const TEST_3 = __list__.removeAt(1) === 'fish' &&
         __list__.head.next === null &&
         __list__.tail.value === 'bird' &&
         __list__.tail.prev === null;
 
       // remove 'bird' from head/tail (last node), both head and tail are null
-      const test_4 = __list__.removeAt(0) === 'bird' &&
+      const TEST_4 = __list__.removeAt(0) === 'bird' &&
         __list__.head === null &&
         __list__.tail === null;
 
-      return test_1 && test_2 && test_3 && test_4;
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4;
     })()`,
     message: 'The <code>removeAt</code> method should remove and return the value at the given index, while retaining the linked list structure/references (consider each of the cases outlined in the <code>list.remove(\'val\')</code> tests above).'
   },
@@ -223,27 +223,27 @@ export const tests = [
       __list__.add('cat');
       __list__.add('dog');
       __list__.add('kitten');
-      const test_1 = __list__.length === 3;
+      const TEST_1 = __list__.length === 3;
       __list__.removeAt(1);
-      const test_2 = __list__.length === 2;
+      const TEST_2 = __list__.length === 2;
       __list__.removeAt(1);
-      const test_3 = __list__.length === 1;
+      const TEST_3 = __list__.length === 1;
       __list__.removeAt(1); // no change
       __list__.removeAt(0);
-      const test_4 = __list__.length === 0;
-      return test_1 && test_2 && test_3 && test_4;
+      const TEST_4 = __list__.length === 0;
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4;
     })()`,
     message: 'The <code>removeAt</code> method should decrement the <code>length</code> of the list by one for every node removed from the list.'
   },
   {
     expression: `
     (() => {
-      const test_1 = __list__.removeAt(0) === null;
+      const TEST_1 = __list__.removeAt(0) === null;
       __list__.add('cat');
-      const test_2 = __list__.removeAt(1) === null;
-      const test_3 = __list__.removeAt(5) === null;
-      const test_4 = __list__.removeAt(-5) === null;
-      return test_1 && test_2 && test_3 && test_4;
+      const TEST_2 = __list__.removeAt(1) === null;
+      const TEST_3 = __list__.removeAt(5) === null;
+      const TEST_4 = __list__.removeAt(-5) === null;
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4;
     })()`,
     message: 'The <code>removeAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
@@ -281,12 +281,12 @@ export const tests = [
   {
     expression: `
     (() => {
-      const test_1 = __list__.addAt(0, 'cat') === null;
+      const TEST_1 = __list__.addAt(0, 'cat') === null;
       __list__.add('cat');
       __list__.add('dog');
-      const test_2 = __list__.addAt(4, 'cat') === null;
-      const test_3 = __list__.addAt(-4, 'cat') === null;
-      return test_1 && test_2 && test_3;
+      const TEST_2 = __list__.addAt(4, 'cat') === null;
+      const TEST_3 = __list__.addAt(-4, 'cat') === null;
+      return TEST_1 && TEST_2 && TEST_3;
     })()`,
     message: 'The <code>addAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },
@@ -333,18 +333,18 @@ export const tests = [
       if (isTestDisabled(DoublyLinkedList, 'indexOf')) {
         return 'DISABLED';
       }
-      const test_1 = __list__.indexOf('cat') === -1
+      const TEST_1 = __list__.indexOf('cat') === -1
       __list__.add('cat');
       __list__.add('dog');
       __list__.add('bird');
-      const test_2 = __list__.indexOf('bird') === 2;
+      const TEST_2 = __list__.indexOf('bird') === 2;
       __list__.add('pig');
       __list__.add('cow');
-      const test_3 = __list__.indexOf('cow') === 4;
+      const TEST_3 = __list__.indexOf('cow') === 4;
       __list__.remove('dog');
-      const test_4 = __list__.indexOf('bird') === 1;
-      const test_5 = __list__.indexOf('monkey') === -1;
-      return test_1 && test_2 && test_3 && test_4 && test_5;
+      const TEST_4 = __list__.indexOf('bird') === 1;
+      const TEST_5 = __list__.indexOf('monkey') === -1;
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4 && TEST_5;
     })()`,
     message: 'The <code>indexOf</code> method returns the zero-based index of the given element, or <code>-1</code> if it doesn\'t exist: <span class="type">@param {(string|number)}</span> <code>value</code>'
   },
@@ -356,15 +356,15 @@ export const tests = [
       }
       __list__.add('cat');
       __list__.add('dog');
-      const test_1 = __list__.elementAt(1) === 'dog';
-      const test_2 = __list__.elementAt(0) === 'cat';
+      const TEST_1 = __list__.elementAt(1) === 'dog';
+      const TEST_2 = __list__.elementAt(0) === 'cat';
       __list__.add('pig');
       __list__.add('bird');
       __list__.add('toad');
-      const test_3 = __list__.elementAt(3) === 'bird';
+      const TEST_3 = __list__.elementAt(3) === 'bird';
       __list__.remove('bird');
-      const test_4 = __list__.elementAt(3) === 'toad';
-      return test_1 && test_2 && test_3 && test_4;
+      const TEST_4 = __list__.elementAt(3) === 'toad';
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4;
     })()`,
     message: 'The <code>elementAt</code> method returns the element at the given index: <span class="type">@param {number}</span> <code>index</code>'
   },
@@ -374,12 +374,12 @@ export const tests = [
       if (isTestDisabled(DoublyLinkedList, 'elementAt')) {
         return 'DISABLED';
       }
-      const test_1 = __list__.elementAt(0) === null;
+      const TEST_1 = __list__.elementAt(0) === null;
       __list__.add('cat');
-      const test_2 = __list__.elementAt(1) === null;
-      const test_3 = __list__.elementAt(5) === null;
-      const test_4 = __list__.elementAt(-5) === null;
-      return test_1 && test_2 && test_3 && test_4;
+      const TEST_2 = __list__.elementAt(1) === null;
+      const TEST_3 = __list__.elementAt(5) === null;
+      const TEST_4 = __list__.elementAt(-5) === null;
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4;
     })()`,
     message: 'The <code>elementAt</code> method returns <code>null</code> if the given index is less than <code>0</code>, greater than or equal to the length of the list, or if the list is empty.'
   },

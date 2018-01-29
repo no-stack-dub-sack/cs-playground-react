@@ -33,6 +33,7 @@ import './styles/app.css';
 
 /** TODO:.
   * ADD WARNINGS for changed properties
+  * REVIEW MAX HEAP!! Is it right? Shouldn't max always be at the front of the array?
   * add type annotations to arguments in test messages
   * ADD VisualAlgo visualizations to RESOURCES!!!
   * add arguments to methods to implement

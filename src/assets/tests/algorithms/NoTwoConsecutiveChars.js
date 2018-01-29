@@ -42,17 +42,17 @@ export const tests = [
   {
     expression: `
       (() => {
-        const test_1 = isValid(noTwoConsecutiveChars('aabba'));
-        const test_2 = isValid(noTwoConsecutiveChars('aaaaaaabbbbcc'));
-        const test_3 = isValid(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
-        const test_4 = isValid(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
+        const TEST_1 = isValid(noTwoConsecutiveChars('aabba'));
+        const TEST_2 = isValid(noTwoConsecutiveChars('aaaaaaabbbbcc'));
+        const TEST_3 = isValid(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
+        const TEST_4 = isValid(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
         const originalCharsMap_1 = countChars('aaabaaabbbbbbbbbbccccbbcbsd');
         const resultCharsMap_1 = countChars(noTwoConsecutiveChars('aaabaaabbbbbbbbbbccccbbcbsd'));
         const originalCharsMap_2 = countChars('aaabaaabbbbbbbbbccccbbcbsd');
         const resultCharsMap_2 = countChars(noTwoConsecutiveChars('aaabaaabbbbbbbbbccccbbcbsd'));
         const isSameChars_1 = compareChars(originalCharsMap_1, resultCharsMap_1);
         const isSameChars_2 = compareChars(originalCharsMap_2, resultCharsMap_2);
-        return test_1 && test_2 && test_3 && test_4 && isSameChars_1 && isSameChars_2;
+        return TEST_1 && TEST_2 && TEST_3 && TEST_4 && isSameChars_1 && isSameChars_2;
       })()`,
     message: 'whenever possible, <code>noTwoConsecutiveChars</code> returns a string that contains all the characters from the original string, rearranged so that no two consecutive characters are the same'
   },

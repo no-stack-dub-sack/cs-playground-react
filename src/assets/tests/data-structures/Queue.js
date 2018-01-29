@@ -80,9 +80,9 @@ export const tests = [
       __queue__.enqueue('one');
       __queue__.enqueue('two');
       __queue__.enqueue('three');
-      const one = __queue__.dequeue() === 'one';
-      const two = __queue__.dequeue() === 'two';
-      return one && two && __queue__.__print__() === 'three';
+      const TEST_1 = __queue__.dequeue() === 'one';
+      const TEST_2 = __queue__.dequeue() === 'two';
+      return TEST_1 && TEST_2 && __queue__.__print__() === 'three';
     })()`,
     message: 'The <code>dequeue</code> method removes and returns the elements from the queue according to the first-in-first-out principle'
   },
@@ -109,19 +109,19 @@ export const tests = [
   },
   {
     expression: `(() => {
-      const one = typeof __queue__.size === 'function'
+      const TEST_1 = typeof __queue__.size === 'function'
         ? __queue__.size() === 0
         : __queue__.size === 0;
       __queue__.enqueue('one');
       __queue__.enqueue('two');
-      const two = typeof __queue__.size === 'function'
+      const TEST_2 = typeof __queue__.size === 'function'
         ? __queue__.size() === 2
         : __queue__.size === 2;
       __queue__.dequeue();
       const three = typeof __queue__.size === 'function'
         ? __queue__.size() === 1
         : __queue__.size === 1;
-      return one && two && three;
+      return TEST_1 && TEST_2 && three;
     })()`,
     message: 'The <code>size</code> method returns the correct length of the queue'
   },

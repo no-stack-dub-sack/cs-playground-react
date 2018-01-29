@@ -78,10 +78,10 @@ export const tests = [
     method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 'B')
-      const test_1 = __graph__.addEdge(1, 'B') === false // duplicate edge
-      const test_2 = __graph__.addEdge(1, 'Hi') === false // second arg is not vertex
-      const test_3 = __graph__.addEdge('Yo', 'B') === false // first arg is not vertex
-      return test_1 && test_2 && test_3 && __graph__.__entries__()
+      const TEST_1 = __graph__.addEdge(1, 'B') === false // duplicate edge
+      const TEST_2 = __graph__.addEdge(1, 'Hi') === false // second arg is not vertex
+      const TEST_3 = __graph__.addEdge('Yo', 'B') === false // first arg is not vertex
+      return TEST_1 && TEST_2 && TEST_3 && __graph__.__entries__()
     })()`,
     expected: [["A",[]],["B",[1]],["C",[]],[1,["B"]],[2,[]],[3,[]]],
     message: `The <code>addEdge</code> method returns <code>false</code> and does not add a connection if an edge between the given vertices already exists, or if either of the given vertices do not exist`
@@ -90,10 +90,10 @@ export const tests = [
     expression: `(() => {
       __graph__.addEdge(1, 3)
       __graph__.addEdge('B', 3)
-      const test_1 = __graph__.numEdges === 2
+      const TEST_1 = __graph__.numEdges === 2
       __graph__.addEdge('A', 'B')
       __graph__.addEdge('C', 'A')
-      return test_1 && __graph__.numEdges === 4
+      return TEST_1 && __graph__.numEdges === 4
     })()`,
     message: `The <code>addEdge</code> method increments the graph's <code>numEdges</code> property by one for each edge added to the graph`
   },
@@ -159,11 +159,11 @@ export const tests = [
       __graph__.addEdge('C', 'A')
       __graph__.removeEdge('B', 'A')
       __graph__.removeEdge(3, 'B')
-      const test_1 = __graph__.numEdges === 2
+      const TEST_1 = __graph__.numEdges === 2
       __graph__.removeEdge(3, 1)
       __graph__.removeEdge('C', 'A')
-      const test_2 = __graph__.numEdges === 0
-      return test_1 && test_2
+      const TEST_2 = __graph__.numEdges === 0
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>removeEdge</code> method decrements the graph's <code>numEdges</code> property by one for each edge removed from the graph`
   },
@@ -171,11 +171,11 @@ export const tests = [
     method: 'deepEqual',
     expression: `(() => {
       __graph__.addEdge(1, 3)
-      const test_1 = __graph__.removeEdge(1, 'A') === false
-      const test_2 = __graph__.removeEdge('Annoying', 'A') === false
-      const test_3 = __graph__.removeEdge('A', 'Test') === false
-      const test_4 = __graph__.removeEdge('Logs', 'Logs') === false
-      return test_1 && test_2 && test_3 && test_4 && __graph__.__entries__()
+      const TEST_1 = __graph__.removeEdge(1, 'A') === false
+      const TEST_2 = __graph__.removeEdge('Annoying', 'A') === false
+      const TEST_3 = __graph__.removeEdge('A', 'Test') === false
+      const TEST_4 = __graph__.removeEdge('Logs', 'Logs') === false
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4 && __graph__.__entries__()
     })()`,
     expected: [["A",[]],["B",[]],["C",[]],[1,[3]],[2,[]],[3,[1]]],
     message: `The <code>removeEdge</code> method does not mutate the graph and returns <code>false</code> if the given <code>source</code> and <code>destination</code> vertices do not share an edge or if either of the given vertices do not exist`
@@ -186,17 +186,17 @@ export const tests = [
   },
   {
     expression: `(() => {
-      const test_1 = typeof __graph__.size === 'function'
+      const TEST_1 = typeof __graph__.size === 'function'
         ? __graph__.size() === 6
         : __graph__.size === 6
       __graph__.addVertex('P')
       __graph__.addVertex('W')
       __graph__.addVertex('P')
       __graph__.addVertex('W')
-      const test_2 = typeof __graph__.size === 'function'
+      const TEST_2 = typeof __graph__.size === 'function'
         ? __graph__.size() === 8
         : __graph__.size === 8
-      return test_1 && test_2
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>size</code> method or propery correctly tracks and returns the graph's current size (number of vertices)`
   },
@@ -210,17 +210,17 @@ export const tests = [
       __graph__.addEdge('B', 3)
       __graph__.addEdge('A', 'B')
       __graph__.addEdge('C', 'A')
-      const test_1 = typeof __graph__.relations === 'function'
+      const TEST_1 = typeof __graph__.relations === 'function'
         ? __graph__.relations() === 4
         : __graph__.relations === 4
       __graph__.addEdge('C', 1)
       __graph__.addEdge('C', 2)
       __graph__.addEdge('C', 1)
       __graph__.addEdge('C', 2)
-      const test_2 = typeof __graph__.relations === 'function'
+      const TEST_2 = typeof __graph__.relations === 'function'
         ? __graph__.relations() === 6
         : __graph__.relations === 6
-      return test_1 && test_2
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>relations</code> method or propery correctly tracks and returns the graph's current number of relations (number of edges/connections)`
   },
@@ -241,14 +241,14 @@ export const tests = [
         __graph__.addEdge(s, d)
       }
       // depthFirst(0) => 0 -> 1 -> 2 -> 4 -> 3 -> 5
-      const test_1 = /\\D?0\\D*1\\D*2\\D*4\\D*3\\D*5\\D?/.test(__graph__.depthFirst(0))
+      const TEST_1 = /\\D?0\\D*1\\D*2\\D*4\\D*3\\D*5\\D?/.test(__graph__.depthFirst(0))
       // depthFirst(1) => 1 -> 0 -> 3 -> 4 -> 5 -> 2
-      const test_2 = /\\D?1\\D*0\\D*3\\D*4\\D*5\\D*2\\D?/.test(__graph__.depthFirst(1))
+      const TEST_2 = /\\D?1\\D*0\\D*3\\D*4\\D*5\\D*2\\D?/.test(__graph__.depthFirst(1))
       // depthFirst(3) => 3 -> 0 -> 1 -> 2 -> 4 -> 5
-      const test_3 = /\\D?3\\D*0\\D*1\\D*2\\D*4\\D*5\\D?/.test(__graph__.depthFirst(3))
+      const TEST_3 = /\\D?3\\D*0\\D*1\\D*2\\D*4\\D*5\\D?/.test(__graph__.depthFirst(3))
       // depthFirst(5) => 5 -> 4 -> 0 -> 1 -> 2 -> 3
-      const test_4 = /\\D?5\\D*4\\D*0\\D*1\\D*2\\D*3\\D?/.test(__graph__.depthFirst(5))
-      return test_1 && test_2 && test_3 && test_4
+      const TEST_4 = /\\D?5\\D*4\\D*0\\D*1\\D*2\\D*3\\D?/.test(__graph__.depthFirst(5))
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4
     })()`,
     message: `The <code>depthFirst</code> method returns an array of values or a string representing the vertices of the graph explored from the given <code>startingVertex</code> in depth first order`
   },
@@ -261,14 +261,14 @@ export const tests = [
         __graph__.addEdge(s, d)
       }
       // breadthFirst(0) => 0 -> 1 -> 3 -> 4 -> 2 -> 5
-      const test_1 = /\\D?0\\D*1\\D*3\\D*4\\D*2\\D*5\\D?/.test(__graph__.breadthFirst(0))
+      const TEST_1 = /\\D?0\\D*1\\D*3\\D*4\\D*2\\D*5\\D?/.test(__graph__.breadthFirst(0))
       // breadthFirst(1) => 1 -> 0 -> 2 -> 3 -> 4 -> 5
-      const test_2 = /\\D?1\\D*0\\D*2\\D*3\\D*4\\D*5\\D?/.test(__graph__.breadthFirst(1))
+      const TEST_2 = /\\D?1\\D*0\\D*2\\D*3\\D*4\\D*5\\D?/.test(__graph__.breadthFirst(1))
       // breadthFirst(3) => 3 -> 0 -> 4 -> 1 -> 5 -> 2
-      const test_3 = /\\D?3\\D*0\\D*4\\D*1\\D*5\\D*2\\D?/.test(__graph__.breadthFirst(3))
+      const TEST_3 = /\\D?3\\D*0\\D*4\\D*1\\D*5\\D*2\\D?/.test(__graph__.breadthFirst(3))
       // breadthFirst(5) => 5 -> 4 -> 2 -> 0 -> 3 -> 1
-      const test_4 = /\\D?5\\D*4\\D*2\\D*0\\D*3\\D*1\\D?/.test(__graph__.breadthFirst(5))
-      return test_1 && test_2 && test_3 && test_4
+      const TEST_4 = /\\D?5\\D*4\\D*2\\D*0\\D*3\\D*1\\D?/.test(__graph__.breadthFirst(5))
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4
     })()`,
     message: `The <code>breadthFirst</code> method returns an array of values or a string representing the vertices of the graph explored from the given <code>startingVertex</code> in breadth first order`
   },
@@ -282,10 +282,10 @@ export const tests = [
         __graph__.addEdge(s, d)
       }
       // pathFromTo(3, 8) => 3 -> 4 -> 2 -> 6 -> 7 -> 8
-      const test_1 = /\\D?3\\D*4\\D*2\\D*6\\D*7\\D*8\\D?/.test(__graph__.pathFromTo(3, 8))
+      const TEST_1 = /\\D?3\\D*4\\D*2\\D*6\\D*7\\D*8\\D?/.test(__graph__.pathFromTo(3, 8))
       // pathFromTo(1, 5) => 1 -> 0 -> 4 -> 5
-      const test_2 = /\\D?1\\D*0\\D*4\\D*5\\D?/.test(__graph__.pathFromTo(1, 5))
-      return test_1 && test_2
+      const TEST_2 = /\\D?1\\D*0\\D*4\\D*5\\D?/.test(__graph__.pathFromTo(1, 5))
+      return TEST_1 && TEST_2
     })()`,
     message: `The Graph class has a <code>pathFromTo</code> method which returns a string or an array of values representing the shortest path between two given vertices: <span class="type">@param {(string|number)}</span> <code>fromVertex</code> <span class="type">@param {(string|number)}</span> <code>toVertex</code>`
   },
@@ -302,9 +302,9 @@ export const tests = [
     expression: `(() => {
       if (isTestDisabled(Graph, 'isDirectConnection')) return 'DISABLED'
       __graph__.addEdge(1, 3)
-      const test_1 = __graph__.isDirectConnection(1, 3) === true
-      const test_2 = __graph__.isDirectConnection(1, 'A') === false
-      return test_1 && test_2
+      const TEST_1 = __graph__.isDirectConnection(1, 3) === true
+      const TEST_2 = __graph__.isDirectConnection(1, 'A') === false
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>isDirectConnection</code> method returns <code>true</code> if the given vertices share an edge, otherwise <code>false</code>: <span class="type">@param {(string|number)}</span> <code>source</code> <span class="type">@param {(string|number)}</span> <code>connection</code>`
   },
@@ -313,9 +313,9 @@ export const tests = [
       if (isTestDisabled(Graph, 'isIndirectConnection')) return 'DISABLED'
       __graph__.addEdge(1, 3)
       __graph__.addEdge(3, 'A')
-      const test_1 = __graph__.isIndirectConnection(1, 'A') === true
-      const test_2 = __graph__.isIndirectConnection(1, 2) === false
-      return test_1 && test_2
+      const TEST_1 = __graph__.isIndirectConnection(1, 'A') === true
+      const TEST_2 = __graph__.isIndirectConnection(1, 2) === false
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>isIndirectConnection</code> method returns <code>true</code> if the given vertices share an indirect connection, otherwise <code>false</code>: <span class="type">@param {(string|number)}</span> <code>source</code> <span class="type">@param {(string|number)}</span> <code>connection</code>`
   },
@@ -328,22 +328,22 @@ export const tests = [
       for (let [s, d] of edges) {
         __graph__.addEdge(s, d)
       }
-      const test_1 = JSON.stringify(__graph__.getConnections(0)) === '[1,3,2]'
-      const test_2 = JSON.stringify(__graph__.getConnections(2)) === '[0,1,3]'
-      const test_3 = JSON.stringify(__graph__.getConnections(3)) === '[0,2,1]'
-      const test_4 = JSON.stringify(__graph__.getConnections(4)) === '[]'
-      const test_5 = __graph__.getConnections(5) === null
-      return test_1 && test_2 && test_3 && test_4 && test_5
+      const TEST_1 = JSON.stringify(__graph__.getConnections(0)) === '[1,3,2]'
+      const TEST_2 = JSON.stringify(__graph__.getConnections(2)) === '[0,1,3]'
+      const TEST_3 = JSON.stringify(__graph__.getConnections(3)) === '[0,2,1]'
+      const TEST_4 = JSON.stringify(__graph__.getConnections(4)) === '[]'
+      const TEST_5 = __graph__.getConnections(5) === null
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4 && TEST_5
     })()`,
     message: `The <code>getConnections</code> method returns the adjacency list for the given <code>vertex</code> or <code>null</code> if the vertex doesn't exist: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
   },
   {
     expression: `(() => {
       if (isTestDisabled(Graph, 'isEmpty')) return 'DISABLED'
-      const test_1 = __graph__.isEmpty() === false
+      const TEST_1 = __graph__.isEmpty() === false
       __graph__.__clearGraph__()
-      const test_2 = __graph__.isEmpty() === true
-      return test_1 && test_2
+      const TEST_2 = __graph__.isEmpty() === true
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>Graph</code> class has an <code>isEmpty</code> method which returns <code>true</code> if the graph is empty, <code>false</code> if not`
   },
@@ -360,20 +360,20 @@ export const tests = [
   {
     expression: `(() => {
       if (isTestDisabled(Graph, 'hasVertex')) return 'DISABLED'
-      const test_1 = __graph__.hasVertex('A') === true
-      const test_2 = __graph__.hasVertex('J') === false
-      return test_1 && test_2
+      const TEST_1 = __graph__.hasVertex('A') === true
+      const TEST_2 = __graph__.hasVertex('J') === false
+      return TEST_1 && TEST_2
     })()`,
     message: `The <code>Graph</code> class has a <code>hasVertex</code> method which returns <code>true</code> if the graph has the given vertex, <code>false</code> if not: <span class="type">@param {(string|number)}</span> <code>vertex</code>`
   },
   {
     expression: `(() => {
       if (isTestDisabled(Graph, 'hasVertices')) return 'DISABLED'
-      const test_1 = __graph__.hasVertices('A', 'B') === true
-      const test_2 = __graph__.hasVertices('A', 'J') === false
-      const test_3 = __graph__.hasVertices('J', 'A') === false
-      const test_4 = __graph__.hasVertices('J', 'J') === false
-      return test_1 && test_2 && test_3 && test_4
+      const TEST_1 = __graph__.hasVertices('A', 'B') === true
+      const TEST_2 = __graph__.hasVertices('A', 'J') === false
+      const TEST_3 = __graph__.hasVertices('J', 'A') === false
+      const TEST_4 = __graph__.hasVertices('J', 'J') === false
+      return TEST_1 && TEST_2 && TEST_3 && TEST_4
     })()`,
     message: `The <code>Graph</code> class has a <code>hasVertices</code> method which returns <code>true</code> if the graph has both given vertices, <code>false</code> if not: <span class="type">@param {(string|number)}</span> <code>vertexOne</code> <span class="type">@param {(string|number)}</span> <code>vertexTwo</code>`
   }

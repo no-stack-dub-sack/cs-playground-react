@@ -16,7 +16,7 @@ class Stack {
 
     // methods to implement:
 
-    // push()
+    // push(value)
     // pop()
     // peek()
     // isEmpty()
@@ -28,7 +28,7 @@ class Stack {
 `/**
   * @class Node
   * @property {(number|string)} value The node's value
-  * @property {object} next The next node
+  * @property {?Object.<Node>} next The next node
   */
 
 class Node {
@@ -40,12 +40,12 @@ class Node {
 
 /**
   * @class Stack data structure
-  * @property {object} root The root of the collection
+  * @property {?Object.<Node>} root The root of the collection
   * @property {number} size The size of the collection
   * @method push @param {(number|string)} value Adds an element to the collection
-  * @method pop Removes an element from the collection
-  * @method peek Returns the element at the top of the Stack
-  * @method isEmpty @returns bool
+  * @method pop @returns {(number|string)} Removes the top node from the stack and returns its value 
+  * @method peek @returns {(number|string)} Returns the value of the node at the top of the Stack
+  * @method isEmpty @returns {boolean}
   * @method clear Clears the stack
   * @method print Prints the collection to the console
   */

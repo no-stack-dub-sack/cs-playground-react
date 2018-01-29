@@ -312,10 +312,10 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'preOrder')) {
           return 'DISABLED'
         }
-        const test_1 = __tree__.preOrder() === null;
+        const TEST_1 = __tree__.preOrder() === null;
         [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
-        const test_2 = __tree__.preOrder().join('') === '710325469810'
-        return test_1 && test_2
+        const TEST_2 = __tree__.preOrder().join('') === '710325469810'
+        return TEST_1 && TEST_2
       })()
     `,
     message: 'The <code>preOrder</code> method returns an array of values representing the tree nodes explored in pre order, or <code>null</code> if the tree is empty'
@@ -326,10 +326,10 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'postOrder')) {
           return 'DISABLED'
         }
-        const test_1 = __tree__.postOrder() === null;
+        const TEST_1 = __tree__.postOrder() === null;
         [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
-        const test_2 = __tree__.postOrder().join('') === '024653181097'
-        return test_1 && test_2
+        const TEST_2 = __tree__.postOrder().join('') === '024653181097'
+        return TEST_1 && TEST_2
       })()
     `,
     message: 'The <code>postOrder</code> method returns an array of values representing the tree nodes explored in post order, or <code>null</code> if the tree is empty'
@@ -340,10 +340,10 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'levelOrder')) {
           return 'DISABLED'
         }
-        const test_1 = __tree__.levelOrder() === null;
+        const TEST_1 = __tree__.levelOrder() === null;
         [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
-        const test_2 = __tree__.levelOrder().join('') === '719038102546'
-        return test_1 && test_2
+        const TEST_2 = __tree__.levelOrder().join('') === '719038102546'
+        return TEST_1 && TEST_2
       })()
     `,
     message: 'The <code>levelOrder</code> method returns an array of values representing the tree nodes explored in level order, or <code>null</code> if the tree is empty'
@@ -354,10 +354,10 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'reverseLevelOrder')) {
           return 'DISABLED'
         }
-        const test_1 = __tree__.reverseLevelOrder() === null;
+        const TEST_1 = __tree__.reverseLevelOrder() === null;
         [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
-        const test_2 = __tree__.reverseLevelOrder().join('') === '791108305264'
-        return test_1 && test_2
+        const TEST_2 = __tree__.reverseLevelOrder().join('') === '791108305264'
+        return TEST_1 && TEST_2
       })()
     `,
     message: 'The <code>reverseLevelOrder</code> method returns an array of values representing the tree nodes explored in reverse level order, or <code>null</code> if the tree is empty'
@@ -368,7 +368,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'invert')) {
           return 'DISABLED'
         }
-        const test_1 = __tree__.invert() === null;
+        const TEST_1 = __tree__.invert() === null;
         [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
         __tree__.invert()
         return __tree__.__inOrder__().join('') === '877345348741'
