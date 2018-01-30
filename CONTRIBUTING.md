@@ -1,12 +1,12 @@
-# Contribution Guides
+# Contribution Guide
 
 **NOTE:** This app is built with React and Redux, but if you're just looking to add some new content (like a new algorithm or data structure), knowledge of React or Redux _**is not**_ a prerequisite! You need only know a little JavaScript, and, of course, the topic you are looking to add.
 
 ### Contents
-[How To Install / Run](#how-to-install--run)
-[Adding Challenges / Topics](#adding-challenges--topics)
-[Adding Tests](#adding-tests)
-[Modifying Challenges / Topics](#modifying-challenges--topics)
+- [How To Install / Run](#how-to-install--run)
+- [Adding Challenges / Topics](#adding-challenges--topics)
+- [Adding Tests](#adding-tests)
+- [Modifying Challenges / Topics](#modifying-challenges--topics)
 
 ### How To Install / Run
 - Be sure that you have NodeJS installed
@@ -97,7 +97,7 @@ __Add your tests:__
 - Be sure that your test messages are as clear and concise as possible, and descriptive enough to give the user a clear idea of what the test is asking.
 
 __Test formatting:__
-- Also note that test messages should be formatted correctly. Keywords, numbers, variables or anything else that represents actual code should be wrapped in <code> tags. While methods that take arguments should have type annotations in the JSDoc style.
+- Also note that test messages should be formatted correctly. Keywords, numbers, variables or anything else that represents actual code should be wrapped in `<code>` tags. While methods that take arguments should have type annotations in the JSDoc style.
 
 __Disabling Tests:__
 - For data structures that are very complex, some methods you might add go beyond a fundamental understanding of the concepts. For example, a `pathFromTo` method for a Graph is cool, but might be hard for some users, and is not crucial to learning the basic concepts of a Graph. So this might be a good method to have disabled by default. To disable a test by default, you can add the following code to your test's expression:
