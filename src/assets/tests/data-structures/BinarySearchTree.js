@@ -2,45 +2,45 @@ export const tail = `
 if (typeof new BinarySearchTree() === 'object') {
   BinarySearchTree.prototype.__isBinarySearchTree__ = function() {
     if (this.root === null) {
-      return null;
+      return null
     } else {
-      var check = true;
+      var check = true
       function checkTree(node) {
         if (node.left != null) {
-          var left = node.left;
+          var left = node.left
           if (left.value > node.value) {
-            check = false;
+            check = false
           } else {
-            checkTree(left);
+            checkTree(left)
           }
         }
         if (node.right != null) {
-          var right = node.right;
+          var right = node.right
           if (right.value < node.value) {
-            check = false;
+            check = false
           } else {
-            checkTree(right);
-          };
-        };
-      };
-      checkTree(this.root);
-      return check;
-    };
+            checkTree(right)
+          }
+        }
+      }
+      checkTree(this.root)
+      return check
+    }
   }
   BinarySearchTree.prototype.__inOrder__ = function(node = this.root, list = []) {
     if (!node) {
-      return null;
+      return null
     }
 
-    this.__inOrder__(node.left, list);
-    list.push(node.value);
-    this.__inOrder__(node.right, list);
+    this.__inOrder__(node.left, list)
+    list.push(node.value)
+    this.__inOrder__(node.right, list)
 
-    return list;
+    return list
   }
   BinarySearchTree.prototype.__clearTree__ = function() {
-    this.root = null;
-    return true;
+    this.root = null
+    return true
   }
   BinarySearchTree.prototype.__isNodeValid__ = function() {
     if (typeof this.root.value === 'undefined' ||
@@ -65,7 +65,7 @@ const testHooks = {
     __tree__ = null
   }
 }
-`;
+`
 
 export const tests = [
   {
@@ -94,8 +94,8 @@ export const tests = [
   {
     expression: `
     (() => {
-      __tree__.add(4);
-      return __tree__.add(4) === null;
+      __tree__.add(4)
+      return __tree__.add(4) === null
     })()
     `,
     message: 'Adding an element that already exists returns <code>null</code>'
@@ -109,7 +109,7 @@ export const tests = [
       `(() => {
         [4,1,7,87,34,45,73,8]
           .forEach(n => __tree__.add(n))
-        return __tree__.findMin() === 1;
+        return __tree__.findMin() === 1
       })()
     `,
     message: 'The <code>findMin</code> method returns the minimum value in the binary search tree'
@@ -123,7 +123,7 @@ export const tests = [
       `(() => {
         [4,1,7,87,34,45,73,8]
           .forEach(n => __tree__.add(n))
-        return __tree__.findMax() === 87;
+        return __tree__.findMax() === 87
       })()
     `,
     message: 'The <code>findMax</code> method returns the maximum value in the binary search tree'
@@ -131,7 +131,7 @@ export const tests = [
   {
     expression:
       `(() => {
-        return __tree__.findMin() === null && __tree__.findMax() === null;
+        return __tree__.findMin() === null && __tree__.findMax() === null
       })()
     `,
     message: 'The <code>findMin</code> and <code>findMax</code> methods return <code>null</code> for an empty tree'
@@ -144,7 +144,7 @@ export const tests = [
     expression: `
       (() => {
         [4,7,411,452].forEach(n => __tree__.add(n))
-        return __tree__.isPresent(452) && __tree__.isPresent(411) && __tree__.isPresent(7) && !__tree__.isPresent(100);
+        return __tree__.isPresent(452) && __tree__.isPresent(411) && __tree__.isPresent(7) && !__tree__.isPresent(100)
       })()
     `,
     message: 'The <code>isPresent</code> method correctly checks for the presence or absence of elements added to the tree'
@@ -165,7 +165,7 @@ export const tests = [
     expression: `
       (() => {
         [5,94,3].forEach(n => __tree__.add(n))
-        return (__tree__.remove(100) === null);
+        return (__tree__.remove(100) === null)
       })()
     `,
     message: 'Trying to remove an element that does not exist returns <code>null</code>'
@@ -183,8 +183,8 @@ export const tests = [
   {
     expression: `
       (() => {
-        [5,3,7,6,10,12].forEach(n => __tree__.add(n));
-        [3,12,10].forEach(n => __tree__.remove(n))
+        [5,3,7,6,10,12].forEach(n => __tree__.add(n))
+        ;[3,12,10].forEach(n => __tree__.remove(n))
         return __tree__.__inOrder__().join('') === '567'
       })()
     `,
@@ -193,9 +193,9 @@ export const tests = [
   {
     expression: `
       (() => {
-        [-1,3,7,16].forEach(n => __tree__.add(n));
-        [16,7,3].forEach(n => __tree__.remove(n))
-        return __tree__.__inOrder__().join('') === '-1';
+        [-1,3,7,16].forEach(n => __tree__.add(n))
+        ;[16,7,3].forEach(n => __tree__.remove(n))
+        return __tree__.__inOrder__().join('') === '-1'
       })()
     `,
     message: 'The <code>remove</code> method removes nodes with one child'
@@ -203,10 +203,10 @@ export const tests = [
   {
     expression: `
       (() => {
-        __tree__.add(15);
-        __tree__.add(27);
-        __tree__.remove(15);
-        return __tree__.__inOrder__().join('') === '27';
+        __tree__.add(15)
+        __tree__.add(27)
+        __tree__.remove(15)
+        return __tree__.__inOrder__().join('') === '27'
       })()
     `,
     message: 'Removing the root in a tree with two nodes sets the second to be the root'
@@ -216,7 +216,7 @@ export const tests = [
       (() => {
         [1,4,3,7,9,11,14,15,19,50]
           .forEach(n => __tree__.add(n))
-        const removeNum = [9, 11, 14, 19, 3, 50, 15];
+        const removeNum = [9, 11, 14, 19, 3, 50, 15]
         for (let num of removeNum) {
           __tree__.remove(num)
           if (!__tree__.__isBinarySearchTree__()) {
@@ -232,9 +232,9 @@ export const tests = [
     expression: `
       (() => {
         [100,50,300]
-          .forEach(n => __tree__.add(n));
-        __tree__.remove(100);
-        return __tree__.__inOrder__().join('') === '50300';
+          .forEach(n => __tree__.add(n))
+        __tree__.remove(100)
+        return __tree__.__inOrder__().join('') === '50300'
       })()`,
     message: 'The root can be removed on a tree of three nodes'
   },
@@ -242,27 +242,24 @@ export const tests = [
     expression: `
       (() => {
         [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
-        return __tree__.inOrder().join('') === '012345678910';
+        return __tree__.inOrder().join('') === '012345678910'
       })()
     `,
     message: 'The <code>inOrder</code> method returns an array of the node values that result from an <code>inOrder</code> traversal'
   },
   {
-    expression: `
-      (() => {
-        return __tree__.inOrder() === null;
-      })()`,
+    expression: `__tree__.inOrder() === null`,
     message: 'The <code>inOrder</code> method returns <code>null</code> for an empty tree'
   },
   {
     expression: `
       (() => {
         if (isTestDisabled(BinarySearchTree, 'findMinHeight')) {
-          return 'DISABLED';
+          return 'DISABLED'
         }
         [4,1,7,87,34,45,73,8]
           .forEach(n => __tree__.add(n))
-        return __tree__.findMinHeight() === 1;
+        return __tree__.findMinHeight() === 1
       })()
     `,
     message: 'The <code>findMinHeight</code> method returns the minimum height of the tree'
@@ -312,8 +309,8 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'preOrder')) {
           return 'DISABLED'
         }
-        const TEST_1 = __tree__.preOrder() === null;
-        [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
+        const TEST_1 = __tree__.preOrder() === null
+        ;[7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
         const TEST_2 = __tree__.preOrder().join('') === '710325469810'
         return TEST_1 && TEST_2
       })()
@@ -326,8 +323,8 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'postOrder')) {
           return 'DISABLED'
         }
-        const TEST_1 = __tree__.postOrder() === null;
-        [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
+        const TEST_1 = __tree__.postOrder() === null
+        ;[7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
         const TEST_2 = __tree__.postOrder().join('') === '024653181097'
         return TEST_1 && TEST_2
       })()
@@ -340,8 +337,8 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'levelOrder')) {
           return 'DISABLED'
         }
-        const TEST_1 = __tree__.levelOrder() === null;
-        [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
+        const TEST_1 = __tree__.levelOrder() === null
+        ;[7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
         const TEST_2 = __tree__.levelOrder().join('') === '719038102546'
         return TEST_1 && TEST_2
       })()
@@ -354,8 +351,8 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'reverseLevelOrder')) {
           return 'DISABLED'
         }
-        const TEST_1 = __tree__.reverseLevelOrder() === null;
-        [7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
+        const TEST_1 = __tree__.reverseLevelOrder() === null
+        ;[7,1,9,0,3,8,10,2,5,4,6].forEach(n => __tree__.add(n))
         const TEST_2 = __tree__.reverseLevelOrder().join('') === '791108305264'
         return TEST_1 && TEST_2
       })()
@@ -368,12 +365,12 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'invert')) {
           return 'DISABLED'
         }
-        const TEST_1 = __tree__.invert() === null;
-        [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
+        const TEST_1 = __tree__.invert() === null
+        ;[4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
         __tree__.invert()
         return __tree__.__inOrder__().join('') === '877345348741'
       })()
     `,
     message: 'The <code>invert</code> method correctly inverts the tree structure, or returns <code>null</code> if the tree is empty'
   }
-];
+]

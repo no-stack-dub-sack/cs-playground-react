@@ -31,7 +31,7 @@ export const tests = [
     expression: `
       (() => {
         __heap__.__clear__()
-        return __heap__.heap && Array.isArray(__heap__.heap) && __heap__.heap.length === 0;
+        return __heap__.heap && Array.isArray(__heap__.heap) && __heap__.heap.length === 0
       })()`,
     message: 'The <code>MaxHeap</code> data structure has a <code>heap</code> property, initialized as an empty <code>Array</code> object'
   },
@@ -50,13 +50,13 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (__heap__.remove() !== 64) return false;
+        if (__heap__.remove() !== 64) return false
         if (JSON.stringify(__heap__.heap) !== '[37,14,32,7,2,10]')
           return false
-        if (__heap__.remove() !== 37) return false;
+        if (__heap__.remove() !== 37) return false
         if (JSON.stringify(__heap__.heap) !== '[32,14,10,7,2]')
           return false
-        if (__heap__.remove() !== 32) return false;
+        if (__heap__.remove() !== 32) return false
         if (JSON.stringify(__heap__.heap) !== '[14,2,10,7]')
           return false
         return true
@@ -86,24 +86,24 @@ export const tests = [
       if (typeof __heap__.size === 'undefined')
         return false
       if (typeof __heap__.size === 'function') {
-        if (__heap__.size() !== 7) return false;
-        __heap__.insert(64);
-        __heap__.insert(37);
-        if (__heap__.size() !== 9) return false;
-        __heap__.remove();
-        __heap__.remove();
-        if (__heap__.size() !== 7) return false;
+        if (__heap__.size() !== 7) return false
+        __heap__.insert(64)
+        __heap__.insert(37)
+        if (__heap__.size() !== 9) return false
+        __heap__.remove()
+        __heap__.remove()
+        if (__heap__.size() !== 7) return false
       } else if (typeof __heap__.size === 'number') {
-        if (__heap__.size !== 7) return false;
-        __heap__.insert(64);
-        __heap__.insert(37);
-        if (__heap__.size !== 9) return false;
-        __heap__.remove();
-        __heap__.remove();
-        if (__heap__.size !== 7) return false;
+        if (__heap__.size !== 7) return false
+        __heap__.insert(64)
+        __heap__.insert(37)
+        if (__heap__.size !== 9) return false
+        __heap__.remove()
+        __heap__.remove()
+        if (__heap__.size !== 7) return false
       }
       return true
     })()`,
     message: 'The <code>size</code> method returns the correct size of the heap'
   }
-];
+]

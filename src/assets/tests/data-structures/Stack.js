@@ -3,24 +3,24 @@ export const tail = `
 if (typeof new Stack() === 'object') {
   Stack.prototype.__print__ = function() {
     if (!this.root) {
-      return '[]';
+      return '[]'
     }
-    const result = [];
-    let node = this.root;
+    const result = []
+    let node = this.root
     while (node.next) {
-      result.push(node.value);
-      node = node.next;
+      result.push(node.value)
+      node = node.next
     }
-    result.push(node.value);
-    return result.join('');
+    result.push(node.value)
+    return result.join('')
   }
   Stack.prototype.__pop__ = function() {
     if (!this.root) {
-      return null;
+      return null
     }
-    const value = this.root.value;
-    this.root = this.root.next;
-    return value;
+    const value = this.root.value
+    this.root = this.root.next
+    return value
   }
   Stack.prototype.__clear__ = function() {
     this.root = null
@@ -40,7 +40,7 @@ const testHooks = {
     __stack__ = null
   }
 }
-`;
+`
 export const tests = [
   {
     expression: `typeof __stack__ === 'object'`,
@@ -57,11 +57,11 @@ export const tests = [
   {
     expression: `
     (() => {
-      __stack__.push(5);
-      const TEST_1 = __stack__.root.value === 5;
-      __stack__.push(4);
-      const TEST_2 = __stack__.root.value === 4 && __stack__.root.next.value === 5 && __stack__.root.next.next === null;
-      return TEST_1;
+      __stack__.push(5)
+      const TEST_1 = __stack__.root.value === 5
+      __stack__.push(4)
+      const TEST_2 = __stack__.root.value === 4 && __stack__.root.next.value === 5 && __stack__.root.next.next === null
+      return TEST_1
     })()`,
     message: `The <code>push</code> creates a new <code>Node</code> with properties <code>value</code> and <code>next</code>, where <code>value</code> is the pushed element and <code>next</code> is <code>null</code> or the next element in the stack`
   },
@@ -69,8 +69,8 @@ export const tests = [
     expression: `
     (() => {
       [5,4,3,2,1].forEach(n => __stack__.push(n))
-      return __stack__.__print__() === '12345';
-    })();
+      return __stack__.__print__() === '12345'
+    })()
     `,
     message: 'The <code>push</code> method adds elements to the top of the stack, according to the first-in-first-out principle'
   },
@@ -82,13 +82,13 @@ export const tests = [
     expression: `
     (() => {
       [5,4,3,2,1].forEach(n => __stack__.push(n))
-      const beforePop = __stack__.__print__() === '12345';
-      const pop_1 = __stack__.pop();
-      const pop_2 = __stack__.pop();
-      const pop_3 = __stack__.pop();
-      const afterPop = __stack__.__print__() === '45';
-      return beforePop && pop_1 === 1 && pop_2 === 2 && pop_3 === 3 && afterPop;
-    })();
+      const beforePop = __stack__.__print__() === '12345'
+      const pop_1 = __stack__.pop()
+      const pop_2 = __stack__.pop()
+      const pop_3 = __stack__.pop()
+      const afterPop = __stack__.__print__() === '45'
+      return beforePop && pop_1 === 1 && pop_2 === 2 && pop_3 === 3 && afterPop
+    })()
     `,
     message: 'The <code>pop</code> method removes and returns elements from top of the stack, according to the first-in-first-out principle'
   },
@@ -103,16 +103,17 @@ export const tests = [
   {
     expression: `
     (() => {
-      [5,4,3,2,1].forEach(n => __stack__.push(n))
-      const peek_1 = __stack__.peek();
-      const afterPeek_1 = __stack__.__print__() === '12345';
-      __stack__.__pop__(); __stack__.__pop__();
-      const peek_2 = __stack__.peek();
-      const afterPeek_2 = __stack__.__print__() === '345';
-      __stack__.push(500);
-      const peek_3 = __stack__.peek();
-      return peek_1 === 1 && afterPeek_1 && peek_2 === 3 && afterPeek_2 && peek_3 === 500;
-    })();
+      [5,4,3,2,1].forEach(n => __stack__.push(n));
+      const peek_1 = __stack__.peek()
+      const afterPeek_1 = __stack__.__print__() === '12345'
+      __stack__.__pop__()
+      __stack__.__pop__()
+      const peek_2 = __stack__.peek()
+      const afterPeek_2 = __stack__.__print__() === '345'
+      __stack__.push(500)
+      const peek_3 = __stack__.peek()
+      return peek_1 === 1 && afterPeek_1 && peek_2 === 3 && afterPeek_2 && peek_3 === 500
+    })()
     `,
     message: 'The <code>peek</code> method returns elements from top of the stack, without modifying the stack'
   },
@@ -127,13 +128,13 @@ export const tests = [
   {
     expression: `
     (() => {
-      const TEST_1 = __stack__.isEmpty();
-      __stack__.push(5);
-      const TEST_2 = __stack__.isEmpty();
-      [4,3,2,1].forEach(n => __stack__.push(n))
-      const TEST_3 = __stack__.isEmpty();
-      return TEST_1 && !TEST_2 && !TEST_3;
-    })();
+      const TEST_1 = __stack__.isEmpty()
+      __stack__.push(5)
+      const TEST_2 = __stack__.isEmpty()
+      ;[4,3,2,1].forEach(n => __stack__.push(n))
+      const TEST_3 = __stack__.isEmpty()
+      return TEST_1 && !TEST_2 && !TEST_3
+    })()
     `,
     message: 'The <code>isEmpty</code> method returns <code>true</code> for an empty stack, and <code>false</code> otherwise'
   },
@@ -145,11 +146,11 @@ export const tests = [
     expression: `
     (() => {
       [5,4,3,2,1].forEach(n => __stack__.push(n))
-      const before = __stack__.__print__() === '12345';
-      __stack__.clear();
-      const after = __stack__.root === null;
-      return before && after;
-    })();
+      const before = __stack__.__print__() === '12345'
+      __stack__.clear()
+      const after = __stack__.root === null
+      return before && after
+    })()
     `,
     message: 'The <code>clear</code> method clears the stack, and resets the stack\'s root to null'
   },

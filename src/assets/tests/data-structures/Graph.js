@@ -35,7 +35,8 @@ const testHooks = {
     __graph__ = null
   }
 }
-`;
+`
+
 export const tests = [
   {
     expression: `typeof new Graph() === 'object'`,
@@ -234,8 +235,8 @@ export const tests = [
   },
   {
     expression: `(() => {
-      __graph__.__clearGraph__();
-      [0,1,2,3,4,5].forEach(v => __graph__.addVertex(v))
+      __graph__.__clearGraph__()
+      ;[0,1,2,3,4,5].forEach(v => __graph__.addVertex(v))
       const edges = [[0, 1],[0, 3],[0, 4],[1, 2],[3, 4],[4, 5],[4, 2],[2, 5]]
       for (let [s, d] of edges) {
         __graph__.addEdge(s, d)
@@ -254,8 +255,8 @@ export const tests = [
   },
   {
     expression: `(() => {
-      __graph__.__clearGraph__();
-      [0,1,2,3,4,5].forEach(v => __graph__.addVertex(v))
+      __graph__.__clearGraph__()
+      ;[0,1,2,3,4,5].forEach(v => __graph__.addVertex(v))
       const edges = [[0, 1],[0, 3],[0, 4],[1, 2],[3, 4],[4, 5],[4, 2],[2, 5]]
       for (let [s, d] of edges) {
         __graph__.addEdge(s, d)
@@ -275,8 +276,8 @@ export const tests = [
   {
     expression: `(() => {
       if (isTestDisabled(Graph, 'pathFromTo')) return 'DISABLED'
-      __graph__.__clearGraph__();
-      [0,1,2,3,4,5,6,7,8,9,10].forEach(v => __graph__.addVertex(v))
+      __graph__.__clearGraph__()
+      ;[0,1,2,3,4,5,6,7,8,9,10].forEach(v => __graph__.addVertex(v))
       const edges = [[0, 1],[0, 3],[0, 4],[3, 4],[4, 5],[4, 2],[2, 5],[7, 6],[8, 7],[2, 6],[2, 6],[9, 10]]
       for (let [s, d] of edges) {
         __graph__.addEdge(s, d)
@@ -292,8 +293,8 @@ export const tests = [
   {
     expression: `(() => {
       if (isTestDisabled(Graph, 'pathFromTo')) return 'DISABLED'
-      __graph__.__clearGraph__();
-      [0,9].forEach(v => __graph__.addVertex(v))
+      __graph__.__clearGraph__()
+      ;[0,9].forEach(v => __graph__.addVertex(v))
       return __graph__.pathFromTo(0, 9) === null && __graph__.pathFromTo(11, 2) === null
     })()`,
     message: `The <code>pathFromTo</code> method returns <code>null</code> if a path does not exist between the given vertices, or if the given <code>fromVertex</code> does not exist`
@@ -322,8 +323,8 @@ export const tests = [
   {
     expression: `(() => {
       if (isTestDisabled(Graph, 'getConnections')) return 'DISABLED'
-      __graph__.__clearGraph__();
-      [0,1,2,3,4].forEach(v => __graph__.addVertex(v))
+      __graph__.__clearGraph__()
+      ;[0,1,2,3,4].forEach(v => __graph__.addVertex(v))
       const edges = [[0, 1],[0, 3],[0, 2],[1, 2],[3, 2],[3, 1]]
       for (let [s, d] of edges) {
         __graph__.addEdge(s, d)
