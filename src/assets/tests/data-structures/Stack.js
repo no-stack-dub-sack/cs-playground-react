@@ -63,7 +63,7 @@ export const tests = [
       const TEST_2 = __stack__.root.value === 4 && __stack__.root.next.value === 5 && __stack__.root.next.next === null;
       return TEST_1;
     })()`,
-    message: `The <code>push</code> should create a new <code>Node</code> with properties <code>value</code> and <code>next</code>, where <code>value</code> is the pushed element and <code>next</code> is <code>null</code> or the next element in the stack`
+    message: `The <code>push</code> creates a new <code>Node</code> with properties <code>value</code> and <code>next</code>, where <code>value</code> is the pushed element and <code>next</code> is <code>null</code> or the next element in the stack`
   },
   {
     expression: `

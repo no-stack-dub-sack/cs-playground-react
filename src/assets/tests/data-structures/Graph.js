@@ -56,7 +56,7 @@ export const tests = [
     method: 'deepEqual',
     expression: `__graph__.__entries__()`,
     expected: [["A",[]],["B",[]],["C",[]],[1,[]],[2,[]],[3,[]]],
-    message: `The <code>addVertex</code> method should add unique entries to the the Graph's internal Map object; the given <code>vertex</code> as the key, and an empty array (initalized adjacency list) as the value`
+    message: `The <code>addVertex</code> method adds unique entries to the the Graph's internal Map object; the given <code>vertex</code> as the key, and an empty array (initalized adjacency list) as the value`
   },
   {
     expression: `typeof __graph__.addEdge === 'function'`,

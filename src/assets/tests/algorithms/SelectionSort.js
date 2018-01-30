@@ -9,7 +9,7 @@ export const tests = [
   },
   {
     expression: `!/\\.sort\\s*\\(.*\\)/.test(selectionSort.toString())`,
-    message: '<code>selectionSort</code> should not use the built in <code>Array.sort()</code> method'
+    message: '<code>selectionSort</code> does not use the built in <code>Array.sort()</code> method'
   },
   {
     expression: `
@@ -18,6 +18,6 @@ export const tests = [
         JSON.stringify(selectionSort([987654,54,86753,0,-9,233,111,0,12,9,12,33,4])) === '[-9,0,0,4,9,12,12,33,54,111,233,86753,987654]' &&
         JSON.stringify(selectionSort([5,9,10,1,0,2,5,3,2])) === '[0,1,2,2,3,5,5,9,10]';
       })()`,
-    message: '<code>selectionSort</code> should sort arrays from least to greatest'
+    message: '<code>selectionSort</code> sorts arrays from least to greatest'
   }
 ]

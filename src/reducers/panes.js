@@ -1,4 +1,4 @@
-import * as types from '../actions/types';
+import * as types from '../actions/types'
 
 const initialState = {
   topHeight: '70%',
@@ -11,7 +11,7 @@ const initialState = {
 
 let defaultState = JSON.parse(
   localStorage.getItem('cs-pg-react-panesState')
-) || initialState;
+) || initialState
 
 const hidePanes = (state) => {
   switch (state.clickState) {
@@ -45,8 +45,8 @@ const hidePanes = (state) => {
 const panes = (state = defaultState, action) => {
   switch (action.type) {
     case types.RESET_STATE:
-      localStorage.removeItem('cs-pg-react-panesState');
-      return initialState;
+      localStorage.removeItem('cs-pg-react-panesState')
+      return initialState
     case types.DRAG_HORIZONTAL:
       return {
         ...state,
@@ -62,10 +62,10 @@ const panes = (state = defaultState, action) => {
         transition: 'none'
       }
     case types.DOUBLE_CLICK:
-      return hidePanes(state);
+      return hidePanes(state)
     default:
-      return state;
+      return state
   }
 }
 
-export default panes;
+export default panes

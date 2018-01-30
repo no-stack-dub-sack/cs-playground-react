@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { Transition } from 'react-transition-group'
 
-const duration = 450;
+const duration = 450
 
 const defaultStyle = {
   transition: `opacity ${duration}ms ease-out`,
@@ -25,6 +25,6 @@ const Fade = ({ in: inProp, children, attachRef }) => (
       </div>
     )}
   </Transition>
-);
+)
 
-export default Fade;
+export default Fade

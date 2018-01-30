@@ -1,38 +1,38 @@
-import { closeModal, openResourcesModal } from '../../actions/modal';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { selectSnippet, selectSolution } from '../../actions/editor';
-import shortid from 'shortid';
-import _ from 'lodash';
+import { closeModal, openResourcesModal } from '../../actions/modal'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { selectSnippet, selectSolution } from '../../actions/editor'
+import shortid from 'shortid'
+import _ from 'lodash'
 
 _.mixin({
   'pascalCase': _.flow(
     _.camelCase,
     _.upperFirst
   )
-});
+})
 
 class MenuMap extends Component {
   selectSeed = ({ currentTarget: { id }}) => {
-    this.props.selectSnippet(id);
+    this.props.selectSnippet(id)
   }
   selectSolution = (e) => {
-    e.stopPropagation();
-    this.props.selectSolution(e.target.id.slice(10));
+    e.stopPropagation()
+    this.props.selectSolution(e.target.id.slice(10))
   }
   renderModal = (e) => {
-    e.stopPropagation();
-    const modalId = _.startCase(e.target.id.slice(7));
+    e.stopPropagation()
+    const modalId = _.startCase(e.target.id.slice(7))
     this.props.modalId === modalId && this.props.renderModal
       ? this.props.closeModal()
-      : this.props.openResourcesModal(modalId);
+      : this.props.openResourcesModal(modalId)
   }
   renderMenuItem = (item) => {
-    const id = _.pascalCase(item.title);
+    const id = _.pascalCase(item.title)
     const background = id === this.props.codeId
       ? 'rgba(39, 145, 152, 0.52)'
-      : '#707070';
+      : '#707070'
     return (
       <div
         style={{ background }}
@@ -59,7 +59,7 @@ class MenuMap extends Component {
           </span>
         </div> }
       </div>
-    );
+    )
   }
   render() {
     return (
@@ -69,9 +69,9 @@ class MenuMap extends Component {
         </summary>
         {this.props.items.map(this.renderMenuItem)}
       </details>
-    );
+    )
   }
-};
+}
 
 MenuMap.propTypes = {
   closeModal: PropTypes.func.isRequired,
@@ -94,7 +94,7 @@ const mapStateToProps = (state) => ({
   modalId: state.modal.modalId,
   renderModal: state.modal.renderModal,
   codeId: state.editor.current.id
-});
+})
 
 const mapDispatchToProps = {
   selectSnippet,
@@ -103,4 +103,4 @@ const mapDispatchToProps = {
   closeModal
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuMap);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuMap)

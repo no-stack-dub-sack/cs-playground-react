@@ -9,11 +9,16 @@ if (typeof new HashTable() === 'object') {
   }
 }
 
-const __table__ = new HashTable();
-
+let __table__
 const testHooks = {
+  beforeAll: () => {
+    __table__ = new HashTable()
+  },
   beforeEach: () => {
     __table__.__clearTable__()
+  },
+  afterAll: () => {
+    __table__ = null
   }
 }
 
@@ -29,15 +34,15 @@ const isProperlyHashed = (tests, index) => {
 export const tests = [
   {
     expression: `typeof __table__ === 'object'`,
-    message: `The <code>HashTable</code> data structure exists.`
+    message: `The <code>HashTable</code> data structure exists`
   },
   {
     expression: `typeof __table__.collection === 'object' && JSON.stringify(__table__.collection) === '{}'`,
-    message: `The <code>HashTable</code> data structure has a property called <code>collection</code> which intializes to an empty object literal.`
+    message: `The <code>HashTable</code> data structure has a property called <code>collection</code> which intializes to an empty object literal`
   },
   {
     expression: `typeof __table__.hash === 'function'`,
-    message: `The <code>HashTable</code> class has a method called <code>hash</code>.`
+    message: `The <code>HashTable</code> class has a method called <code>hash</code>: <span class="type">@param {(string|number)}</span> <code>key</code> <span class="type">@returns {string}</span>`
   },
   {
     expression: `(() => {
@@ -49,7 +54,7 @@ export const tests = [
   },
   {
     expression: `typeof __table__.add === 'function'`,
-    message: `The <code>HashTable</code> class has a method called <code>add</code>, which takes <code>key</code> and <code>value</code> as arguments (the <code>key</code> arg should be a string, and/or the <code>hash</code> method should convert it to a string).`
+    message: `The <code>HashTable</code> class has a method called <code>add</code>: <span class="type">@param {(string|number)}</span> <code>key</code> <span class="type">@param {(string|number)}</span> <code>value</code>(the <code>key</code> arg should be a string, and/or the <code>hash</code> method converts it to a string)`
   },
   {
     expression: `((tests) => {
@@ -58,7 +63,7 @@ export const tests = [
       const entry = JSON.stringify(__table__.collection[1363]);
       return /Peter Weinberg/.test(entry) && /7686/.test(entry);
     })(tests)`,
-    message: `The <code>add</code> method stores key/value pairs at hashed keys in the table's collection object.`
+    message: `The <code>add</code> method stores key/value pairs at hashed keys in the table's collection object`
   },
   {
     expression: `((tests) => {
@@ -66,11 +71,11 @@ export const tests = [
       if (!isProperlyHashed(tests, 6)) return false;
       return __table__.add('Peter Weinberg', 9000) === null;
     })(tests)`,
-    message: `The <code>add</code> method returns <code>null</code> when passed a key/value pair that shares the same key (before hashing) as a pair already stored in the table.`
+    message: `The <code>add</code> method returns <code>null</code> when passed a key/value pair that shares the same key (before hashing) as a pair already stored in the table`
   },
   {
     expression: `typeof __table__.lookup === 'function'`,
-    message: `The <code>HashTable</code> class has a method called <code>lookup</code>, which takes an unhashed key as an argument.`
+    message: `The <code>HashTable</code> class has a method called <code>lookup</code>, which takes an unhashed key as an argument: <span class="type">@param {(string|number)}</span> <code>key</code>`
   },
   {
     expression: `((tests) => {
@@ -78,7 +83,7 @@ export const tests = [
       if (!isProperlyHashed(tests, 8)) return false;
       return __table__.lookup('Peter Weinberg') === 7686;
     })(tests)`,
-    message: `The <code>lookup</code> method looks up a key by its hash, and returns the value pair associated with that key.`
+    message: `The <code>lookup</code> method looks up a key by its hash, and returns the value pair associated with that key`
   },
   {
     expression: `(() => {
@@ -88,11 +93,11 @@ export const tests = [
       const TEST_2 = __table__.lookup('Cool') === null;
       return TEST_1 && TEST_2;
     })()`,
-    message: `The <code>lookup</code> method returns null when called on an empty hash table or when no key/value pair is found at the given key.`
+    message: `The <code>lookup</code> method returns null when called on an empty hash table or when no key/value pair is found at the given key`
   },
   {
     expression: `typeof __table__.remove === 'function'`,
-    message: `The <code>HashTable</code> class has a method called <code>remove</code>, which takes an unhashed key as an argument.`
+    message: `The <code>HashTable</code> class has a method called <code>remove</code>, which takes an unhashed key as an argument: <span class="type">@param {(string|number)}</span> <code>key</code>`
   },
   {
     expression: `((tests) => {
@@ -100,7 +105,7 @@ export const tests = [
       if (!isProperlyHashed(tests, 11)) return false;
       return __table__.remove('Peter Weinberg') === 7686 && !__table__.collection[1363];
     })(tests)`,
-    message: `The remove method removes key value pairs from table and returns the stored value.`
+    message: `The remove method removes key value pairs from table and returns the stored value`
   },
   {
     expression: `((tests) => {
@@ -109,7 +114,7 @@ export const tests = [
       if (!(__table__.remove('Cool!') === null)) return false;
       return true;
     })(tests)`,
-    message: `The <code>remove</code> method returns null when called on an empty hash table or when no key/value pair is found at the given key.`
+    message: `The <code>remove</code> method returns null when called on an empty hash table or when no key/value pair is found at the given key`
   },
   {
     expression: `((tests) => {
@@ -157,6 +162,6 @@ export const tests = [
 
       return true;
     })(tests)`,
-    message: `The hash table handles collisions (i.e. when more than one key/value pair produce the same hash key).`
+    message: `The hash table handles collisions (i.e. when more than one key/value pair produce the same hash key)`
   }
 ]

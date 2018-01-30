@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { VERTICAL_GRIP, HORIZONTAL_GRIP } from '../../utils/base64';
+import PropTypes from 'prop-types'
+import React from 'react'
+import { VERTICAL_GRIP, HORIZONTAL_GRIP } from '../../utils/base64'
 
 const Divider = ({ attachRef, direction }) => {
   return (
@@ -13,12 +13,12 @@ const Divider = ({ attachRef, direction }) => {
       ref={attachRef}
       className={`${direction} divider`}
     />
-  );
-};
+  )
+}
 
 Divider.propTypes = {
   direction: PropTypes.oneOf(['horizontal', 'vertical']),
   attachRef: PropTypes.func.isRequired
-};
+}
 
-export default Divider;
+export default Divider

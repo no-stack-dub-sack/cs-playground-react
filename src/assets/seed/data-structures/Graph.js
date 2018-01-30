@@ -454,7 +454,7 @@ if (!graph.isEmpty()) {
       { href: 'http://www.geeksforgeeks.org/implementation-graph-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
       { href: 'http://blog.benoitvallon.com/data-structures-in-javascript/the-graph-data-structure/', caption: 'Ben\'s Blog, Article & Code'},
       { href: 'https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html', caption: 'Interactive Animated Visualization'},
-      { href: 'https://visualgo.net/en/dfsbfs', caption: 'Better Interactive Animated Visualization'},
+      { href: 'https://visualgo.net/en/dfsbfs', caption: 'VisualAlgo.net: Better Interactive Animated Visualizations!'},
       { href: 'https://en.wikipedia.org/wiki/Adjacency_list', caption: 'Wikipedia'},
   ]
 };

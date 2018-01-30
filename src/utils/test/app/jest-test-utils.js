@@ -1,9 +1,9 @@
-import chalk from 'chalk';
+import chalk from 'chalk'
 
 import {
   __executeTests__,
   __suppressConsole__
-} from './jest-test-scripts';
+} from './jest-test-scripts'
 
 export const concatTests = (
   solution,
@@ -29,17 +29,19 @@ export const concatTests = (
         )
       : executeTests(tests);
     })();
-  `;
+  `
 }
 
 export const logResults = (passed, results, id) => {
   if (!passed) {
-    console.log(chalk.keyword('salmon').underline(id + ':'));
+    // LOGS ONLY FAILING SUITES
+    console.log(chalk.keyword('salmon').underline(id + ':'))
     results.forEach(t => t[0] === 'F'
       ? console.log(chalk.red(t))
       : console.log(t)
     )
   } else {
+    // UNCOMMENT TO SEE ALL RESULTS
     // console.log(chalk.keyword('salmon').underline(id + ':'));
     // results.forEach(t => console.log(t))
   }

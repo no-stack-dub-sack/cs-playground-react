@@ -1,104 +1,104 @@
-import { clearConsole } from '../actions/console';
-import { connect } from 'react-redux';
-import executeCode from '../utils/test/challenge/eval-code-run-tests';
-import React, { Component } from 'react';
-import { RESET_STATE } from '../utils/regexp';
-import PropTypes from 'prop-types';
+import { clearConsole } from '../actions/console'
+import { connect } from 'react-redux'
+import executeCode from '../utils/test/challenge/eval-code-run-tests'
+import React, { Component } from 'react'
+import { RESET_STATE } from '../utils/regexp'
+import PropTypes from 'prop-types'
 
 import {
   nextSnippet,
   previousSnippet,
   resetEditorState,
   toggleSolution
-} from '../actions/editor';
+} from '../actions/editor'
 
-import '../styles/controls.css';
+import '../styles/controls.css'
 
 class Controls extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       clearConsole: false,
       resetCount: 0
     }
   }
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
+    document.addEventListener('keydown', this.handleKeyPress)
   }
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyPress);
+    document.removeEventListener('keydown', this.handleKeyPress)
   }
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.setState({ clearConsole: true });
+      this.setState({ clearConsole: true })
     }
   }
   handleKeyPress = (e) => {
     // Run Code: CMD/CTRL + ENTER
     if ((e.ctrlKey || e.metaKey) && e.keyCode === 13) {
-      this.handleExecuteCode(this.props);
+      this.handleExecuteCode(this.props)
     }
     // Next Snippet: CMD/CTRL + SHIFT + >
     // Previous Snippet: CMD/CTRL + SHIFT + <
     // Toggle Solution: CMD/CTRL + SHIFT + S
     if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
-      if (e.keyCode === 190) this.props.nextSnippet();
-      if (e.keyCode === 188) this.props.previousSnippet();
-      if (e.keyCode === 83) this.props.toggleSolution();
+      if (e.keyCode === 190) this.props.nextSnippet()
+      if (e.keyCode === 188) this.props.previousSnippet()
+      if (e.keyCode === 83) this.props.toggleSolution()
     }
     // Clear Console: ALT + SHIFT + BACKSPACE
     if (e.altKey && e.shiftKey && e.keyCode === 8) {
       // prevent Backspace default
-      e.preventDefault();
-      this.props.clearConsole();
+      e.preventDefault()
+      this.props.clearConsole()
     }
   }
   toggleClearConsole = () => {
     if (this.state.clearConsole) {
-      this.props.clearConsole();
-      this.setState({ clearConsole: false });
+      this.props.clearConsole()
+      this.setState({ clearConsole: false })
     }
   }
   clearConsoleResetCount = () => {
-    this.setState({ resetCount: 0 });
-    this.props.clearConsole();
+    this.setState({ resetCount: 0 })
+    this.props.clearConsole()
   }
   handleResetSate = () => {
     if (this.state.resetCount === 0) {
-      this.setState(state => ({ resetCount: state.resetCount+1 }));
-      this.props.clearConsole();
+      this.setState(state => ({ resetCount: state.resetCount+1 }))
+      this.props.clearConsole()
       console.log(
         'WARNING: Are you sure you want to reset?\n' +
         'This action CANNOT be reversed, and all of\n' +
         'your solutions will be permanently deleted.\n' +
         "To proceed, hit the 'Run Code' button again."
-      );
+      )
       // reset count after 15 seconds to prevent accidental resets
       setTimeout(() => {
         if (this.state.resetCount === 1) {
-          this.clearConsoleResetCount();
-          console.log('Global state reset timed out. Please try again.');
+          this.clearConsoleResetCount()
+          console.log('Global state reset timed out. Please try again.')
         }
-      }, 15000);
+      }, 15000)
     } else {
-      this.props.resetEditorState();
-      this.clearConsoleResetCount();
-      console.log('State successfully reset!');
+      this.props.resetEditorState()
+      this.clearConsoleResetCount()
+      console.log('State successfully reset!')
     }
   }
   handleExecuteCode = ({ code, id }) => {
-    this.toggleClearConsole();
+    this.toggleClearConsole()
     if (RESET_STATE.test(code)) {
-      this.handleResetSate();
+      this.handleResetSate()
     } else {
       // if last action was handleResetSate and the resetState() call
       // has been deleted reset resetCount to prevent accidental resets
-      this.state.resetCount === 1 && this.clearConsoleResetCount();
+      this.state.resetCount === 1 && this.clearConsoleResetCount()
       // run code && execute tests
       executeCode(
         code,
         id
-      );
+      )
     }
   }
   render() {
@@ -123,9 +123,9 @@ class Controls extends Component {
           Next
         </button>
       </section>
-    );
+    )
   }
-};
+}
 
 Controls.propTypes = {
   clearConsole: PropTypes.func.isRequired,
@@ -152,4 +152,4 @@ const mapDispatchToProps = {
   toggleSolution
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Controls);
+export default connect(mapStateToProps, mapDispatchToProps)(Controls)

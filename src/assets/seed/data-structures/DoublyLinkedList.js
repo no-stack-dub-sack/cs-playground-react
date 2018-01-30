@@ -3,17 +3,17 @@ export default {
   seed:
 `class Node {
     constructor(value) {
-        this.value = value;
-        this.prev = null;
-        this.next = null;
+        this.value = value
+        this.prev = null
+        this.next = null
     }
 }
 
 class DoublyLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.head = null
+        this.tail = null
+        this.length = 0
     }
 
     // methods to implement:
@@ -42,9 +42,9 @@ class DoublyLinkedList {
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.prev = null;
-        this.next = null;
+        this.value = value
+        this.prev = null
+        this.next = null
     }
 }
 
@@ -68,49 +68,49 @@ class Node {
 
 class DoublyLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.head = null
+        this.tail = null
+        this.length = 0
     }
 
 
     peekHead() {
         if (this.isEmpty()) {
-            return null;
+            return null
         }
 
-        return this.head;
+        return this.head
     }
 
 
     peekTail() {
         if (this.isEmpty()) {
-            return null;
+            return null
         }
 
-        return this.tail;
+        return this.tail
     }
 
 
     add(value) {
         if (this.isEmpty()) {
-            this.head = new Node(value);
-            this.tail = this.head;
-            this.length++;
-            return;
+            this.head = new Node(value)
+            this.tail = this.head
+            this.length++
+            return
         }
 
-        let currentNode = this.head;
+        let currentNode = this.head
 
         while (currentNode.next) {
-            currentNode = currentNode.next;
+            currentNode = currentNode.next
         }
 
-        const newNode = new Node(value);
-        currentNode.next = newNode;
-        currentNode.next.prev = currentNode;
-        this.tail = currentNode.next;
-        this.length++;
+        const newNode = new Node(value)
+        currentNode.next = newNode
+        currentNode.next.prev = currentNode
+        this.tail = currentNode.next
+        this.length++
     }
 
 
@@ -118,87 +118,87 @@ class DoublyLinkedList {
         if (this.isEmpty()  ||
             index < 0       ||
             index > this.size) {
-            return null;
+            return null
         }
 
-        this.length++;
+        this.length++
 
         // add at head
         if (index === 0) {
             if (!this.head) {
-                this.head = new Node(value);
-                this.tail = this.head;
-                return;
+                this.head = new Node(value)
+                this.tail = this.head
+                return
             } else {
-                const newNode = new Node(value);
-                newNode.next = this.head;
-                this.head.prev = newNode;
-                this.head = newNode;
-                return;
+                const newNode = new Node(value)
+                newNode.next = this.head
+                this.head.prev = newNode
+                this.head = newNode
+                return
             }
         }
 
         // add at tail
         if (index+1 === this.size) {
-            const newNode = new Node(value);
-            this.tail.next = newNode;
-            newNode.prev = this.tail;
-            this.tail = newNode;
-            return;
+            const newNode = new Node(value)
+            this.tail.next = newNode
+            newNode.prev = this.tail
+            this.tail = newNode
+            return
         }
 
-        let currentIndex = 0;
-        let previousNode, currentNode = this.head;
+        let currentIndex = 0
+        let previousNode, currentNode = this.head
         while (currentIndex !== index) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-            currentIndex++;
+            previousNode = currentNode
+            currentNode = currentNode.next
+            currentIndex++
         }
 
-        const newNode = new Node(value);
-        previousNode.next = newNode;
-        newNode.prev = previousNode;
-        newNode.next = currentNode;
-        currentNode.prev = newNode;
+        const newNode = new Node(value)
+        previousNode.next = newNode
+        newNode.prev = previousNode
+        newNode.next = currentNode
+        currentNode.prev = newNode
     }
 
 
     remove(value) {
         if (this.isEmpty()) {
-            return null;
+            return null
         }
 
         // remove head
         if (value === this.head.value) {
-            this.head = this.head.next;
-            if ( this.head) this.head.prev = null;
-            if (!this.head) this.tail = null;
-            this.length--;
-            return true;
+            this.head = this.head.next
+            if ( this.head) this.head.prev = null
+            if (!this.head) this.tail = null
+            this.length--
+            return true
         }
 
         // remove tail
         if (value === this.tail.value) {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
-            this.length--;
-            return true;
+            this.tail = this.tail.prev
+            this.tail.next = null
+            this.length--
+            return true
         }
 
-        let currentNode = this.head;
+        let currentNode = this.head
 
         while (currentNode.value !== value) {
             if (!currentNode.next) {
-                return null;
+                return null
             }
 
-            currentNode = currentNode.next;
+            currentNode = currentNode.next
         }
 
-        this.length--;
-        currentNode.prev.next = currentNode.next;
-        currentNode.next.prev = currentNode.prev;
-        return true;
+        this.length--
+        currentNode.prev.next = currentNode.next
+        currentNode.next.prev = currentNode.prev
+        return true
     }
 
 
@@ -206,63 +206,63 @@ class DoublyLinkedList {
         if (this.isEmpty()   ||
             index < 0        ||
             index >= this.size) {
-            return null;
+            return null
         }
 
-        this.length--;
+        this.length--
 
         // remove at head
         if (index === 0) {
-            const deleted = this.head.value;
+            const deleted = this.head.value
             // remove last node
             if (this.size === 0) {
-                this.head = null;
-                this.tail = null;
-                return deleted;
+                this.head = null
+                this.tail = null
+                return deleted
             }
-            this.head = this.head.next;
-            this.head.prev = null;
-            return deleted;
+            this.head = this.head.next
+            this.head.prev = null
+            return deleted
         }
 
         // remove at tail
         if (index === this.size) {
-            const deleted = this.tail.value;
-            this.tail = this.tail.prev;
-            this.tail.next = null;
-            return deleted;
+            const deleted = this.tail.value
+            this.tail = this.tail.prev
+            this.tail.next = null
+            return deleted
         }
 
-        let currentIndex = 0;
-        let previousNode, currentNode = this.head;
+        let currentIndex = 0
+        let previousNode, currentNode = this.head
         while (currentIndex !== index) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-            currentIndex++;
+            previousNode = currentNode
+            currentNode = currentNode.next
+            currentIndex++
         }
 
-        previousNode.next = currentNode.next;
-        currentNode.next.prev = previousNode;
-        return currentNode.value;
+        previousNode.next = currentNode.next
+        currentNode.next.prev = previousNode
+        return currentNode.value
     }
 
 
     indexOf(value) {
         if (this.isEmpty()) {
-            return -1;
+            return -1
         }
 
-        let currentNode = this.head;
-        let currentIndex = 0;
+        let currentNode = this.head
+        let currentIndex = 0
         while (value !== currentNode.value) {
-            currentNode = currentNode.next;
-            currentIndex++;
+            currentNode = currentNode.next
+            currentIndex++
             if (!currentNode) {
-                return -1;
+                return -1
             }
         }
 
-        return currentIndex;
+        return currentIndex
     }
 
 
@@ -270,81 +270,81 @@ class DoublyLinkedList {
         if (this.isEmpty()   ||
             index < 0        ||
             index >= this.size) {
-            return null;
+            return null
         }
 
-        let currentIndex = 0;
-        let currentNode = this.head;
+        let currentIndex = 0
+        let currentNode = this.head
 
         while (index !== currentIndex) {
-            currentNode = currentNode.next;
-            currentIndex++;
+            currentNode = currentNode.next
+            currentIndex++
         }
 
-        return currentNode.value;
+        return currentNode.value
     }
 
 
     isEmpty() {
         if (!this.head) {
-            return true;
+            return true
         }
 
-        return false;
+        return false
     }
 
 
     reverse() {
         if (this.isEmpty()) {
-            return null;
+            return null
         }
 
-        let currentNode = this.head;
+        let currentNode = this.head
 
         while (currentNode) {
-            let tempNode = currentNode.next;
-            currentNode.next = currentNode.prev;
-            currentNode.prev = tempNode;
-            currentNode = currentNode.prev;
+            let tempNode = currentNode.next
+            currentNode.next = currentNode.prev
+            currentNode.prev = tempNode
+            currentNode = currentNode.prev
         }
 
-        let tempNode = this.head;
-        this.head = this.tail;
-        this.tail = tempNode;
+        let tempNode = this.head
+        this.head = this.tail
+        this.tail = tempNode
     }
 
 
     toString() {
         if (this.isEmpty()) {
-            return null;
+            return null
         }
 
-        let result = [];
+        let result = []
 
-        let currentNode = this.head;
+        let currentNode = this.head
 
         while (currentNode) {
-            result.push(Object.assign({}, currentNode));
-            currentNode = currentNode.next;
+            result.push(Object.assign({}, currentNode))
+            currentNode = currentNode.next
         }
 
         result.forEach(node => {
-           if (node.prev) node.prev = node.prev.value;
-           if (node.next) node.next = node.next.value;
-        });
+           if (node.prev) node.prev = node.prev.value
+           if (node.next) node.next = node.next.value
+        })
 
-        return JSON.stringify(result, null, 2);
+        return JSON.stringify(result, null, 2)
     }
 
 
     get size() {
-        return this.length;
+        return this.length
     }
 }
 
 // example usage:
 
-const list = new DoublyLinkedList();
+const list = new DoublyLinkedList()
 
 console.log(
 \`\\nNote that all print outs of the list are represented as an
@@ -353,33 +353,33 @@ simply show the next and previous data, NOT the entire node) so
 that we can easily see how the list has been modified. We cannot
 stringify an un-simplified doubly linked list due to the circular
 nature of its previous and next node references! (see bottom)\\n\`
-);
+)
 
-list.add('one');
-list.add('two');
-list.add('three');
-list.add('five');
-list.add('six');
-list.addAt(3, 'four');
+list.add('one')
+list.add('two')
+list.add('three')
+list.add('five')
+list.add('six')
+list.addAt(3, 'four')
 
-console.log('initial list: \\n\\n' + list.toString() + '\\n');
+console.log('initial list: \\n\\n' + list.toString() + '\\n')
 
 // check node & remove
 if (list.elementAt(0) === 'one') {
-    console.log(list.remove('one'));
+    console.log(list.remove('one'))
 }
 
-list.reverse();
+list.reverse()
 
 // loop and remove
 while (list.size > 1) {
-    console.log(\`removed: \${list.removeAt(list.size - 1)} at index: \${list.size-1}\`);
+    console.log(\`removed: \${list.removeAt(list.size - 1)} at index: \${list.size-1}\`)
 }
 
 console.log('\\n' + list.toString() + '\\n')
 
 // remove last node
-list.indexOf('six') === 0 && list.removeAt(0);
+list.indexOf('six') === 0 && list.removeAt(0)
 
 // removing the last node should reset both head and tail!
 console.log('head:', list.head)
@@ -393,7 +393,7 @@ console.log('tail:', list.tail)
  */
 
 /*
- * NOTE: use the browser's console to log peekHead or peekTail; you will get
+ * NOTE: use the browser's console to log peekHead or peekTail you will get
  * a circular structure whose next/prev elements will expand infinitely (since
  * they just point at each other) -> Node(A) = Node(A).next.prev = Node(A)
  * see an example of this here: http://recordit.co/GT4XT5BVTh
@@ -418,5 +418,6 @@ console.log('tail:', list.tail)
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-doubly-linked-list', caption: 'freeCodeCamp Challenge'},
     { href: 'https://en.wikipedia.org/wiki/Doubly_linked_list', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/linked-list', caption: 'freeCodeCamp Guides'},
+    { href: 'https://visualgo.net/en/list', caption: 'VisualAlgo.net Interactive Animated Visualization'},
   ]
-};
+}

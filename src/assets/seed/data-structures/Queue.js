@@ -3,15 +3,15 @@ export default {
   seed:
 `class Node {
     constructor(value) {
-        this.value = value;
-        this.next = null;
+        this.value = value
+        this.next = null
     }
 }
 
 class Queue {
     constructor() {
-        this.root = null;
-        this.length = 0;
+        this.root = null
+        this.length = 0
     }
 
     // methods to implement:
@@ -32,8 +32,8 @@ class Queue {
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.next = null;
+        this.value = value
+        this.next = null
     }
 }
 
@@ -52,9 +52,9 @@ class Node {
 
 class Queue {
     constructor() {
-        this.root = null;
-        this.tail = null;
-        this.length = 0;
+        this.root = null
+        this.tail = null
+        this.length = 0
     }
 
 
@@ -65,13 +65,13 @@ class Queue {
     constant time. See the below method for how
     this looks in linear, O(n) time. */
     enqueue(value) {
-        const node = new Node(value);
+        const node = new Node(value)
         if (!this.root) {
-            this.root = node;
-            this.tail = node;
+            this.root = node
+            this.tail = node
         } else {
-            this.tail.next = node;
-            this.tail = this.tail.next;
+            this.tail.next = node
+            this.tail = this.tail.next
         }
         this.length++
     }
@@ -82,13 +82,13 @@ class Queue {
     major disadvantage for large lists */
     enqueueLinearTime(value) {
         if (!this.root) {
-            this.root = new Node(value);
+            this.root = new Node(value)
         } else {
-            let node = this.root;
+            let node = this.root
             while (node.next) {
-                node = node.next;
+                node = node.next
             }
-            node.next = new Node(value);
+            node.next = new Node(value)
         }
         this.length++
     }
@@ -96,64 +96,64 @@ class Queue {
 
     dequeue() {
         if (!this.root) {
-            return null;
+            return null
         }
 
-        this.length--;
-        const value = this.root.value;
-        this.root = this.root.next;
-        return value;
+        this.length--
+        const value = this.root.value
+        this.root = this.root.next
+        return value
     }
 
 
     front() {
         if (!this.root) {
-            return null;
+            return null
         }
 
-        return this.root.value;
+        return this.root.value
     }
 
 
     isEmpty() {
         if (!this.root) {
-            return true;
+            return true
         }
 
-        return false;
+        return false
     }
 
 
     get size() {
-        return this.length;
+        return this.length
     }
 }
 
 // example usage:
 
-const q = new Queue();
+const q = new Queue()
 
-console.log(\`size: \${q.size}\`);
-console.log(\`isEmpty: \${q.isEmpty()}\`);
+console.log(\`size: \${q.size}\`)
+console.log(\`isEmpty: \${q.isEmpty()}\`)
 
-q.enqueue(7);
-q.enqueue(10);
-q.enqueue(9);
-q.enqueue(47);
+q.enqueue(7)
+q.enqueue(10)
+q.enqueue(9)
+q.enqueue(47)
 
-console.log(JSON.stringify(q, null, 2));
+console.log(JSON.stringify(q, null, 2))
 
-console.log(\`size: \${q.size}\`);
-console.log(\`isEmpty: \${q.isEmpty()}\`);
-console.log(\`front: \${q.front()}\`);
-console.log(\`dequeue: \${q.dequeue()}\`);
-console.log(\`dequeue: \${q.dequeue()}\`);
-console.log(\`dequeue: \${q.dequeue()}\`);
-console.log(\`front: \${q.front()}\`);
-console.log(\`dequeue: \${q.dequeue()}\`);
-console.log(\`size: \${q.size}\`);
-console.log(\`isEmpty: \${q.isEmpty()}\`);
-console.log(\`dequeue: \${q.dequeue()}\`);
+console.log(\`size: \${q.size}\`)
+console.log(\`isEmpty: \${q.isEmpty()}\`)
+console.log(\`front: \${q.front()}\`)
+console.log(\`dequeue: \${q.dequeue()}\`)
+console.log(\`dequeue: \${q.dequeue()}\`)
+console.log(\`dequeue: \${q.dequeue()}\`)
+console.log(\`front: \${q.front()}\`)
+console.log(\`dequeue: \${q.dequeue()}\`)
+console.log(\`size: \${q.size}\`)
+console.log(\`isEmpty: \${q.isEmpty()}\`)
+console.log(\`dequeue: \${q.dequeue()}\`)
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/queue-data-structure/', caption: 'GeeksforGeeks.org'},
@@ -162,5 +162,6 @@ console.log(\`dequeue: \${q.dequeue()}\`);
     { href: 'https://en.wikipedia.org/wiki/Queue_(abstract_data_type)', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/queues', caption: 'freeCodeCamp Guides'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/QueueLL.html', caption: 'Interactive Animated Visualization!'},
+    { href: 'https://visualgo.net/en/list', caption: 'VisualAlgo.net: Better Interactive Animated Visualization!'},
   ]
-};
+}

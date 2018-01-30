@@ -25,13 +25,13 @@ export default {
   */
 
 function generateCheckerboard(h, w) {
-    return;
+    return
 }
 
 // change the h & w for different size boards!
-const h = 8, w = 8;
+const h = 8, w = 8
 
-console.log(generateCheckerboard(h, w));
+console.log(generateCheckerboard(h, w))
 `,
 solution:
 `/** @function generateCheckerBoard
@@ -41,28 +41,28 @@ solution:
   */
 
 function generateCheckerboard(h, w) {
-    var row = '', board = '';
+    var row = '', board = ''
     for (let i = 0; i < w; i++) {
-        row += "# ";
+        row += "# "
     }
 
-    row += '\\n';
+    row += '\\n'
 
     for (let i = 0; i < h; i++) {
         if (i % 2 === 0) {
-            board += row;
+            board += row
         } else {
-            board += ' ' + row;
+            board += ' ' + row
         }
     }
 
-    return board;
+    return board
 }
 
 // change the h & w for different size boards!
-const h = 8, w = 8;
+const h = 8, w = 8
 
-console.log(generateCheckerboard(h, w));
+console.log(generateCheckerboard(h, w))
 `,
   resources: [
     { href: 'https://en.wikipedia.org/wiki/Checkerboard#/media/File:Checkerboard_pattern.svg', caption: 'Here\'s what a checkerboard looks like!'},

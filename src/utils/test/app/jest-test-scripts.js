@@ -7,11 +7,11 @@ const suppressConsole = () => ({
     if (typeof arg === 'string' &&
        (arg.includes('Pass:') || !arg.includes('Fail:'))
      ) {
-      return arg;
+      return arg
     }
     return null
   }
-});
+})
 
 function executeTests(
   tests,
@@ -20,8 +20,8 @@ function executeTests(
   afterEach = null,
   afterAll = null
 ) {
-  let passed = true;
-  const results = [];
+  let passed = true
+  const results = []
   /* eslint-disable no-unused-vars */
   const isTestDisabled = require('../common/is-test-disabled')
   const assert = require('assert')
@@ -41,19 +41,19 @@ function executeTests(
           )
         } else {
           // assert w/o method
-          assert(eval(test.expression), test.message);
+          assert(eval(test.expression), test.message)
         }
         afterEach && afterEach()
         results.push('Pass: ' + test.message)
       } catch (e) {
         results.push('Fail: ' + test.message)
-        passed = false;
+        passed = false
       }
-    });
+    })
   }
   afterAll && afterAll()
   return { passed, results }
 }
 
-export const __suppressConsole__ = suppressConsole.toString();
-export const __executeTests__ = executeTests.toString();
+export const __suppressConsole__ = suppressConsole.toString()
+export const __executeTests__ = executeTests.toString()

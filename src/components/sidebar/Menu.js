@@ -1,16 +1,16 @@
-import { CODE } from '../../assets/codeRef';
-import { connect } from 'react-redux';
-import MenuMap from './MenuMap';
-import PropTypes from 'prop-types';
-import React from 'react';
-import '../../styles/menu.css';
+import { CODE } from '../../assets/codeRef'
+import { connect } from 'react-redux'
+import MenuMap from './MenuMap'
+import PropTypes from 'prop-types'
+import React from 'react'
+import '../../styles/menu.css'
 
 const {
   SORTING_ALGOS,
   DATA_STRUCTURES,
   EASY_ALGOS,
   MODERATE_ALGOS
-} = CODE;
+} = CODE
 
 const Menu = ({ topHeight, transition }) => {
   return (
@@ -40,7 +40,7 @@ const Menu = ({ topHeight, transition }) => {
           xtraClass="sub" />
       </details>
     </section>
-  );
+  )
 }
 
 Menu.propTypes = {
@@ -51,6 +51,6 @@ Menu.propTypes = {
 const mapStateToProps = ({ panes }) => ({
   topHeight: panes.topHeight,
   transition: panes.transition
-});
+})
 
-export default connect(mapStateToProps)(Menu);
+export default connect(mapStateToProps)(Menu)

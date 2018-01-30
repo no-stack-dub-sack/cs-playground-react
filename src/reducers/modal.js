@@ -1,5 +1,5 @@
-import * as types from '../actions/types';
-import { CODE } from '../assets/codeRef';
+import * as types from '../actions/types'
+import { CODE } from '../assets/codeRef'
 
 const defaultState = {
   renderModal: false,
@@ -7,7 +7,7 @@ const defaultState = {
   messages: [],
   subHeader: '',
   modalType: ''
-};
+}
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -39,7 +39,7 @@ export default (state = defaultState, action) => {
           }
         }
       }
-      break;
+      break
     case types.OPEN_ANNOUNCEMENT_MODAL:
       return {
         modalId: action.id,
@@ -49,6 +49,6 @@ export default (state = defaultState, action) => {
         messages: action.messages
       }
     default:
-      return state;
+      return state
   }
-};
+}

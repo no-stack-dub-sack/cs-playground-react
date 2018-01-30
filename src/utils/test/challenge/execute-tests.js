@@ -20,7 +20,7 @@ function executeTests(
         beforeEach && beforeEach()
         // eval to prevent further execution if disabled
         if (eval(test.expression) === 'DISABLED') {
-          numDisabled++;
+          numDisabled++
           throw new Error('DISABLED')
         } else {
           // run beforeEach again since test
@@ -42,7 +42,7 @@ function executeTests(
           afterEach && afterEach()
           // log passing test message
           console.log('Pass: ' + test.message)
-          numPassed++;
+          numPassed++
         }
       } catch (e) {
         // run afterEach hook when test does not pass
@@ -52,18 +52,18 @@ function executeTests(
           // log disabled / greyed out test message
           console.log('<code>' + e.message + ': ' + test.message + '</code>')
         }
-        else if ( // ONLY FOR DEV TO DEBUG TESTS:
-          process.env.NODE_ENV !== 'production' && 
-          e.message !== test.message
-        ) {
-          console.log('Fail: ' + e.message)
-        }
+        // else if ( // ONLY FOR DEV TO DEBUG TESTS:
+        //   process.env.NODE_ENV !== 'production' &&
+        //   e.message !== test.message
+        // ) {
+        //   console.log('Fail: ' + e.message)
+        // }
         else {
           // log just failure message
           console.log('Fail: ' + test.message)
         }
       }
-    });
+    })
     // run afterAll hook
     afterAll && afterAll()
     // report results
@@ -86,4 +86,4 @@ typeof testHooks !== 'undefined'
       testHooks.afterAll
     )
   : executeTests(tests)
-`;
+`

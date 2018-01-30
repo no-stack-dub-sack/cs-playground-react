@@ -1,17 +1,17 @@
-import CodeMirrorRenderer from './components/CodeMirrorRenderer';
-import { connect } from 'react-redux';
-import Console from './components/sidebar/Console';
-import Controls from './components/Controls';
-import Divider from './components/utils/Divider';
-import { dragHorizontal, dragVertical, doubleClick } from './actions/panes';
-import Menu from './components/sidebar/Menu';
-import Modal from './components/utils/Modal';
-import Pane from './components/utils/Pane';
-import React, { Component } from 'react';
-import { renderAnnouncementUtil } from './actions/modal';
-import shortid from 'shortid';
-import axios from 'axios';
-import './styles/app.css';
+import CodeMirrorRenderer from './components/CodeMirrorRenderer'
+import { connect } from 'react-redux'
+import Console from './components/sidebar/Console'
+import Controls from './components/Controls'
+import Divider from './components/utils/Divider'
+import { dragHorizontal, dragVertical, doubleClick } from './actions/panes'
+import Menu from './components/sidebar/Menu'
+import Modal from './components/utils/Modal'
+import Pane from './components/utils/Pane'
+import React, { Component } from 'react'
+import { renderAnnouncementUtil } from './actions/modal'
+import shortid from 'shortid'
+import axios from 'axios'
+import './styles/app.css'
 
 /** NEW FEATURES:
   * Double click divider to hide contents or console pane
@@ -33,14 +33,9 @@ import './styles/app.css';
 
 /** TODO:.
   * ADD WARNINGS for changed properties
-  * REVIEW MAX HEAP!! Is it right? Shouldn't max always be at the front of the array?
-  * add type annotations to arguments in test messages
   * ADD VisualAlgo visualizations to RESOURCES!!!
-  * add arguments to methods to implement
   * remove semi-colons
-  * refactor for use of deepEqual
   * change modal message to something more appropriate -> create and point to "change log"
-  * refactor data structure tests to use single test structure (like BST)
   * fix circular list edge cases:
       - remove from single-node list with remove or removeAt
       - no match for remove method, return null and don't decrement
@@ -64,47 +59,47 @@ import './styles/app.css';
 // app and it must be mounted because it's still rendered to the
 // DOM. Not sure why this is happening right now, but this hack
 // is a workaround that I can live with for the time being.
-let disableHighlightText = false;
+let disableHighlightText = false
 
 class App extends Component {
   handleMousedownEvent = (e) => {
     if (e.target.classList.contains('divider')) {
-      disableHighlightText = true;
+      disableHighlightText = true
     }
   }
   handleMouseupEvent = (e) => {
-    disableHighlightText = false;
+    disableHighlightText = false
   }
   handleMousemoveEvent = (e) => {
     if (disableHighlightText) {
-      e.preventDefault();
+      e.preventDefault()
     }
   }
   componentDidMount() {
     // register event listeners:
-    document.addEventListener('mouseup', this.handleMouseupEvent);
-    document.addEventListener('mousemove', this.handleMousemoveEvent);
-    document.addEventListener('mousedown', this.handleMousedownEvent);
+    document.addEventListener('mouseup', this.handleMouseupEvent)
+    document.addEventListener('mousemove', this.handleMousemoveEvent)
+    document.addEventListener('mousedown', this.handleMousedownEvent)
     // double-click event for snapping divider top or bottom
-    this.horizontalDivider.addEventListener('dblclick', this.props.doubleClick);
+    this.horizontalDivider.addEventListener('dblclick', this.props.doubleClick)
     // apply simpleDrag to allow for AWESOME pane resizing:
-    this.horizontalDivider.simpleDrag(dragVertical, null, 'vertical');
-    this.verticalDivider.simpleDrag(dragHorizontal, null, 'horizontal');
+    this.horizontalDivider.simpleDrag(dragVertical, null, 'vertical')
+    this.verticalDivider.simpleDrag(dragHorizontal, null, 'horizontal')
     // render announcement modal 1st 3 visits after changes:
-    renderAnnouncementUtil();
+    renderAnnouncementUtil()
     // register hits to hit-count-server:
     if (process.env.NODE_ENV === 'production') {
       axios.post('https://hit-count-server.herokuapp.com/register-count')
       .then(() => null)
-      .catch(() => null);
+      .catch(() => null)
     }
   }
   componentWillUnmount() {
     // de-register event listeners:
-    document.removeEventListener('mouseup', this.handleMouseupEvent);
-    document.removeEventListener('mousedown', this.handleMousedownEvent);
-    document.removeEventListener('mousemove', this.handleMousemoveEvent);
-    this.horizontalDivider.removeEventListener('dblclick', this.props.doubleClick);
+    document.removeEventListener('mouseup', this.handleMouseupEvent)
+    document.removeEventListener('mousedown', this.handleMousedownEvent)
+    document.removeEventListener('mousemove', this.handleMousemoveEvent)
+    this.horizontalDivider.removeEventListener('dblclick', this.props.doubleClick)
   }
   render() {
     return (
@@ -135,9 +130,9 @@ class App extends Component {
 // NOTE: Modal is Portal rendered within #modal-root, not the app #root
 // It WILL NOT be rendered alongside the other components in this tree
 
-export default connect(null, { doubleClick })(App);
+export default connect(null, { doubleClick })(App)
 
 // export default connect(
 //   ({ modal: { renderModal } }) => ({ renderModal }),
 //   { doubleClick })
-// (App);
+// (App)

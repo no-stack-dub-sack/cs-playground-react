@@ -1,4 +1,4 @@
-import * as types from '../actions/types';
+import * as types from '../actions/types'
 
 export default (state = [], action) => {
   switch(action.type) {
@@ -6,10 +6,10 @@ export default (state = [], action) => {
       return [
         ...state,
         action.messages
-      ];
+      ]
     case types.CLEAR_CONSOLE:
-      return [];
+      return []
     default:
-      return state;
+      return state
   }
 }

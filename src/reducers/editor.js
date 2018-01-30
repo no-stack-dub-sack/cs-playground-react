@@ -1,4 +1,4 @@
-import * as types from '../actions/types';
+import * as types from '../actions/types'
 import { CODE, SOLUTIONS } from '../assets/codeRef'
 import { composeCodeStore, createOrderKey, populateCodeStore } from './utils'
 import WELCOME_MESSAGE from '../assets/seed/welcome'
@@ -84,7 +84,7 @@ const editor = (state = defaultState, action) => {
         }
       }
     case types.SELECT_SNIPPET:
-      let idx = findIndex(state.codeStore, { id: action.id });
+      let idx = findIndex(state.codeStore, { id: action.id })
       return {
         ...state,
         welcome: false,
@@ -103,7 +103,7 @@ const editor = (state = defaultState, action) => {
         : editor(state, { type: types.SELECT_SNIPPET, id: state.current.id })
     case types.NEXT_SNIPPET: {
       let { orderKey } = state
-      let i = indexOf(orderKey, state.current.id);
+      let i = indexOf(orderKey, state.current.id)
       let next = (state.welcome || i === orderKey.length - 1) ? 0 : i+1
       next = findIndex(state.codeStore, { id: orderKey[next] })
       return {
@@ -119,7 +119,7 @@ const editor = (state = defaultState, action) => {
     }
     case types.PREVIOUS_SNIPPET: {
       let { orderKey } = state
-      let i = indexOf(orderKey, state.current.id);
+      let i = indexOf(orderKey, state.current.id)
       let prev = (state.welcome || i === 0) ? orderKey.length - 1 : i-1
       prev = findIndex(state.codeStore, { id: orderKey[prev] })
       return {

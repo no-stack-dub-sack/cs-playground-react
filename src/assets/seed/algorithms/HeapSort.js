@@ -3,25 +3,25 @@ export default {
   seed:
 `class MinHeap {
     constructor() {
-        this.heap = [];
+        this.heap = []
     }
 
     // methods to implement:
 
-    // insert() <= where the magic happens!
+    // insert(number) <= where the magic happens!
     // remove() <= where the magic happens!
     // print()
     // sort()
     // size()
 }
 
-var heap = new MinHeap();
+var heap = new MinHeap()
 
-const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
-// unsorted.forEach(num => heap.insert(num));
-// heap.print();
-// const sorted = heap.sort();
-// console.log('\\nheap sort: ' + JSON.stringify(sorted));
+const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100]
+// unsorted.forEach(num => heap.insert(num))
+// heap.print()
+// const sorted = heap.sort()
+// console.log('\\nheap sort: ' + JSON.stringify(sorted))
 `,
   solution:
 `/**
@@ -36,97 +36,97 @@ const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
 
 class MinHeap {
     constructor() {
-        this.heap = [];
+        this.heap = []
     }
 
 
     insert(node) {
-        this.heap.push(node);
+        this.heap.push(node)
 
         var swap = (node, nodeIdx) => {
 
-            var parentIdx = Math.floor((nodeIdx - 1) / 2);
-            var parent = this.heap[parentIdx];
+            var parentIdx = Math.floor((nodeIdx - 1) / 2)
+            var parent = this.heap[parentIdx]
 
             if (parent > node) {
-                this.heap[parentIdx] = node;
-                this.heap[nodeIdx] = parent;
-                swap(node, parentIdx);
+                this.heap[parentIdx] = node
+                this.heap[nodeIdx] = parent
+                swap(node, parentIdx)
             }
-        };
+        }
 
         if (this.heap.length > 1) {
-            return swap(node, this.heap.length-1);
+            return swap(node, this.heap.length-1)
         }
     }
 
 
     remove() {
         if (!this.size) {
-            return null;
+            return null
         }
 
-        var min = this.heap.shift();
+        var min = this.heap.shift()
 
         if (this.size > 1) {
-            this.heap.unshift(this.heap.pop());
+            this.heap.unshift(this.heap.pop())
         }
 
         var swap = (node, nodeIdx = 0) => {
-            var childIdx;
+            var childIdx
             if (this.size === 2) {
-                childIdx = 1;
+                childIdx = 1
             } else if (this.heap[2 * nodeIdx + 1] < this.heap[2 * nodeIdx + 2]) {
-                childIdx = 2 * nodeIdx + 1;
+                childIdx = 2 * nodeIdx + 1
             } else {
-                childIdx = 2 * nodeIdx + 2;
+                childIdx = 2 * nodeIdx + 2
             }
 
             if (node > this.heap[childIdx]) {
-                this.heap[nodeIdx] = this.heap[childIdx];
-                this.heap[childIdx] = node;
-                return swap(node, childIdx);
+                this.heap[nodeIdx] = this.heap[childIdx]
+                this.heap[childIdx] = node
+                return swap(node, childIdx)
             }
 
-            return min;
+            return min
 
-        };
+        }
 
-        return swap(this.heap[0]);
+        return swap(this.heap[0])
     }
 
 
     print() {
-      console.log('min heap: ' + JSON.stringify(this.heap));
-      console.log('size: ' + this.size);
+      console.log('min heap: ' + JSON.stringify(this.heap))
+      console.log('size: ' + this.size)
     }
 
 
     sort() {
-        var sorted = [];
+        var sorted = []
 
         while (this.size) {
-            sorted.push(this.remove());
+            sorted.push(this.remove())
         }
 
-        return sorted;
+        return sorted
     }
 
 
     get size() {
-        return this.heap.length;
+        return this.heap.length
     }
 }
 
-var heap = new MinHeap();
+var heap = new MinHeap()
 
-const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100];
-unsorted.forEach(num => heap.insert(num));
+const unsorted = [72,3,19,24,99,45,33,0,2,43,17,19,22,80,100]
+unsorted.forEach(num => heap.insert(num))
 
-heap.print();
+heap.print()
 
-const sorted = heap.sort();
-console.log('\\nheap sort: ' + JSON.stringify(sorted));
+const sorted = heap.sort()
+console.log('\\nheap sort: ' + JSON.stringify(sorted))
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/heap-sort/', caption: 'GeeksforGeeks.org'},
@@ -136,4 +136,4 @@ console.log('\\nheap sort: ' + JSON.stringify(sorted));
     { href: 'https://www.cs.usfca.edu/~galles/visualization/HeapSort.html', caption: 'Awesome Animated Sorting Algo Visualizations!'},
     { href: 'https://www.hackerearth.com/practice/algorithms/sorting/heap-sort/tutorial/', caption: 'Another cool visualization'},
   ]
-};
+}

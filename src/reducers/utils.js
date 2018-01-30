@@ -21,7 +21,7 @@ export function createOrderKey(CODE) {
     DATA_STRUCTURES,
     EASY_ALGOS,
     MODERATE_ALGOS
-  } = CODE;
+  } = CODE
   return flatten([
     SORTING_ALGOS,
     DATA_STRUCTURES,
@@ -61,7 +61,7 @@ function removeDuplicates(codeStore) {
     }
     localStorage.setItem(lsKey, true)
   }
-  return codeStore.filter(challenge => challenge !== null);
+  return codeStore.filter(challenge => challenge !== null)
 }
 
 function add_SUPPRESS_TESTS_onlyOnce(codeStore, current, welcome) {

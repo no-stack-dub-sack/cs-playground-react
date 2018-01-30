@@ -28,7 +28,7 @@ export default (code, id) => {
       tail +
       tests +
       executeTests
-    );
+    )
 
   } catch (e) {
     console.log(e.toString())

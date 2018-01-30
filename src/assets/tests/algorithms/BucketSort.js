@@ -9,7 +9,7 @@ export const tests = [
   },
   {
     expression: `!/\\.sort\\s*\\(.*\\)/.test(bucketSort.toString())`,
-    message: '<code>bucketSort</code> should not use the built in <code>Array.sort()</code> method'
+    message: '<code>bucketSort</code> does not use the built in <code>Array.sort()</code> method'
   },
   {
     expression: `
@@ -24,6 +24,6 @@ export const tests = [
           0.011, 0.0233, 0.076, 0.088, 0.99, 0.0654
         ])) === '[0.0001,0.01,0.0102,0.011,0.02,0.021,0.0233,0.0654,0.076,0.088,0.22,0.99]';
       })()`,
-    message: '<code>bucketSort</code> should sort arrays of floating point numbers from least to greatest'
+    message: '<code>bucketSort</code> sorts arrays of floating point numbers from least to greatest'
   }
 ];

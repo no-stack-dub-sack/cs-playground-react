@@ -5,7 +5,7 @@ export const tests = [
   },
   {
     expression: `typeof anagramPalindrome('string') === 'boolean'`,
-    message: '<code>anagramPalindrome</code> should accept a string as an argument and return a boolean'
+    message: '<code>anagramPalindrome</code> accepts a string as an argument and returns a boolean'
   },
   {
     expression: `anagramPalindrome('armdabbmaboobrd') === true && anagramPalindrome('caerrac') === true`,

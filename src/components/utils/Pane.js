@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const Pane = ({
   children,
@@ -16,7 +16,7 @@ const Pane = ({
       : rightWidth }}>
     { children }
   </main>
-);
+)
 
 Pane.propTypes = {
   children: PropTypes.array.isRequired,
@@ -28,6 +28,6 @@ Pane.propTypes = {
 const mapStateToProps = ({ panes }) => ({
   leftWidth: panes.leftWidth,
   rightWidth: panes.rightWidth,
-});
+})
 
-export default connect(mapStateToProps)(Pane);
+export default connect(mapStateToProps)(Pane)

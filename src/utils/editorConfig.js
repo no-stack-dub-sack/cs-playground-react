@@ -25,15 +25,15 @@ export default {
   extraKeys: {
    // prevent default
    'Ctrl-Enter': () => {
-     return false;
+     return false
    },
    // prevent default
    'Cmd-Enter': () => {
-     return false;
+     return false
    },
    // prevent default
    'Ctrl-Space': (cm) => {
-     cm.showHint();
+     cm.showHint()
    }
   }
 }

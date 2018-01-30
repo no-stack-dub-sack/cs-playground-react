@@ -2,6 +2,7 @@ export const tail = `
 if (typeof new MaxHeap() === 'object') {
   MaxHeap.prototype.__clear__ = function() {
     this.heap = []
+    return true
   }
 }
 
@@ -39,11 +40,7 @@ export const tests = [
     message: '<code>MaxHeap</code> has a method called <code>insert</code>: <span class="type">@param {number}</span> <code>number</code>'
   },
   {
-    expression: `
-      (() => {
-        return JSON.stringify(__heap__.heap) === '[64,14,37,7,2,10,32]';
-      })()
-    `,
+    expression: `JSON.stringify(__heap__.heap) === '[64,14,37,7,2,10,32]'`,
     message: 'The <code>insert</code> method adds elements according to the max heap property'
   },
   {
@@ -53,23 +50,22 @@ export const tests = [
   {
     expression: `
       (() => {
-        if (__heap__.heap.length !== 7) return false;
         if (__heap__.remove() !== 64) return false;
-        if (__heap__.heap.length !== 6) return false;
+        if (JSON.stringify(__heap__.heap) !== '[37,14,32,7,2,10]')
+          return false
         if (__heap__.remove() !== 37) return false;
-        if (__heap__.heap.length !== 5) return false;
+        if (JSON.stringify(__heap__.heap) !== '[32,14,10,7,2]')
+          return false
         if (__heap__.remove() !== 32) return false;
+        if (JSON.stringify(__heap__.heap) !== '[14,2,10,7]')
+          return false
         return true
       })()
     `,
     message: 'The <code>remove</code> method removes and returns elements according to the max heap property'
   },
   {
-    expression: `
-    (() => {
-      __heap__.__clear__()
-      return __heap__.remove() === null;
-    })()`,
+    expression: `__heap__.__clear__() && __heap__.remove() === null`,
     message: 'The <code>remove</code> method returns <code>null</code> when called on an empty heap'
   },
   {
@@ -77,11 +73,7 @@ export const tests = [
     message: '<code>MaxHeap</code> has a method called <code>sort</code>.'
   },
   {
-    expression: `
-      (() => {
-        return JSON.stringify(__heap__.sort()) === '[2,7,10,14,32,37,64]';
-      })()
-    `,
+    expression: `JSON.stringify(__heap__.sort()) === '[2,7,10,14,32,37,64]'`,
     message: 'The <code>sort</code> method returns a sorted array (from least to greatest) containing all the elements in the heap'
   },
   {
@@ -91,7 +83,9 @@ export const tests = [
   {
     expression: `
     (() => {
-      if (typeof __heap__.size == 'function') {
+      if (typeof __heap__.size === 'undefined')
+        return false
+      if (typeof __heap__.size === 'function') {
         if (__heap__.size() !== 7) return false;
         __heap__.insert(64);
         __heap__.insert(37);
@@ -99,7 +93,7 @@ export const tests = [
         __heap__.remove();
         __heap__.remove();
         if (__heap__.size() !== 7) return false;
-      } else if (typeof __heap__.size == 'number') {
+      } else if (typeof __heap__.size === 'number') {
         if (__heap__.size !== 7) return false;
         __heap__.insert(64);
         __heap__.insert(37);

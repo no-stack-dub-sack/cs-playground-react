@@ -1,18 +1,18 @@
-import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal';
-import Fade from './Fader';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import shortid from 'shortid';
-import '../../styles/modal.css';
+import { connect } from 'react-redux'
+import { closeModal } from '../../actions/modal'
+import Fade from './Fader'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import shortid from 'shortid'
+import '../../styles/modal.css'
 
 class Modal extends Component {
   componentDidMount() {
-    document.addEventListener('click', this.closeModal);
+    document.addEventListener('click', this.closeModal)
   }
   componentWillUnmount() {
-    document.removeEventListener('click', this.closeModal);
+    document.removeEventListener('click', this.closeModal)
   }
   closeModal = ({ target }) => {
     if (
@@ -20,7 +20,7 @@ class Modal extends Component {
       !this.modal.contains(target) &&
       !target.classList.contains('modal-trigger')
     ) {
-      this.props.closeModal();
+      this.props.closeModal()
     }
   }
   renderListItem = (item) => {
@@ -31,7 +31,7 @@ class Modal extends Component {
             {item.caption}
           </a>
         </li>
-      );
+      )
     }
     // Announcement Modal:
     return (
@@ -39,23 +39,23 @@ class Modal extends Component {
         dangerouslySetInnerHTML={{ __html: item }}
         key={shortid.generate()}
       />
-    );
+    )
   }
   renderNumRemainingAnnouncements = () => {
-    let num;
+    let num
     switch (localStorage.getItem('cs-pg-react-render-only-thrice')) {
-      case '1': num = 2; break;
-      case '2': num = 1; break;
-      default: num = 0;
+      case '1': num = 2; break
+      case '2': num = 1; break
+      default: num = 0
     }
     return (
       <span>
         {`You will see this notification ${num} more time${num === 1 ? '' : 's'}`}
       </span>
-    );
+    )
   }
   render() {
-    const { renderModal, subHeader } = this.props;
+    const { renderModal, subHeader } = this.props
     return ReactDOM.createPortal(
       <Fade attachRef={ref => this.modal = ref} in={renderModal}>
         <div className="modal">
@@ -73,7 +73,7 @@ class Modal extends Component {
         </div>
       </Fade>,
       document.getElementById('modal-root')
-    );
+    )
   }
 }
 
@@ -96,4 +96,4 @@ const mapStateToProps = ({ modal }) => {
   }
 }
 
-export default connect(mapStateToProps, { closeModal })(Modal);
+export default connect(mapStateToProps, { closeModal })(Modal)

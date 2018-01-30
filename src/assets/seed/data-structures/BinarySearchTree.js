@@ -3,15 +3,15 @@ export default {
   seed:
 `class Node {
     constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this.value = value
+        this.left = null
+        this.right = null
     }
 }
 
 class BinarySearchTree {
     constructor() {
-        this.root = null;
+        this.root = null
     }
 
     // methods to implement:
@@ -42,9 +42,9 @@ class BinarySearchTree {
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this.value = value
+        this.left = null
+        this.right = null
     }
 }
 
@@ -68,74 +68,74 @@ class Node {
 
 class BinarySearchTree {
     constructor() {
-        this.root = null;
-        this.size = 0;
+        this.root = null
+        this.size = 0
     }
 
 
     add(value) {
         if (!this.root) {
-            this.size++;
-            this.root = new Node(value);
-            return;
+            this.size++
+            this.root = new Node(value)
+            return
         }
 
         const add = (value, node) => {
             if (value > node.value) {
                 if (!node.right) {
-                    this.size++;
-                    node.right = new Node(value);
-                    return;
+                    this.size++
+                    node.right = new Node(value)
+                    return
                 } else {
-                    return add(value, node.right);
+                    return add(value, node.right)
                 }
             } else if (value < node.value) {
                 if (!node.left) {
-                    this.size++;
-                    node.left = new Node(value);
-                    return;
+                    this.size++
+                    node.left = new Node(value)
+                    return
                 } else {
-                    return add(value, node.left);
+                    return add(value, node.left)
                 }
             }
             // element already exists
-            return null;
+            return null
         }
 
-        return add(value, this.root);
+        return add(value, this.root)
     }
 
 
     remove(value) {
         if (!this.root) {
-            return null;
+            return null
         }
 
-        const { target, parent } = this.__searchTree(value, this.root);
+        const { target, parent } = this.__searchTree(value, this.root)
 
         if (!target) {
-            return null;
+            return null
         }
 
         // decrement size of list
-        this.size--;
+        this.size--
 
         // count children
-        let children = 0;
-        if (target.right) children++;
-        if (target.left) children++;
+        let children = 0
+        if (target.right) children++
+        if (target.left) children++
 
         // remove leaf node
         if (!children) {
             if (!parent) {
-                this.root = null;
-                return;
+                this.root = null
+                return
             }
 
             if (parent.left && parent.left.value === value) {
-                parent.left = null;
+                parent.left = null
             } else {
-                parent.right = null;
+                parent.right = null
             }
         }
 
@@ -143,24 +143,24 @@ class BinarySearchTree {
         if (children === 1) {
             if (!parent) {
                 if (target.left) {
-                    this.root = target.left;
+                    this.root = target.left
                 } else {
-                    this.root = target.right;
+                    this.root = target.right
                 }
-                return;
+                return
             }
 
             if (parent.left && parent.left.value === value) {
                 if (target.left) {
-                    parent.left = target.left;
+                    parent.left = target.left
                 } else {
-                    parent.left = target.right;
+                    parent.left = target.right
                 }
             } else {
                 if (target.left) {
-                    parent.right = target.left;
+                    parent.right = target.left
                 } else {
-                    parent.right = target.right;
+                    parent.right = target.right
                 }
             }
         }
@@ -168,31 +168,31 @@ class BinarySearchTree {
         // remove node w/ 2 children
         if (children === 2) {
             if (!parent && target.right && target.left) {
-                this.root.value = target.right.value;
-                target.right = null;
-                return;
+                this.root.value = target.right.value
+                target.right = null
+                return
             }
 
             var findMin = (minRight, minRightParent) => {
                 if (minRight.left) {
-                    return findMin(minRight.left, minRight);
+                    return findMin(minRight.left, minRight)
                 }
 
-                return { minRight, minRightParent };
-            };
+                return { minRight, minRightParent }
+            }
 
-            var { minRight, minRightParent } = findMin(target.right, target);
+            var { minRight, minRightParent } = findMin(target.right, target)
 
-            target.value = minRight.value;
+            target.value = minRight.value
 
             if (!minRight.left && !minRight.right) {
                 if (minRightParent.left.value === minRight.value) {
-                    minRightParent.left = null;
+                    minRightParent.left = null
                 } else {
-                    minRightParent.right = null;
+                    minRightParent.right = null
                 }
             } else {
-                minRightParent.left = minRight.right;
+                minRightParent.left = minRight.right
             }
         }
     }
@@ -200,85 +200,85 @@ class BinarySearchTree {
 
     findMin() {
         if (!this.root) {
-            return null;
+            return null
         }
 
         const findMin = (node) => {
             return node.left
                 ? findMin(node.left)
-                : node.value;
+                : node.value
         }
 
-        return findMin(this.root);
+        return findMin(this.root)
     }
 
 
     findMax() {
         if (!this.root) {
-            return null;
+            return null
         }
 
         const findMax = (node) => {
             return node.right
                 ? findMax(node.right)
-                : node.value;
+                : node.value
         }
 
-        return findMax(this.root);
+        return findMax(this.root)
     }
 
 
     isPresent(value) {
         if (!this.root) {
-            return false;
+            return false
         }
 
         const isPresent = (value, node) => {
             if (value === node.value) {
-                return true;
+                return true
             } else if (value > node.value && node.right) {
-                return isPresent(value, node.right);
+                return isPresent(value, node.right)
             } else if (value < node.value && node.left) {
-                return isPresent(value, node.left);
+                return isPresent(value, node.left)
             }
-            return false;
+            return false
         }
 
-        return isPresent(value, this.root);
+        return isPresent(value, this.root)
     }
 
 
     findMaxHeight() {
         const height = (node) => {
             if (!node) {
-                return -1;
+                return -1
             }
 
-            var leftHeight = height(node.left);
-            var rightHeight = height(node.right);
+            var leftHeight = height(node.left)
+            var rightHeight = height(node.right)
 
             return leftHeight > rightHeight
                 ? leftHeight + 1
                 : rightHeight + 1
         }
-        return height(this.root);
+        return height(this.root)
     }
 
 
     findMinHeight() {
         const height = (node) => {
             if (!node) {
-                return -1;
+                return -1
             }
 
-            var leftHeight = height(node.left);
-            var rightHeight = height(node.right);
+            var leftHeight = height(node.left)
+            var rightHeight = height(node.right)
 
             return leftHeight < rightHeight
                 ? leftHeight + 1
                 : rightHeight + 1
         }
-        return height(this.root);
+        return height(this.root)
     }
 
 
@@ -291,126 +291,126 @@ class BinarySearchTree {
 
     inOrder() {
         if (!this.root) {
-            return null;
+            return null
         }
 
         const traverse = (node, list) => {
             if (node) {
-                traverse(node.left, list);
-                list.push(node.value);
-                traverse(node.right, list);
-                return list;
+                traverse(node.left, list)
+                list.push(node.value)
+                traverse(node.right, list)
+                return list
             }
         }
 
-        return traverse(this.root, []);
+        return traverse(this.root, [])
     }
 
 
     preOrder() {
         if (!this.root) {
-            return null;
+            return null
         }
 
         const traverse = (node, list) => {
             if (node) {
-                list.push(node.value);
-                traverse(node.left, list);
-                traverse(node.right, list);
-                return list;
+                list.push(node.value)
+                traverse(node.left, list)
+                traverse(node.right, list)
+                return list
             }
         }
 
-        return traverse(this.root, []);
+        return traverse(this.root, [])
     }
 
 
     postOrder() {
         if (!this.root) {
-          return null;
+          return null
         }
 
         const traverse = (node, list) => {
             if (node) {
-                traverse(node.left, list);
-                traverse(node.right, list);
-                list.push(node.value);
-                return list;
+                traverse(node.left, list)
+                traverse(node.right, list)
+                list.push(node.value)
+                return list
             }
         }
 
-        return traverse(this.root, []);
+        return traverse(this.root, [])
     }
 
 
     levelOrder() {
         if (!this.root) {
-            return null;
+            return null
         }
 
-        const results = [], q = [];
-        q.push(this.root);
+        const results = [], q = []
+        q.push(this.root)
 
         while (q.length) {
-            let node = q.shift();
-            results.push(node.value);
+            let node = q.shift()
+            results.push(node.value)
 
             if (node.left) {
-                q.push(node.left);
+                q.push(node.left)
             }
 
             if (node.right) {
-                q.push(node.right);
+                q.push(node.right)
             }
         }
 
-        return results;
+        return results
     }
 
 
     reverseLevelOrder() {
         if (!this.root) {
-            return null;
+            return null
         }
 
-        const results = [], q = [];
+        const results = [], q = []
 
-        q.push(this.root);
+        q.push(this.root)
 
         while (q.length) {
-            let node = q.shift();
-            results.push(node.value);
+            let node = q.shift()
+            results.push(node.value)
 
             if (node.right) {
-                q.push(node.right);
+                q.push(node.right)
             }
 
             if (node.left) {
-                q.push(node.left);
+                q.push(node.left)
             }
         }
 
-        return results;
+        return results
     }
 
 
     invert() {
         if (!this.root) {
-            return null;
+            return null
         }
 
         const invert = (node) => {
             if (node) {
-              var tempNode = node.left;
-              node.left = node.right;
-              node.right = tempNode;
+              var tempNode = node.left
+              node.left = node.right
+              node.right = tempNode
 
-              invert(node.left);
-              invert(node.right);
+              invert(node.left)
+              invert(node.right)
             }
         }
 
-        invert(this.root);
+        invert(this.root)
     }
 
     // helper method for deletion actions
@@ -420,51 +420,51 @@ class BinarySearchTree {
             return {
                 target: node,
                 parent
-            };
+            }
         } else if (value < node.value && node.left) {
-            return this.__searchTree(value, node.left, node);
+            return this.__searchTree(value, node.left, node)
         } else if (value > node.value && node.right) {
-            return this.__searchTree(value, node.right, node);
+            return this.__searchTree(value, node.right, node)
         }
 
         return {
             target: null,
             parent: null
-        };
+        }
     }
 }
 
-var tree = new BinarySearchTree();
+var tree = new BinarySearchTree()
 
 // example usage
 
-const vals = [20,9,49,5,23,52,15,50,17,18,16,13,10,11,12];
-vals.forEach(value => tree.add(value));
+const vals = [20,9,49,5,23,52,15,50,17,18,16,13,10,11,12]
+vals.forEach(value => tree.add(value))
 
-console.log(\`findMax: \${tree.findMax()}\`);
-console.log(\`findMin: \${tree.findMin()}\`);
-console.log(\`isPresent: \${tree.isPresent(47)}\`);
-console.log(\`isPresent: \${tree.isPresent(4)}\`);
-console.log(\`maxHeight: \${tree.findMaxHeight()}\`);
-console.log(\`minHeight: \${tree.findMinHeight()}\`);
-console.log(\`isBalanced: \${tree.isBalanced()}\`);
-console.log(\`inorder: \${JSON.stringify(tree.inOrder())}\`);
-console.log(\`preorder: \${JSON.stringify(tree.preOrder())}\`);
-console.log(\`postorder: \${JSON.stringify(tree.postOrder())}\`);
-console.log(\`levelOrder: \${JSON.stringify(tree.levelOrder())}\`);
-console.log(\`reverseLevelOrder: \${JSON.stringify(tree.reverseLevelOrder())}\`);
+console.log(\`findMax: \${tree.findMax()}\`)
+console.log(\`findMin: \${tree.findMin()}\`)
+console.log(\`isPresent: \${tree.isPresent(47)}\`)
+console.log(\`isPresent: \${tree.isPresent(4)}\`)
+console.log(\`maxHeight: \${tree.findMaxHeight()}\`)
+console.log(\`minHeight: \${tree.findMinHeight()}\`)
+console.log(\`isBalanced: \${tree.isBalanced()}\`)
+console.log(\`inorder: \${JSON.stringify(tree.inOrder())}\`)
+console.log(\`preorder: \${JSON.stringify(tree.preOrder())}\`)
+console.log(\`postorder: \${JSON.stringify(tree.postOrder())}\`)
+console.log(\`levelOrder: \${JSON.stringify(tree.levelOrder())}\`)
+console.log(\`reverseLevelOrder: \${JSON.stringify(tree.reverseLevelOrder())}\`)
 
 console.log('\\nbefore deletion:\\n')
-console.log(JSON.stringify(tree, null, 2));
+console.log(JSON.stringify(tree, null, 2))
 
-tree.remove(50); // remove leaf node
-tree.remove(13); // remove node w/ one child
-tree.remove(9); // remove node w/ two children
+tree.remove(50) // remove leaf node
+tree.remove(13) // remove node w/ one child
+tree.remove(9) // remove node w/ two children
 
-tree.invert();
+tree.invert()
 
-console.log('\\nafter deletion and inversion:\\n');
-console.log(JSON.stringify(tree, null, 2));
+console.log('\\nafter deletion and inversion:\\n')
+console.log(JSON.stringify(tree, null, 2))
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/binary-search-tree-data-structure/', caption: 'GeeksforGeeks.org'},
@@ -472,8 +472,8 @@ console.log(JSON.stringify(tree, null, 2));
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Binary_search_tree', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/algorithms/binary-search-trees', caption: 'freeCodeCamp Guides'},
-    { href: 'https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/', caption: 'NCZOnline Blog Pt. 1 (JS Specific)'},
-    { href: 'https://www.nczonline.net/blog/2009/06/16/computer-science-in-javascript-binary-search-tree-part-2/', caption: 'NCZOnline Blog Pt. 2 (JS Specific)'},
+    { href: 'https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/', caption: 'NCZOnline Blog (JS Specific)'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/BST.html', caption: 'Interactive Animated Visualization!'},
+    { href: 'https://visualgo.net/en/bst?slide=1', caption: 'VisualAlgo.net: Better Interactive Animated Visualization!'},
   ]
-};
+}

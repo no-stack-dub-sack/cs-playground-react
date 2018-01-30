@@ -3,15 +3,15 @@ export default {
   seed:
 `class Node {
     constructor(value) {
-        this.value = value;
-        this.next = null;
+        this.value = value
+        this.next = null
     }
 }
 
 class LinkedList {
     constructor() {
-        this.length = 0;
-        this.head = null;
+        this.length = 0
+        this.head = null
     }
 
     // methods to implement:
@@ -36,8 +36,8 @@ class LinkedList {
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.next = null;
+        this.value = value
+        this.next = null
     }
 }
 
@@ -58,91 +58,91 @@ class Node {
 
 class LinkedList {
     constructor() {
-        this.length = 0;
-        this.head = null;
+        this.length = 0
+        this.head = null
     }
 
 
     peekHead() {
-        return this.head;
+        return this.head
     }
 
 
     get size() {
-        return this.length;
+        return this.length
     }
 
 
     add(value) {
-        var newNode = new Node(value);
+        var newNode = new Node(value)
         if (!this.head) {
-            this.head = newNode;
+            this.head = newNode
         } else {
-            var currentNode = this.head;
+            var currentNode = this.head
             while (currentNode.next) {
-                currentNode = currentNode.next;
+                currentNode = currentNode.next
             }
 
-            currentNode.next = newNode;
+            currentNode.next = newNode
         }
 
-        this.length++;
-        return true;
+        this.length++
+        return true
     }
 
 
     addAt(index, value) {
         if (index < 0 || index >= this.size) {
-            return null;
+            return null
         }
 
-        var currentNode = this.head, previousNode;
-        var currentIndex = 0;
-        var next = new Node(value);
+        var currentNode = this.head, previousNode
+        var currentIndex = 0
+        var next = new Node(value)
         if (index === 0) {
-            next.next = this.head;
-            this.head = next;
+            next.next = this.head
+            this.head = next
         } else {
             while (currentIndex < index) {
-                previousNode = currentNode;
-                currentNode = currentNode.next;
-                currentIndex++;
+                previousNode = currentNode
+                currentNode = currentNode.next
+                currentIndex++
             }
 
-            previousNode.next = next;
-            next.next = currentNode;
-            currentNode = next;
+            previousNode.next = next
+            next.next = currentNode
+            currentNode = next
         }
 
-        this.length++;
-        return true;
+        this.length++
+        return true
     }
 
 
     remove(value) {
         if (this.isEmpty()) {
-          return null;
+          return null
         }
 
         if (this.head.value === value) {
-            this.length--;
-            this.head = this.head.next;
-            return true;
+            this.length--
+            this.head = this.head.next
+            return true
         }
 
-        var currentNode = this.head, previousNode;
+        var currentNode = this.head, previousNode
         while (currentNode.value !== value) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
+            previousNode = currentNode
+            currentNode = currentNode.next
             // no match found
             if (!currentNode) {
-              return null;
+              return null
             }
         }
 
-        this.length--;
-        previousNode.next = currentNode.next;
-        return true;
+        this.length--
+        previousNode.next = currentNode.next
+        return true
     }
 
 
@@ -150,31 +150,31 @@ class LinkedList {
         if (index < 0        ||
             this.isEmpty()   ||
             index >= this.size) {
-            return null;
+            return null
         }
 
         // remove from head
         if (index === 0) {
-            var removed = this.head.value;
-            this.head = this.head.next;
-            this.length--;
-            return removed;
+            var removed = this.head.value
+            this.head = this.head.next
+            this.length--
+            return removed
         }
 
         // remove from body / tail
         var currentNode = this.head,
             previousNode,
-            currentIndex = 0;
+            currentIndex = 0
 
         while (currentIndex < index) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-            currentIndex++;
+            previousNode = currentNode
+            currentNode = currentNode.next
+            currentIndex++
         }
 
-        this.length--;
-        previousNode.next = currentNode.next;
-        return currentNode.value;
+        this.length--
+        previousNode.next = currentNode.next
+        return currentNode.value
 
         /* NOTE: this method could be significantly improved
         if a 'tail' were added to this structure. Think about
@@ -189,60 +189,60 @@ class LinkedList {
 
 
     indexOf(value) {
-        var count = 0;
-        var currentNode = this.head;
-        if (!currentNode) return -1;
+        var count = 0
+        var currentNode = this.head
+        if (!currentNode) return -1
 
         while (value !== currentNode.value) {
             if (currentNode.next === null) {
-                return -1;
+                return -1
             }
-            currentNode = currentNode.next;
-            count++;
+            currentNode = currentNode.next
+            count++
         }
 
-        return count;
+        return count
     }
 
 
     elementAt(index) {
         if (index < 0 || index >= this.size) {
-            return null;
+            return null
         }
 
-        var currentIndex = 0;
-        var currentNode = this.head;
+        var currentIndex = 0
+        var currentNode = this.head
 
         while (currentIndex < index) {
-            currentNode = currentNode.next;
-            currentIndex++;
+            currentNode = currentNode.next
+            currentIndex++
         }
 
-        return currentNode.value;
+        return currentNode.value
     }
 
 
     isEmpty(num) {
         if (!this.head) {
-           return true;
+           return true
         }
 
-        return false;
+        return false
     }
 }
 
 // example usage:
 
-var list = new LinkedList();
+var list = new LinkedList()
 
-list.add('Planes');
-list.add('Trains');
-list.add('Automobiles');
-list.add('Magic Carpets');
-console.log(JSON.stringify(list.peekHead(), null, 2));
-console.log(\`indexOf trains: \${list.indexOf('Trains')}\`);
-console.log(\`indexOf trucks: \${list.indexOf('Trucks')}\`);
-console.log(\`size: \${list.size}\`);
+list.add('Planes')
+list.add('Trains')
+list.add('Automobiles')
+list.add('Magic Carpets')
+console.log(JSON.stringify(list.peekHead(), null, 2))
+console.log(\`indexOf trains: \${list.indexOf('Trains')}\`)
+console.log(\`indexOf trucks: \${list.indexOf('Trucks')}\`)
+console.log(\`size: \${list.size}\`)
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/', caption: 'GeeksforGeeks.org'},
@@ -250,6 +250,6 @@ console.log(\`size: \${list.size}\`);
     { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Linked_list', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/linked-lists', caption: 'freeCodeCamp Guides'},
-    { href: 'http://www.geeksforgeeks.org/data-structures/linked-list/', caption: 'Interactive Animated Visualization!'},
+    { href: 'https://visualgo.net/en/list', caption: 'VisualAlgo.net Interactive Animated Visualization'},
   ]
-};
+}
