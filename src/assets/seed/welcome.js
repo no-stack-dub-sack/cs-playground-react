@@ -54,6 +54,7 @@ __Jump to Solution:__  |   \`CMD/CTRL + SHIFT + S\`
 __Run Code:__          |   \`CMD/CTRL + SHIFT + ENTER\`
 __Clear Console:__     |   \`ALT + SHIFT + DELETE/BACKSPACE\`
 __Open Autocomplete:__ |   \`CTRL + SPACE\`
+__Focus Editor:__      |   \`CMD/CTRL + \\\`
 
 
 - _KEY BINDINGS_
