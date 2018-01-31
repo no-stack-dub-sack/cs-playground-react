@@ -1,5 +1,6 @@
 import createJestTest from '../utils/test/app/create-jest-test'
 import { CODE } from '../assets/codeRef';
+import { forEach } from 'lodash';
 
 const IDS = [
   'BinarySearchTree',
@@ -14,7 +15,7 @@ const IDS = [
 ]
 
 describe('Data Structures: Solution Code Passes Tests', () =>
-  IDS.forEach(createJestTest))
+  forEach(IDS, createJestTest))
 
 test('All Data Structures are being tested', () =>
   expect(IDS.length).toEqual(CODE.DATA_STRUCTURES.length))

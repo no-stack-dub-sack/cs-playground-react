@@ -1,5 +1,6 @@
 import { clearConsole } from '../../actions/console'
 import { connect } from 'react-redux'
+import { map } from 'lodash';
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { ERROR_TYPES } from '../../utils/regexp'
@@ -93,7 +94,7 @@ class Console extends Component {
           <p className="sidebar--output--messages--default-message">
             {'// console output / tests:'}
           </p>
-          { this.props.messages.map(this.renderMessages) }
+          { map(this.props.messages, this.renderMessages) }
         </div>
       </section>
     )

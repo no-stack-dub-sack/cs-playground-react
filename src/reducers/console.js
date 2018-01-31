@@ -5,7 +5,7 @@ export default (state = [], action) => {
     case types.CONSOLE_LOG:
       return [
         ...state,
-        action.messages
+        action.logs
       ]
     case types.CLEAR_CONSOLE:
       return []

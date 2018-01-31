@@ -1,15 +1,17 @@
-import { uniqWith, isEqual, findIndex, flatten, replace } from 'lodash'
+import _ from 'lodash'
 
 // STORE INITIALIZATION UTILS:
 // codeStore initialization utility
 export function populateCodeStore(CODE, arr = []) {
   for (let category in CODE) {
-    CODE[category].forEach(challenge => {
+    _.forEach(
+      CODE[category],
+      challenge =>
       arr.push({
-        id: replace(challenge.title, /\s/g, ''),
+        id: _.replace(challenge.title, /\s/g, ''),
         userCode: challenge.seed
       })
-    })
+    )
   }
   return arr
 }
@@ -22,29 +24,31 @@ export function createOrderKey(CODE) {
     EASY_ALGOS,
     MODERATE_ALGOS
   } = CODE
-  return flatten([
-    SORTING_ALGOS,
-    DATA_STRUCTURES,
-    EASY_ALGOS,
-    MODERATE_ALGOS
-  ])
-  .map(c =>
-    replace(c.title, /\s/g, '')
-  )
+  return _
+    .chain(_
+      .flatten([
+      SORTING_ALGOS,
+      DATA_STRUCTURES,
+      EASY_ALGOS,
+      MODERATE_ALGOS
+    ]))
+    .map(c =>
+      _.replace(c.title, /\s/g, ''))
 }
 
 // MERGE CODE STORE UTILS:
 // isolate new challenges, combine, remove exact dupes
 function mergeCodeStores({ codeStore: initialState }, { codeStore }) {
-  return uniqWith([
+  return _.uniqWith([
     ...codeStore,
-    ...initialState.filter(
-      challenge => findIndex(
+    ..._.filter(
+      initialState,
+      challenge => _.findIndex(
         codeStore,
         { id: challenge.id }
       ) === -1
     )
-  ], isEqual)
+  ], _.isEqual)
 }
 
 function removeDuplicates(codeStore) {
@@ -53,15 +57,18 @@ function removeDuplicates(codeStore) {
     for (let i = 0; i < codeStore.length; i++) {
       if (codeStore[i]) {
         const predicate = { id: codeStore[i].id }
-        while (findIndex(codeStore, predicate, i+1) > i) {
-          const idx = findIndex(codeStore, predicate, i+1)
+        while (_.findIndex(codeStore, predicate, i+1) > i) {
+          const idx = _.findIndex(codeStore, predicate, i+1)
           codeStore[idx] = null
         }
       }
     }
     localStorage.setItem(lsKey, true)
   }
-  return codeStore.filter(challenge => challenge !== null)
+  return _.filter(
+    codeStore,
+    challenge => challenge !== null
+  )
 }
 
 function add_SUPPRESS_TESTS_onlyOnce(codeStore, current, welcome) {

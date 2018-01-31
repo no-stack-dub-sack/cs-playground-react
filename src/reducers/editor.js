@@ -2,7 +2,7 @@ import * as types from '../actions/types'
 import { CODE, SOLUTIONS } from '../assets/codeRef'
 import { composeCodeStore, createOrderKey, populateCodeStore } from './utils'
 import WELCOME_MESSAGE from '../assets/seed/welcome'
-import { findIndex, indexOf } from 'lodash'
+import { findIndex, indexOf, map } from 'lodash'
 
 
 // NOTE: use to temporarily disable
@@ -42,7 +42,7 @@ if (initialState.codeStore.length !== defaultState.codeStore.length) {
 // meaningless abstraction:
 const updateUserCode = (state) => {
   if (!state.current.isSolution && !state.welcome) {
-    return state.codeStore.map(codeObj => {
+    return map(state.codeStore, codeObj => {
       if (state.current.id === codeObj.id) {
         return {
           ...codeObj,

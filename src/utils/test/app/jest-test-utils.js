@@ -20,13 +20,7 @@ export const concatTests = (
       const tests = ${tests};
       ${__executeTests__}
       return typeof testHooks !== 'undefined'
-      ? executeTests(
-          tests,
-          testHooks.beforeAll,
-          testHooks.beforeEach,
-          testHooks.afterEach,
-          testHooks.afterAll
-        )
+      ? executeTests(tests, testHooks)
       : executeTests(tests);
     })();
   `

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { closeModal } from '../../actions/modal'
 import Fade from './Fader'
+import { map } from 'lodash';
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
@@ -66,7 +67,7 @@ class Modal extends Component {
             <strong dangerouslySetInnerHTML={{ __html: subHeader }} />
           </p> }
           <ul>
-            { this.props.messages.map(this.renderListItem) }
+            { map(this.props.messages, this.renderListItem) }
           </ul>
           { this.props.modalType === 'announcement' &&
               this.renderNumRemainingAnnouncements() }

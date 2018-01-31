@@ -1,23 +1,17 @@
 /* eslint-disable no-eval */
 /* eslint-disable no-undef */
-function executeTests(
-  tests,
-  beforeAll = null,
-  beforeEach = null,
-  afterEach = null,
-  afterAll = null
-) {
+function executeTests(tests, hook = {}) {
   if (tests) {
     console.log(beginTests)
     // init report vars
     let numPassed = 0, numDisabled = 0
     // run beforeAll hook
-    beforeAll && beforeAll()
+    invoke(hook, 'beforeAll')
     // iterate tests array
-    tests.forEach((test, i) => {
+    forEach(tests, (test, i) => {
       try {
         // run beforeEach hook
-        beforeEach && beforeEach()
+        invoke(hook, 'beforeEach')
         // eval to prevent further execution if disabled
         if (eval(test.expression) === 'DISABLED') {
           numDisabled++
@@ -25,7 +19,7 @@ function executeTests(
         } else {
           // run beforeEach again since test
           // expression has already been evaled
-          beforeEach && beforeEach()
+          invoke(hook, 'beforeEach')
           // test enabled
           if (test.method) {
             // assert w/ method
@@ -39,14 +33,14 @@ function executeTests(
             assert(eval(test.expression), test.message)
           }
           // run afterEach hook
-          afterEach && afterEach()
+          invoke(hook, 'afterEach')
           // log passing test message
           console.log('Pass: ' + test.message)
           numPassed++
         }
       } catch (e) {
         // run afterEach hook when test does not pass
-        afterEach && afterEach()
+        invoke(hook, 'afterEach')
         // is test disabled?
         if (e.message === 'DISABLED') {
           // log disabled / greyed out test message
@@ -65,25 +59,15 @@ function executeTests(
       }
     })
     // run afterAll hook
-    afterAll && afterAll()
+    invoke(hook, 'afterAll')
     // report results
-    // eslint-disable-next-line
     logTestReport(numPassed, numDisabled, tests)
   }
 }
 
-// check for test hooks before calling executeTests
-// call accordingly based on results
-
 export default `
 ${executeTests}
 typeof testHooks !== 'undefined'
-  ? executeTests(
-      tests,
-      testHooks.beforeAll,
-      testHooks.beforeEach,
-      testHooks.afterEach,
-      testHooks.afterAll
-    )
+  ? executeTests(tests, testHooks)
   : executeTests(tests)
 `

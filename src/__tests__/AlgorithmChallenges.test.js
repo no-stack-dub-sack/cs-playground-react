@@ -1,5 +1,6 @@
 import createJestTest from '../utils/test/app/create-jest-test'
 import { CODE } from '../assets/codeRef'
+import { forEach } from 'lodash';
 
 const IDS = [
   'AnagramPalindrome',
@@ -9,7 +10,7 @@ const IDS = [
 ]
 
 describe('Algorithm Challenges: Solution Code Passes Tests', () =>
-  IDS.forEach(createJestTest))
+  forEach(IDS, createJestTest))
 
 test('All Algorithm Challenges are being tested', () =>
   expect(IDS.length).toEqual(

@@ -13,25 +13,19 @@ const suppressConsole = () => ({
   }
 })
 
-function executeTests(
-  tests,
-  beforeAll = null,
-  beforeEach = null,
-  afterEach = null,
-  afterAll = null
-) {
+function executeTests(tests, hook = {}) {
   let passed = true
   const results = []
   /* eslint-disable no-unused-vars */
   const isTestDisabled = require('../common/is-test-disabled')
+  const { invoke, forEach } = require('lodash')
   const assert = require('assert')
   /* eslint-enable no-unused-vars */
-  beforeAll && beforeAll()
   if (tests) {
-    beforeAll && beforeAll()
-    tests.forEach(test => {
+    invoke(hook, 'beforeAll')
+    forEach(tests, test => {
       try {
-        beforeEach && beforeEach()
+        invoke(hook, 'beforeEach')
         if (test.method) {
           // assert w/ method
           assert[test.method](
@@ -43,7 +37,7 @@ function executeTests(
           // assert w/o method
           assert(eval(test.expression), test.message)
         }
-        afterEach && afterEach()
+        invoke(hook, 'afterEach')
         results.push('Pass: ' + test.message)
       } catch (e) {
         results.push('Fail: ' + test.message)
@@ -51,7 +45,7 @@ function executeTests(
       }
     })
   }
-  afterAll && afterAll()
+  invoke(hook, 'afterAll')
   return { passed, results }
 }
 
