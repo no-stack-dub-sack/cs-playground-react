@@ -31,8 +31,8 @@ to the other, your code will be saved in a couple of ways:
 
 - _RESETTING CODE_
 To re-initialize the global state of the application (and clear all of your saved code), you
-can simply call the \`resetCode()\` function in the editor, and click 'Run Code'. You will be
-prompted with a warning once in the in-browser "mock" console, before the code is actually deleted.
+can simply call the \`resetState()\` function in the editor, and click 'Run Code'. You will be
+prompted with a warning once in the in-browser "mock" console, before the state is actually reset.
 
 
 - _NOT SAVING CODE_
@@ -44,18 +44,33 @@ single line DO NOT SAVE comment in the editor before you navigate away, e.g. \`/
 The console messages will be cleared automatically when you switch to a new problem and run your
 code, but if you want to clear it at any time, just hit the button!
 
-
-- _SHORTCUT KEYS_
-Some basic hotkeys are built in to help you navigate:
-
-__Next Problem:__      |   \`CTRL + SHIFT + >\`
-__Previous Problem:__  |   \`CTRL + SHIFT + <\`
-__Run Code:__          |   \`CTRL + SHIFT + Enter\`
-
-
 - _KEY BINDINGS_
 The CodeMirror instance is set up with SublimeText key bindings.
 
+
+- _ADDITIONAL KEY BINDINGS_
+Some additional key bindings are built in to help you navigate:
+
+ Scroll thru themes:     |\`   CMD-ALT-{ & CMD-ALT-} or CTRL-ALT-{ & CTRL-ALT-}
+\`Next Challenge:         |\`   CMD-SHIFT-. or CTRL-SHIFT-,
+\`Previous Challenge:     |\`   CMD-SHIFT-. or CTRL-SHIFT-,
+\`Jump to Solution:       |\`   CMD-SHIFT-S or CTRL-SHIFT-S
+\`Run Code / Tests:       |\`   CMD-SHIFT-ENTER or CTRL-SHIFT-ENTER
+\`Toggle Suppress Tests:  |\`   CMD-ALT-/ or CTRL-ALT-/
+\`Clear Console:          |\`   ALT-SHIFT-BACKSPACE
+\`Open Autocomplete:      |\`   CTRL-SPACE
+\`Focus Editor:           |\`   CMD-\\ or CTRL-\\
+\`
+
+Primitive CodeMirror search and replace functionalities:
+
+ Start searching:        |\`   CTRL-F or CMD-F
+\`Find next:              |\`   CTRL-G or CMD-G
+\`Find previous:          |\`   SHIFT-CTRL-G or SHIFT-CMD-G
+\`Replace:                |\`   SHIFT-CTRL-F or CMD-ALT-F
+\`Replace all:            |\`   SHIFT-CTRL-R or SHIFT-CMD-ALT-F
+\`Jump to line:           |\`   ALT-G
+\`
 
 - _CHALLENGE!_
 Some of my solutions are less than perfect. If you come up with a better one, or want to

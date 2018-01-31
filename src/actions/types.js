@@ -1,0 +1,27 @@
+// console
+export const CLEAR_CONSOLE = 'CLEAR_CONSOLE'
+export const CONSOLE_LOG = 'CONSOLE_LOG'
+
+// editor
+export const RESET_STATE = 'RESET_STATE'
+export const UPDATE_CODE = 'UPDATE_CODE'
+export const NEXT_CHALLENGE = 'NEXT_CHALLENGE'
+export const PREV_CHALLENGE = 'PREV_CHALLENGE'
+export const SELECT_CHALLENGE = 'SELECT_CHALLENGE'
+export const SELECT_SOLUTION = 'SELECT_SOLUTION'
+export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION'
+
+// theme
+export const NEXT_THEME = 'NEXT_THEME'
+export const PREV_THEME = 'PREV_THEME'
+
+// modal
+export const CLOSE_MODAL = 'CLOSE_MODAL'
+export const OPEN_THEME_MODAL = 'OPEN_THEME_MODAL'
+export const OPEN_RESOURCES_MODAL = 'OPEN_RESOURCES_MODAL'
+export const OPEN_ANNOUNCEMENT_MODAL = 'OPEN_ANNOUNCEMENT_MODAL'
+
+// panes
+export const DRAG_VERTICAL = 'DRAG_VERTICAL'
+export const DRAG_HORIZONTAL = 'DRAG_HORIZONTAL'
+export const DOUBLE_CLICK = 'DOUBLE_CLICK'

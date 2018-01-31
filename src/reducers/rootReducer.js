@@ -1,14 +1,16 @@
-import editor from './editor';
-import { combineReducers } from 'redux';
-import consoleOutput from './console';
-import modal from './modal';
-import resources from './resources';
+import { combineReducers } from 'redux'
+import editor from './editor'
+import console from './console'
+import modal from './modal'
+import panes from './panes'
+import theme from './theme'
 
 const rootReducer = combineReducers({
   editor,
-  consoleOutput,
+  console,
   modal,
-  resources
-});
+  panes,
+  theme
+})
 
-export default rootReducer;
+export default rootReducer

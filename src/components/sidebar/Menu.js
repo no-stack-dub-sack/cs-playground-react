@@ -1,19 +1,22 @@
-import CODE from '../../assets/codeRef';
-import MenuMap from './MenuMap';
-import PropTypes from 'prop-types';
-import React from 'react';
-import '../../styles/menu.css';
+import { CODE } from '../../assets/codeRef'
+import { connect } from 'react-redux'
+import MenuMap from './MenuMap'
+import PropTypes from 'prop-types'
+import React from 'react'
+import '../../styles/menu.css'
 
 const {
   SORTING_ALGOS,
   DATA_STRUCTURES,
   EASY_ALGOS,
   MODERATE_ALGOS
-} = CODE;
+} = CODE
 
-const Menu = ({ attachRef }) => {
+const Menu = ({ topHeight, transition }) => {
   return (
-    <section ref={attachRef} className="sidebar--menu top-pane">
+    <section
+      className="sidebar--menu top-pane"
+      style={{ height: topHeight, transition }}>
       <header className="sidebar--menu--header">
         Contents
       </header>
@@ -37,11 +40,17 @@ const Menu = ({ attachRef }) => {
           xtraClass="sub" />
       </details>
     </section>
-  );
+  )
 }
 
 Menu.propTypes = {
-  attachRef: PropTypes.func.isRequired,
-};
+  topHeight: PropTypes.string.isRequired,
+  transition: PropTypes.string.isRequired
+}
 
-export default Menu;
+const mapStateToProps = ({ panes }) => ({
+  topHeight: panes.topHeight,
+  transition: panes.transition
+})
+
+export default connect(mapStateToProps)(Menu)
