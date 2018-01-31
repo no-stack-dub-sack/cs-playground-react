@@ -54,15 +54,16 @@ The [JSDoc](https://github.com/jsdoc3/jsdoc)-like documentation found throughout
 ### Algorithm Challenges
 **Easy:**
 - Sum All Primes
+- Generate Checkerboard
+- Flatten An Array
 - Is Palindrome _(coming soon)_
 - Fizz Buzz _(coming soon)_
 
 **Moderate/Difficult:**
+- Longest Common Prefix
 - No Two Consecutive Chars
 - Anagram Palindrome
-- Sum Prime Factors _(coming soon)_
 - Rotate An Image _(coming soon)_
-- Sum Prime Factors _(coming soon)_
 
 ## To Install/Run:
 - Fork repo, clone locally, and run `npm install` or `yarn install`

@@ -95,15 +95,23 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 - https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-priority-queue-class __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Priority_queue
 
-### Linked Lists / Doubly Linked Lists
+### Linked Lists
 - http://www.geeksforgeeks.org/data-structures/linked-list/
 - http://www.geeksforgeeks.org/implementation-linkedlist-javascript/
 - https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list __(interactive challenge series)__
 - https://en.wikipedia.org/wiki/Linked_list
-- https://en.wikipedia.org/wiki/Doubly_linked_list
 - https://guide.freecodecamp.org/computer-science/data-structures/linked-lists
+
+### Doubly Linked Lists
+- https://en.wikipedia.org/wiki/Doubly_linked_list
 - http://www.geeksforgeeks.org/data-structures/linked-list/#doublyLinkedList/
 - https://www.nczonline.net/blog/2009/04/21/computer-science-in-javascript-doubly-linked-lists/
+- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-doubly-linked-list __(interactive challenge series)__
+
+### Circular Doubly Linked Lists
+- https://www.geeksforgeeks.org/doubly-circular-linked-list-set-1-introduction-and-insertion/
+- https://www.geeksforgeeks.org/doubly-circular-linked-list-set-2-deletion/
+- https://en.wikipedia.org/wiki/Doubly_linked_list#Circular_doubly_linked_lists/
 
 ### Hash Table
 - http://www.geeksforgeeks.org/hashing-data-structure/
@@ -143,6 +151,12 @@ https://visualgo.net/en/dfsbfs __(SUPER interactive graph creation & traversal v
 ### Sum All Primes
 - https://www.freecodecamp.org/challenges/sum-all-primes __(interactive challenge)__
 - https://guide.freecodecamp.org/certificates/sum-all-primes
+
+### Longest Common Prefix
+- https://leetcode.com/problems/longest-common-prefix/solution/
+
+### Flatten An Array
+- https://www.codetuts.tech/flatten-deep-nested-array-object/
 
 ### No Two Consecutive Characters
 - http://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/

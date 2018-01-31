@@ -11,6 +11,7 @@ import SortingAlgorithmBenchmarks from './seed/algorithms/SortingBenchmarks'
 
 import BinarySearchTree from './seed/data-structures/BinarySearchTree'
 import DoublyLinkedList from './seed/data-structures/DoublyLinkedList'
+import CircularDoublyLinkedList from './seed/data-structures/CircularDoublyLinkedList'
 import Graph from './seed/data-structures/Graph'
 import HashTable from './seed/data-structures/HashTable'
 import LinkedList from './seed/data-structures/LinkedList'
@@ -23,6 +24,8 @@ import AnagramPalindrome from './seed/algorithms/AnagramPalindrome'
 import NoTwoConsecutiveChars from './seed/algorithms/NoTwoConsecutiveChars'
 import SumAllPrimes from './seed/algorithms/SumAllPrimes'
 import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard'
+import FlattenAnArray from './seed/algorithms/FlattenAnArray'
+import LongestCommonPrefix from './seed/algorithms/LongestCommonPrefix'
 
 // NOTE: order of arrays determines order of sidebar menu
 
@@ -43,6 +46,7 @@ export const CODE = {
     PriorityQueue,
     LinkedList,
     DoublyLinkedList,
+    CircularDoublyLinkedList,
     BinarySearchTree,
     MaxHeap,
     HashTable,
@@ -51,10 +55,12 @@ export const CODE = {
   EASY_ALGOS: [
     SumAllPrimes,
     GenerateCheckerboard,
+    FlattenAnArray,
     // IsPalindrome,
     // FizzBuzz,
   ],
   MODERATE_ALGOS: [
+    LongestCommonPrefix,
     NoTwoConsecutiveChars,
     AnagramPalindrome,
     // RotateAnImage,
