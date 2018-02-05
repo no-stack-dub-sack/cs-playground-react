@@ -10,17 +10,17 @@ example, think about adding/removing at the head or tail of a circular list, or 
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.prev = null;
-        this.next = null;
+        this.value = value
+        this.prev = null
+        this.next = null
     }
 }
 
 class CircularDoublyLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.head = null
+        this.tail = null
+        this.length = 0
     }
 
     // methods to implement:
@@ -54,9 +54,9 @@ Do you think this approach is better or worse? Have you tried both? Check out th
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.prev = null;
-        this.next = null;
+        this.value = value
+        this.prev = null
+        this.next = null
     }
 }
 
@@ -85,149 +85,146 @@ class Node {
 
 class CircularDoublyLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
-        this.isCircular = false;
+        this.head = null
+        this.tail = null
+        this.length = 0
+        this.isCircular = false
     }
 
 
     peekHead() {
-        if (this.isEmpty()) {
-            return null;
-        }
-
-        return this.head;
+        return !this.isEmpty()
+            ? this.head
+            : null
     }
 
 
     peekTail() {
-        if (this.isEmpty()) {
-            return null;
-        }
-
-        return this.tail;
+        return !this.isEmpty()
+            ? this.tail
+            : null
     }
 
 
-    add(val) {
+    add(value) {
         if (this.isEmpty()) {
-            this.head = new Node(val);
-            this.tail = this.head;
-            this.length++;
-            return;
+            this.head = new Node(value)
+            this.tail = this.head
+            this.length++
+            return true
         }
 
         const add = (node) => {
-            const newNode = new Node(val);
-            newNode.prev = node;
-            node.next = newNode;
-            this.tail = newNode;
-            this.length++;
+            const newNode = new Node(value)
+            newNode.prev = node
+            node.next = newNode
+            this.tail = newNode
+            this.length++
         }
 
         const traverse = (node) => {
             if (node.next) {
                 if (this.__isCircularLastNode(node.value)) {
-                    add(node);
-                    this.tail.next = this.head;
-                    this.head.prev = this.tail;
-                    return;
+                    add(node)
+                    this.tail.next = this.head
+                    this.head.prev = this.tail
+                    return true
                 } else {
-                    return traverse(node.next);
+                    return traverse(node.next)
                 }
             }
 
-            add(node);
+            add(node)
         }
 
-        return traverse(this.head);
+        return traverse(this.head)
     }
 
 
-    addAt(index, val) {
+    addAt(index, value) {
         if (this.isEmpty()  ||
             index < 0       ||
             index > this.size) {
-            return null;
+            return null
         }
 
-        this.length++;
+        this.length++
 
         // add at head
         if (index === 0) {
             if (!this.head) {
-                this.head = new Node(val);
-                this.tail = this.head;
-                return;
+                this.head = new Node(value)
+                this.tail = this.head
+                return true
             } else {
-                const newNode = new Node(val);
-                newNode.next = this.head;
-                this.head.prev = newNode;
-                this.head = newNode;
+                const newNode = new Node(value)
+                newNode.next = this.head
+                this.head.prev = newNode
+                this.head = newNode
                 if (this.isCircular)
-                    this.head.prev = this.tail;
-                return;
+                    this.head.prev = this.tail
+                    this.tail.next = this.head
+                return true
             }
         }
 
         // add at tail
         if (index+1 === this.size) {
-            const newNode = new Node(val);
-            this.tail.next = newNode;
-            newNode.prev = this.tail;
-            this.tail = newNode;
+            const newNode = new Node(value)
+            this.tail.next = newNode
+            newNode.prev = this.tail
+            this.tail = newNode
             if (this.isCircular)
-                this.tail.next = this.head;
-            return;
+                this.tail.next = this.head
+                this.head.prev = this.tail
+            return true
         }
 
         const addAt = (node, prevNode, currIndex) => {
             if (currIndex !== index) {
-                return addAt(node.next, node, currIndex+1);
+                return addAt(node.next, node, currIndex+1)
             }
 
-            const newNode = new Node(val);
-            prevNode.next = newNode;
-            newNode.prev = prevNode;
-            newNode.next = node;
-            node.prev = newNode;
-            return;
+            const newNode = new Node(value)
+            prevNode.next = newNode
+            newNode.prev = prevNode
+            newNode.next = node
+            node.prev = newNode
+            return true
         }
 
-        return addAt(this.head.next, this.head, 1);
+        return addAt(this.head.next, this.head, 1)
     }
 
 
-    remove(val) {
-        if (this.isEmpty()) {
-            return null;
-        }
+    remove(value) {
+        if (this.isEmpty())
+            return null
 
         // remove at head
-        if (val === this.head.value) {
-            return this.removeHead();
+        if (value === this.head.value) {
+            return this.removeHead()
         }
 
         // remove at tail
-        if (val === this.tail.value) {
-            return this.removeTail();
+        if (value === this.tail.value) {
+            return this.removeTail()
         }
 
         const traverse = (node) => {
-            if (node.value !== val) {
+            if (node.value !== value) {
                 return !node.next
                     ? null
                     : traverse(node.next)
             }
 
-            this.length--;
-            node.prev.next = node.next;
-            node.next.prev = node.prev;
-            return val;
+            this.length--
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            return value
         }
 
-        return traverse(this.head);
+        return traverse(this.head)
     }
 
 
@@ -235,17 +232,17 @@ class CircularDoublyLinkedList {
         if (this.isEmpty()   ||
             index < 0        ||
             index >= this.size) {
-            return null;
+            return null
         }
 
         // remove at head
         if (index === 0) {
-            return this.removeHead();
+            return this.removeHead()
         }
 
         // remove at tail
         if (index === this.size-1) {
-            return this.removeTail();
+            return this.removeTail()
         }
 
         const removeAt = (node, prevNode, currIndex) => {
@@ -253,67 +250,78 @@ class CircularDoublyLinkedList {
                 return removeAt(node.next, node, currIndex+1)
             }
 
-            this.length--;
-            prevNode.next = node.next;
-            node.next.prev = prevNode;
-            return node.value;
+            this.length--
+            prevNode.next = node.next
+            node.next.prev = prevNode
+            return node.value
         }
 
-        return removeAt(this.head.next, this.head, 1);
+        return removeAt(this.head.next, this.head, 1)
     }
 
     // the following 2 methods were created as internal abstraction,
     // but have reasonable outside application, so not prefixing with
     // '__', which denotes intended for private/internal use only
     removeHead() {
-        if (this.isEmpty()) return null;
+        if (this.isEmpty())
+            return null
 
-        const removed = this.head.value;
-        this.head = this.head.next;
-        if (this.isCircular) {
-            this.head.prev = this.tail;
-            this.tail.next = this.head
-        } else {
-            this.head.prev = null;
+        const { value } = this.head
+
+        // remove last node
+        if (this.size === 1) {
+            this.head = null
+            this.tail = null
+            this.length = 0
+            this.isCircular = false
+            return value
         }
 
-        this.length--;
-        return removed;
+        this.head = this.head.next
+        if (this.isCircular) {
+            this.head.prev = this.tail
+            this.tail.next = this.head
+        } else {
+            this.head.prev = null
+        }
+
+        this.length--
+        return value
     }
 
 
     removeTail() {
-        if (this.isEmpty()) return null;
+        if (this.isEmpty())
+            return null
 
-        const removed = this.tail.value;
-        this.tail = this.tail.prev;
+        const removed = this.tail.value
+        this.tail = this.tail.prev
         if (this.isCircular) {
             this.tail.next = this.head
-            this.head.prev = this.tail;
+            this.head.prev = this.tail
         } else {
-            this.tail.next = null;
+            this.tail.next = null
         }
 
-        this.length--;
-        return removed;
+        this.length--
+        return removed
     }
 
 
-    indexOf(val) {
-        if (this.isEmpty()) {
-            return null;
-        }
+    indexOf(value) {
+        if (this.isEmpty())
+            return -1
 
         const indexOf = (node, index) => {
             if (index === this.size) {
-                return -1;
+                return -1
             }
-            return val === node.value
+            return value === node.value
                 ? index
-                : indexOf(node.next, index+1);
+                : indexOf(node.next, index+1)
         }
 
-        return indexOf(this.head, 0);
+        return indexOf(this.head, 0)
     }
 
 
@@ -321,102 +329,100 @@ class CircularDoublyLinkedList {
         if (this.isEmpty()   ||
             index < 0        ||
             index >= this.size) {
-            return null;
+            return null
         }
 
         const elementAt = (node, currIndex) => {
             return index !== currIndex
                 ? elementAt(node.next, currIndex+1)
-                : node.value;
+                : node.value
         }
 
-        return elementAt(this.head, 0);
+        return elementAt(this.head, 0)
     }
 
 
     forgeCircular() {
         if (this.head) {
-            this.head.prev = this.tail;
-            this.tail.next = this.head;
-            this.isCircular = true;
+            this.head.prev = this.tail
+            this.tail.next = this.head
+            this.isCircular = true
         } else {
-            return null;
+            return null
         }
     }
 
 
     forgeLinear() {
         if (this.isCircular) {
-            this.head.prev = null;
-            this.tail.next = null;
-            this.isCircular = false;
+            this.head.prev = null
+            this.tail.next = null
+            this.isCircular = false
         } else {
-            return null;
+            return null
         }
     }
 
 
     reverse() {
-        if (this.isEmpty()) {
-            return null;
-        }
+        if (this.isEmpty())
+            return null
 
-        let forgeCircular = false;
+        let forgeCircular = false
         if (this.isCircular) {
-            this.forgeLinear();
-            forgeCircular = true;
+            this.forgeLinear()
+            forgeCircular = true
         }
 
         const reverse = (node) => {
             if (node) {
-                let tempNode = node.next;
-                node.next = node.prev;
-                node.prev = tempNode;
-                return reverse(node.prev);
+                let tempNode = node.next
+                node.next = node.prev
+                node.prev = tempNode
+                return reverse(node.prev)
             }
 
-            let tempNode = this.head;
-            this.head = this.tail;
-            this.tail = tempNode;
+            let tempNode = this.head
+            this.head = this.tail
+            this.tail = tempNode
         }
 
-        reverse(this.head);
-        forgeCircular && this.forgeCircular();
+        reverse(this.head)
+        if (forgeCircular)
+            this.forgeCircular()
     }
 
 
     isEmpty() {
-        if (!this.head) {
-            return true;
-        }
-
-        return false;
+        return !this.head
+            ? true
+            : false
     }
 
 
     toString() {
         if (this.isEmpty()) {
-            return null;
+            return null
         }
 
-        const result = [];
+        const result = []
         const traverse = (node) => {
             if (node) {
-                result.push(Object.assign({}, node));
+                result.push(Object.assign({}, node))
                 return this.__isCircularLastNode(node.value)
                     ? null
-                    : traverse(node.next);
+                    : traverse(node.next)
             }
         }
 
-        traverse(this.head);
+        traverse(this.head)
 
         result.forEach(node => {
-           if (node.prev) node.prev = node.prev.value;
-           if (node.next) node.next = node.next.value;
-        });
+           if (node.prev) node.prev = node.prev.value
+           if (node.next) node.next = node.next.value
+        })
 
-        return JSON.stringify(result, null, 2);
+        return JSON.stringify(result, null, 2)
     }
 
 
@@ -424,18 +430,18 @@ class CircularDoublyLinkedList {
     node is last node of circular list */
     __isCircularLastNode(element) {
         return this.isCircular &&
-        this.indexOf(element) === this.size-1;
+        this.indexOf(element) === this.size-1
     }
 
 
     get size() {
-        return this.length;
+        return this.length
     }
 }
 
 // example usage:
 
-const list = new CircularDoublyLinkedList();
+const list = new CircularDoublyLinkedList()
 
 console.log(
 \`\\nNote that all print outs of the list are represented as an
@@ -444,45 +450,45 @@ simply show the next and previous value, NOT the entire node) so
 that we can easily see how the list has been modified. We cannot
 stringify an un-simplified doubly linked list due to the circular
 nature of its previous and next node references! (see bottom)\\n\\n\`
-);
+)
 
-list.add('one');
-list.add('two');
+list.add('one')
+list.add('two')
 
 /* make list circular and keep adding. Note:
 it's important for forgeCircular to work at
 any time that the list isn't empty. */
 
-list.forgeCircular();
-list.add('three');
-list.add('five');
-list.add('six');
-list.addAt(3, 'four');
-list.addAt(6, 'seven');
-list.add('eight');
-list.add('nine');
-list.add('ten');
+list.forgeCircular()
+list.add('three')
+list.add('five')
+list.add('six')
+list.addAt(3, 'four')
+list.addAt(6, 'seven')
+list.add('eight')
+list.add('nine')
+list.add('ten')
 
 function removeIf(expression, element, remove) {
   if (expression === element) {
-    console.log(remove);
+    console.log(remove)
   } else {
-    console.log(null);
+    console.log(null)
   }
 }
 
-removeIf(list.elementAt(5), 'six', list.removeAt(5));
-removeIf(list.peekHead().value, 'one', list.remove('one'));
-removeIf(list.elementAt(5), 'seven', list.removeAt(5));
+removeIf(list.elementAt(5), 'six', list.removeAt(5))
+removeIf(list.peekHead().value, 'one', list.remove('one'))
+removeIf(list.elementAt(5), 'seven', list.removeAt(5))
 
 console.log('\\ncircular list:\\n')
-console.log(list.toString());
+console.log(list.toString())
 
-list.reverse();
-list.forgeLinear();
+list.reverse()
+list.forgeLinear()
 
 console.log('\\nreversed linear list:\\n')
-console.log(list.toString());
+console.log(list.toString())
 `,
   resources: [
     { href: 'https://www.geeksforgeeks.org/doubly-circular-linked-list-set-1-introduction-and-insertion/', caption: 'GeeksforGeeks.org | Part I'},

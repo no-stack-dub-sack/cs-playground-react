@@ -1,45 +1,33 @@
-export const NEXT_SNIPPET = 'NEXT_SNIPPET';
-export const PREVIOUS_SNIPPET = 'PREVIOUS_SNIPPET';
-export const RESET_STATE = 'RESET_STATE';
-export const SELECT_SNIPPET = 'SELECT_SNIPPET';
-export const SELECT_SOLUTION = 'SELECT_SOLUTION';
-export const UPDATE_CODE = 'UPDATE_CODE';
+import * as types from './types'
 
-export const selectSnippet = (id) => {
-  return {
-    type: SELECT_SNIPPET,
-    id
-  }
-}
+export const nextChallenge = () => ({
+  type: types.NEXT_CHALLENGE
+})
 
-export const nextSnippet = (id) => {
-  return {
-    type: NEXT_SNIPPET
-  }
-}
+export const prevChallenge = () => ({
+  type: types.PREV_CHALLENGE
+})
 
-export const previousSnippet = (id) => {
-  return {
-    type: PREVIOUS_SNIPPET
-  }
-}
+export const selectChallenge = (id) => ({
+  type: types.SELECT_CHALLENGE,
+  id
+})
 
-export const updateCode = (code) => {
-  return {
-    type: UPDATE_CODE,
-    code
-  }
-}
+export const selectSolution = (id) => ({
+  type: types.SELECT_SOLUTION,
+  id
+})
 
-export const selectSolution = (id) => {
-  return {
-    type: SELECT_SOLUTION,
-    id: id.slice(10)
-  }
-}
+export const toggleSolution = (id) => ({
+  type: types.TOGGLE_SOLUTION,
+  id
+})
 
-export const resetEditorState = () => {
-  return {
-    type: RESET_STATE
-  }
-}
+export const resetEditorState = () => ({
+  type: types.RESET_STATE
+})
+
+export const updateCode = (code) => ({
+  type: types.UPDATE_CODE,
+  code
+})

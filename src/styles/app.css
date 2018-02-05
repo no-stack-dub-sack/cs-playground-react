@@ -1,18 +1,19 @@
+summary::-webkit-details-marker {
+  color: #ccc;
+}
+
 .main.right-pane {
-  width: 69.5%;
   height: 100vh;
 }
 
 .sidebar.left-pane {
   top: 0;
   left: 0;
-  width: 30%;
   box-sizing: border-box;
   height: 100vh;
   flex: auto;
   display: flex;
   flex-direction: column;
-  background: #707070;
   color: #ccc;
 }
 
@@ -21,6 +22,15 @@
   background-color: #a19c9c;
   background-repeat: no-repeat;
   background-position: 50%;
+  transition: background-color .3s;
+}
+
+.divider:hover {
+  background-color: #279198;
+}
+
+.divider:active {
+  background-color: #10656b;
 }
 
 .vertical.divider {

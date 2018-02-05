@@ -2,6 +2,7 @@ body {
   font-family: Ubuntu;
   margin: 0;
   position: relative;
+  overflow-y: hidden;
 }
 
 #root {

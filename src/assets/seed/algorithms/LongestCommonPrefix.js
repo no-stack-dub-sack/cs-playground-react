@@ -8,11 +8,11 @@ export default {
  */
 
 // find and return the longest common prefix ammong an array
-// of strings. return null if no such common prefix exists.
+// of strings. return false if no such common prefix exists.
 
 // ex1: ['people', 'peeps', 'person', 'pendulum'] => 'pe'
 // ex2: ['hello', 'hers', 'his', 'hint', 'hurts'] => 'h'
-// ex3: ['goodbye', 'good', 'ok', 'great', 'bad'] => null
+// ex3: ['goodbye', 'good', 'ok', 'great', 'bad'] => false
 
 const longestCommonPrefix = (strings) => {
   return strings[0];
@@ -28,12 +28,12 @@ console.log(longestCommonPrefix(['cooler', 'coolest', 'cool', 'cooling', 'cooled
  */
 
 const longestCommonPrefix = (strings) => {
-    if (!strings.length) return null;
+    if (!strings.length) return false;
 
     let prefix = strings[0];
     for (let i = 1; i < strings.length; i++) {
         prefix = findCommon(prefix, strings[i]);
-        if (!prefix) return null;
+        if (!prefix) return false;
     }
 
     function findCommon(str1, str2) {

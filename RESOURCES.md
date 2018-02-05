@@ -1,3 +1,19 @@
+# General
+
+### Blogs, Code, Articles
+Here's a great blog and compendium repo about computer science concepts in JavaScript, with posts covering many (if not all) of the concepts covered in this app (in both ES5 and ES6):
+- https://github.com/benoitvallon/computer-science-in-javascript/tree/master/data-structures-in-javascript
+- http://blog.benoitvallon.com/
+
+### Interactive Exploration and Visualization
+Here's a couple of _awesome_ resources for visualizing and interactively exploring the way that sorting algorithms and data structures work. Both sites have their strengths and weaknesses, and cover just about every topic imaginable between them. I think you'll find them both immensely helpful!
+- https://visualgo.net/en
+- https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+
+### Big-O Notation
+Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! Know thy complexity!
+- http://bigocheatsheet.com/
+
 # Sorting Algorithms
 
 ### Quicksort
@@ -125,8 +141,10 @@
 ### Graphs
 http://www.geeksforgeeks.org/graph-and-its-representations/
 http://www.geeksforgeeks.org/implementation-graph-javascript/
+http://blog.benoitvallon.com/data-structures-in-javascript/the-graph-data-structure/
 https://en.wikipedia.org/wiki/Adjacency_list
 https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html __(interactive visualization)__
+https://visualgo.net/en/dfsbfs __(SUPER interactive graph creation & traversal visualization)__
 
 # Other Algorithms
 
@@ -139,6 +157,7 @@ https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html __(intera
 
 ### Flatten An Array
 - https://www.codetuts.tech/flatten-deep-nested-array-object/
+- http://blog.benoitvallon.com/tips/flattening-arrays-in-javascript/
 
 ### No Two Consecutive Characters
 - http://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/

@@ -1,0 +1,195 @@
+/* Cobalt */
+.sidebar.left-pane.cobalt,
+.sidebar--menu--detail.cobalt {
+  background: #002240;
+  color: white;
+}
+
+.main--controls--button.cobalt {
+  color: white;
+  background: #002240;
+  border: 1px solid #ddd;
+}
+
+.main--controls--button.cobalt:active {
+  background: rgba(39, 145, 152, 0.52);
+}
+
+.sidebar--output--messages.cobalt {
+  background: #002240;
+}
+
+.sidebar--menu--detail--button.solution.cobalt {
+  color: #002240;
+  background: #08f;
+}
+
+.sidebar--menu--detail--button.resources.cobalt {
+  color: #002240;
+  background: #ffee80;
+}
+
+/* Paraiso Light */
+.sidebar.left-pane.paraiso-light {
+  color: #ef6155;
+  background: #e7e9db;
+}
+
+.sidebar--menu--detail.paraiso-light {
+  color: #815ba4;
+  color: #ef6155;
+  background: #e7e9db;
+}
+
+/* .sidebar--output--messages.paraiso-light {
+  background: #c1c4aa;
+  color: #48b685;
+} */
+
+/* .main--controls--button.paraiso-light {
+  color: #e96ba8;
+  background: #e7e9db;
+  border: 2px solid #48b685;
+}
+
+.main--controls--button.paraiso-light.run-code,
+.main--controls--button.paraiso-light.previous {
+  border-right: none;
+}
+
+.main--controls--button.paraiso-light:active {
+  background: rgba(39, 145, 152, 0.52);
+} */
+
+/* Base16 Light */
+.sidebar.left-pane.base16-light,
+.sidebar--menu--detail.base16-light {
+  background: #f5f5f5;
+  color: #8f5536;
+}
+
+.sidebar.left-pane.eclipse,
+.sidebar--menu--detail.eclipse {
+  color: #7F0055;
+  background: #f5f5f5;
+}
+
+.sidebar--menu--detail--button.solution.base16-light {
+  color: #daaeae;
+  background: #ac4142;
+}
+
+.sidebar--menu--detail--button.resources.base16-light {
+  color: #252222;
+  background: #90a959;
+}
+
+/* Solution / Resources Buttons */
+.sidebar--menu--detail--button.solution.tomorrow-night-eighties {
+  background: #f2777a;
+}
+
+.sidebar--menu--detail--button.resources.tomorrow-night-eighties {
+  background: #99cc99;
+}
+
+.sidebar--menu--detail--button.solution.abcdef {
+  background: darkgoldenrod;
+}
+
+.sidebar--menu--detail--button.resources.abcdef {
+  background: #abcdef;
+}
+
+.sidebar--menu--detail--button.solution.base16-dark {
+  color: #daaeae;
+  background: #ac4142;
+}
+
+.sidebar--menu--detail--button.resources.base16-dark {
+  background: #90a959;
+}
+
+.sidebar--menu--detail--button.solution.eclipse {
+  /* color: #daaeae; */
+  color: #f5f5f5;
+  background: #7F0055;
+}
+
+.sidebar--menu--detail--button.resources.eclipse {
+  /* color: #252222; */
+  color: #f5f5f5;
+  background: #3F7F5F;
+}
+
+.sidebar--menu--detail--button.solution.icecoder {
+  color: #1d1d1b;
+  background: #b9ca4a;
+}
+
+.sidebar--menu--detail--button.resources.icecoder {
+  color: #1d1d1b;
+  background: #6cb5d9;
+}
+
+.sidebar--menu--detail--button.solution.lesser-dark {
+  background: #599eff;
+}
+
+.sidebar--menu--detail--button.resources.lesser-dark {
+  background: #D9BF8C;
+}
+
+.sidebar--menu--detail--button.resources.material {
+  color: #263238;
+  background: rgba(199, 146, 234, .7);
+}
+
+.sidebar--menu--detail--button.solution.material {
+  color: #263238;
+  background: #F77669;
+}
+
+.sidebar--menu--detail--button.solution.monokai {
+  color: #272822;
+  background: #fd971f;
+}
+
+.sidebar--menu--detail--button.resources.monokai {
+  color: #272822;
+  background: #ae81ff;
+}
+
+.sidebar--menu--detail--button.solution.neat {
+  background: #a86;
+}
+
+.sidebar--menu--detail--button.resources.neat {
+  background: #3a3;
+}
+
+.sidebar--menu--detail--button.solution.panda-syntax {
+  color: #292A2B;
+  background: #FF75B5;
+}
+
+.sidebar--menu--detail--button.resources.panda-syntax {
+  color: #292A2B;
+  background: #ffb86c;
+}
+
+.sidebar--menu--detail--button.solution.paraiso-light {
+  background: #ef6155;
+}
+
+.sidebar--menu--detail--button.resources.paraiso-light {
+  background: #48b685;
+}
+
+.sidebar--menu--detail--button.solution.twilight {
+  background: #ca7841;
+}
+
+.sidebar--menu--detail--button.resources.twilight {
+  background: #f9ee98;
+}
