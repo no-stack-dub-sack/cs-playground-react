@@ -6,20 +6,20 @@ export default function() {
      * Howto
      * ============
      *
-     * document.getElementById('my_target').sdrag();
+     * document.getElementById('my_target').simpleDrag()
      *
      * onDrag, onStop
      * -------------------
-     * document.getElementById('my_target').sdrag(onDrag, null);
-     * document.getElementById('my_target').sdrag(null, onStop);
-     * document.getElementById('my_target').sdrag(onDrag, onStop);
+     * document.getElementById('my_target').simpleDrag(onDrag, null)
+     * document.getElementById('my_target').simpleDrag(null, onStop)
+     * document.getElementById('my_target').simpleDrag(onDrag, onStop)
      *
      * Both onDrag and onStop callback take the following arguments:
      *
      * - el, the currentTarget element (#my_target in the above examples)
      * - pageX: the mouse event's pageX property (horizontal position of the mouse compared to the viewport)
      * - startX: the distance from the element's left property to the horizontal mouse position in the viewport.
-     *                  Usually, you don't need to use that property; it is internally used to fix the undesirable
+     *                  Usually, you don't need to use that property it is internally used to fix the undesirable
      *                  offset that naturally occurs when you don't drag the element by its top left corner
      *                  (for instance if you drag the element from its center).
      * - pageY: the mouse event's pageX property (horizontal position of the mouse compared to the viewport)
@@ -66,67 +66,67 @@ export default function() {
      */
 
   // simple drag
-  function sdrag(onDrag, onStop, direction) {
+  function simpleDrag(onDrag, onStop, direction) {
 
-    var startX = 0;
-    var startY = 0;
-    var el = this;
-    var dragging = false;
+    var startX = 0
+    var startY = 0
+    var el = this
+    var dragging = false
 
     function move(e) {
 
-      var fix = {};
-      onDrag && onDrag(el, e.pageX, startX, e.pageY, startY, fix);
+      var fix = {}
+      onDrag && onDrag(el, e.pageX, startX, e.pageY, startY, fix)
       if ('vertical' !== direction) {
         var pageX = ('pageX' in fix)
           ? fix.pageX
-          : e.pageX;
+          : e.pageX
         if ('startX' in fix) {
-          startX = fix.startX;
+          startX = fix.startX
         }
         if (false === ('skipX' in fix)) {
-          el.style.left = (pageX - startX) + 'px';
+          el.style.left = (pageX - startX) + 'px'
         }
       }
       if ('horizontal' !== direction) {
         var pageY = ('pageY' in fix)
           ? fix.pageY
-          : e.pageY;
+          : e.pageY
         if ('startY' in fix) {
-          startY = fix.startY;
+          startY = fix.startY
         }
         if (false === ('skipY' in fix)) {
-          el.style.top = (pageY - startY) + 'px';
+          el.style.top = (pageY - startY) + 'px'
         }
       }
     }
 
     function startDragging(e) {
       if (e.currentTarget instanceof HTMLElement || e.currentTarget instanceof SVGElement) {
-        dragging = true;
+        dragging = true
         var left = el.style.left
           ? parseInt(el.style.left, 10)
-          : 0;
+          : 0
         var top = el.style.top
           ? parseInt(el.style.top, 10)
-          : 0;
-        startX = e.pageX - left;
-        startY = e.pageY - top;
-        window.addEventListener('mousemove', move);
+          : 0
+        startX = e.pageX - left
+        startY = e.pageY - top
+        window.addEventListener('mousemove', move)
       } else {
-        throw new Error("Your target must be an html element");
+        throw new Error("Your target must be an html element")
       }
     }
 
-    this.addEventListener('mousedown', startDragging);
+    this.addEventListener('mousedown', startDragging)
     window.addEventListener('mouseup', function(e) {
       if (true === dragging) {
-        dragging = false;
-        window.removeEventListener('mousemove', move);
-        onStop && onStop(el, e.pageX, startX, e.pageY, startY);
+        dragging = false
+        window.removeEventListener('mousemove', move)
+        onStop && onStop(el, e.pageX, startX, e.pageY, startY)
       }
-    });
+    })
   }
 
-  Element.prototype.sdrag = sdrag;
-};
+  Element.prototype.simpleDrag = simpleDrag
+}

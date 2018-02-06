@@ -7,6 +7,10 @@
   height: 100% !important;
 }
 
+.CodeMirror .cm-matchhighlight {
+  background: rgba(222, 153, 174, 0.3);
+}
+
 .CodeMirror div.CodeMirror-cursor {
   border-left: 1px solid #d5d5d5 !important;
 }
@@ -17,4 +21,13 @@
 
 .CodeMirror-scrollbar-filler {
   background: black !important;
+}
+
+.CodeMirror.cm-s-panda-syntax {
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+
+.CodeMirror-scrollbar-filler {
+  background: transparent !important;
 }

@@ -7,14 +7,14 @@ export default {
 /**
   * @function sumAllPrimes
   * @param {number} num
-  * @return {number}
+  * @returns {number}
   */
 
 function sumAllPrimes(num) {
-    return num;
+    return num
 }
 
-console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
+console.log('sumAllPrimes(977) => ' + sumAllPrimes(977))
 `,
   solution:
 `// given a number, return the sum of all prime
@@ -23,26 +23,31 @@ console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
 /**
   * @function sumAllPrimes
   * @param {number} num
-  * @return {number}
+  * @returns {number}
   */
 
 function sumAllPrimes(num) {
-    let arr = Array.from({ length: num + 1 }, (v, k) => k).slice(2);
+    let arr = Array.from({ length: num + 1 }, (v, k) => k).slice(2)
     let onlyPrimes = arr.filter(n => {
-        let m = n - 1;
+        let m = n - 1
         while (m > 1 && m >= Math.sqrt(n)) {
-            if (n % m === 0) return false;
-            m--;
+            if (n % m === 0) return false
+            m--
         }
-        return true;
-    });
-    return onlyPrimes.reduce((a, b) => a + b);
+        return true
+    })
+
+    if (!onlyPrimes.length) {
+      return 0
+    }
+
+    return onlyPrimes.reduce((a, b) => a + b)
 }
 
-console.log('sumAllPrimes(977) => ' + sumAllPrimes(977));
+console.log('sumAllPrimes(977) => ' + sumAllPrimes(977))
 `,
   resources: [
     { href: 'https://www.freecodecamp.org/challenges/sum-all-primes', caption: 'freeCodeCamp Challenge' },
     { href: 'https://guide.freecodecamp.org/certificates/sum-all-primes', caption: 'freeCodeCamp Guides (solutions)' },
   ]
-};
+}

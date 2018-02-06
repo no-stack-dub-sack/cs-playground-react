@@ -4,7 +4,7 @@ export default {
 `/**
   * @function bucketSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 // there are many different implementations of this algorithm, this is just one!
@@ -15,7 +15,7 @@ export default {
 // here would fail with a set of whole numbers which are not evenly distrubed.
 
 function bucketSort(arr) {
-    return arr;
+    return arr
 }
 
 console.log(
@@ -24,13 +24,13 @@ console.log(
     0.23, 0.88, 0.47, 0.52, 0.72, 0.99,
     0.63, 0.45, 0.21, 0.12, 0.23, 0.94
   ])
-);
+)
 `,
   solution:
 `/**
   * @function bucketSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 // there are many different implementations of this algorithm, this is just one!
@@ -41,27 +41,27 @@ console.log(
 // here would fail with a set of whole numbers which are not evenly distrubed.
 
 function bucketSort(arr) {
-    const len = arr.length;
-    let buckets = [...Array(len)].map(i => Array());
+    const len = arr.length
+    let buckets = [...Array(len)].map(i => Array())
 
     for (let i = 0; i < arr.length; i++) {
-        let bucket = Math.floor(len*arr[i]);
-        buckets[bucket].push(arr[i]);
+        let bucket = Math.floor(len*arr[i])
+        buckets[bucket].push(arr[i])
     }
 
     for (let bucket of buckets) {
         if (bucket.length) {
-            insertionSort(bucket);
+            insertionSort(bucket)
         }
     }
 
-    return buckets.reduce((result, el) => result.concat(el), []);
+    return buckets.reduce((result, el) => result.concat(el), [])
 }
 
 /**
   * @function insertionSort
   * @param {number[]} arr
-  * @return {number[]}
+  * @returns {number[]}
   */
 
 // we use insertion sort to sort each bucket.
@@ -70,14 +70,14 @@ function bucketSort(arr) {
 
 function insertionSort(arr) {
     for (let i = 0; i < arr.length; i++) {
-        let j = i+1;
+        let j = i+1
         while (arr[j] < arr[j-1]) {
-            [ arr[j], arr[j-1] ] = [ arr[j-1], arr[j] ];
-            j--;
+            [ arr[j], arr[j-1] ] = [ arr[j-1], arr[j] ]
+            j--
         }
     }
 
-    return arr;
+    return arr
 }
 
 console.log(
@@ -86,7 +86,7 @@ console.log(
     0.23, 0.88, 0.47, 0.52, 0.72, 0.99,
     0.63, 0.45, 0.21, 0.12, 0.23, 0.94
   ])
-);
+)
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/bucket-sort-2/', caption: 'GeeksforGeeks.org'},
@@ -94,4 +94,4 @@ console.log(
     { href: 'https://initjs.org/bucket-sort-in-javascript-dc040b8f0058', caption: 'Another Bucket Sort Implementation'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/BucketSort.html', caption: 'Awesome Bucket Sort Visualizations!'},
   ]
-};
+}

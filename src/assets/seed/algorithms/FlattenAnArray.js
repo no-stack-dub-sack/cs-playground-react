@@ -58,6 +58,7 @@ let superNestedArray = [
 console.log(steamRoller(superNestedArray));
 `,
   resources: [
-    { href: 'https://www.codetuts.tech/flatten-deep-nested-array-object/', caption: 'Cool article on flattening techniques' }
+    { href: 'https://www.codetuts.tech/flatten-deep-nested-array-object/', caption: 'Cool article on flattening techniques' },
+    { href: 'http://blog.benoitvallon.com/tips/flattening-arrays-in-javascript/', caption: 'Ben\'s Blog: Recursive and Iterative Approaches' }
   ]
 };

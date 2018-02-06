@@ -1,8 +1,8 @@
 .sidebar--menu.top-pane {
   overflow-y: auto;
-  height: 70%;
   flex: auto;
   user-select: none;
+  /* transition: .2s ease-in; */
 }
 
 .sidebar--menu--header {
@@ -43,11 +43,17 @@
   float: right;
 }
 
+.sidebar.left-pane,
+.sidebar--menu--detail {
+  background: #707070;
+}
+
 .sidebar--menu--detail {
   font-size: 15px;
   padding: 5px;
   margin: 0;
   transition: .2s !important;
+  overflow-x: hidden;
 }
 
 .sidebar--menu--detail--button {
@@ -59,11 +65,6 @@
   color: #3e3e3e;
 }
 
-.sidebar--menu--detail--button.solution {
-  background: #f2777a;
-}
-
 .sidebar--menu--detail--button.resources {
-  background: #99cc99;
-  margin-right: 5px;
+    margin-right: 5px;
 }

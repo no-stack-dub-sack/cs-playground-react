@@ -4,7 +4,7 @@ export default {
 `/** @function generateCheckerboard
   * @param {number} h The height of the board
   * @param {number} w The width of the board
-  * @return {string}
+  * @returns {string}
   *
   * create an algorithm that takes two ints as
   * arguments, height and width, and returns a
@@ -25,44 +25,44 @@ export default {
   */
 
 function generateCheckerboard(h, w) {
-    return;
+    return
 }
 
 // change the h & w for different size boards!
-const h = 8, w = 8;
+const h = 8, w = 8
 
-console.log(generateCheckerboard(h, w));
+console.log(generateCheckerboard(h, w))
 `,
 solution:
 `/** @function generateCheckerBoard
   * @param {number} h The height of the board
   * @param {number} w The width of the board
-  * @return {string}
+  * @returns {string}
   */
 
 function generateCheckerboard(h, w) {
-    var row = '', board = '';
+    var row = '', board = ''
     for (let i = 0; i < w; i++) {
-        row += "# ";
+        row += "# "
     }
 
-    row += '\\n';
+    row += '\\n'
 
     for (let i = 0; i < h; i++) {
         if (i % 2 === 0) {
-            board += row;
+            board += row
         } else {
-            board += ' ' + row;
+            board += ' ' + row
         }
     }
 
-    return board;
+    return board
 }
 
 // change the h & w for different size boards!
-const h = 8, w = 8;
+const h = 8, w = 8
 
-console.log(generateCheckerboard(h, w));
+console.log(generateCheckerboard(h, w))
 `,
   resources: [
     { href: 'https://en.wikipedia.org/wiki/Checkerboard#/media/File:Checkerboard_pattern.svg', caption: 'Here\'s what a checkerboard looks like!'},
