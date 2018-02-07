@@ -14,18 +14,7 @@ import axios from 'axios'
 import './styles/app.css'
 import './styles/themes.css'
 
-/** TODO BEFORE RELEASE:
-  * Check that adding new challenges works (orderKey, shortcuts, etc.)
-  * Create change/feature log
-  * Add additional features to Modal
-  */
-
-/** NEW FEATURES:
-  * Improved various data structures
-  */
-
-/** TODO:.
-  * change modal message to something more appropriate -> create and point to "change log"
+/** TODO:
   * add return null if element exists to all LL
   *
   * POST UPDATE RELEASE:

@@ -1,3 +1,9 @@
+## 0.2.1 (February 6th, 2018)
+One big change, two small ones:
+- __Loop Protection:__ Thanks to a suggestion from a user, a much needed infinite loop protect feature has been added. Makes use of [babel-standalone](https://github.com/babel/babel-standalone) and [jsbin/loop-protect](https://github.com/jsbin/loop-protect) with a customization to throw an error instead of just breaking the loop so the user is aware of the problem. Previous to this, app would just crash.
+- __Fix Flatten An Array Challenge:__ The flatten an array challenge was passing all tests with no code! Whoops, forgot to call the IIFEs. This is fixed in this version.
+- __Theme Updates:__ The Paraiso-Light theme has been updated so that the console and buttons are also themed. Looks nice :smile:. Also, darkened cursor on other light themes. 
+
 ## 0.2.0 (February 4th, 2018)
 This version is the first major application overhaul. Below is a (nearly) complete list of changes:
 ### Major Features
@@ -25,4 +31,4 @@ This version is the first major application overhaul. Below is a (nearly) comple
 - __Fix typo on Welcome screen:__ In Welcome.js there was a typo that said `clearCode()` was the function to call in the editor to reset state. This was a typo. `clearState()` clears the application state.
 - __Improve `clearState()`:__ Improvements to how this works. Added timeout to prevent accidental resets. Previously, a warning was given if state was about to be reset, but if this key press was an accident, the counter did not reset, and any secondary press, no matter how much later, would have reset the app state. Now, after a few seconds, this resets, so an intentional double-press will always be required to reset state.
 - __Fix codeStore bug / improve merge new challenges:__ The biggest change that users won't really feel... there was a serious bug that was causing the code store (editor contents) to be duplicated and stored on each visit. After a while, this had the potential to cause some more serious issues. This was part of some code that was originally intended to help merge newly deployed challenges into the app without the user noticing. There is a fix for this in this update, which removes all duplicates, does not affect any saved code, and improves the overall flow of how new challenges are merged into the existing code store.
-- __Improvements to various data structures:__ This update also includes improvements to various data structures, most notably Graph, which has been built out quite a bit. Various methods on other DS have also been improved, including making the default arguments used for recursive methods private. 
+- __Improvements to various data structures:__ This update also includes improvements to various data structures, most notably Graph, which has been built out quite a bit. Various methods on other DS have also been improved, including making the default arguments used for recursive methods private.

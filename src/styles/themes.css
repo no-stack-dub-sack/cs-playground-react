@@ -41,12 +41,29 @@
   background: #e7e9db;
 }
 
-/* .sidebar--output--messages.paraiso-light {
-  background: #c1c4aa;
-  color: #48b685;
-} */
+.CodeMirror.cm-s-paraiso-light div.CodeMirror-cursor {
+  border-left: 1px solid #ef6155 !important;
+}
 
-/* .main--controls--button.paraiso-light {
+.sidebar--output--messages.paraiso-light {
+  background: #d4d6c6;
+  color: #368f67;
+}
+
+.sidebar--output--messages.paraiso-light code {
+  color: #66465e;
+}
+
+.sidebar--output--messages.paraiso-light span.type {
+  color: #815ba4;
+  font-weight: bold;
+}
+
+.sidebar--output--messages.paraiso-light p.error {
+  color: #ef6155;
+}
+
+.main--controls--button.paraiso-light {
   color: #e96ba8;
   background: #e7e9db;
   border: 2px solid #48b685;
@@ -59,19 +76,13 @@
 
 .main--controls--button.paraiso-light:active {
   background: rgba(39, 145, 152, 0.52);
-} */
+}
 
 /* Base16 Light */
 .sidebar.left-pane.base16-light,
 .sidebar--menu--detail.base16-light {
   background: #f5f5f5;
   color: #8f5536;
-}
-
-.sidebar.left-pane.eclipse,
-.sidebar--menu--detail.eclipse {
-  color: #7F0055;
-  background: #f5f5f5;
 }
 
 .sidebar--menu--detail--button.solution.base16-light {
@@ -82,6 +93,44 @@
 .sidebar--menu--detail--button.resources.base16-light {
   color: #252222;
   background: #90a959;
+}
+
+.CodeMirror.cm-s-base16-light div.CodeMirror-cursor {
+  border-left: 1px solid #a22 !important;
+}
+
+/* Neat */
+.sidebar--menu--detail--button.solution.neat {
+  background: #a86;
+}
+
+.sidebar--menu--detail--button.resources.neat {
+  background: #3a3;
+}
+
+.CodeMirror.cm-s-neat div.CodeMirror-cursor {
+  border-left: 1px solid #ef6155 !important;
+}
+
+/* Eclipse */
+.sidebar.left-pane.eclipse,
+.sidebar--menu--detail.eclipse {
+  color: #7F0055;
+  background: #f5f5f5;
+}
+
+.sidebar--menu--detail--button.solution.eclipse {
+  color: #f5f5f5;
+  background: #7F0055;
+}
+
+.sidebar--menu--detail--button.resources.eclipse {
+  color: #f5f5f5;
+  background: #3F7F5F;
+}
+
+.CodeMirror.cm-s-eclipse div.CodeMirror-cursor {
+  border-left: 1px solid #7F0055 !important;
 }
 
 /* Solution / Resources Buttons */
@@ -108,18 +157,6 @@
 
 .sidebar--menu--detail--button.resources.base16-dark {
   background: #90a959;
-}
-
-.sidebar--menu--detail--button.solution.eclipse {
-  /* color: #daaeae; */
-  color: #f5f5f5;
-  background: #7F0055;
-}
-
-.sidebar--menu--detail--button.resources.eclipse {
-  /* color: #252222; */
-  color: #f5f5f5;
-  background: #3F7F5F;
 }
 
 .sidebar--menu--detail--button.solution.icecoder {
@@ -158,14 +195,6 @@
 .sidebar--menu--detail--button.resources.monokai {
   color: #272822;
   background: #ae81ff;
-}
-
-.sidebar--menu--detail--button.solution.neat {
-  background: #a86;
-}
-
-.sidebar--menu--detail--button.resources.neat {
-  background: #3a3;
 }
 
 .sidebar--menu--detail--button.solution.panda-syntax {
