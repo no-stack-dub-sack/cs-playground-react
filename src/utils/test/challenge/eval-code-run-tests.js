@@ -1,8 +1,7 @@
 import executeTests from './execute-tests'
 import { SUPPRESS_TESTS } from '../../regexp'
 import TESTS from '../../../assets/testRef'
-
-// TODO: remove check for tests once all challenges have tests
+import loopProtect from './loop-protect'
 
 export default (code, id) => {
   try {
@@ -21,10 +20,10 @@ export default (code, id) => {
       tests = prepend + JSON.stringify(TESTS[id].tests)
       if (TESTS[id].tail) tail += TESTS[id].tail
     }
-
+    
     // eslint-disable-next-line
     eval(
-      code +
+      loopProtect(code) +
       tail +
       tests +
       executeTests
