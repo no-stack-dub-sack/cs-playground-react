@@ -1,9 +1,11 @@
 const Babel   = require('babel-standalone')
 const protect = require('loop-protect')
 
-const error = num => {
+const error = (line, char) => {
   throw new Error(
-    `Timed out after 500ms due to infinite loop on line ${num}`
+`Potential infinite loop, timed out after 500ms.
+    at eval:${line}:${char}
+    at eval`
   )
 }
 

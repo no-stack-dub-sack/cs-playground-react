@@ -18,7 +18,7 @@ export default (code, id) => {
   /* eslint-enable no-unused-vars */
 
   let prepend = 'const tests = ', tail = '', tests = ''
-  const LOOPS = new RegExp(/(?:\bwhile|\bfor)\s*?\(.*?\)/)
+  const HAS_LOOPS = new RegExp(/(?:\bwhile|\bfor)\s*?\(.*?\)/)
 
   // if suppressTests is true or tests do not exist
   // only eval code, otherwise eval & execute tests
@@ -27,10 +27,8 @@ export default (code, id) => {
     if (TESTS[id].tail) tail += TESTS[id].tail
   }
 
-  // trim away comments and...
-  code = trimComments(code)
-  // ...apply loop-protect only if code has loops
-  code = LOOPS.test(code) ? loopProtect(code) : code
+  // check code for do/while/for loops and apply loop-protect if needed
+  code = HAS_LOOPS.test(trimComments(code)) ? loopProtect(code) : code
 
   try {
     eval(
@@ -40,6 +38,9 @@ export default (code, id) => {
       executeTests
     )
   } catch (e) {
-    console.log(e.toString())
+    const error = e.toString()
+    if (/Potential infinite loop/.test(error))
+      console.log(error.replace('Error', 'RangeError'))
+    else console.log(error)
   }
 }
