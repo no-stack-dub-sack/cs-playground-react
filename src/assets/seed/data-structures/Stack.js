@@ -25,7 +25,9 @@ class Stack {
 }
 `,
   solution:
-`/**
+`// improved solution subimtted by @kingstenbanh
+
+/**
   * @class Node
   * @property {(number|string)} value The node's value
   * @property {?Object.<Node>} next The next node

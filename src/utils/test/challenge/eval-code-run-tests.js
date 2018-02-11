@@ -1,7 +1,8 @@
 import executeTests from './execute-tests'
 import { SUPPRESS_TESTS } from '../../regexp'
 import TESTS from '../../../assets/testRef'
-import wontTimeout from './loop-protect';
+import loopProtect from './loop-protect'
+import trimComments from './trim-code'
 /* eslint-disable no-eval */
 
 export default (code, id) => {
@@ -17,6 +18,7 @@ export default (code, id) => {
   /* eslint-enable no-unused-vars */
 
   let prepend = 'const tests = ', tail = '', tests = ''
+  const HAS_LOOPS = new RegExp(/(?:\bwhile|\bfor)\s*?\(.*?\)/)
 
   // if suppressTests is true or tests do not exist
   // only eval code, otherwise eval & execute tests
@@ -25,17 +27,20 @@ export default (code, id) => {
     if (TESTS[id].tail) tail += TESTS[id].tail
   }
 
-  // run loop-protect first
-  if (wontTimeout(code)) {
-    try {
-      eval(
-        code +
-        tail +
-        tests +
-        executeTests
-      )
-    } catch (e) {
-      console.log(e.toString())
-    }
+  // check code for do/while/for loops and apply loop-protect if needed
+  code = HAS_LOOPS.test(trimComments(code)) ? loopProtect(code) : code
+
+  try {
+    eval(
+      code +
+      tail +
+      tests +
+      executeTests
+    )
+  } catch (e) {
+    const error = e.toString()
+    if (/Potential infinite loop/.test(error))
+      console.log(error.replace('Error', 'RangeError'))
+    else console.log(error)
   }
 }

@@ -379,7 +379,7 @@ while (list.size > 1) {
 console.log('\\n' + list.toString() + '\\n')
 
 // remove last node
-list.indexOf('six') === 0 && list.removeAt(0)
+if (list.indexOf('six') === 0) list.removeAt(0)
 
 // removing the last node should reset both head and tail!
 console.log('head:', list.head)

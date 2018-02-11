@@ -29,7 +29,9 @@ export default {
 }
 `,
   solution:
-`/**
+`// original challenge submitted by @supamunkey
+
+/**
  * Class representing a Graph, Adjacency-List representation
  */
 class Graph {
