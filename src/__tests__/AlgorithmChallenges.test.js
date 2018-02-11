@@ -14,6 +14,7 @@ const IDS = [
   'LongestCommonPrefix',
   'NoTwoConsecutiveChars',
   'SumAllPrimes',
+  'ReverseAString',
 ]
 
 describe('Algorithm Challenges: solution code passes tests', () =>

@@ -165,3 +165,6 @@ https://visualgo.net/en/dfsbfs __(SUPER interactive graph creation & traversal v
 ### Anagram Palindrome
 - https://www.hackerrank.com/challenges/game-of-thrones/problem __(interactive challenge)__
 - http://www.geeksforgeeks.org/check-given-string-rotation-palindrome/
+
+### Reverse A String
+- http://eddmann.com/posts/ten-ways-to-reverse-a-string-in-javascript/

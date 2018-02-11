@@ -23,6 +23,7 @@ import * as GenerateCheckerboard from './tests/algorithms/GenerateCheckerboard'
 import * as LongestCommonPrefix from './tests/algorithms/LongestCommonPrefix'
 import * as NoTwoConsecutiveChars from './tests/algorithms/NoTwoConsecutiveChars'
 import * as SumAllPrimes from './tests/algorithms/SumAllPrimes'
+import * as ReverseAString from './tests/algorithms/ReverseAString'
 
 export default {
   // Sorting Algorithms
@@ -51,4 +52,5 @@ export default {
   NoTwoConsecutiveChars,
   LongestCommonPrefix,
   GenerateCheckerboard,
+  ReverseAString,
 }

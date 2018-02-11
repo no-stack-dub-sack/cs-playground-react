@@ -26,6 +26,7 @@ import SumAllPrimes from './seed/algorithms/SumAllPrimes'
 import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard'
 import FlattenAnArray from './seed/algorithms/FlattenAnArray'
 import LongestCommonPrefix from './seed/algorithms/LongestCommonPrefix'
+import ReverseAString from './seed/algorithms/ReverseAString'
 
 // NOTE: order of arrays determines order of sidebar menu
 
@@ -56,6 +57,7 @@ export const CODE = {
     SumAllPrimes,
     GenerateCheckerboard,
     FlattenAnArray,
+    ReverseAString,
     // IsPalindrome,
     // FizzBuzz,
   ],

@@ -70,6 +70,7 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 - Sum All Primes
 - Generate Checkerboard
 - Flatten An Array
+- Reverse A String
 - Is Palindrome _(coming soon)_
 - Fizz Buzz _(coming soon)_
 
