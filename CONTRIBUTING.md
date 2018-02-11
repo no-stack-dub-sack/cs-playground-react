@@ -39,7 +39,9 @@ function superDifficultSortingAlgo(arr) {
 }
 `,
   solution:
-`/**
+`// challenge submitted by @<your_user_name_here>
+
+/**
   * @function superDifficultSortingAlgo
   * @param {number[]} arr
   * @returns {number[]}
@@ -57,7 +59,11 @@ function superDifficultSortingAlgo(arr) {
   ]
 };
 ```
-- Note the backticks, and that code inside the template literal strings _must_ start backed all the way up against the gutter to achieve proper formatting in the editor).
+- Note the back ticks, and that code inside the template literal strings _must_ start backed all the way up against the gutter to achieve proper formatting in the editor).
+- Don't forget to give yourself credit for submitting the challenge! Leave a comment at the top of the solution code like so:
+```js
+// challenge submitted by @<your_user_name_here>
+```
 
 __Import seed:__
 - Once you have a complete seed file, according to the above format, simply import it into `src/assets/seed/codeRef.js` and add it to the appropriate array.
