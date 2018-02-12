@@ -15,6 +15,7 @@ const IDS = [
   'NoTwoConsecutiveChars',
   'SumAllPrimes',
   'ReverseAString',
+  'ReverseVowels',
 ]
 
 describe('Algorithm Challenges: solution code passes tests', () =>

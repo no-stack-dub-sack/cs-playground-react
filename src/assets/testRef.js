@@ -24,6 +24,7 @@ import * as LongestCommonPrefix from './tests/algorithms/LongestCommonPrefix'
 import * as NoTwoConsecutiveChars from './tests/algorithms/NoTwoConsecutiveChars'
 import * as SumAllPrimes from './tests/algorithms/SumAllPrimes'
 import * as ReverseAString from './tests/algorithms/ReverseAString'
+import * as ReverseVowels from './tests/algorithms/ReverseVowels'
 
 export default {
   // Sorting Algorithms
@@ -53,4 +54,5 @@ export default {
   LongestCommonPrefix,
   GenerateCheckerboard,
   ReverseAString,
+  ReverseVowels,
 }

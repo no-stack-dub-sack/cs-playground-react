@@ -1,8 +1,14 @@
+## 0.2.2 (February 11th, 2018)
+Add a coupe of new challenges, improve loop protection:
+- __Loop Protection:__ Update loop-protect logic so that console is not silenced during check for bad loops as it was originally due to weird bug. Added a workaround so that loop-protect can be applied at time of eval - needed to remove all comments to accurately test code string against regexp for presence of loops. Add one hack, remove another! Thanks again to @btruhand for pointing out the need for this fix, ability to debug is important!
+- __Add Reverse a String Challenge:__ thanks @garroadran!
+- __Add Reverse Vowels Challenge__
+
 ## 0.2.1 (February 6th, 2018)
 One big change, two small ones:
 - __Loop Protection:__ Thanks to a suggestion from a user, a much needed infinite loop protect feature has been added. Makes use of [babel-standalone](https://github.com/babel/babel-standalone) and [jsbin/loop-protect](https://github.com/jsbin/loop-protect) with a customization to throw an error instead of just breaking the loop so the user is aware of the problem. Previous to this, app would just crash.
 - __Fix Flatten An Array Challenge:__ The flatten an array challenge was passing all tests with no code! Whoops, forgot to call the IIFEs. This is fixed in this version.
-- __Theme Updates:__ The Paraiso-Light theme has been updated so that the console and buttons are also themed. Looks nice :smile:. Also, darkened cursor on other light themes. 
+- __Theme Updates:__ The Paraiso-Light theme has been updated so that the console and buttons are also themed. Looks nice :smile:. Also, darkened cursor on other light themes.
 
 ## 0.2.0 (February 4th, 2018)
 This version is the first major application overhaul. Below is a (nearly) complete list of changes:

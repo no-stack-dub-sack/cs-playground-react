@@ -168,3 +168,6 @@ https://visualgo.net/en/dfsbfs __(SUPER interactive graph creation & traversal v
 
 ### Reverse A String
 - http://eddmann.com/posts/ten-ways-to-reverse-a-string-in-javascript/
+
+### Reverse Vowels
+- https://gist.github.com/primaryobjects/5af99a12fc047f9d10c26b2faf6a374b

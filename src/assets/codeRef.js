@@ -27,6 +27,7 @@ import GenerateCheckerboard from './seed/algorithms/GenerateCheckerboard'
 import FlattenAnArray from './seed/algorithms/FlattenAnArray'
 import LongestCommonPrefix from './seed/algorithms/LongestCommonPrefix'
 import ReverseAString from './seed/algorithms/ReverseAString'
+import ReverseVowels from './seed/algorithms/ReverseVowels'
 
 // NOTE: order of arrays determines order of sidebar menu
 
@@ -58,6 +59,7 @@ export const CODE = {
     GenerateCheckerboard,
     FlattenAnArray,
     ReverseAString,
+    ReverseVowels,
     // IsPalindrome,
     // FizzBuzz,
   ],

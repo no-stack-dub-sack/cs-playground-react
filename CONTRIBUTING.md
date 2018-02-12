@@ -18,6 +18,7 @@ To add a new algorithm or data structure, here's what you'll need:
 - Some seed, or default code (usually a function or class declaration). This code should not be a complete solution, but it should be able to run without breaking.
 - A working (and ideally good) solution to the problem you are introducing.
 - At least one resource (this could be an article, a youtube video, a link to an interactive challenge that covers the problem, an image, etc.). If your problem does not have any viable associated resources, think of something related as a placeholder (see the Generate Checkerboard Challenge).
+- You can use the `__ChallengeTemplate__.js` file in the `src/assets` folder to help get you started.
 
 To actually add it to the app, you only need to follow a few simple steps:
 
@@ -83,6 +84,7 @@ Once you've added your new challenge and confirmed that everything works, please
 __Create a test seed file:__
 - The test framework parses the user's code as well as our tests from strings. The seed file _must_ contain a `tests` export, and _may_ contain a `tail` export. The `tests` export is an array of tests, and the `tail` export is a string containing any code that you want to run after the user's code and before the tests execute. For more complex tests, this is where we can initialize variables shared across tests, add hidden methods to classes, or run functions like `beforeEach`.
 - Please see files in the `src/assets/tests/` folder for examples of how to set this up.
+- You can use the `__TestsTemplate__.js` file in the `src/assets` folder to help get you started.
 
 __Import your test seed:__
 - To get your tests running in the app, find the `src/assets/seed/testRef.js` file, import your test file as a module, e.g. `import * as DataStructure from './tests/data-structures/DataStructure'`, and add it to the object being exported from the file.
@@ -99,7 +101,7 @@ __Add your tests:__
 - Each test is an object with an `expression` and `message` key, and optional `method` and `expected` keys.
 - The tests use Node's simple assertion library. For tests to pass, the expression should evaluate to true.
 - Your expression can be a simple one line expression, or a more complex function defined as an Immediately Invoked Function Expression (IIFE), as long as it can evaluate to true under the right conditions.
-- By default, the tests use `assert(expression, message)`, however, if you'd like to use a particular method of `assert` such as `deepEqual` or `strictEqaul`, you can simply define a `method` key on your test with the method name as key. Now, you must also define an `expected` key, so the test knows what to compare with your expression, i.e. `assert.deepEqual(expression, expected, message)`.
+- By default, the tests use `assert(expression, message)`, however, if you'd like to use a particular method of `assert` such as `deepEqual` or `strictEqual`, you can simply define a `method` key on your test with the method name as key. Now, you must also define an `expected` key, so the test knows what to compare with your expression, i.e. `assert.deepEqual(expression, expected, message)`. Check out the __Node Assert__ documentation [here](https://nodejs.org/api/assert.html) for all the methods available to test with.
 - Be sure that your test messages are as clear and concise as possible, and descriptive enough to give the user a clear idea of what the test is asking.
 
 __Test formatting:__
@@ -173,7 +175,7 @@ export const tests = [
       }
       return __dataStructure__.sort()
     }`,
-    expect: [1, 2, 3, 4],
+    expected: [1, 2, 3, 4],
     message: `The <code>sort</code> method returns a sorted array`
   },
 ]
