@@ -37,7 +37,7 @@
 }
 
 .sidebar--menu--detail.cobalt.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -97,7 +97,7 @@
 }
 
 .sidebar--menu--detail.paraiso-light.active {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.03);
 }
 
 
@@ -127,7 +127,7 @@
 }
 
 .sidebar--menu--detail.base16-light.active {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.03);
 }
 
 
@@ -155,7 +155,7 @@
 }
 
 .sidebar--menu--detail.neat.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -185,7 +185,7 @@
 }
 
 .sidebar--menu--detail.eclipse.active {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.03);
 }
 
 
@@ -209,7 +209,7 @@
 }
 
 .sidebar--menu--detail.tomorrow-night-eighties.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -232,7 +232,7 @@
 }
 
 .sidebar--menu--detail.abcdef.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -255,7 +255,7 @@
 }
 
 .sidebar--menu--detail.base16-dark.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -278,7 +278,7 @@
 }
 
 .sidebar--menu--detail.icecoder.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -301,7 +301,7 @@
 }
 
 .sidebar--menu--detail.lesser-dark.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -324,7 +324,7 @@
 }
 
 .sidebar--menu--detail.material.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -347,7 +347,7 @@
 }
 
 .sidebar--menu--detail.monokai.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -370,7 +370,7 @@
 }
 
 .sidebar--menu--detail.panda-syntax.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 
@@ -384,7 +384,7 @@
 }
 
 .sidebar--menu--detail.paraiso-light.active {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.03);
 }
 
 
@@ -407,5 +407,5 @@
 }
 
 .sidebar--menu--detail.twilight.active {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
