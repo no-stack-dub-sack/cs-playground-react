@@ -49,7 +49,7 @@
 
 .sidebar--menu--sub-header.sub,
 .sidebar--menu--detail.sub {
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .sidebar--menu--detail--button--container {
@@ -63,7 +63,7 @@
 
 .sidebar--menu--detail {
   font-size: 15px;
-  padding: 5px;
+  padding: 5px 5px 5px 20px;
   margin: 0;
   transition: .2s !important;
   overflow-x: hidden;
@@ -90,5 +90,12 @@
 details {
   margin-top: 10px;
   margin-bottom: 40px;
+}
+
+.sidebar--menu > details {  
   width: 60%;
+}
+
+.sidebar--menu > details > details {
+  padding-left: 20px;
 }
