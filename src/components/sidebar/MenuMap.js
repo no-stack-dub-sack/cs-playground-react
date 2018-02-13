@@ -62,7 +62,7 @@ class MenuMap extends Component {
   render() {
     return (
       <details open>
-        <summary className="sidebar--menu--sub-header">
+        <summary className={`sidebar--menu--sub-header ${this.props.theme}`}>
           {this.props.header}
         </summary>
         { _.map(this.props.items, this.renderMenuItem) }
