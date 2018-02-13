@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { selectChallenge, selectSolution } from '../../actions/editor'
 import shortid from 'shortid'
 import { FileText, BookOpen } from 'react-feather'
+import ReactTooltip from 'react-tooltip'
 import _ from 'lodash'
 
 _.mixin({
@@ -47,11 +48,17 @@ class MenuMap extends Component {
           <FileText
             className={`sidebar--menu--detail--button solution ${this.props.theme} cm-variable`}
             id={'SOLUTION__' + id}
+            data-tip
+            data-for='solutionTip'
             onClick={this.selectSolution} />
+          <ReactTooltip id='solutionTip' type='dark' effect='solid' delayShow={300}>Solution</ReactTooltip>
           <BookOpen
             id={'MODAL__' + _.snakeCase(item.title)}
             className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme} cm-variable`}
+            data-tip
+            data-for='bookTip'
             onClick={this.renderModal} />
+          <ReactTooltip id='bookTip' type='dark' effect='solid' delayShow={300}>Resources</ReactTooltip>
         </div> }
       </div>
     )
