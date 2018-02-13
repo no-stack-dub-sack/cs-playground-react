@@ -91,6 +91,11 @@
   background: rgba(39, 145, 152, 0.52);
 }
 
+.sidebar--menu--sub-header.paraiso-light:hover,
+.sidebar--menu--detail.paraiso-light:hover {
+  background: rgba(0,0,0,0.08);
+}
+
 /* Base16 Light */
 .sidebar.left-pane.base16-light,
 .sidebar--menu--detail.base16-light {
@@ -110,6 +115,11 @@
 
 .CodeMirror.cm-s-base16-light div.CodeMirror-cursor {
   border-left: 1px solid #a22 !important;
+}
+
+.sidebar--menu--sub-header.base16-light:hover,
+.sidebar--menu--detail.base16-light:hover {
+  background: rgba(0,0,0,0.08);
 }
 
 /* Neat */
@@ -153,6 +163,11 @@
 
 .CodeMirror.cm-s-eclipse div.CodeMirror-cursor {
   border-left: 1px solid #7F0055 !important;
+}
+
+.sidebar--menu--sub-header.eclipse:hover,
+.sidebar--menu--detail.eclipse:hover {
+  background: rgba(0,0,0,0.08);
 }
 
 /* Solution / Resources Buttons */

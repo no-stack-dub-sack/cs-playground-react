@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { selectChallenge, selectSolution } from '../../actions/editor'
 import shortid from 'shortid'
+import { FileText, BookOpen } from 'react-feather'
 import _ from 'lodash'
 
 _.mixin({
@@ -43,18 +44,14 @@ class MenuMap extends Component {
         </span>
         { !/Benchmarks/.test(item.title) &&
         <div className="sidebar--menu--detail--button--container">
-          <span
+          <FileText
             className={`sidebar--menu--detail--button solution ${this.props.theme} cm-variable`}
             id={'SOLUTION__' + id}
-            onClick={this.selectSolution}>
-            Solution
-          </span>
-          <span
+            onClick={this.selectSolution} />
+          <BookOpen
             id={'MODAL__' + _.snakeCase(item.title)}
             className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme} cm-variable`}
-            onClick={this.renderModal}>
-            Resources
-          </span>
+            onClick={this.renderModal} />
         </div> }
       </div>
     )
