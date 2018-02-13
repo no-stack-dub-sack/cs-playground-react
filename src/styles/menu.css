@@ -72,6 +72,10 @@
   align-items: center;
 }
 
+.sidebar--menu--detail.active {
+  background: rgba(255,255,255,0.05);
+}
+
 .sidebar--menu--detail--button {
   margin: 5px 0 5px 10px;
   padding: 2px 5px 2px 5px;

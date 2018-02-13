@@ -36,7 +36,9 @@
   background: rgba(255,255,255,0.1);
 }
 
-
+.sidebar--menu--detail.cobalt.active {
+  background: rgba(255,255,255,0.05);
+}
 
 
 
@@ -94,6 +96,12 @@
   background: rgba(0,0,0,0.08);
 }
 
+.sidebar--menu--detail.paraiso-light.active {
+  background: rgba(0,0,0,0.05);
+}
+
+
+
 /* Base16 Light */
 .sidebar.left-pane.base16-light,
 .sidebar--menu--detail.base16-light {
@@ -118,6 +126,12 @@
   background: rgba(0,0,0,0.08);
 }
 
+.sidebar--menu--detail.base16-light.active {
+  background: rgba(0,0,0,0.05);
+}
+
+
+
 /* Neat */
 .sidebar--menu--detail--button.solution.neat {
   color: #a86;
@@ -139,6 +153,12 @@
 .sidebar--menu--detail.neat:hover {
   background: rgba(255,255,255,0.1);
 }
+
+.sidebar--menu--detail.neat.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
 
 /* Eclipse */
 .sidebar.left-pane.eclipse,
@@ -164,6 +184,12 @@
   background: rgba(0,0,0,0.08);
 }
 
+.sidebar--menu--detail.eclipse.active {
+  background: rgba(0,0,0,0.05);
+}
+
+
+
 /* Solution / Resources Buttons */
 .sidebar--menu--detail--button.solution.tomorrow-night-eighties {
   color: #f2777a;
@@ -182,6 +208,12 @@
   background: rgba(255,255,255,0.1);
 }
 
+.sidebar--menu--detail.tomorrow-night-eighties.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
+
 .sidebar--menu--detail--button.solution.abcdef {
   color: darkgoldenrod;
 }
@@ -198,6 +230,12 @@
 .sidebar--menu--detail.abcdef:hover {
   background: rgba(255,255,255,0.1);
 }
+
+.sidebar--menu--detail.abcdef.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
 
 .sidebar--menu--detail--button.solution.base16-dark {
   color: #ac4142;
@@ -216,6 +254,12 @@
   background: rgba(255,255,255,0.1);
 }
 
+.sidebar--menu--detail.base16-dark.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
+
 .sidebar--menu--detail--button.solution.icecoder {
   color: #b9ca4a;
 }
@@ -232,6 +276,12 @@
 .sidebar--menu--detail.icecoder:hover {
   background: rgba(255,255,255,0.1);
 }
+
+.sidebar--menu--detail.icecoder.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
 
 .sidebar--menu--detail--button.solution.lesser-dark {
   color: #599eff;
@@ -250,6 +300,12 @@
   background: rgba(255,255,255,0.1);
 }
 
+.sidebar--menu--detail.lesser-dark.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
+
 .sidebar--menu--detail--button.resources.material {
   color: rgba(199, 146, 234, .7);
 }
@@ -266,6 +322,12 @@
 .sidebar--menu--detail.material:hover {
   background: rgba(255,255,255,0.1);
 }
+
+.sidebar--menu--detail.material.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
 
 .sidebar--menu--detail--button.solution.monokai {
   color: #fd971f;
@@ -284,6 +346,12 @@
   background: rgba(255,255,255,0.1);
 }
 
+.sidebar--menu--detail.monokai.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
+
 .sidebar--menu--detail--button.solution.panda-syntax {
   color: #FF75B5;
 }
@@ -301,6 +369,12 @@
   background: rgba(255,255,255,0.1);
 }
 
+.sidebar--menu--detail.panda-syntax.active {
+  background: rgba(255,255,255,0.05);
+}
+
+
+
 .sidebar--menu--detail--button.solution.paraiso-light {
   color: #ef6155;
 }
@@ -308,6 +382,12 @@
 .sidebar--menu--detail--button.resources.paraiso-light {
   color: #48b685;
 }
+
+.sidebar--menu--detail.paraiso-light.active {
+  background: rgba(0,0,0,0.05);
+}
+
+
 
 .sidebar--menu--detail--button.solution.twilight {
   color: #ca7841;
@@ -324,4 +404,8 @@
 .sidebar--menu--sub-header.twilight:hover,
 .sidebar--menu--detail.twilight:hover {
   background: rgba(255,255,255,0.1);
+}
+
+.sidebar--menu--detail.twilight.active {
+  background: rgba(255,255,255,0.05);
 }

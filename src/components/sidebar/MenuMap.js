@@ -32,11 +32,9 @@ class MenuMap extends Component {
   }
   renderMenuItem = (item) => {
     const id = _.pascalCase(item.title)
-    const background = id === this.props.codeId ? 'rgba(39, 145, 152, 0.52)' : ''
     return (
       <div
-        style={{ background }}
-        className={`sidebar--menu--detail ${this.props.theme} ${ this.props.xtraClass }`}
+        className={`sidebar--menu--detail ${id === this.props.codeId ? 'active' : ''} ${this.props.theme} ${ this.props.xtraClass }`}
         id={id}
         key={shortid.generate()}
         onClick={this.selectSeed}>
