@@ -29,6 +29,19 @@
   background: #ffee80;
 }
 
+.sidebar--menu--sub-header.cobalt {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.cobalt:hover,
+.sidebar--menu--detail.cobalt:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+
+
+
+
 /* Paraiso Light */
 .sidebar.left-pane.paraiso-light {
   color: #ef6155;
@@ -112,6 +125,15 @@
   border-left: 1px solid #ef6155 !important;
 }
 
+.sidebar--menu--sub-header.neat {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.neat:hover,
+.sidebar--menu--detail.neat:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 /* Eclipse */
 .sidebar.left-pane.eclipse,
 .sidebar--menu--detail.eclipse {
@@ -142,12 +164,30 @@
   background: #99cc99;
 }
 
+.sidebar--menu--sub-header.tomorrow-night-eighties {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.tomorrow-night-eighties:hover,
+.sidebar--menu--detail.tomorrow-night-eighties:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .sidebar--menu--detail--button.solution.abcdef {
   background: darkgoldenrod;
 }
 
 .sidebar--menu--detail--button.resources.abcdef {
   background: #abcdef;
+}
+
+.sidebar--menu--sub-header.abcdef {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.abcdef:hover,
+.sidebar--menu--detail.abcdef:hover {
+  background: rgba(255,255,255,0.1);
 }
 
 .sidebar--menu--detail--button.solution.base16-dark {
@@ -157,6 +197,15 @@
 
 .sidebar--menu--detail--button.resources.base16-dark {
   background: #90a959;
+}
+
+.sidebar--menu--sub-header.base16-dark {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.base16-dark:hover,
+.sidebar--menu--detail.base16-dark:hover {
+  background: rgba(255,255,255,0.1);
 }
 
 .sidebar--menu--detail--button.solution.icecoder {
@@ -169,12 +218,30 @@
   background: #6cb5d9;
 }
 
+.sidebar--menu--sub-header.icecoder {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.icecoder:hover,
+.sidebar--menu--detail.icecoder:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .sidebar--menu--detail--button.solution.lesser-dark {
   background: #599eff;
 }
 
 .sidebar--menu--detail--button.resources.lesser-dark {
   background: #D9BF8C;
+}
+
+.sidebar--menu--sub-header.lesser-dark {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.lesser-dark:hover,
+.sidebar--menu--detail.lesser-dark:hover {
+  background: rgba(255,255,255,0.1);
 }
 
 .sidebar--menu--detail--button.resources.material {
@@ -187,6 +254,15 @@
   background: #F77669;
 }
 
+.sidebar--menu--sub-header.material {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.material:hover,
+.sidebar--menu--detail.material:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .sidebar--menu--detail--button.solution.monokai {
   color: #272822;
   background: #fd971f;
@@ -197,6 +273,15 @@
   background: #ae81ff;
 }
 
+.sidebar--menu--sub-header.monokai {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.monokai:hover,
+.sidebar--menu--detail.monokai:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .sidebar--menu--detail--button.solution.panda-syntax {
   color: #292A2B;
   background: #FF75B5;
@@ -205,6 +290,15 @@
 .sidebar--menu--detail--button.resources.panda-syntax {
   color: #292A2B;
   background: #ffb86c;
+}
+
+.sidebar--menu--sub-header.panda-syntax {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.panda-syntax:hover,
+.sidebar--menu--detail.panda-syntax:hover {
+  background: rgba(255,255,255,0.1);
 }
 
 .sidebar--menu--detail--button.solution.paraiso-light {
@@ -221,4 +315,13 @@
 
 .sidebar--menu--detail--button.resources.twilight {
   background: #f9ee98;
+}
+
+.sidebar--menu--sub-header.twilight {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.twilight:hover,
+.sidebar--menu--detail.twilight:hover {
+  background: rgba(255,255,255,0.1);
 }
