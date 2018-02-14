@@ -53,7 +53,7 @@
 }
 
 .sidebar--menu--detail--button--container {
-  float: right;
+  display: flex;
 }
 
 .sidebar.left-pane,
@@ -74,6 +74,10 @@
 
 .sidebar--menu--detail.active {
   background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--detail > span {
+  max-width: 40%; /* prevent long words like "checkerboard" from altering icons */
 }
 
 .sidebar--menu--detail--button {
