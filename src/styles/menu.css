@@ -47,6 +47,12 @@
   transition: all 300ms;
 }
 
+@-moz-document url-prefix() {
+  .sidebar--menu--sub-header {
+    flex-direction: row;
+  }
+}
+
 .sidebar--menu--sub-header.sub,
 .sidebar--menu--detail.sub {
   padding-left: 20px;
