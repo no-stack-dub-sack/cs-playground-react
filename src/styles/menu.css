@@ -89,11 +89,11 @@
 
 details {
   margin-top: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .sidebar--menu > details {  
-  width: 60%;
+  width: 90%;
 }
 
 .sidebar--menu > details > details {
