@@ -11,7 +11,6 @@
 .sidebar--menu--header {
   cursor: default;
   text-align: center;
-  border-top: 2px solid black !important;
   width: 100%;
   padding: 15px 0px;
 }
@@ -26,10 +25,6 @@
 .sidebar--menu--sub-header:hover,
 .sidebar--menu--detail:hover {
   background: rgba(0,0,0,0.08);
-}
-
-.sidebar--menu:last-child {
-  border: 2px solid black;
 }
 
 .sidebar--menu--header,
