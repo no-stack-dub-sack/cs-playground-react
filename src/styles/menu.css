@@ -94,12 +94,19 @@
 }
 
 details {
+  margin-top: 20px;
+}
+
+.sidebar--menu > details:first-of-type {
   margin-top: 10px;
-  margin-bottom: 20px;
+}
+
+.sidebar--menu > details:last-of-type {
+  margin-bottom: 40px;
 }
 
 .sidebar--menu > details {  
-  width: 90%;
+  width: 92%;
 }
 
 .sidebar--menu > details > details {
