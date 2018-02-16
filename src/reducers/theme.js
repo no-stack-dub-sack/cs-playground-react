@@ -1,6 +1,6 @@
 import * as types from '../actions/types'
 import { THEME_STATE } from '../utils/localStorageKeys'
-import { head, indexOf, last } from 'lodash'
+import { head, indexOf, last, isEqual } from 'lodash'
 
 const initialState = {
   current: 'tomorrow-night-eighties',
@@ -25,6 +25,10 @@ const initialState = {
 const defaultState = JSON.parse(
   localStorage.getItem(THEME_STATE)
 ) || initialState
+
+if (!isEqual(defaultState.themes, initialState.themes)) {
+  defaultState.themes = initialState.themes
+}
 
 export default (state = defaultState, action) => {
   switch (action.type) {

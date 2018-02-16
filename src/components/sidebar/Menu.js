@@ -15,7 +15,7 @@ const {
 const Menu = ({ theme, topHeight, transition }) => {
   return (
     <section
-      className="sidebar--menu top-pane"
+      className={`sidebar--menu top-pane ${theme}`}
       style={{ height: topHeight, transition }}>
       <header className="sidebar--menu--header">
         Contents

@@ -40,6 +40,9 @@
   background: rgba(255,255,255,0.03);
 }
 
+/* .sidebar--menu.cobalt > details {
+  width: 92%;
+} */
 
 
 /* Paraiso Light */
@@ -98,6 +101,18 @@
 
 .sidebar--menu--detail.paraiso-light.active {
   background: rgba(0,0,0,0.03);
+}
+
+.sidebar--menu--detail--button.solution.paraiso-light {
+  color: #ef6155;
+}
+
+.sidebar--menu--detail--button.resources.paraiso-light {
+  color: #48b685;
+}
+
+.sidebar--menu.paraiso-light > details {
+  width: 96%;
 }
 
 
@@ -188,9 +203,13 @@
   background: rgba(0,0,0,0.03);
 }
 
+.sidebar--menu.eclipse > details {
+  width: 92%;
+}
 
 
-/* Solution / Resources Buttons */
+
+/* Tomorrow Night Eighties */
 .sidebar--menu--detail--button.solution.tomorrow-night-eighties {
   color: #f2777a;
 }
@@ -199,21 +218,9 @@
   color: #99cc99;
 }
 
-.sidebar--menu--sub-header.tomorrow-night-eighties {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.tomorrow-night-eighties:hover,
-.sidebar--menu--detail.tomorrow-night-eighties:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.tomorrow-night-eighties.active {
-  background: rgba(255,255,255,0.03);
-}
 
 
-
+/* abcdef */
 .sidebar--menu--detail--button.solution.abcdef {
   color: darkgoldenrod;
 }
@@ -222,21 +229,9 @@
   color: #abcdef;
 }
 
-.sidebar--menu--sub-header.abcdef {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.abcdef:hover,
-.sidebar--menu--detail.abcdef:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.abcdef.active {
-  background: rgba(255,255,255,0.03);
-}
 
 
-
+/* Base 16 Dark */
 .sidebar--menu--detail--button.solution.base16-dark {
   color: #ac4142;
 }
@@ -245,21 +240,13 @@
   color: #90a959;
 }
 
-.sidebar--menu--sub-header.base16-dark {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.base16-dark:hover,
-.sidebar--menu--detail.base16-dark:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.base16-dark.active {
-  background: rgba(255,255,255,0.03);
-}
+/* .sidebar--menu.base16-dark > details {
+  width: 92%;
+} */
 
 
 
+/* Ice Coder */
 .sidebar--menu--detail--button.solution.icecoder {
   color: #b9ca4a;
 }
@@ -268,21 +255,9 @@
   color: #6cb5d9;
 }
 
-.sidebar--menu--sub-header.icecoder {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.icecoder:hover,
-.sidebar--menu--detail.icecoder:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.icecoder.active {
-  background: rgba(255,255,255,0.03);
-}
 
 
-
+/* Lesser Dark */
 .sidebar--menu--detail--button.solution.lesser-dark {
   color: #599eff;
 }
@@ -291,21 +266,12 @@
   color: #D9BF8C;
 }
 
-.sidebar--menu--sub-header.lesser-dark {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.lesser-dark:hover,
-.sidebar--menu--detail.lesser-dark:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.lesser-dark.active {
-  background: rgba(255,255,255,0.03);
-}
+/* .sidebar--menu.lesser-dark > details {
+  width: 92%;
+} */
 
 
-
+/* Material */
 .sidebar--menu--detail--button.resources.material {
   color: rgba(199, 146, 234, .7);
 }
@@ -314,21 +280,9 @@
   color: #F77669;
 }
 
-.sidebar--menu--sub-header.material {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.material:hover,
-.sidebar--menu--detail.material:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.material.active {
-  background: rgba(255,255,255,0.03);
-}
 
 
-
+/* Monkai */
 .sidebar--menu--detail--button.solution.monokai {
   color: #fd971f;
 }
@@ -337,21 +291,9 @@
   color: #ae81ff;
 }
 
-.sidebar--menu--sub-header.monokai {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.monokai:hover,
-.sidebar--menu--detail.monokai:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.monokai.active {
-  background: rgba(255,255,255,0.03);
-}
 
 
-
+/* Panda Syntax */
 .sidebar--menu--detail--button.solution.panda-syntax {
   color: #FF75B5;
 }
@@ -360,52 +302,13 @@
   color: #ffb86c;
 }
 
-.sidebar--menu--sub-header.panda-syntax {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.panda-syntax:hover,
-.sidebar--menu--detail.panda-syntax:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.panda-syntax.active {
-  background: rgba(255,255,255,0.03);
-}
 
 
-
-.sidebar--menu--detail--button.solution.paraiso-light {
-  color: #ef6155;
-}
-
-.sidebar--menu--detail--button.resources.paraiso-light {
-  color: #48b685;
-}
-
-.sidebar--menu--detail.paraiso-light.active {
-  background: rgba(0,0,0,0.03);
-}
-
-
-
+/*  Twilight */
 .sidebar--menu--detail--button.solution.twilight {
   color: #ca7841;
 }
 
 .sidebar--menu--detail--button.resources.twilight {
   color: #f9ee98;
-}
-
-.sidebar--menu--sub-header.twilight {
-  background: rgba(255,255,255,0.05);
-}
-
-.sidebar--menu--sub-header.twilight:hover,
-.sidebar--menu--detail.twilight:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.sidebar--menu--detail.twilight.active {
-  background: rgba(255,255,255,0.03);
 }

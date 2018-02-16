@@ -21,11 +21,11 @@ class MenuMap extends Component {
   }
   selectSolution = (e) => {
     e.stopPropagation()
-    this.props.selectSolution(e.target.id.slice(10))
+    this.props.selectSolution(e.currentTarget.id.slice(10))
   }
   renderModal = (e) => {
     e.stopPropagation()
-    const modalId = _.startCase(e.target.id.slice(7))
+    const modalId = _.startCase(e.currentTarget.id.slice(7))
     this.props.modalId === modalId && this.props.renderModal
       ? this.props.closeModal()
       : this.props.openResourcesModal(modalId)
@@ -44,7 +44,7 @@ class MenuMap extends Component {
         { !/Benchmarks/.test(item.title) &&
         <div className="sidebar--menu--detail--button--container">
           <FileText
-            className={`sidebar--menu--detail--button solution ${this.props.theme} cm-variable`}
+            className={`sidebar--menu--detail--button solution ${this.props.theme}`}
             id={'SOLUTION__' + id}
             data-tip
             data-for='solutionTip'
@@ -52,7 +52,7 @@ class MenuMap extends Component {
           <ReactTooltip id='solutionTip' type='dark' effect='solid' delayShow={300}>Solution</ReactTooltip>
           <BookOpen
             id={'MODAL__' + _.snakeCase(item.title)}
-            className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme} cm-variable`}
+            className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme}`}
             data-tip
             data-for='bookTip'
             onClick={this.renderModal} />
