@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { selectChallenge, selectSolution } from '../../actions/editor'
 import shortid from 'shortid'
+import { FileText, BookOpen } from 'react-feather'
+import ReactTooltip from 'react-tooltip'
 import _ from 'lodash'
 
 _.mixin({
@@ -30,11 +32,9 @@ class MenuMap extends Component {
   }
   renderMenuItem = (item) => {
     const id = _.pascalCase(item.title)
-    const background = id === this.props.codeId ? 'rgba(39, 145, 152, 0.52)' : ''
     return (
       <div
-        style={{ background }}
-        className={`sidebar--menu--detail ${this.props.theme} ${ this.props.xtraClass }`}
+        className={`sidebar--menu--detail ${id === this.props.codeId ? 'active' : ''} ${this.props.theme} ${ this.props.xtraClass }`}
         id={id}
         key={shortid.generate()}
         onClick={this.selectSeed}>
@@ -43,18 +43,20 @@ class MenuMap extends Component {
         </span>
         { !/Benchmarks/.test(item.title) &&
         <div className="sidebar--menu--detail--button--container">
-          <span
+          <FileText
             className={`sidebar--menu--detail--button solution ${this.props.theme} cm-variable`}
             id={'SOLUTION__' + id}
-            onClick={this.selectSolution}>
-            Solution
-          </span>
-          <span
+            data-tip
+            data-for='solutionTip'
+            onClick={this.selectSolution} />
+          <ReactTooltip id='solutionTip' type='dark' effect='solid' delayShow={300}>Solution</ReactTooltip>
+          <BookOpen
             id={'MODAL__' + _.snakeCase(item.title)}
             className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme} cm-variable`}
-            onClick={this.renderModal}>
-            Resources
-          </span>
+            data-tip
+            data-for='bookTip'
+            onClick={this.renderModal} />
+          <ReactTooltip id='bookTip' type='dark' effect='solid' delayShow={300}>Resources</ReactTooltip>
         </div> }
       </div>
     )
@@ -62,7 +64,7 @@ class MenuMap extends Component {
   render() {
     return (
       <details open>
-        <summary className="sidebar--menu--sub-header">
+        <summary className={`sidebar--menu--sub-header ${this.props.theme}`}>
           {this.props.header}
         </summary>
         { _.map(this.props.items, this.renderMenuItem) }

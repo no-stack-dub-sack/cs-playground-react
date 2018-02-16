@@ -3,44 +3,58 @@
   flex: auto;
   user-select: none;
   /* transition: .2s ease-in; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sidebar--menu--header {
   cursor: default;
   text-align: center;
-  border-top: 2px solid black !important;
+  width: 100%;
+  padding: 15px 0px;
 }
 
 .sidebar--menu--header,
 .sidebar--menu--sub-header,
 .sidebar--menu--detail {
   cursor: pointer;
-  border: 1px solid black;
   outline: none;
 }
 
 .sidebar--menu--sub-header:hover,
 .sidebar--menu--detail:hover {
-  background: rgba(39, 145, 152, 0.52) !important;
-}
-
-.sidebar--menu:last-child {
-  border: 2px solid black;
+  background: rgba(0,0,0,0.08);
 }
 
 .sidebar--menu--header,
 .sidebar--menu--sub-header {
   font-size: 20px;
-  padding: 2px 0 2px 10px;
+}
+
+.sidebar--menu--sub-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.05);
+  padding: 15px;
+  transition: all 300ms;
+}
+
+@-moz-document url-prefix() {
+  .sidebar--menu--sub-header {
+    flex-direction: row;
+  }
 }
 
 .sidebar--menu--sub-header.sub,
 .sidebar--menu--detail.sub {
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .sidebar--menu--detail--button--container {
-  float: right;
+  display: flex;
 }
 
 .sidebar.left-pane,
@@ -50,16 +64,26 @@
 
 .sidebar--menu--detail {
   font-size: 15px;
-  padding: 5px;
+  padding: 5px 5px 5px 20px;
   margin: 0;
   transition: .2s !important;
   overflow-x: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 38px; /* for menu details without icons */
+}
+
+.sidebar--menu--detail.active {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--detail > span {
+  max-width: 40%; /* prevent long words like "checkerboard" from altering icons */
 }
 
 .sidebar--menu--detail--button {
   margin: 5px 0 5px 10px;
-  border: 1px solid black;
-  border-radius: 5px;
   padding: 2px 5px 2px 5px;
   font-size: 13px;
   color: #3e3e3e;
@@ -67,4 +91,24 @@
 
 .sidebar--menu--detail--button.resources {
     margin-right: 5px;
+}
+
+details {
+  margin-top: 20px;
+}
+
+.sidebar--menu > details:first-of-type {
+  margin-top: 10px;
+}
+
+.sidebar--menu > details:last-of-type {
+  margin-bottom: 40px;
+}
+
+.sidebar--menu > details {  
+  width: 92%;
+}
+
+.sidebar--menu > details > details {
+  padding-left: 20px;
 }

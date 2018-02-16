@@ -12,7 +12,7 @@ const {
   MODERATE_ALGOS
 } = CODE
 
-const Menu = ({ topHeight, transition }) => {
+const Menu = ({ theme, topHeight, transition }) => {
   return (
     <section
       className="sidebar--menu top-pane"
@@ -27,7 +27,7 @@ const Menu = ({ topHeight, transition }) => {
         header="Data Structures"
         items={DATA_STRUCTURES} />
       <details open>
-        <summary className="sidebar--menu--sub-header">
+        <summary className={`sidebar--menu--sub-header ${theme}`}>
           Algorithm Challenges
         </summary>
         <MenuMap
@@ -44,13 +44,15 @@ const Menu = ({ topHeight, transition }) => {
 }
 
 Menu.propTypes = {
+  theme: PropTypes.string.isRequired,
   topHeight: PropTypes.string.isRequired,
   transition: PropTypes.string.isRequired
 }
 
-const mapStateToProps = ({ panes }) => ({
+const mapStateToProps = ({ panes, theme }) => ({
+  theme: theme.current,
   topHeight: panes.topHeight,
-  transition: panes.transition
+  transition: panes.transition,
 })
 
 export default connect(mapStateToProps)(Menu)
