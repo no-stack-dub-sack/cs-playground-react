@@ -19,6 +19,8 @@ class MenuMap extends Component {
   selectSeed = ({ currentTarget: { id }}) => {
     this.props.selectChallenge(id)
   }
+  // stop event propagation to prevent events
+  // bound to containing elements from firing
   selectSolution = (e) => {
     e.stopPropagation()
     this.props.selectSolution(e.currentTarget.id.slice(10))

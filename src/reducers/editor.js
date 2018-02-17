@@ -8,7 +8,7 @@ import { EDITR_STATE, ALL_TESTS_SUPPRESSED } from '../utils/localStorageKeys'
 
 // NOTE: use to temporarily disable
 // log action for reducer debugging
-export const disableLogAction = false
+export const disableLogAction = true
 
 
 const initialState = {
