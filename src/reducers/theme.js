@@ -1,6 +1,6 @@
 import * as types from '../actions/types'
-import { THEME_STATE } from '../utils/localStorageKeys'
 import { head, indexOf, last, isEqual } from 'lodash'
+import { THEME_STATE } from '../utils/localStorageKeys'
 
 const initialState = {
   current: 'tomorrow-night-eighties',

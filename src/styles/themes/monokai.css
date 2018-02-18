@@ -1,0 +1,11 @@
+.sidebar--menu--detail--button.solution.monokai {
+  color: #fd971f;
+}
+
+.sidebar--menu--detail--button.resources.monokai {
+  color: #ae81ff;
+}
+
+.sidebar--menu.monokai > details {
+  width: 92%;
+}

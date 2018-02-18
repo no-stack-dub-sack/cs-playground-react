@@ -1,11 +1,11 @@
+import { closeModal, openThemeModal } from '../actions/modal'
 import { connect } from 'react-redux'
 import { Controlled as CodeMirror } from 'react-codemirror2'
+import { nextTheme, prevTheme } from '../actions/theme'
+import { updateCode } from '../actions/editor'
 import defaultOptions from '../utils/editorConfig'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { updateCode } from '../actions/editor'
-import { nextTheme, prevTheme } from '../actions/theme'
-import { closeModal, openThemeModal } from '../actions/modal'
 
 // codemirror assets
 import '../styles/codemirror.css'

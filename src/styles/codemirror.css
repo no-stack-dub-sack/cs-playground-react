@@ -1,3 +1,10 @@
+/* NOTE:
+ * styles here apply to the codemirror editor itself
+ * not to the surrounding UI. rules here are meant to
+ * override default codemirror rules, any theme specific
+ * styles should go in the respective themes.css file
+ */
+ 
 .react-codemirror2 {
   height: calc(100vh - 50px);
   margin: none;

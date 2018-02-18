@@ -1,9 +1,9 @@
 import * as types from '../actions/types'
 import { CODE, SOLUTIONS } from '../assets/codeRef'
 import { composeCodeStore, createOrderKey, populateCodeStore } from './utils'
-import WELCOME_MESSAGE from '../assets/seed/welcome'
-import { findIndex, indexOf, map } from 'lodash'
 import { EDITR_STATE, ALL_TESTS_SUPPRESSED } from '../utils/localStorageKeys'
+import { findIndex, indexOf, map } from 'lodash'
+import WELCOME_MESSAGE from '../assets/seed/welcome'
 
 
 const initialState = {

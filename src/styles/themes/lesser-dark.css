@@ -1,0 +1,11 @@
+.sidebar--menu--detail--button.solution.lesser-dark {
+  color: #599eff;
+}
+
+.sidebar--menu--detail--button.resources.lesser-dark {
+  color: #D9BF8C;
+}
+
+.sidebar--menu.lesser-dark > details {
+  width: 92%;
+}

@@ -1,17 +1,17 @@
+import './styles/index.css'
 import * as LS from './utils/localStorageKeys'
-import App from './App'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore } from 'redux'
-import ErrorBoundary from './components/utils/ErrorBoundary'
-import createProxyConsole from './actions/console'
+import { DO_NOT_SAVE } from './utils/regexp'
 import { Provider } from 'react-redux'
+import App from './App'
+import createProxyConsole from './actions/console'
+import ErrorBoundary from './components/utils/ErrorBoundary'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { DO_NOT_SAVE } from './utils/regexp'
 import registerServiceWorker from './utils/registerServiceWorker'
 import rootReducer from './reducers/rootReducer'
 import simpleDrag from './utils/simpleDrag'
-import './styles/index.css'
 
 // NOTE: set to true or use console.info
 // when debugging w/ console.log becomes

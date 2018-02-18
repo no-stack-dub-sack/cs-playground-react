@@ -1,13 +1,13 @@
-import { connect } from 'react-redux'
+import '../../styles/modal.css'
 import { closeModal } from '../../actions/modal'
-import Fade from './Fader'
+import { connect } from 'react-redux'
 import { map } from 'lodash';
+import { RENDR_MODAL } from '../../utils/localStorageKeys'
+import Fade from './Fader'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { RENDR_MODAL } from '../../utils/localStorageKeys'
 import shortid from 'shortid'
-import '../../styles/modal.css'
 
 // modal types:
 const ResourcesModal = (props) => (

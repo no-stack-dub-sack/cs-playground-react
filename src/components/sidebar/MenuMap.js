@@ -1,12 +1,12 @@
+import _ from 'lodash'
 import { closeModal, openResourcesModal } from '../../actions/modal'
 import { connect } from 'react-redux'
+import { FileText, BookOpen } from 'react-feather'
+import { selectChallenge, selectSolution } from '../../actions/editor'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { selectChallenge, selectSolution } from '../../actions/editor'
-import shortid from 'shortid'
-import { FileText, BookOpen } from 'react-feather'
 import ReactTooltip from 'react-tooltip'
-import _ from 'lodash'
+import shortid from 'shortid'
 
 _.mixin({
   'pascalCase': _.flow(

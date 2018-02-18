@@ -1,5 +1,5 @@
-import React from 'react'
 import { Transition } from 'react-transition-group'
+import React from 'react'
 
 const transitionStyles = {
   entering: { opacity: 0 },
