@@ -1,7 +1,9 @@
 export default {
   title: 'Sorting Algorithm Benchmarks',
   seed:
-`// MERGESORT / MERGE
+`// DISABLE LOOP PROTECT
+
+// MERGESORT / MERGE
 function mergeSort(arr) {
     if (arr.length < 2) {
         return arr

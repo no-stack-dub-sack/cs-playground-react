@@ -59,6 +59,14 @@ If for some reason you do not want your code to persist to the next session, jus
 single line DO NOT SAVE comment in the editor before you navigate away, e.g. \`// DO NOT SAVE\`
 
 
+- _LOOP-PROTECT_
+Infinite loop protection is enabled by default. CS-Playground-React will automatically break loops
+that take over 500ms to run and will throw an error to let you know that there is likely a problem
+with your code. For instances where this is not the case, leave a \`// DISABLE LOOP PROTECT\` comment
+to run your code without loop protection. Beware! If you run code that does have an infinite loop while
+loop protect is disabled, you will crash the browser tab, so tread lightly when disabling this feature!
+
+
 - _CLEARING THE CONSOLE_
 The console messages will be cleared automatically when you switch to a new problem and run your
 code, but if you want to clear it at any time, just hit the button, or press \`ALT-SHIFT-BACKSPACE\`!

@@ -5,7 +5,9 @@ const error = (line, char) => {
   throw new Error(
 `Potential infinite loop, timed out after 500ms.
     at eval:${line}:${char}
-    at eval`
+    at eval
+
+NOTE: You can disable this feature with <code>// DISABLE LOOP PROTECT</code>`
   )
 }
 

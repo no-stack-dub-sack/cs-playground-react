@@ -1,4 +1,4 @@
-import { SUPPRESS_TESTS } from '../../regexp'
+import { SUPPRESS_TESTS, DISABLE_LOOP_PROTECT } from '../../regexp'
 import executeTests from './execute-tests'
 import loopProtect from './loop-protect'
 import TESTS from '../../../assets/testRef'
@@ -27,8 +27,13 @@ export default (code, id) => {
     if (TESTS[id].tail) tail += TESTS[id].tail
   }
 
-  // check code for do/while/for loops and apply loop-protect if needed
-  code = HAS_LOOPS.test(trimComments(code)) ? loopProtect(code) : code
+  // check code for do/while/for loops
+  // and apply loop-protect if needed
+  code = DISABLE_LOOP_PROTECT.test(code)
+    ? code
+    : HAS_LOOPS.test(trimComments(code))
+    ? loopProtect(code)
+    : code
 
   try {
     eval(

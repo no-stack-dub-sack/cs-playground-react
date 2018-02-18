@@ -31,10 +31,20 @@
   color: #ef6155;
 }
 
+.main--controls.paraiso-light {
+  background: #d4d6c6;
+}
+
 .main--controls--button.paraiso-light {
   color: #e96ba8;
-  background: #e7e9db;
-  border: 2px solid #48b685;
+  background: #d4d6c6;
+  border-left: 3px solid #e7e9db;
+  border-right: none;
+  font-weight: bold;
+}
+
+.main--controls--button.paraiso-light:first-of-type {
+  border-left: none;
 }
 
 .main--controls--button.paraiso-light.run-code,
@@ -42,8 +52,12 @@
   border-right: none;
 }
 
+.main--controls--button.paraiso-light:hover {
+  background: rgba(0,0,0,0.08);
+}
+
 .main--controls--button.paraiso-light:active {
-  background: rgba(39, 145, 152, 0.52);
+  background: rgba(0,0,0,0.03);
 }
 
 .sidebar--menu--sub-header.paraiso-light:hover,
