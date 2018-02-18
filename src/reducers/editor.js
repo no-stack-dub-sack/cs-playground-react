@@ -6,11 +6,6 @@ import { findIndex, indexOf, map } from 'lodash'
 import { EDITR_STATE, ALL_TESTS_SUPPRESSED } from '../utils/localStorageKeys'
 
 
-// NOTE: use to temporarily disable
-// log action for reducer debugging
-export const disableLogAction = true
-
-
 const initialState = {
   welcome: true,
   current: {
@@ -21,7 +16,6 @@ const initialState = {
   codeStore: populateCodeStore(CODE),
   orderKey: createOrderKey(CODE)
 }
-
 
 // reducer's default state is either the initial state or
 // is pulled from local storage, which is set in index.js

@@ -3,7 +3,7 @@ import App from './App'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore } from 'redux'
 import ErrorBoundary from './components/utils/ErrorBoundary'
-import { hijackConsole } from './actions/console'
+import createProxyConsole from './actions/console'
 import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -13,11 +13,16 @@ import rootReducer from './reducers/rootReducer'
 import simpleDrag from './utils/simpleDrag'
 import './styles/index.css'
 
+// NOTE: set to true or use console.info
+// when debugging w/ console.log becomes
+// problematic due to proxy console func
+export const disableProxyConsole = false
+
+// intercept console.log messages
+createProxyConsole()
+
 // enable resizable split panes
 simpleDrag()
-
-// hijack console.log() function
-hijackConsole()
 
 export const store = createStore(
   rootReducer,
