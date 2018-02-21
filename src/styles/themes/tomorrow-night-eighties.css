@@ -5,3 +5,7 @@
 .sidebar--menu--detail--button.resources.tomorrow-night-eighties {
   color: #99cc99;
 }
+
+.sidebar--menu--detail.tomorrow-night-eighties input:focus {
+  border-bottom: 2px solid #f2777a;
+}

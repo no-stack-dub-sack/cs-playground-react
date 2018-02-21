@@ -2,7 +2,7 @@ import * as types from '../actions/types'
 import { CODE, SOLUTIONS } from '../assets/codeRef'
 import { composeCodeStore, createOrderKey, populateCodeStore } from './utils'
 import { EDITR_STATE, ALL_TESTS_SUPPRESSED } from '../utils/localStorageKeys'
-import { findIndex, indexOf, map } from 'lodash'
+import { concat, findIndex, indexOf, map, uniq } from 'lodash'
 import WELCOME_MESSAGE from '../assets/seed/welcome'
 
 
@@ -17,6 +17,7 @@ const initialState = {
   orderKey: createOrderKey(CODE)
 }
 
+
 // reducer's default state is either the initial state or
 // is pulled from local storage, which is set in index.js
 let defaultState = JSON.parse(
@@ -28,23 +29,25 @@ let defaultState = JSON.parse(
 // new challenges and/or remove dupes from previous bug
 if (initialState.codeStore.length !== defaultState.codeStore.length) {
   const { codeStore, current } = composeCodeStore(initialState, defaultState)
-  defaultState.orderKey = createOrderKey(CODE)
   defaultState.codeStore = codeStore
   defaultState.current = current
+  // preserve user added repls in order key when updating code store
+  const oldOrderKey = defaultState.orderKey
+  defaultState.orderKey = uniq(concat(createOrderKey(CODE), oldOrderKey))
 }
 
 
 // meaningless abstraction:
 const updateUserCode = (state) => {
   if (!state.current.isSolution && !state.welcome) {
-    return map(state.codeStore, codeObj => {
-      if (state.current.id === codeObj.id) {
+    return map(state.codeStore, challenge => {
+      if (state.current.id === challenge.id) {
         return {
-          ...codeObj,
+          ...challenge,
           userCode: state.current.code
         }
       } else {
-        return codeObj
+        return challenge
       }
     })
   } else {
@@ -128,6 +131,21 @@ const editor = (state = defaultState, action) => {
         }
       }
     }
+    case types.ADD_REPL:
+      return {
+        ...state,
+        orderKey: [
+          ...state.orderKey,
+          action.id
+        ],
+        codeStore: [
+          ...state.codeStore,
+          {
+            id: action.id,
+            userCode: ''
+          }
+        ]
+      }
     default:
       return state
   }

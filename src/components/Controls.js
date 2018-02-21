@@ -107,19 +107,19 @@ class Controls extends Component {
         <button
           onClick={() => this.handleExecuteCode(this.props)}
           className={`main--controls--button ${this.props.theme} run-code`}
-          title="Ctrl + Enter">
+          title="Cmd/Ctrl + Enter">
           Run Code
         </button>
         <button
           onClick={this.props.prevChallenge}
           className={`main--controls--button ${this.props.theme} previous`}
-          title="Ctrl + Shift + <">
+          title="Cmd/Ctrl + Shift + <">
           Previous
         </button>
         <button
           onClick={this.props.nextChallenge}
           className={`main--controls--button ${this.props.theme} next`}
-          title="Ctrl + Shift + >">
+          title="Cmd/Ctrl + Shift + >">
           Next
         </button>
       </section>

@@ -28,14 +28,16 @@ export function createOrderKey(CODE) {
     SORTING_ALGOS,
     DATA_STRUCTURES,
     EASY_ALGOS,
-    MODERATE_ALGOS
+    MODERATE_ALGOS,
+    REPLS
   } = CODE
   return _
     .flatten([
       SORTING_ALGOS,
       DATA_STRUCTURES,
       EASY_ALGOS,
-      MODERATE_ALGOS
+      MODERATE_ALGOS,
+      REPLS
     ])
     .map(c =>
       _.replace(
@@ -79,17 +81,22 @@ function removeDuplicates(codeStore) {
 
 function add_SUPPRESS_TESTS_onlyOnce(codeStore, current, welcome) {
   const isDisabled = {}
+  const replsBeginIndex = _.findIndex(codeStore, { id: 'free_code' })
   if (!localStorage.getItem(ALL_TESTS_SUPPRESSED)) {
+    let i = 0
     for (let challenge of codeStore) {
-      challenge.userCode = challenge.userCode.concat(
-        '\r\r// SUPPRESS TESTS, delete this line to activate\r'
-      )
-      // indicate specific challenge disbaled so toggle suppress
-      // tests works. see src/utils/toggleSuppressTests.js
-      isDisabled[challenge.id] = true
+      if (i < replsBeginIndex) {
+        challenge.userCode = challenge.userCode.concat(
+          '\r\r// SUPPRESS TESTS, delete this line to activate\r'
+        )
+        // indicate specific challenge disbaled so toggle suppress
+        // tests works. see src/utils/toggleSuppressTests.js
+        isDisabled[challenge.id] = true
+        i++
+      }
     }
     // add suppression to current challenge so user notices change
-    if (!current.isSolution && !welcome) {
+    if (!current.isSolution && current.id !== 'free_code' && !welcome) {
       current.code = current.code.concat(
         '\r\r// SUPPRESS TESTS, delete this line to activate\r'
       )

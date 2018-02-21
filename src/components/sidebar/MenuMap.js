@@ -15,8 +15,39 @@ _.mixin({
   )
 })
 
+const Buttons = ({ id, title, theme, selectSolution, renderModal }) => (
+  <div className="sidebar--menu--detail--button--container">
+    <FileText
+      className={`sidebar--menu--detail--button solution ${theme}`}
+      id={'SOLUTION__' + id}
+      data-tip
+      data-for='solutionTip'
+      onClick={selectSolution} />
+    <ReactTooltip id='solutionTip' type='dark' effect='solid' delayShow={300}>
+      Solution
+    </ReactTooltip>
+    <BookOpen
+      id={'MODAL__' + _.snakeCase(title)}
+      className={`sidebar--menu--detail--button resources modal-trigger ${theme}`}
+      data-tip
+      data-for='bookTip'
+      onClick={renderModal} />
+    <ReactTooltip id='bookTip' type='dark' effect='solid' delayShow={300}>
+      Resources
+    </ReactTooltip>
+  </div>
+)
+
+Buttons.propTypes = {
+  id: PropTypes.string.isRequired,
+  renderModal: PropTypes.func.isRequired,
+  selectSolution: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}
+
 class MenuMap extends Component {
-  selectSeed = ({ currentTarget: { id }}) => {
+  selectChallenge = ({ currentTarget: { id }}) => {
     this.props.selectChallenge(id)
   }
   // stop event propagation to prevent events
@@ -34,32 +65,26 @@ class MenuMap extends Component {
   }
   renderMenuItem = (item) => {
     const id = _.pascalCase(item.title)
+    let itemClasses = id === this.props.codeId ? 'active ' : ''
+    itemClasses += this.props.theme + ' ' + this.props.xtraClass
     return (
       <div
-        className={`sidebar--menu--detail ${id === this.props.codeId ? 'active' : ''} ${this.props.theme} ${ this.props.xtraClass }`}
+        className={`sidebar--menu--detail ${itemClasses}`}
         id={id}
         key={shortid.generate()}
-        onClick={this.selectSeed}>
+        onClick={this.selectChallenge}>
         <span>
           {item.title}
         </span>
-        { !/Benchmarks/.test(item.title) &&
-        <div className="sidebar--menu--detail--button--container">
-          <FileText
-            className={`sidebar--menu--detail--button solution ${this.props.theme}`}
-            id={'SOLUTION__' + id}
-            data-tip
-            data-for='solutionTip'
-            onClick={this.selectSolution} />
-          <ReactTooltip id='solutionTip' type='dark' effect='solid' delayShow={300}>Solution</ReactTooltip>
-          <BookOpen
-            id={'MODAL__' + _.snakeCase(item.title)}
-            className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme}`}
-            data-tip
-            data-for='bookTip'
-            onClick={this.renderModal} />
-          <ReactTooltip id='bookTip' type='dark' effect='solid' delayShow={300}>Resources</ReactTooltip>
-        </div> }
+        {/* If challenge does not have resources or solution, e.g.
+        repl or sort benchmarks, do not render button container */}
+        { item.solution && item.resources &&
+        <Buttons
+          id={id}
+          renderModal={this.renderModal}
+          selectSolution={this.selectSolution}
+          theme={this.props.theme}
+          title={item.title} /> }
       </div>
     )
   }

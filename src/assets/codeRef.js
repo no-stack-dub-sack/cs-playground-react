@@ -29,6 +29,8 @@ import LongestCommonPrefix from './seed/algorithms/LongestCommonPrefix'
 import ReverseAString from './seed/algorithms/ReverseAString'
 import ReverseVowels from './seed/algorithms/ReverseVowels'
 
+import FreeCode from './seed/FreeCode'
+
 // NOTE: order of arrays determines order of sidebar menu
 
 export const CODE = {
@@ -68,6 +70,9 @@ export const CODE = {
     NoTwoConsecutiveChars,
     AnagramPalindrome,
     // RotateAnImage,
+  ],
+  REPLS: [
+    FreeCode
   ]
 }
 

@@ -3,6 +3,7 @@ export const CLEAR_CONSOLE = 'CLEAR_CONSOLE'
 export const CONSOLE_LOG = 'CONSOLE_LOG'
 
 // editor
+export const ADD_REPL = 'ADD_REPL'
 export const RESET_STATE = 'RESET_STATE'
 export const UPDATE_CODE = 'UPDATE_CODE'
 export const NEXT_CHALLENGE = 'NEXT_CHALLENGE'

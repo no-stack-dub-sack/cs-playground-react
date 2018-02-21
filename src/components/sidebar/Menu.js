@@ -2,6 +2,7 @@ import '../../styles/menu.css'
 import { CODE } from '../../assets/codeRef'
 import { connect } from 'react-redux'
 import MenuMap from './MenuMap'
+import ReplsMap from './ReplsMap'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -39,6 +40,7 @@ const Menu = ({ theme, topHeight, transition }) => {
           items={MODERATE_ALGOS}
           xtraClass="sub" />
       </details>
+      <ReplsMap />
     </section>
   )
 }
