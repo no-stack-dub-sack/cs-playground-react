@@ -1,6 +1,6 @@
 import { concatTests, logResults } from './jest-test-utils'
-import TESTS from '../../../assets/testRef'
 import { SOLUTIONS } from '../../../assets/codeRef'
+import TESTS from '../../../assets/testRef'
 
 export default (ID) => {
   test(ID, () => {

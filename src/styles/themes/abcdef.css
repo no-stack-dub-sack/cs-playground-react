@@ -1,0 +1,11 @@
+.sidebar--menu--detail--button.solution.abcdef {
+  color: darkgoldenrod;
+}
+
+.sidebar--menu--detail--button.resources.abcdef {
+  color: #abcdef;
+}
+
+.sidebar--menu.abcdef > details {
+  width: 92%;
+}

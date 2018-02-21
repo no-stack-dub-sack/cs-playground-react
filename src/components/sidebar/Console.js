@@ -1,11 +1,11 @@
+import '../../styles/console.css'
 import { clearConsole } from '../../actions/console'
 import { connect } from 'react-redux'
+import { ERROR_TYPES } from '../../utils/regexp'
 import { map } from 'lodash';
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { ERROR_TYPES } from '../../utils/regexp'
 import shortid from 'shortid'
-import '../../styles/console.css'
 
 import {
   ICON_BLACK,

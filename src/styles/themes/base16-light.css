@@ -1,0 +1,26 @@
+.sidebar.left-pane.base16-light,
+.sidebar--menu--detail.base16-light {
+  background: #f5f5f5;
+  color: #8f5536;
+}
+
+.sidebar--menu--detail--button.solution.base16-light {
+  color: #ac4142;
+}
+
+.sidebar--menu--detail--button.resources.base16-light {
+  color: #90a959;
+}
+
+.CodeMirror.cm-s-base16-light div.CodeMirror-cursor {
+  border-left: 1px solid #a22 !important;
+}
+
+.sidebar--menu--sub-header.base16-light:hover,
+.sidebar--menu--detail.base16-light:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.sidebar--menu--detail.base16-light.active {
+  background: rgba(0,0,0,0.03);
+}

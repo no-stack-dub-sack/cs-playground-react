@@ -1,15 +1,15 @@
-import { connect } from 'react-redux'
+import '../../styles/modal.css'
 import { closeModal } from '../../actions/modal'
-import Fade from './Fader'
+import { connect } from 'react-redux'
 import { map } from 'lodash';
+import { RENDR_MODAL } from '../../utils/localStorageKeys'
+import Fade from './Fader'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { RENDR_MODAL } from '../../utils/localStorageKeys'
 import shortid from 'shortid'
-import '../../styles/modal.css'
 
-
+// modal types:
 const ResourcesModal = (props) => (
   <div className="modal">
     <h2 className="modal--header">
@@ -33,12 +33,18 @@ const AnnouncementModal = (props) => (
       { map(props.messages, props.renderListItem) }
     </ul>
     <p>
-      <strong
-        dangerouslySetInnerHTML={{ __html:
-          props.messages[props.messages.length-1]
-        }} />
+      <strong dangerouslySetInnerHTML={{ __html:
+          props.messages[props.messages.length-1]}} />
     </p>
-    { props.renderNumAnnounced() }
+    {(() => {
+        let num = localStorage.getItem(RENDR_MODAL)
+        num = num === '1' ? 2 : num === '2' ? 1 : 0
+        return (
+          <span>
+            {`You will see this notification ${num} more time${num === 1 ? '' : 's'}`}
+          </span>
+        )
+    })()}
   </div>
 )
 
@@ -57,14 +63,29 @@ class Modal extends Component {
   componentWillUnmount() {
     document.removeEventListener('click', this.closeModal)
   }
+  // close modal on click if modal is open, if current click
+  // is not inside modal, and if target is not a modal trigger,
+  // (and if target's parent is not a modal trigger — to account
+  // for clicking the path or line of new SVG icons)
   closeModal = ({ target }) => {
     if (
       this.props.renderModal &&
       !this.modal.contains(target) &&
-      !target.classList.contains('modal-trigger')
+      !this.targetContainsModalTrigger(target)
     ) {
       this.props.closeModal()
     }
+  }
+  // closeModal util, see above
+  targetContainsModalTrigger = (t) => {
+    if ((
+      t.classList &&
+      t.classList.contains('modal-trigger')
+      ) || (
+        t.parentElement.classList &&
+        t.parentElement.classList.contains('modal-trigger')
+      )) return true
+    return false
   }
   renderListItem = (item, i, arr) => {
     if (this.props.modalType === 'resources') {
@@ -82,19 +103,6 @@ class Modal extends Component {
         dangerouslySetInnerHTML={{ __html: item }}
         key={shortid.generate()}
       />
-    )
-  }
-  renderNumAnnounced = () => {
-    let num
-    switch (localStorage.getItem(RENDR_MODAL)) {
-      case '1': num = 2; break
-      case '2': num = 1; break
-      default: num = 0
-    }
-    return (
-      <span>
-        {`You will see this notification ${num} more time${num === 1 ? '' : 's'}`}
-      </span>
     )
   }
   render() {

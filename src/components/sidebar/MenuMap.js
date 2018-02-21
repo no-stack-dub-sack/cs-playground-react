@@ -1,10 +1,12 @@
+import _ from 'lodash'
 import { closeModal, openResourcesModal } from '../../actions/modal'
 import { connect } from 'react-redux'
+import { FileText, BookOpen } from 'react-feather'
+import { selectChallenge, selectSolution } from '../../actions/editor'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { selectChallenge, selectSolution } from '../../actions/editor'
+import ReactTooltip from 'react-tooltip'
 import shortid from 'shortid'
-import _ from 'lodash'
 
 _.mixin({
   'pascalCase': _.flow(
@@ -17,24 +19,24 @@ class MenuMap extends Component {
   selectSeed = ({ currentTarget: { id }}) => {
     this.props.selectChallenge(id)
   }
+  // stop event propagation to prevent events
+  // bound to containing elements from firing
   selectSolution = (e) => {
     e.stopPropagation()
-    this.props.selectSolution(e.target.id.slice(10))
+    this.props.selectSolution(e.currentTarget.id.slice(10))
   }
   renderModal = (e) => {
     e.stopPropagation()
-    const modalId = _.startCase(e.target.id.slice(7))
+    const modalId = _.startCase(e.currentTarget.id.slice(7))
     this.props.modalId === modalId && this.props.renderModal
       ? this.props.closeModal()
       : this.props.openResourcesModal(modalId)
   }
   renderMenuItem = (item) => {
     const id = _.pascalCase(item.title)
-    const background = id === this.props.codeId ? 'rgba(39, 145, 152, 0.52)' : ''
     return (
       <div
-        style={{ background }}
-        className={`sidebar--menu--detail ${this.props.theme} ${ this.props.xtraClass }`}
+        className={`sidebar--menu--detail ${id === this.props.codeId ? 'active' : ''} ${this.props.theme} ${ this.props.xtraClass }`}
         id={id}
         key={shortid.generate()}
         onClick={this.selectSeed}>
@@ -43,18 +45,20 @@ class MenuMap extends Component {
         </span>
         { !/Benchmarks/.test(item.title) &&
         <div className="sidebar--menu--detail--button--container">
-          <span
-            className={`sidebar--menu--detail--button solution ${this.props.theme} cm-variable`}
+          <FileText
+            className={`sidebar--menu--detail--button solution ${this.props.theme}`}
             id={'SOLUTION__' + id}
-            onClick={this.selectSolution}>
-            Solution
-          </span>
-          <span
+            data-tip
+            data-for='solutionTip'
+            onClick={this.selectSolution} />
+          <ReactTooltip id='solutionTip' type='dark' effect='solid' delayShow={300}>Solution</ReactTooltip>
+          <BookOpen
             id={'MODAL__' + _.snakeCase(item.title)}
-            className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme} cm-variable`}
-            onClick={this.renderModal}>
-            Resources
-          </span>
+            className={`sidebar--menu--detail--button resources modal-trigger ${this.props.theme}`}
+            data-tip
+            data-for='bookTip'
+            onClick={this.renderModal} />
+          <ReactTooltip id='bookTip' type='dark' effect='solid' delayShow={300}>Resources</ReactTooltip>
         </div> }
       </div>
     )
@@ -62,7 +66,7 @@ class MenuMap extends Component {
   render() {
     return (
       <details open>
-        <summary className="sidebar--menu--sub-header">
+        <summary className={`sidebar--menu--sub-header ${this.props.theme}`}>
           {this.props.header}
         </summary>
         { _.map(this.props.items, this.renderMenuItem) }

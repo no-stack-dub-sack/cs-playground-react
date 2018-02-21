@@ -1,0 +1,24 @@
+.sidebar--menu--detail--button.solution.neat {
+  color: #a86;
+}
+
+.sidebar--menu--detail--button.resources.neat {
+  color: #3a3;
+}
+
+.CodeMirror.cm-s-neat div.CodeMirror-cursor {
+  border-left: 1px solid #ef6155 !important;
+}
+
+.sidebar--menu--sub-header.neat {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.neat:hover,
+.sidebar--menu--detail.neat:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar--menu--detail.neat.active {
+  background: rgba(255,255,255,0.03);
+}

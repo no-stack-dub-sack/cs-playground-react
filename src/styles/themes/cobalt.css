@@ -1,0 +1,44 @@
+.sidebar.left-pane.cobalt,
+.sidebar--menu--detail.cobalt {
+  background: #002240;
+  color: white;
+}
+
+.main--controls--button.cobalt {
+  color: white;
+  background: #002240;
+  border: 1px solid #ddd;
+}
+
+.main--controls--button.cobalt:active {
+  background: rgba(39, 145, 152, 0.52);
+}
+
+.sidebar--output--messages.cobalt {
+  background: #002240;
+}
+
+.sidebar--menu--detail--button.solution.cobalt {
+  color: #08f;
+}
+
+.sidebar--menu--detail--button.resources.cobalt {
+  color: #ffee80;
+}
+
+.sidebar--menu--sub-header.cobalt {
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar--menu--sub-header.cobalt:hover,
+.sidebar--menu--detail.cobalt:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar--menu--detail.cobalt.active {
+  background: rgba(255,255,255,0.03);
+}
+
+.sidebar--menu.cobalt > details {
+  width: 92%;
+}

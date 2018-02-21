@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import * as types from './types'
 import { store } from '../index'
-import { disableLogAction } from '../reducers/editor'
+import { disableProxyConsole } from '../index'
 
 export const clearConsole = () => ({ type: types.CLEAR_CONSOLE })
 
@@ -22,9 +22,10 @@ _.mixin({
   )
 })
 
-export const hijackConsole = () => {
-  if (!disableLogAction) {
-  const OG_Log = console.log
+// createProxyConsole
+export default () => {
+  if (!disableProxyConsole) {
+    const OG_Log = console.log
     console.log = function(...args) {
       const logs = _.createLogs([...args])
       store.dispatch({

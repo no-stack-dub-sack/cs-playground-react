@@ -19,8 +19,12 @@
   transition: .2s;
 }
 
+.main--controls--button:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .main--controls--button:active {
-  background: rgba(39, 145, 152, .52);
+  background: rgba(255,255,255,0.05);
 }
 
 .main--controls--button.run-code {

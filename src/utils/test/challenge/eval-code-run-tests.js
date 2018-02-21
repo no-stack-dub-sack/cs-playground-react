@@ -1,7 +1,7 @@
-import executeTests from './execute-tests'
 import { SUPPRESS_TESTS } from '../../regexp'
-import TESTS from '../../../assets/testRef'
+import executeTests from './execute-tests'
 import loopProtect from './loop-protect'
+import TESTS from '../../../assets/testRef'
 import trimComments from './trim-code'
 /* eslint-disable no-eval */
 

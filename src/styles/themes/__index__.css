@@ -1,0 +1,30 @@
+/* NOTE:
+ * styles here DO NOT apply to the codemirror editor itself
+ * these rules are style extensions of the built in CodeMirror
+ * themes, in order to make the surrounding UI match the editor.
+ * the following elements have the dynamic theme classname which
+ * changes along with the current theme and can be styled accordingly:
+     * .sidebar--menu.<theme-class-name> > details
+     * .sidebar.left-pane.<theme-class-name>
+     * .sidebar--menu--detail.<theme-class-name>
+     * .sidebar--menu--sub-header.<theme-class-name>
+     * .main--controls--button.<theme-class-name>
+     * .sidebar--output--messages.<theme-class-name>
+     * .sidebar--menu--detail--button.solution.<theme-class-name>
+     * .sidebar--menu--detail--button.resources.<theme-class-name>
+ */
+
+@import 'abcdef.css';
+@import 'base16-dark.css';
+@import 'base16-light.css';
+@import 'cobalt.css';
+@import 'eclipse.css';
+@import 'icecoder.css';
+@import 'lesser-dark.css';
+@import 'material.css';
+@import 'monokai.css';
+@import 'neat.css';
+@import 'panda-syntax.css';
+@import 'paraiso-light.css';
+@import 'tomorrow-night-eighties.css';
+@import 'twilight.css';

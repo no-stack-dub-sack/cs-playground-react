@@ -1,0 +1,68 @@
+.sidebar.left-pane.paraiso-light {
+  color: #ef6155;
+  background: #e7e9db;
+}
+
+.sidebar--menu--detail.paraiso-light {
+  color: #815ba4;
+  color: #ef6155;
+  background: #e7e9db;
+}
+
+.CodeMirror.cm-s-paraiso-light div.CodeMirror-cursor {
+  border-left: 1px solid #ef6155 !important;
+}
+
+.sidebar--output--messages.paraiso-light {
+  background: #d4d6c6;
+  color: #368f67;
+}
+
+.sidebar--output--messages.paraiso-light code {
+  color: #66465e;
+}
+
+.sidebar--output--messages.paraiso-light span.type {
+  color: #815ba4;
+  font-weight: bold;
+}
+
+.sidebar--output--messages.paraiso-light p.error {
+  color: #ef6155;
+}
+
+.main--controls--button.paraiso-light {
+  color: #e96ba8;
+  background: #e7e9db;
+  border: 2px solid #48b685;
+}
+
+.main--controls--button.paraiso-light.run-code,
+.main--controls--button.paraiso-light.previous {
+  border-right: none;
+}
+
+.main--controls--button.paraiso-light:active {
+  background: rgba(39, 145, 152, 0.52);
+}
+
+.sidebar--menu--sub-header.paraiso-light:hover,
+.sidebar--menu--detail.paraiso-light:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.sidebar--menu--detail.paraiso-light.active {
+  background: rgba(0,0,0,0.03);
+}
+
+.sidebar--menu--detail--button.solution.paraiso-light {
+  color: #ef6155;
+}
+
+.sidebar--menu--detail--button.resources.paraiso-light {
+  color: #48b685;
+}
+
+.sidebar--menu.paraiso-light > details {
+  width: 96%;
+}

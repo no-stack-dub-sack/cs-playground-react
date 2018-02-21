@@ -1,0 +1,11 @@
+  .sidebar--menu--detail--button.solution.twilight {
+  color: #ca7841;
+}
+
+.sidebar--menu--detail--button.resources.twilight {
+  color: #f9ee98;
+}
+
+.sidebar--menu.twilight > details {
+  width: 92%;
+}

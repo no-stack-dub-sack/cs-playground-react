@@ -1,0 +1,30 @@
+.sidebar.left-pane.eclipse,
+.sidebar--menu--detail.eclipse {
+  color: #7F0055;
+  background: #f5f5f5;
+}
+
+.sidebar--menu--detail--button.solution.eclipse {
+  color: #7F0055;
+}
+
+.sidebar--menu--detail--button.resources.eclipse {
+  color: #3F7F5F;
+}
+
+.CodeMirror.cm-s-eclipse div.CodeMirror-cursor {
+  border-left: 1px solid #7F0055 !important;
+}
+
+.sidebar--menu--sub-header.eclipse:hover,
+.sidebar--menu--detail.eclipse:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.sidebar--menu--detail.eclipse.active {
+  background: rgba(0,0,0,0.03);
+}
+
+.sidebar--menu.eclipse > details {
+  width: 92%;
+}

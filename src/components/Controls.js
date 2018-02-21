@@ -1,9 +1,10 @@
+import '../styles/controls.css'
 import { clearConsole } from '../actions/console'
 import { connect } from 'react-redux'
-import executeCode from '../utils/test/challenge/eval-code-run-tests'
-import React, { Component } from 'react'
 import { RESET_STATE } from '../utils/regexp'
+import executeCode from '../utils/test/challenge/eval-code-run-tests'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   nextChallenge,
@@ -12,7 +13,6 @@ import {
   toggleSolution
 } from '../actions/editor'
 
-import '../styles/controls.css'
 
 class Controls extends Component {
   constructor(props) {
