@@ -103,7 +103,7 @@ class Controls extends Component {
   }
   render() {
     return (
-      <section className="main--controls">
+      <section className={`main--controls ${this.props.theme}`}>
         <button
           onClick={() => this.handleExecuteCode(this.props)}
           className={`main--controls--button ${this.props.theme} run-code`}

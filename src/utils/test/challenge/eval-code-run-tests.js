@@ -1,4 +1,4 @@
-import { SUPPRESS_TESTS } from '../../regexp'
+import { HAS_LOOPS, SUPPRESS_TESTS, DISABLE_LOOP_PROTECT } from '../../regexp'
 import executeTests from './execute-tests'
 import loopProtect from './loop-protect'
 import TESTS from '../../../assets/testRef'
@@ -18,7 +18,6 @@ export default (code, id) => {
   /* eslint-enable no-unused-vars */
 
   let prepend = 'const tests = ', tail = '', tests = ''
-  const HAS_LOOPS = new RegExp(/(?:\bwhile|\bfor)\s*?\(.*?\)/)
 
   // if suppressTests is true or tests do not exist
   // only eval code, otherwise eval & execute tests
@@ -27,8 +26,9 @@ export default (code, id) => {
     if (TESTS[id].tail) tail += TESTS[id].tail
   }
 
-  // check code for do/while/for loops and apply loop-protect if needed
-  code = HAS_LOOPS.test(trimComments(code)) ? loopProtect(code) : code
+  // check code for do/while/for loops & apply loop-protect if needed/enabled
+  if (!DISABLE_LOOP_PROTECT.test(code) && HAS_LOOPS.test(trimComments(code)))
+    code = loopProtect(code)
 
   try {
     eval(

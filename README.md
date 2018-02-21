@@ -23,6 +23,9 @@ The app is currently live here: https://cs-playground-react.surge.sh/
 - To enable the tests, delete the `// SUPPRESS TESTS` comment at the bottom of the editor, to disable them again, add the `// SUPPRESS TESTS` comment to any part of the file (or you can use the shortcut keys: <kbd>CMD/CTRL</kbd>+<kbd>ALT</kbd>+<kbd>/</kbd>, which will toggle the `// SUPPRESS TESTS` comment at any time).
 - When the test suite for a particular problem is running, you may notice that some tests are disabled by default. This is mainly for really complicated data structure problems. Some tests are not required to ensure a fundamental understanding of a particular data structure, but still might be fun to solve anyway! So when this is the case, these tests are disabled, and are only enabled when you define the method in question on the class. If you don't define the method, they won't be tested, and not solving these problems won't count against you, or show up as a pesky, red, failing test.
 
+## Loop-Protect
+Infinite loop protection is enabled by default. Using [JSBin's loop-protect](https://github.com/jsbin/loop-protect) Babel transform, CS-Playground-React will automatically break loops that take over 500ms to run and will throw an error to let you know that there is likely a problem with your code. For instances where this is not the case, leave a \`// DISABLE LOOP PROTECT\` comment to run your code without loop protection. Beware! If you run code that does have an infinite loop while loop protect is disabled, you will crash the browser tab, so tread lightly when disabling this feature!
+
 ## Key Bindings / Application Shortcut Keys:
 - The editor has SublimeText keybindings.
 - Additional keys bindings / shortcuts:

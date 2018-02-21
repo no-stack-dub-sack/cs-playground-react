@@ -1,17 +1,21 @@
 .sidebar.left-pane.cobalt,
-.sidebar--menu--detail.cobalt {
+.sidebar--menu--detail.cobalt,
+.main--controls.cobalt {
   background: #002240;
   color: white;
 }
 
 .main--controls--button.cobalt {
-  color: white;
   background: #002240;
   border: 1px solid #ddd;
 }
 
+.main--controls--button.cobalt:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .main--controls--button.cobalt:active {
-  background: rgba(39, 145, 152, 0.52);
+  background: rgba(255,255,255,0.03);
 }
 
 .sidebar--output--messages.cobalt {
