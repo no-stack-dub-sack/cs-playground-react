@@ -81,10 +81,11 @@ function removeDuplicates(codeStore) {
 
 function add_SUPPRESS_TESTS_onlyOnce(codeStore, current, welcome) {
   const isDisabled = {}
-  const replsBeginIndex = _.findIndex(codeStore, { id: 'free_code' })
+  const replsBeginIndex = _.findIndex(codeStore, { id: 'Free_Code' })
   if (!localStorage.getItem(ALL_TESTS_SUPPRESSED)) {
     let i = 0
     for (let challenge of codeStore) {
+      // dont comment to repls
       if (i < replsBeginIndex) {
         challenge.userCode = challenge.userCode.concat(
           '\r\r// SUPPRESS TESTS, delete this line to activate\r'
@@ -96,7 +97,7 @@ function add_SUPPRESS_TESTS_onlyOnce(codeStore, current, welcome) {
       }
     }
     // add suppression to current challenge so user notices change
-    if (!current.isSolution && current.id !== 'free_code' && !welcome) {
+    if (!current.isSolution && current.id !== 'Free_Code' && !welcome) {
       current.code = current.code.concat(
         '\r\r// SUPPRESS TESTS, delete this line to activate\r'
       )

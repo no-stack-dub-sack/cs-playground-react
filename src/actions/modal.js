@@ -15,6 +15,11 @@ export const openResourcesModal = (id) => ({
   id: startCase(id)
 })
 
+export const openConfirmModal = (id) => ({
+  type: types.OPEN_CONFIRM_MODAL,
+  id
+})
+
 export const openAnnouncementModal = () => ({
   type: types.OPEN_ANNOUNCEMENT_MODAL,
   id: 'Announcement!',

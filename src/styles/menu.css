@@ -1,3 +1,7 @@
+.sidebar--menu summary::-webkit-details-marker {
+  color: #ccc;
+}
+
 .sidebar--menu.top-pane {
   overflow-y: auto;
   flex: auto;

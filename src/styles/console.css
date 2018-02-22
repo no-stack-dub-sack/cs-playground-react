@@ -44,7 +44,7 @@
   color: rgb(241, 246, 9);
 }
 
-code {
+.sidebar--output--messages code {
   color: #787577;
   font-style: italic;
 }

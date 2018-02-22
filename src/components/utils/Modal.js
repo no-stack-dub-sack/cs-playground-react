@@ -1,8 +1,10 @@
 import '../../styles/modal.css'
 import { closeModal } from '../../actions/modal'
+import { deleteRepl } from '../../actions/editor'
 import { connect } from 'react-redux'
 import { map } from 'lodash';
 import { RENDR_MODAL } from '../../utils/localStorageKeys'
+import { replace } from 'lodash'
 import Fade from './Fader'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -10,6 +12,27 @@ import ReactDOM from 'react-dom'
 import shortid from 'shortid'
 
 // modal types:
+const ConfirmModal = ({ closeModal, deleteRepl, id }) => (
+  <div className="modal">
+    <h2 className="modal--header">
+      { `Are you sure you want to delete the "${replace(id, /_/g, ' ')}" repl?` }
+    </h2>
+    <div className="modal--confirm-buttons">
+      <div
+        className="modal--confirm--yes"
+        id={'DELETE__' + replace(id, /\s/g, '_')}
+        onClick={deleteRepl}>
+        Yes
+      </div>
+      <div
+        className="modal--confirm--no"
+        onClick={closeModal}>
+        No
+      </div>
+    </div>
+  </div>
+)
+
 const ResourcesModal = (props) => (
   <div className="modal">
     <h2 className="modal--header">
@@ -87,6 +110,10 @@ class Modal extends Component {
       )) return true
     return false
   }
+  deleteRepl = ({ target: { id } }) => {
+    this.props.deleteRepl(id.slice(8))
+    this.props.closeModal()
+  }
   renderListItem = (item, i, arr) => {
     if (this.props.modalType === 'resources') {
       return (
@@ -118,10 +145,15 @@ class Modal extends Component {
               renderListItem={this.renderListItem}
               renderNumAnnounced={this.renderNumAnnounced} />
           : modalType === 'resources'
-          ?  <ResourcesModal
+          ? <ResourcesModal
               { ...this.props }
               renderListItem={this.renderListItem} />
-          : <ThemeModal header={header} /> }
+          : modalType === 'confirm'
+          ? <ConfirmModal
+              closeModal={this.props.closeModal}
+              deleteRepl={this.deleteRepl}
+              id={header} />
+        : <ThemeModal header={header} /> }
       </Fade>,
       document.getElementById('modal-root')
     )
@@ -147,4 +179,4 @@ const mapStateToProps = ({ modal }) => {
   }
 }
 
-export default connect(mapStateToProps, { closeModal })(Modal)
+export default connect(mapStateToProps, { closeModal, deleteRepl })(Modal)

@@ -146,6 +146,20 @@ const editor = (state = defaultState, action) => {
           }
         ]
       }
+    case types.DELETE_REPL:
+      const prev = indexOf(state.orderKey, action.id) - 1
+      return {
+        ...state,
+        codeStore: state.codeStore.filter(repl =>
+          repl.id !== action.id),
+        orderKey: state.orderKey.filter(repl =>
+          repl !== action.id),
+        current: {
+          id: state.codeStore[prev].id,
+          code: state.codeStore[prev].userCode,
+          isSolution: false
+        }
+      }
     default:
       return state
   }

@@ -36,3 +36,8 @@ export const updateCode = (code) => ({
   type: types.UPDATE_CODE,
   code
 })
+
+export const deleteRepl = (id) => ({
+  type: types.DELETE_REPL,
+  id
+})
