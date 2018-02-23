@@ -1,5 +1,10 @@
 import * as types from './types'
 
+export const loadRepl = (code) => ({
+  type: types.LOAD_REPL,
+  code
+})
+
 export const addRepl = (id) => ({
   type: types.ADD_REPL,
   id

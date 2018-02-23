@@ -1,6 +1,7 @@
 import './styles/app.css'
 import './styles/themes/__index__.css'
 import { connect } from 'react-redux'
+import { loadRepl } from './actions/editor'
 import { dragHorizontal, dragVertical, doubleClick } from './actions/panes'
 import { renderAnnouncementUtil } from './actions/modal'
 import axios from 'axios'
@@ -103,7 +104,7 @@ class App extends Component {
 // NOTE: Modal is Portal rendered within #modal-root, not the app #root
 // It WILL NOT be rendered alongside the other components in this tree
 
-export default connect(null, { doubleClick })(App)
+export default connect(null, { doubleClick, loadRepl })(App)
 
 // export default connect(
 //   ({ modal: { renderModal } }) => ({ renderModal }),

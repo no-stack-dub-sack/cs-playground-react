@@ -9,6 +9,20 @@ import { PlusSquare, Trash2 } from 'react-feather'
 import ReactTooltip from 'react-tooltip'
 
 import { ToastContainer, toast } from 'react-toastify';
+import Transition from 'react-transition-group/Transition';
+
+const BounceInBounceOut = ({ children, position, ...props }) => (
+  <Transition
+    {...props}
+    timeout={700}
+    onEnter={node => node.classList.add('bounceIn', 'animate')}
+    onExit={node => {
+      node.classList.remove('bounceIn', 'animate');
+      node.classList.add('bounceOut', 'animate');
+    }}>
+    {children}
+  </Transition>
+);
 
 const Button = ({ id, theme, renderModal }) => (
   <div className="sidebar--menu--detail--button--container">
@@ -38,20 +52,26 @@ class ReplsMap extends Component {
   handleChange = ({ target: { value } }) => {
     this.setState({ value })
   }
-  notify = () =>
-    toast.error(`There is already a repl or challenge with the name ${this.state.value}`)
+  notifyDuplicate = () => {
+    if (!toast.isActive(this.toastId)) {
+      this.toastId = toast.error(
+        `There is already a repl or challenge with the name ${this.state.value}`
+      )
+    }
+  }
   handleAddRepl = (e) => {
     e.preventDefault()
     const { value } = this.state
     const snakeCased = replace(value, /\s/g, '_')
     if (
-      !indexOf(this.props.challenges, snakeCased) &&
-      !indexOf(this.props.challenges, value)
+      // error handling for dupe challenge / repl names
+      indexOf(this.props.challenges, snakeCased) === -1 &&
+      indexOf(this.props.challenges, value) === -1
     ) {
       this.props.addRepl(snakeCased)
       this.setState({ value: '' })
     } else {
-      this.notify()
+      this.notifyDuplicate()
     }
   }
   selectChallenge = ({ currentTarget: { id }}) => {
@@ -79,31 +99,37 @@ class ReplsMap extends Component {
           id={id}
           renderModal={this.renderModal}
           theme={this.props.theme}  /> }
-        <ToastContainer position="bottom-right" />
       </div>
     )
   }
   render() {
     return (
-      <details open>
-        <summary className={`sidebar--menu--sub-header ${this.props.theme}`}>
-          Repls
-        </summary>
-        { map(this.props.repls, this.renderMenuItem) }
-        <div className={`sidebar--menu--detail ${this.props.theme}`}>
-          <PlusSquare
-            className={`sidebar--menu--input-icon ${this.props.theme}`}
-            onClick={() => this.input.focus()} />
-          <form onSubmit={this.handleAddRepl}>
-            {/* Error handling? No dupe IDs */}
-            <input
-              value={this.state.value}
-              onChange={this.handleChange}
-              ref={ref => this.input = ref}
-              type="text" />
-          </form>
-        </div>
-      </details>
+      <React.Fragment>
+        <details open>
+          <summary className={`sidebar--menu--sub-header ${this.props.theme}`}>
+            Repls
+          </summary>
+          { map(this.props.repls, this.renderMenuItem) }
+          <div className={`sidebar--menu--detail ${this.props.theme}`}>
+            <PlusSquare
+              className={`sidebar--menu--input-icon ${this.props.theme}`}
+              onClick={() => this.input.focus()} />
+            <form onSubmit={this.handleAddRepl}>
+              {/* Error handling? No dupe IDs */}
+              <input
+                value={this.state.value}
+                onChange={this.handleChange}
+                ref={ref => this.input = ref}
+                type="text" />
+            </form>
+          </div>
+        </details>
+        <ToastContainer
+          autoClose={3000}
+          closeButton={false}
+          position="bottom-right"
+          transition={BounceInBounceOut} />
+      </React.Fragment>
     )
   }
 }

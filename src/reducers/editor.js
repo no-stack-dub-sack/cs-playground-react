@@ -62,6 +62,15 @@ const editor = (state = defaultState, action) => {
       localStorage.removeItem(EDITR_STATE)
       localStorage.removeItem(ALL_TESTS_SUPPRESSED)
       return initialState
+    case types.LOAD_REPL:
+      return {
+        ...state,
+        current: {
+          id: 'sharedRepl',
+          code: action.code,
+          isSolution: false
+        }
+      }
     case types.UPDATE_CODE:
       return {
         ...state,
