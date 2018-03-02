@@ -1,8 +1,10 @@
 import '../../styles/modal.css'
 import { closeModal } from '../../actions/modal'
+import { deleteRepl } from '../../actions/editor'
 import { connect } from 'react-redux'
 import { map } from 'lodash';
 import { RENDR_MODAL } from '../../utils/localStorageKeys'
+import { replace } from 'lodash'
 import Fade from './Fader'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -10,6 +12,27 @@ import ReactDOM from 'react-dom'
 import shortid from 'shortid'
 
 // modal types:
+const ConfirmModal = ({ closeModal, deleteRepl, id, theme }) => (
+  <div className="modal">
+    <h2 className="modal--header">
+      { `Are you sure you want to delete the "${replace(id, /_/g, ' ')}" repl?` }
+    </h2>
+    <div className="modal--confirm-buttons">
+      <div
+        className={`modal--confirm--yes ${theme}`}
+        id={'DELETE__' + replace(id, /\s/g, '_')}
+        onClick={deleteRepl}>
+        Yes
+      </div>
+      <div
+        className={`modal--confirm--no ${theme}`}
+        onClick={closeModal}>
+        No
+      </div>
+    </div>
+  </div>
+)
+
 const ResourcesModal = (props) => (
   <div className="modal">
     <h2 className="modal--header">
@@ -87,6 +110,10 @@ class Modal extends Component {
       )) return true
     return false
   }
+  deleteRepl = ({ target: { id } }) => {
+    this.props.deleteRepl(id.slice(8))
+    this.props.closeModal()
+  }
   renderListItem = (item, i, arr) => {
     if (this.props.modalType === 'resources') {
       return (
@@ -118,9 +145,15 @@ class Modal extends Component {
               renderListItem={this.renderListItem}
               renderNumAnnounced={this.renderNumAnnounced} />
           : modalType === 'resources'
-          ?  <ResourcesModal
+          ? <ResourcesModal
               { ...this.props }
               renderListItem={this.renderListItem} />
+          : modalType === 'confirm'
+          ? <ConfirmModal
+              closeModal={this.props.closeModal}
+              deleteRepl={this.deleteRepl}
+              id={header}
+              theme={this.props.theme} />
           : <ThemeModal header={header} /> }
       </Fade>,
       document.getElementById('modal-root')
@@ -129,22 +162,24 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  messages: PropTypes.array.isRequired,
-  renderModal: PropTypes.bool.isRequired,
-  header: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
+  header: PropTypes.string.isRequired,
+  messages: PropTypes.array.isRequired,
+  modalType: PropTypes.string.isRequired,
+  renderModal: PropTypes.bool.isRequired,
   subHeader: PropTypes.string,
-  modalType: PropTypes.string.isRequired
+  theme: PropTypes.string.isRequired
 }
 
-const mapStateToProps = ({ modal }) => {
+const mapStateToProps = ({ modal, theme }) => {
   return {
-    messages: modal.messages,
-    renderModal: modal.renderModal,
     header: modal.modalId,
+    messages: modal.messages,
+    modalType: modal.modalType,
+    renderModal: modal.renderModal,
     subHeader: modal.subHeader,
-    modalType: modal.modalType
+    theme: theme.current
   }
 }
 
-export default connect(mapStateToProps, { closeModal })(Modal)
+export default connect(mapStateToProps, { closeModal, deleteRepl })(Modal)

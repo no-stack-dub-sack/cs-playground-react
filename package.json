@@ -16,10 +16,12 @@
     "react-feather": "^1.0.8",
     "react-redux": "^5.0.6",
     "react-scripts": "1.1.0",
+    "react-toastify": "^3.3.4",
     "react-tooltip": "^3.4.0",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "validator": "^9.4.1"
   },
   "repository": "no-stack-dub-sack/cs-playground-react",
   "scripts": {
@@ -27,8 +29,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "yarn run build && cd build && surge --domain cs-playground-react.surge.sh",
-    "test-deploy": "yarn run build && cd build && surge --domain questionable-number.surge.sh"
+    "pre-deploy": "yarn run build && cd build && cp index.html 200.html",
+    "deploy": "yarn run pre-deploy && cd build && surge --domain cs-playground-react.surge.sh & cd ..",
+    "deploy:test": "yarn run pre-deploy && cd build && surge --domain questionable-number.surge.sh && cd .."
   },
   "devDependencies": {
     "chalk": "^2.3.0",

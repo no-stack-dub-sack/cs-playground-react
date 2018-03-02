@@ -16,7 +16,7 @@ _.mixin({
 })
 
 class MenuMap extends Component {
-  selectSeed = ({ currentTarget: { id }}) => {
+  selectChallenge = ({ currentTarget: { id }}) => {
     this.props.selectChallenge(id)
   }
   // stop event propagation to prevent events
@@ -40,16 +40,20 @@ class MenuMap extends Component {
   }
   renderMenuItem = (item) => {
     const id = _.pascalCase(item.title)
+    let itemClasses = id === this.props.codeId ? 'active ' : ''
+    itemClasses += this.props.theme + ' ' + this.props.xtraClass
     return (
       <div
-        className={`sidebar--menu--detail ${id === this.props.codeId ? 'active' : ''} ${this.props.theme} ${ this.props.xtraClass }`}
+        className={`sidebar--menu--detail ${itemClasses}`}
         id={id}
         key={shortid.generate()}
-        onClick={this.selectSeed}>
+        onClick={this.selectChallenge}>
         <span>
           {item.title}
         </span>
-      { !/Benchmarks/.test(item.title) &&
+        {/* If challenge does not have resources or solution, e.g.
+        repl or sort benchmarks, do not render button container */}
+      { item.solution && item.resources &&
         <MenuButtons
           id={id}
           theme={this.props.theme}

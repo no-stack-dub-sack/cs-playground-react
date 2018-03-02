@@ -2,10 +2,35 @@
   color: #fd971f;
 }
 
+.loader.monokai,
 .sidebar--menu--detail--button.resources.monokai {
   color: #ae81ff;
 }
 
 .sidebar--menu.monokai > details {
   width: 92%;
+}
+
+.loader-container.monokai {
+  background: #272822;
+}
+
+.toast.monokai {
+  background: #fd971f;
+}
+
+.sidebar--menu--input.monokai:focus {
+  border-bottom: 2px solid #ae81ff;
+}
+
+.modal--confirm--yes.monokai:hover,
+.modal--confirm--no.monokai:hover {
+  border-color: #ae81ff;
+  color: #fd971f;
+}
+
+.modal--confirm--yes.monokai:active,
+.modal--confirm--no.monokai:active {
+  border-color: #fd971f;
+  color: #ae81ff;
 }

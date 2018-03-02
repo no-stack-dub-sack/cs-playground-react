@@ -13,6 +13,13 @@
      * .sidebar--output--messages.<theme-class-name>
      * .sidebar--menu--detail--button.solution.<theme-class-name>
      * .sidebar--menu--detail--button.resources.<theme-class-name>
+     * .loader-container.<theme-class-name>
+     * .loader.<theme-class-name>
+     * .toast.<theme-class-name>
+     * .sidebar--menu--input.<theme-class-name>
+     * .sidebar--menu--input-icon.<theme-class-name>
+     * .modal--confirm--yes.<theme-class-name>
+     * .modal--confirm--no.<theme-class-name>
  */
 
 @import 'abcdef.css';

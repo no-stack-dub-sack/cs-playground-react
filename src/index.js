@@ -33,7 +33,7 @@ export const store = createStore(
 window.onbeforeunload = function(e) {
   const state = store.getState()
   // use // DO NOT SAVE comment to disable saving
-  if (!DO_NOT_SAVE.test(state.editor.current.code)) {
+  if (!DO_NOT_SAVE.test(state.editor.current.code) && !state.editor.isSharedRepl) {
     localStorage.setItem(
       LS.EDITR_STATE,
       JSON.stringify(state.editor)

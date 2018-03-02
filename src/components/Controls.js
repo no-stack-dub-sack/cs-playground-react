@@ -1,10 +1,16 @@
 import '../styles/controls.css'
+import { apiURL, isProd } from '../App'
 import { clearConsole } from '../actions/console'
 import { connect } from 'react-redux'
 import { RESET_STATE } from '../utils/regexp'
+import { Share } from 'react-feather';
+import { ToastContainer, toast } from 'react-toastify'
+import axios from 'axios'
+import BounceInBounceOut from './utils/BounceTransition'
 import executeCode from '../utils/test/challenge/eval-code-run-tests'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import ReactTooltip from 'react-tooltip'
 
 import {
   nextChallenge,
@@ -13,6 +19,12 @@ import {
   toggleSolution
 } from '../actions/editor'
 
+const tipData = [
+  ['shareTip', 'Get Share Link'],
+  ['runCodeTip', 'Cmd/Ctrl + Enter'],
+  ['prevTip','Cmd/Ctrl + Shift + <'],
+  ['nextTip','Cmd/Ctrl + Shift + >']
+]
 
 class Controls extends Component {
   constructor(props) {
@@ -101,28 +113,87 @@ class Controls extends Component {
       )
     }
   }
+  generateShareLink = () => {
+    const baseURL = isProd
+      // NOTE: Change for prod to CS-Address!
+      ? 'https://questionable-number.surge.sh'
+      : 'http://localhost:3000'
+    // make POST req to cs-pg-react-api and respond
+    // with mongoId associated w/ stored code string.
+    axios.post(`${apiURL}/insert-code`, {
+      api_key: process.env.REACT_APP_API_KEY,
+      code: this.props.code
+    })
+      .then(res => {
+        // concat w/ base & copy to clipboard as share link
+        this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
+      })
+      .catch(err => {
+        console.error(err)
+        console.log('Error generating share link...')
+      })
+  }
+  toastShareLink = (shareLink) => {
+    if (!toast.isActive(this.toastId)) {
+      this.toastId = toast.error(
+        `Your share link is ${shareLink}`, {
+          autoClose: 5000,
+          closeOnClick: false
+        }
+      )
+    }
+  }
   render() {
     return (
-      <section className={`main--controls ${this.props.theme}`}>
-        <button
-          onClick={() => this.handleExecuteCode(this.props)}
-          className={`main--controls--button ${this.props.theme} run-code`}
-          title="Ctrl + Enter">
-          Run Code
-        </button>
-        <button
-          onClick={this.props.prevChallenge}
-          className={`main--controls--button ${this.props.theme} previous`}
-          title="Ctrl + Shift + <">
-          Previous
-        </button>
-        <button
-          onClick={this.props.nextChallenge}
-          className={`main--controls--button ${this.props.theme} next`}
-          title="Ctrl + Shift + >">
-          Next
-        </button>
-      </section>
+      <React.Fragment>
+        <section className={`main--controls ${this.props.theme}`}>
+          <button
+            onClick={this.generateShareLink}
+            className={`main--controls--button ${this.props.theme} share-code`}
+            data-tip
+            data-for="shareTip">
+            <Share />
+          </button>
+          <button
+            onClick={() => this.handleExecuteCode(this.props)}
+            className={`main--controls--button ${this.props.theme} run-code`}
+            data-tip
+            data-for="runCodeTip">
+            Run Code
+          </button>
+          <button
+            onClick={this.props.prevChallenge}
+            className={`main--controls--button ${this.props.theme} previous`}
+            data-tip
+            data-for="prevTip">
+            Previous
+          </button>
+          <button
+            onClick={this.props.nextChallenge}
+            className={`main--controls--button ${this.props.theme} next`}
+            data-tip
+            data-for="nextTip">
+            Next
+          </button>
+          {tipData.map(tip => (
+            <ReactTooltip
+              id={tip[0]}
+              key={tip[0]}
+              border={true}
+              effect='solid'
+              delayShow={1000}>
+              {tip[1]}
+            </ReactTooltip>
+          ))}
+        </section>
+        <ToastContainer
+          closeButton={false}
+          position="bottom-right"
+          toastClassName={`toast ${this.props.theme}`}
+          transition={BounceInBounceOut} />
+        {/* dummy div for copying share link */}
+        <input type="text" ref={ref => this.dummy = ref} />
+      </React.Fragment>
     )
   }
 }

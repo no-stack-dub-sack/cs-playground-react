@@ -69,7 +69,9 @@
   background: rgba(0,0,0,0.03);
 }
 
-.sidebar--menu--detail--button.solution.paraiso-light {
+.sidebar--menu--detail--button.solution.paraiso-light,
+.sidebar--menu--input-icon.paraiso-light,
+.sidebar--menu--input.paraiso-light {
   color: #ef6155;
 }
 
@@ -79,4 +81,32 @@
 
 .sidebar--menu.paraiso-light > details {
   width: 96%;
+}
+
+.loader-container.paraiso-light {
+  background: #e7e9db;
+}
+
+.loader.paraiso-light {
+  color: #e96ba8;
+}
+
+.toast.paraiso-light {
+  background: #ef6155;
+}
+
+.sidebar--menu--input.paraiso-light:focus {
+  border-bottom: 2px solid #06b6ef;
+}
+
+.modal--confirm--yes.paraiso-light:hover,
+.modal--confirm--no.paraiso-light:hover {
+  border-color: #ef6155;
+  color: #06b6ef;
+}
+
+.modal--confirm--yes.paraiso-light:active,
+.modal--confirm--no.paraiso-light:active {
+  border-color: #06b6ef;
+  color: #ef6155;
 }

@@ -1,3 +1,4 @@
+.loader.lesser-dark,
 .sidebar--menu--detail--button.solution.lesser-dark {
   color: #599eff;
 }
@@ -8,4 +9,28 @@
 
 .sidebar--menu.lesser-dark > details {
   width: 92%;
+}
+
+.loader-container.lesser-dark {
+  background: #262626;
+}
+
+.toast.lesser-dark {
+  background: #599eff;
+}
+
+.sidebar--menu--input.lesser-dark:focus {
+  border-bottom: 2px solid #D9BF8C;
+}
+
+.modal--confirm--yes.lesser-dark:hover,
+.modal--confirm--no.lesser-dark:hover {
+  border-color: #D9BF8C;
+  color: #599eff;
+}
+
+.modal--confirm--yes.lesser-dark:active,
+.modal--confirm--no.lesser-dark:active {
+  border-color: #599eff;
+  color: #D9BF8C;
 }

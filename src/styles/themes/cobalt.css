@@ -18,10 +18,12 @@
   background: rgba(255,255,255,0.03);
 }
 
+.loader-container.cobalt,
 .sidebar--output--messages.cobalt {
   background: #002240;
 }
 
+.loader.cobalt,
 .sidebar--menu--detail--button.solution.cobalt {
   color: #08f;
 }
@@ -45,4 +47,29 @@
 
 .sidebar--menu.cobalt > details {
   width: 92%;
+}
+
+.toast.cobalt {
+  background: #08f;
+}
+
+.sidebar--menu--input.cobalt,
+.sidebar--menu--input-icon.cobalt {
+  color: white;
+}
+
+.sidebar--menu--input.cobalt:focus {
+  border-bottom: 2px solid #08f;
+}
+
+.modal--confirm--yes.cobalt:hover,
+.modal--confirm--no.cobalt:hover {
+  border-color: #08f;
+  color: #ffee80;
+}
+
+.modal--confirm--yes.cobalt:active,
+.modal--confirm--no.cobalt:active {
+  border-color: #ffee80;
+  color: #08f;
 }

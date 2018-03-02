@@ -56,6 +56,14 @@ export default (state = defaultState, action) => {
         subHeader: action.subHeader,
         messages: action.messages
       }
+    case types.OPEN_CONFIRM_MODAL:
+      return {
+        modalId: action.id,
+        modalType: 'confirm',
+        renderModal: true,
+        subHeader: '',
+        messages: []
+      }
     default:
       return state
   }

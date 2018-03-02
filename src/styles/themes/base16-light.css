@@ -4,6 +4,7 @@
   color: #8f5536;
 }
 
+.loader.base16-light,
 .sidebar--menu--detail--button.solution.base16-light {
   color: #ac4142;
 }
@@ -23,4 +24,33 @@
 
 .sidebar--menu--detail.base16-light.active {
   background: rgba(0,0,0,0.03);
+}
+
+.loader-container.base16-light {
+  background: #f5f5f5;
+}
+
+.toast.base16-light {
+  background: #ac4142;
+}
+
+.sidebar--menu--input.base16-light,
+.sidebar--menu--input-icon.base16-light {
+  color: #8f5536;
+}
+
+.sidebar--menu--input.base16-light:focus {
+  border-bottom: 2px solid #f4bf75;
+}
+
+.modal--confirm--yes.base16-light:hover,
+.modal--confirm--no.base16-light:hover {
+  border-color: #f4bf75;
+  color: #90a959;
+}
+
+.modal--confirm--yes.base16-light:active,
+.modal--confirm--no.base16-light:active {
+  border-color: #90a959;
+  color: #f4bf75;
 }

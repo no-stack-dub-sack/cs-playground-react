@@ -1,6 +1,7 @@
 .main--controls {
   height: 50px;
   background: #707070;
+  display: flex;
 }
 
 .main--controls--button {
@@ -28,7 +29,11 @@
 }
 
 .main--controls--button.run-code {
-  width: 50%;
+  width: 40%;
+}
+
+.main--controls--button.share-code {
+  width: 10%;
 }
 
 .main--controls--button.next,

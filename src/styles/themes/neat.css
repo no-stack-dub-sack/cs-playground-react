@@ -2,6 +2,7 @@
   color: #a86;
 }
 
+.loader.neat,
 .sidebar--menu--detail--button.resources.neat {
   color: #3a3;
 }
@@ -21,4 +22,28 @@
 
 .sidebar--menu--detail.neat.active {
   background: rgba(255,255,255,0.03);
+}
+
+.loader-container.neat {
+  background: #272822;
+}
+
+.toast.neat {
+  background: #a86;
+}
+
+.sidebar--menu--input.neat:focus {
+  border-bottom: 2px solid #3a3;
+}
+
+.modal--confirm--yes.neat:hover,
+.modal--confirm--no.neat:hover {
+  border-color: #3a3;
+  color: #a86;
+}
+
+.modal--confirm--yes.neat:active,
+.modal--confirm--no.neat:active {
+  border-color: #a86;
+  color: #3a3;
 }

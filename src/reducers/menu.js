@@ -1,5 +1,4 @@
 import * as types from '../actions/types'
-import { CODE } from '../assets/codeRef'
 import { MENU_STATE } from '../utils/localStorageKeys'
 
 // reducer's default state is either the initial state or
@@ -7,11 +6,12 @@ import { MENU_STATE } from '../utils/localStorageKeys'
 
 const initialState = () => {
   let initialStateArr = []
-  for (var menuItem in CODE) {
-    initialStateArr.push({ name: menuItem, open: true })
-  }
-  // add menuItem not in CODE
+  initialStateArr.push({ name: 'SORTING_ALGOS', open: true })
+  initialStateArr.push({ name: 'DATA_STRUCTURES', open: false })
   initialStateArr.push({ name: 'ALGORITHM_CHALLENGES', open: true })
+  initialStateArr.push({ name: 'EASY_ALGOS', open: false })
+  initialStateArr.push({ name: 'MODERATE_ALGOS', open: false })
+  initialStateArr.push({ name: 'REPLS', open: true })
   return initialStateArr
 }
 
