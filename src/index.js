@@ -46,6 +46,10 @@ window.onbeforeunload = function(e) {
       LS.THEME_STATE,
       JSON.stringify(state.theme)
     )
+    localStorage.setItem(
+      LS.MENU_STATE,
+      JSON.stringify(state.menu)
+    )
   }
   // save pane state
   console.log('CS-Playground-React-State Saved!')

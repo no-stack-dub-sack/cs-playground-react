@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import MenuMap from './MenuMap'
 import PropTypes from 'prop-types'
 import React from 'react'
-
 const {
   SORTING_ALGOS,
   DATA_STRUCTURES,
@@ -22,10 +21,14 @@ const Menu = ({ theme, topHeight, transition }) => {
       </header>
       <MenuMap
         header="Sorting Algorithms"
-        items={SORTING_ALGOS} />
+        items={SORTING_ALGOS}
+        name="SORTING_ALGOS"
+      />
       <MenuMap
         header="Data Structures"
-        items={DATA_STRUCTURES} />
+        items={DATA_STRUCTURES}
+        name="DATA_STRUCTURES"
+      />
       <details open>
         <summary className={`sidebar--menu--sub-header ${theme}`}>
           Algorithm Challenges
@@ -33,11 +36,14 @@ const Menu = ({ theme, topHeight, transition }) => {
         <MenuMap
           header="Easy"
           items={EASY_ALGOS}
-          xtraClass="sub" />
+          name="EASY_ALGOS"
+        />
         <MenuMap
           header="Moderate"
+          xtraClass="sub"
           items={MODERATE_ALGOS}
-          xtraClass="sub" />
+          name="MODERATE_ALGOS"
+        />
       </details>
     </section>
   )

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactTooltip from 'react-tooltip'
 import shortid from 'shortid'
+import { toggleMenu } from '../../actions/menu'
 
 _.mixin({
   'pascalCase': _.flow(
@@ -24,6 +25,15 @@ class MenuMap extends Component {
   selectSolution = (e) => {
     e.stopPropagation()
     this.props.selectSolution(e.currentTarget.id.slice(10))
+  }
+  toggleMenu = (e) => {
+    e.stopPropagation();
+    if(e.currentTarget.open) {
+      this.props.toggleMenu({name: this.props.name, open: true})
+    }
+    else {
+        this.props.toggleMenu({name: this.props.name, open: false})
+    }
   }
   renderModal = (e) => {
     e.stopPropagation()
@@ -63,9 +73,17 @@ class MenuMap extends Component {
       </div>
     )
   }
+  menuToggle = (menuOpen, props) => {
+      const  menuItem = menuOpen.filter((menuItem) => {
+         return menuItem.name === props.name
+      });
+      return menuItem.length ? menuItem[0].open : true;
+  }
   render() {
+    const {menuOpen} = this.props;
+    const menuState = this.menuToggle(menuOpen, this.props);
     return (
-      <details open>
+      <details open={menuState} onToggle={this.toggleMenu} name={this.props.name}>
         <summary className={`sidebar--menu--sub-header ${this.props.theme}`}>
           {this.props.header}
         </summary>
@@ -84,9 +102,11 @@ MenuMap.propTypes = {
   openResourcesModal: PropTypes.func.isRequired,
   renderModal: PropTypes.bool.isRequired,
   selectChallenge: PropTypes.func.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
   selectSolution: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
   xtraClass: PropTypes.string,
+  name: PropTypes.string,
 }
 
 MenuMap.defaultProps = {
@@ -97,14 +117,16 @@ const mapStateToProps = (state) => ({
   modalId: state.modal.modalId,
   renderModal: state.modal.renderModal,
   codeId: state.editor.current.id,
-  theme: state.theme.current
+  theme: state.theme.current,
+  menuOpen: state.menu
 })
 
 const mapDispatchToProps = {
   selectChallenge,
   selectSolution,
   openResourcesModal,
-  closeModal
+  closeModal,
+  toggleMenu
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuMap)
