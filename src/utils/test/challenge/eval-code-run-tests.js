@@ -1,8 +1,7 @@
-import { HAS_LOOPS, SUPPRESS_TESTS, DISABLE_LOOP_PROTECT } from '../../regexp'
+import { SUPPRESS_TESTS, DISABLE_LOOP_PROTECT } from '../../regexp'
 import executeTests from './execute-tests'
 import loopProtect from './loop-protect'
 import TESTS from '../../../assets/testRef'
-import trimComments from './trim-code'
 /* eslint-disable no-eval */
 
 export default (code, id) => {
@@ -22,13 +21,15 @@ export default (code, id) => {
   // if suppressTests is true or tests do not exist
   // only eval code, otherwise eval & execute tests
   if (!SUPPRESS_TESTS.test(code) && TESTS[id]) {
-    tests = prepend + JSON.stringify(TESTS[id].tests)
+    tests = prepend + JSON.stringify(TESTS[id].tests, null, 2)
     if (TESTS[id].tail) tail += TESTS[id].tail
   }
 
-  // check code for do/while/for loops & apply loop-protect if needed/enabled
-  if (!DISABLE_LOOP_PROTECT.test(code) && HAS_LOOPS.test(trimComments(code)))
-    code = loopProtect(code)
+  // apply loop-protect if not disabled by user
+  if (!DISABLE_LOOP_PROTECT.test(code))
+    code = loopProtect(code) + '\n\n'
+    // add line break to counteract
+    // whitespace trim by loopProtect
 
   try {
     eval(
@@ -38,9 +39,6 @@ export default (code, id) => {
       executeTests
     )
   } catch (e) {
-    const error = e.toString()
-    if (/Potential infinite loop/.test(error))
-      console.log(error.replace('Error', 'RangeError'))
-    else console.log(error)
+    console.log(e.toString())
   }
 }
