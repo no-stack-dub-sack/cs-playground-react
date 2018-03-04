@@ -1,12 +1,10 @@
+// @flow
 import './styles/app.css'
 import './styles/themes/__index__.css'
-import { connect } from 'react-redux'
-import { isMongoId } from 'validator'
-import { loadRepl } from './actions/editor'
-import { dragHorizontal, dragVertical, doubleClick } from './actions/panes'
-import { renderAnnouncementUtil } from './actions/modal'
-import { toast } from 'react-toastify'
-import axios from 'axios'
+
+import React, { Component } from 'react'
+import { doubleClick, dragHorizontal, dragVertical } from './actions/panes'
+
 import CodeMirrorRenderer from './components/CodeMirrorRenderer'
 import Console from './components/sidebar/Console'
 import Controls from './components/Controls'
@@ -14,11 +12,16 @@ import Divider from './components/utils/Divider'
 import Menu from './components/sidebar/Menu'
 import Modal from './components/utils/Modal'
 import Pane from './components/utils/Pane'
-import React, { Component } from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux'
+import { isMongoId } from 'validator'
+import { loadRepl } from './actions/editor'
+import { renderAnnouncementUtil } from './actions/modal'
+import { toast } from 'react-toastify'
 
 /** TODO:
   * add validator isMongoId for GET & POST requests
-  * fix loop-protect issue
+  * fix default test disable for first time visitors
   *
   * POST UPDATE RELEASE:
       * add Menu Searh / Filter

@@ -1,23 +1,24 @@
 import '../styles/controls.css'
-import { apiURL, isProd } from '../App'
-import { clearConsole } from '../actions/console'
-import { connect } from 'react-redux'
-import { RESET_STATE } from '../utils/regexp'
-import { Share } from 'react-feather';
-import { ToastContainer, toast } from 'react-toastify'
-import axios from 'axios'
-import BounceInBounceOut from './utils/BounceTransition'
-import executeCode from '../utils/test/challenge/eval-code-run-tests'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import ReactTooltip from 'react-tooltip'
 
+import React, { Component } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import { apiURL, isProd } from '../App'
 import {
   nextChallenge,
   prevChallenge,
   resetEditorState,
   toggleSolution
 } from '../actions/editor'
+
+import BounceInBounceOut from './utils/BounceTransition'
+import PropTypes from 'prop-types'
+import { RESET_STATE } from '../utils/regexp'
+import ReactTooltip from 'react-tooltip'
+import { Share } from 'react-feather';
+import axios from 'axios'
+import { clearConsole } from '../actions/console'
+import { connect } from 'react-redux'
+import executeCode from '../utils/test/challenge/eval-code-run-tests'
 
 const tipData = [
   ['shareTip', 'Get Share Link'],

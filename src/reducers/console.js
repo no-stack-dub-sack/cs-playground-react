@@ -1,13 +1,13 @@
-import * as types from '../actions/types'
+import type { Action } from '../types/Actions'
 
-export default (state = [], action) => {
+export default (state: Array<string> = [], action: Action) => {
   switch(action.type) {
-    case types.CONSOLE_LOG:
+    case 'CONSOLE_LOG':
       return [
         ...state,
         action.logs
       ]
-    case types.CLEAR_CONSOLE:
+    case 'CLEAR_CONSOLE':
       return []
     default:
       return state

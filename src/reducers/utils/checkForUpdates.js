@@ -1,5 +1,8 @@
-import createOrderKey from './createOrderKey'
-
+import {
+  ALL_TESTS_SUPPRESSED,
+  IS_SUITE_SUPPRESSED,
+  RMOVE_DUPES,
+} from '../../utils/localStorageKeys'
 import {
   concat,
   filter,
@@ -10,11 +13,7 @@ import {
   uniqWith
 } from 'lodash'
 
-import {
-  RMOVE_DUPES,
-  ALL_TESTS_SUPPRESSED,
-  IS_SUITE_SUPPRESSED,
-} from '../../utils/localStorageKeys'
+import createOrderKey from './createOrderKey'
 
 // isolate new challenges, combine, remove exact dupes
 function mergeCodeStores({ codeStore: initialState }, { codeStore }) {

@@ -1,13 +1,21 @@
+// @flow
 import { Transition } from 'react-transition-group'
-import React from 'react'
+import * as React from 'react'
 
-const transitionStyles = {
+const transitionStyles: { [string]: Object } = {
   entering: { opacity: 0 },
   entered: { opacity: 1 },
   exiting: { opacity: 0 },
 }
 
-const Fade = ({ in: inProp, children, attachRef, duration }) => {
+type Props = {
+  in: boolean,
+  children: React.Node,
+  attachRef: Function,
+  duration: number | { enter: number, exit: number }
+}
+
+const Fade = ({ in: inProp, children, attachRef, duration }: Props) => {
   const defaultStyle = {
     transition: `opacity ${duration.exit ? duration.exit : duration}ms ease-out`,
     opacity: 0

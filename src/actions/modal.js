@@ -3,12 +3,10 @@ import { RENDR_MODAL } from '../utils/localStorageKeys'
 import { store } from '../index'
 import { startCase } from 'lodash'
 
-export const openThemeModal = (id) => {
-  return {
-    type: types.OPEN_THEME_MODAL,
-    id: startCase(id)
-  }
-}
+export const openThemeModal = (id) => ({
+  type: types.OPEN_THEME_MODAL,
+  id: startCase(id)
+})
 
 export const openResourcesModal = (id) => ({
   type: types.OPEN_RESOURCES_MODAL,
