@@ -125,7 +125,7 @@ class Controls extends Component {
       code: this.props.code
     })
       .then(res => {
-        // concat w/ base & copy to clipboard as share link
+        // concat w/ base offer toast for user to copy to clipboard
         this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
       })
       .catch(err => {
@@ -136,12 +136,25 @@ class Controls extends Component {
   toastShareLink = (shareLink) => {
     if (!toast.isActive(this.toastId)) {
       this.toastId = toast.error(
-        `Your share link is ${shareLink}`, {
-          autoClose: 5000,
-          closeOnClick: false
+        `Your share link is ${shareLink} (click to copy)`, {
+          autoClose: false,
+          onClose: () => this.copyShareLink(shareLink),
         }
       )
     }
+  }
+  copyShareLink = (shareLink) => {
+    const input = this.secretShareLinkInput
+
+    if (input) {
+      input.value = shareLink
+      input.select()
+      document.execCommand("Copy")
+      this.toastId = toast.success(
+        `Share link copied to clipboard!`, { autoClose: 2500 }
+      )
+    }
+
   }
   render() {
     return (
@@ -192,7 +205,7 @@ class Controls extends Component {
           toastClassName={`toast ${this.props.theme}`}
           transition={BounceInBounceOut} />
         {/* dummy div for copying share link */}
-        <input type="text" ref={ref => this.dummy = ref} />
+        <input type="text" ref={ref => this.secretShareLinkInput = ref} />
       </React.Fragment>
     )
   }
