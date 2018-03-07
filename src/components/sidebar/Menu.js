@@ -1,11 +1,13 @@
 import '../../styles/menu.css'
-import { CODE } from '../../assets/codeRef'
-import { connect } from 'react-redux'
+
 import { isMenuOpen, toggleMenu } from '../../actions/menu'
+
+import { CODE } from '../../assets/codeRef'
 import MenuMap from './MenuMap'
-import ReplsMap from './ReplsMap'
 import PropTypes from 'prop-types'
 import React from 'react'
+import ReplsMap from './ReplsMap'
+import { connect } from 'react-redux'
 
 const {
   SORTING_ALGOS,

@@ -1,6 +1,6 @@
 import type { Action } from '../types/Actions'
 
-export default (state: Array<string> = [], action: Action) => {
+export default (state: string[] = [], action: Action): string[] => {
   switch(action.type) {
     case 'CONSOLE_LOG':
       return [

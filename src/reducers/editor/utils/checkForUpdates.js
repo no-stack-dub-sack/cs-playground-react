@@ -1,8 +1,16 @@
+// @flow
 import {
   ALL_TESTS_SUPPRESSED,
   IS_SUITE_SUPPRESSED,
   RMOVE_DUPES,
-} from '../../utils/localStorageKeys'
+} from '../../../utils/localStorageKeys'
+import type {
+  AddSuppressTests,
+  CheckForUpdates,
+  ComposeCodeStore,
+  MergeCodeStores,
+  RemoveDupes
+} from '../../../types/Editor'
 import {
   concat,
   filter,
@@ -16,7 +24,7 @@ import {
 import createOrderKey from './createOrderKey'
 
 // isolate new challenges, combine, remove exact dupes
-function mergeCodeStores({ codeStore: initialState }, { codeStore }) {
+const mergeCodeStores: MergeCodeStores = (initialState, codeStore) => {
   return uniqWith([
     ...codeStore,
     ...filter(
@@ -29,18 +37,19 @@ function mergeCodeStores({ codeStore: initialState }, { codeStore }) {
   ], isEqual)
 }
 
-function removeDuplicates(codeStore) {
+const removeDuplicates: RemoveDupes = (codeStore) => {
   if (!localStorage.getItem(RMOVE_DUPES)) {
     for (let i = 0; i < codeStore.length; i++) {
       if (codeStore[i]) {
         const predicate = { id: codeStore[i].id }
         while (findIndex(codeStore, predicate, i+1) > i) {
           const idx = findIndex(codeStore, predicate, i+1)
+          // $FlowFixMe
           codeStore[idx] = null
         }
       }
     }
-    localStorage.setItem(RMOVE_DUPES, true)
+    localStorage.setItem(RMOVE_DUPES, 'true')
   }
   return filter(
     codeStore,
@@ -48,7 +57,7 @@ function removeDuplicates(codeStore) {
   )
 }
 
-function addSuppressTestsOnlyOnce(codeStore, current, orderKey) {
+const addSuppressTestsOnlyOnce: AddSuppressTests = (codeStore, current, orderKey) => {
   const isDisabled = {}
   if (!localStorage.getItem(ALL_TESTS_SUPPRESSED)) {
     for (let i = 0; i < codeStore.length; i++) {
@@ -70,17 +79,19 @@ function addSuppressTestsOnlyOnce(codeStore, current, orderKey) {
     }
     localStorage.setItem(IS_SUITE_SUPPRESSED, JSON.stringify(isDisabled))
     // indicate all tests have been suppressed by default
-    localStorage.setItem(ALL_TESTS_SUPPRESSED, true)
+    localStorage.setItem(ALL_TESTS_SUPPRESSED, 'true')
   }
   return { codeStore, current }
 }
 
 // compose utils, return dupe free code store
-function composeCodeStore(initialState, defaultState) {
+const composeCodeStore: ComposeCodeStore = (initialState, defaultState) =>  {
   return addSuppressTestsOnlyOnce(
     removeDuplicates(
-      mergeCodeStores(initialState, defaultState),
-      initialState.codeStore,
+      mergeCodeStores(
+        initialState.codeStore,
+        defaultState.codeStore
+      )
     ),
     defaultState.current,
     initialState.orderKey.slice(0, -1)
@@ -90,7 +101,7 @@ function composeCodeStore(initialState, defaultState) {
 // expose as checkForUpdates to compare default/initial states
 // if new challenges have been added, call composeCodeStore
 // to merge in new challenges and/or remove dupes from bug
-export default function(initialState, defaultState, CODE) {
+const checkForUpdates: CheckForUpdates = (initialState, defaultState, CODE) => {
   const newCodeStore = defaultState.codeStore
   const oldCodeStore = initialState.codeStore
   const replsBeginIdx = findIndex(defaultState.codeStore, { id: 'Free_Code' })
@@ -109,3 +120,5 @@ export default function(initialState, defaultState, CODE) {
   }
   return defaultState
 }
+
+export default checkForUpdates

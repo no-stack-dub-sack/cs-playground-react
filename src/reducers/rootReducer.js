@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import console from './console'
-import editor from './editor'
+import editor from './editor/editor'
+import menu from './menu'
 import modal from './modal'
 import panes from './panes'
 import theme from './theme'
-import menu from './menu'
 
 const rootReducer = combineReducers({
   console,

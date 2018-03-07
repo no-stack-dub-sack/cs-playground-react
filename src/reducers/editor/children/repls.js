@@ -1,26 +1,10 @@
 // @flow
 import { filter, indexOf } from 'lodash'
 
-import type { Action } from '../types/Actions'
-import { defaultState } from './editor'
+import type { Action } from '../../../types/Actions'
+import type { EditorState } from '../../../types/Editor'
 
-export type Challenges = {
-  id: string,
-  userCode: string
-}
-
-export type State = {
-  isSharedRepl: boolean,
-  current: {
-    id: string,
-    code: string,
-    isSolution: boolean
-  },
-  codeStore: Array<Challenges>,
-  orderKey: Array<string>
-}
-
-export default (state: State = defaultState, action: Action) => {
+export default (state: EditorState, action: Action): EditorState => {
   switch (action.type) {
     case 'LOAD_SHARED_REPL':
       return {
