@@ -1,6 +1,6 @@
 // @flow
 import type { Action } from '../../../types/Actions'
-import type { EditorState } from '../../../types/Editor'
+import type { EditorState } from '../../../types/Reducers'
 import { SOLUTIONS } from '../../../assets/codeRef'
 import editor from '../editor'
 
@@ -11,12 +11,12 @@ export default (state: EditorState, action: Action): EditorState => {
         ...state,
         current: {
           id: action.id,
-          code: SOLUTIONS[action.id],
+          code: SOLUTIONS.get(action.id) || '',
           isSolution: true
         }
       }
     case 'TOGGLE_SOLUTION':
-      if (!SOLUTIONS[state.current.id])
+      if (!SOLUTIONS.has(state.current.id))
         return state
       return !state.current.isSolution
         ? editor(state, { type: 'SELECT_SOLUTION', id: state.current.id })

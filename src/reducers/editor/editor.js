@@ -3,13 +3,13 @@ import { ALL_TESTS_SUPPRESSED, EDITR_STATE } from '../../utils/localStorageKeys'
 
 import type { Action } from '../../types/Actions'
 import { CODE } from '../../assets/codeRef'
-import type { EditorState } from '../../types/Editor'
+import type { EditorState } from '../../types/Reducers'
 import WELCOME_MESSAGE from '../../assets/seed/welcome'
 import challengeNav from './children/challenges'
-import checkForUpdates from './utils/checkForUpdates'
 import createOrderKey from './utils/createOrderKey'
 import populateCodeStore from './utils/populateCodeStore'
 import repls from './children/repls'
+import { runInitializationUtils } from './utils/initializationUtils'
 import solutionNav from './children/solutions'
 import updateCodeStore from './utils/updateCodeStore'
 
@@ -26,12 +26,13 @@ const initialState: EditorState = {
 
 // reducer's default state is either initialState
 // or rehydrated from LS, which is set in index.js
-const hydrate = localStorage.getItem(EDITR_STATE)
-export const defaultState: EditorState = hydrate
-  ? checkForUpdates(initialState, JSON.parse(hydrate), CODE)
-  : initialState
+const defaultState = runInitializationUtils(
+  initialState,
+  localStorage.getItem(EDITR_STATE),
+  CODE
+)
 
-const editor = (state: EditorState = defaultState,action: Action): EditorState => {
+const editor = (state: EditorState = defaultState, action: Action): EditorState => {
   switch(action.type) {
     case 'ADD_REPL':
     case 'DELETE_REPL':

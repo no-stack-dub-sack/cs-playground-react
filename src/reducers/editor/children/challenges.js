@@ -2,7 +2,7 @@
 import { findIndex, indexOf } from 'lodash'
 
 import type { Action } from '../../../types/Actions'
-import type { EditorState } from '../../../types/Editor'
+import type { EditorState } from '../../../types/Reducers'
 
 export default (state: EditorState, action: Action): EditorState => {
   switch(action.type) {

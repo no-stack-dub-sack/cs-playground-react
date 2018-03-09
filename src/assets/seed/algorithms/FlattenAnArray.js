@@ -43,7 +43,7 @@ console.log(steamRoller(superNestedArray));
 
 const steamRoller = (arr) => {
   const flat = [].concat(...arr);
-  return flat.some(Array.isArray) ? steamRoller(flat) : flat;
+  return flat.some(Array.isArray) ? steamRoller(flat) : flat
 }
 
 // looks crazy, is valid:
@@ -55,7 +55,7 @@ let superNestedArray = [
   ]
 ];
 
-console.log(steamRoller(superNestedArray));
+console.log(steamRoller(superNestedArray))
 `,
   resources: [
     { href: 'https://www.codetuts.tech/flatten-deep-nested-array-object/', caption: 'Cool article on flattening techniques' },

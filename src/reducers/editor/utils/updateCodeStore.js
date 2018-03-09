@@ -1,5 +1,5 @@
 // @flow
-import type { CodeStore, EditorState } from '../../types/Editor'
+import type { CodeStore, EditorState } from '../../../types/Reducers'
 
 import { map } from 'lodash'
 

@@ -1,10 +1,8 @@
 // @flow
 import type { Action } from '../types/Actions'
 import { MENU_STATE } from '../utils/localStorageKeys'
+import type { MenuState } from '../types/Reducers'
 
-type MenuState = Array<{ name: string, open: boolean }>
-// reducer's default state is either the initial state or
-// is pulled from local storage, which is set in index.js
 const initialState: MenuState = [
   { name: 'SORTING_ALGOS', open: true },
   { name: 'DATA_STRUCTURES', open: false },
@@ -14,7 +12,9 @@ const initialState: MenuState = [
   { name: 'REPLS', open: true }
 ]
 
-const hydrate: ?string = localStorage.getItem(MENU_STATE)
+// reducer's default state is either initialState
+// or rehydrated from LS, which is set in index.js
+const hydrate = localStorage.getItem(MENU_STATE)
 const defaultState: MenuState = hydrate
   ? JSON.parse(hydrate)
   : initialState

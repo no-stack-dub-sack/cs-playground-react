@@ -6,21 +6,21 @@ import type { Code } from '../assets/codeRef'
 export type CodeStore = Array<{
   id: string,
   userCode: string
-}>
+}> 
 export type CurrentEditorState = {
-  id: string,
-  code: string,
-  isSolution: boolean
+  +id: string,
+  +code: string,
+  +isSolution: boolean
 }
 export type EditorState = {
-  isSharedRepl: boolean,
-  current: {
-    id: string,
-    code: string,
-    isSolution: boolean
+  +isSharedRepl: boolean,
+  +current: {
+    +id: string,
+    +code: string,
+    +isSolution: boolean
   },
-  codeStore: CodeStore,
-  orderKey: string[]
+  +codeStore: CodeStore,
+  +orderKey: string[]
 }
 export type EditorReducer = (EditorState, Action) => EditorState
 
@@ -47,3 +47,38 @@ export type CheckForUpdates = (
   d: EditorState,
   c: Code
 ) => EditorState
+
+export type RunInitializationUtils = (
+  i: EditorState,
+  s: ?string,
+  c: Code
+) => EditorState
+
+// Modal
+export type ModalState = {
+  +messages: string[],
+  +modalId: string,
+  +modalType: string,
+  +renderModal: boolean,
+  +subHeader?: string,
+}
+
+// Menu
+export type MenuState = Array<{ +name: string, +open: boolean }>
+
+
+// Panes
+export type PanesState = {
+  +topHeight: string,
+  +bottomHeight: string,
+  +leftWidth: string,
+  +rightWidth: string,
+  +transition: string,
+  +clickState: number
+}
+
+// Themes
+export type ThemeState = {
+  +current: string,
+  +themes: string[]
+}

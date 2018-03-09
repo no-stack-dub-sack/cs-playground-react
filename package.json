@@ -7,7 +7,6 @@
     "babel-standalone": "^6.26.0",
     "codemirror": "^5.31.0",
     "feather-icons": "^4.5.0",
-    "flow-bin": "^0.66.0",
     "jshint": "^2.9.5",
     "lodash": "^4.17.4",
     "loop-protect": "^2.1.6",
@@ -36,7 +35,7 @@
     "deploy:test": "yarn run pre-deploy && cd build && surge --domain questionable-number.surge.sh && cd .."
   },
   "devDependencies": {
-    "chalk": "^2.3.0",
+    "flow-bin": "^0.66.0",
     "prop-types": "^15.6.0",
     "redux-devtools-extension": "^2.13.2"
   }

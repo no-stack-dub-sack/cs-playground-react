@@ -1,3 +1,4 @@
+// @flow
 import type { Action } from '../types/Actions'
 
 export default (state: string[] = [], action: Action): string[] => {

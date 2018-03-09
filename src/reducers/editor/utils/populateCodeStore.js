@@ -1,8 +1,9 @@
 // @flow
 import { forEach, replace } from 'lodash'
 
-import type { Code } from '../../assets/codeRef'
-import type { CodeStore } from '../../types/Editor'
+import type { Challenge } from '../../../assets/codeRef'
+import type { Code } from '../../../assets/codeRef'
+import type { CodeStore } from '../../../types/Reducers'
 
 // codeStore initialization utility
 export default function populateCodeStore(CODE: Code): CodeStore {
@@ -10,11 +11,12 @@ export default function populateCodeStore(CODE: Code): CodeStore {
   for (let category in CODE) {
     forEach(
       CODE[category],
-      challenge =>
-      arr.push({
-        id: replace(challenge.title, /\s/g, ''),
-        userCode: challenge.seed
-      })
+      (challenge: Challenge): void => {
+        arr.push({
+          id: replace(challenge.title, /\s/g, ''),
+          userCode: challenge.seed
+        })
+      }
     )
   }
   return arr

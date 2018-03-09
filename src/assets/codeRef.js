@@ -21,7 +21,7 @@ import Mergesort from './seed/algorithms/Mergesort'
 import NoTwoConsecutiveChars from './seed/algorithms/NoTwoConsecutiveChars'
 import PriorityQueue from './seed/data-structures/PriorityQueue'
 import Queue from './seed/data-structures/Queue'
-import Quicksort from './seed/algorithms/Quicksort'
+import {Quicksort} from './seed/algorithms/Quicksort'
 import ReverseAString from './seed/algorithms/ReverseAString'
 import ReverseVowels from './seed/algorithms/ReverseVowels'
 import SelectionSort from './seed/algorithms/SelectionSort'
@@ -31,16 +31,14 @@ import SumAllPrimes from './seed/algorithms/SumAllPrimes'
 
 // NOTE: order of arrays determines order of sidebar menu
 
-type Resources = {
-  href: string,
-  caption: string
-}
-
 export type Challenge = {
   title: string,
   seed: string,
   solution: string,
-  resources: Array<Resources>
+  resources: {
+    href: string,
+    caption: string
+  }[]
 }
 
 export type Code = {
@@ -94,18 +92,24 @@ export const CODE: Code = {
   ]
 }
 
-const createSolutionsRef = (): Object => {
-  const results = {}
-  for (let category in CODE) {
+type SolutionsMap = Map<string, string>
+
+const createSolutionsRef = (CODE: Code): SolutionsMap => {
+  const map: SolutionsMap = new Map()
+  for (let category: string in CODE) {
+    let challenges: Challenge[] = CODE[category]
     forEach(
-      CODE[category],
-      topic =>
-      results[
-        replace(topic.title, /\s/g, '')
-      ] = topic.solution
-    )
+      challenges,
+      challenge => {
+        if (challenge.solution) {
+        map.set(
+          replace(challenge.title, /\s/g, ''),
+          challenge.solution
+        )
+      }
+    })
   }
-  return results
+  return map
 }
 
-export const SOLUTIONS = createSolutionsRef()
+export const SOLUTIONS = createSolutionsRef(CODE)
