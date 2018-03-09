@@ -1,41 +1,48 @@
-import * as types from './types'
+// @flow
+import type {
+  OpenAnnouncementModal,
+  OpenConfirmModal,
+  OpenResourcesModal,
+  OpenThemeModal
+} from '../types/Actions';
+
 import { RENDR_MODAL } from '../utils/localStorageKeys'
-import { store } from '../index'
 import { startCase } from 'lodash'
+import { store } from '../index'
 
-export const openThemeModal = (id) => ({
-  type: types.OPEN_THEME_MODAL,
+export const openThemeModal = (id: string): OpenThemeModal => ({
+  type: 'OPEN_THEME_MODAL',
   id: startCase(id)
 })
 
-export const openResourcesModal = (id) => ({
-  type: types.OPEN_RESOURCES_MODAL,
+export const openResourcesModal = (id: string): OpenResourcesModal => ({
+  type: 'OPEN_RESOURCES_MODAL',
   id: startCase(id)
 })
 
-export const openConfirmModal = (id) => ({
-  type: types.OPEN_CONFIRM_MODAL,
+export const openConfirmModal = (id: string): OpenConfirmModal => ({
+  type: 'OPEN_CONFIRM_MODAL',
   id
 })
 
-export const openAnnouncementModal = () => ({
-  type: types.OPEN_ANNOUNCEMENT_MODAL,
+export const openAnnouncementModal = (): OpenAnnouncementModal => ({
+  type: 'OPEN_ANNOUNCEMENT_MODAL',
   id: 'Announcement!',
   subHeader: messages[0],
   messages: messages.slice(1)
 })
 
-export const closeModal = () => ({ type: types.CLOSE_MODAL })
+export const closeModal = () => ({ type: 'CLOSE_MODAL' })
 
 // render announemnet util
 // render only first 3 visits
 export function renderAnnouncementUtil() {
   let ls = localStorage.getItem(RENDR_MODAL)
   if (!ls) {
-    localStorage.setItem(RENDR_MODAL, 1)
+    localStorage.setItem(RENDR_MODAL, '1')
     store.dispatch(openAnnouncementModal())
-  } else if (ls < 3) {
-    localStorage.setItem(RENDR_MODAL, Number(ls) + 1)
+  } else if (Number(ls) < 3) {
+    localStorage.setItem(RENDR_MODAL, String(Number(ls) + 1))
     store.dispatch(openAnnouncementModal())
   }
 }

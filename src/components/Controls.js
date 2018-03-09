@@ -1,8 +1,9 @@
+// @flow
 import '../styles/controls.css'
 
-import React, { Component } from 'react'
+import * as React from 'react'
+
 import { ToastContainer, toast } from 'react-toastify'
-import { apiURL, isProd } from '../App'
 import {
   nextChallenge,
   prevChallenge,
@@ -11,14 +12,16 @@ import {
 } from '../actions/editor'
 
 import BounceInBounceOut from './utils/BounceTransition'
-import PropTypes from 'prop-types'
 import { RESET_STATE } from '../utils/regexp'
 import ReactTooltip from 'react-tooltip'
 import { Share } from 'react-feather';
+import type { State } from '../types/State'
+import { apiURL } from '../App'
 import axios from 'axios'
 import { clearConsole } from '../actions/console'
 import { connect } from 'react-redux'
 import executeCode from '../utils/test/challenge/eval-code-run-tests'
+import { isProd } from '../App'
 
 const tipData = [
   ['shareTip', 'Get Share Link'],
@@ -27,14 +30,31 @@ const tipData = [
   ['nextTip','Cmd/Ctrl + Shift + >']
 ]
 
-class Controls extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      clearConsole: false,
-      resetCount: 0
-    }
+type Props = {
+  clearConsole: () => Object,
+  code: string,
+  id: string,
+  nextChallenge: () => Object,
+  prevChallenge: () => Object,
+  resetEditorState: () => Object,
+  theme: string,
+  toggleSolution: () => Object,
+}
+
+type LocalState = {
+  clearConsole: boolean,
+  resetCount: number
+}
+
+class Controls extends React.Component<Props, LocalState> {
+  state = {
+    clearConsole: false,
+    resetCount: 0
   }
+  // type/init refs
+  dummy: ?HTMLInputElement
+  toastId: number
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress)
   }
@@ -46,7 +66,7 @@ class Controls extends Component {
       this.setState({ clearConsole: true })
     }
   }
-  handleKeyPress = (e) => {
+  handleKeyPress = (e: any) => {
     // Run Code: CMD/CTRL + ENTER
     if ((e.ctrlKey || e.metaKey) && e.keyCode === 13) {
       this.handleExecuteCode(this.props)
@@ -99,7 +119,7 @@ class Controls extends Component {
       console.log('State successfully reset!')
     }
   }
-  handleExecuteCode = ({ code, id }) => {
+  handleExecuteCode = ({ code, id }: Props) => {
     this.toggleClearConsole()
     if (RESET_STATE.test(code)) {
       this.handleResetSate()
@@ -114,7 +134,7 @@ class Controls extends Component {
       )
     }
   }
-  generateShareLink = () => {
+  generateShareLink = (): void => {
     const baseURL = isProd
       // NOTE: Change for prod to CS-Address!
       ? 'https://questionable-number.surge.sh'
@@ -134,7 +154,7 @@ class Controls extends Component {
         console.log('Error generating share link...')
       })
   }
-  toastShareLink = (shareLink) => {
+  toastShareLink = (shareLink: string): void => {
     if (!toast.isActive(this.toastId)) {
       this.toastId = toast.error(
         `Your share link is ${shareLink}`, {
@@ -199,24 +219,11 @@ class Controls extends Component {
   }
 }
 
-Controls.propTypes = {
-  clearConsole: PropTypes.func.isRequired,
-  code: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  nextChallenge: PropTypes.func.isRequired,
-  prevChallenge: PropTypes.func.isRequired,
-  resetEditorState: PropTypes.func.isRequired,
-  theme: PropTypes.string.isRequired,
-  toggleSolution: PropTypes.func.isRequired
-}
-
-const mapStateToProps = ({ editor: { current }, theme }) => {
-  return {
-    code: current.code,
-    id: current.id,
-    theme: theme.current
-  }
-}
+const mapStateToProps = ({ editor: { current }, theme }: State) => ({
+  code: current.code,
+  id: current.id,
+  theme: theme.current
+})
 
 const mapDispatchToProps = {
   clearConsole,
