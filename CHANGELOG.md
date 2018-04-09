@@ -1,3 +1,10 @@
+## 0.3.0 (April 9th, 2018)
+A pretty major update including two big new features, and one smaller but important one:
+- __User Created REPLs:__ Added ability to add user-created REPLs. Scroll to the bottom of the sidebar menu and press the <kbd>+</kbd> icon to get started. Also built in toasts for notifications about creating multiple REPLs with the same name: not allowed.
+- __Generate Share Links__  Added ability to generate share link to link to a new instance of CS-PG-React which will contain the current contents of the editor. Expand the hamburger menu to the right of the console and click the Share icon to generate a link. Click the toast to copy it to the clipboard automatically. This action can also be triggered from the keyboard using
+ <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. __NOTE:__ changes made in a shared repl will not be saved to local storage to prevent accidental overwrites. This feature utilizes the newly created CS-PG-React API to fetch and transmit editor contents, which are stored in a MongoDB backend. MongoIDs are used as URL params to indicate to CS-PG-React which mode to open in. API prevents duplicate strings, so only unique editor contents will be stored. The API lives in a separate repo, and needs some major improvements, most notably authorization & security (though this is a relatively small concern until the user base grows.)
+- __Key Bindings Modal:__ CS-Playground-React has many key bindings and shortcut keys, many of which are probably unknown to the average user. Added a button to the hamburger menu which triggers a modal showing a full list of key bindings.
+
 ## 0.2.2 (February 11th, 2018)
 Add a coupe of new challenges, improve loop protection:
 - __Loop Protection:__ Update loop-protect logic so that console is not silenced during check for bad loops as it was originally due to weird bug. Added a workaround so that loop-protect can be applied at time of eval - needed to remove all comments to accurately test code string against regexp for presence of loops. Add one hack, remove another! Thanks again to @btruhand for pointing out the need for this fix, ability to debug is important!

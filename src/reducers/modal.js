@@ -51,6 +51,13 @@ export default (state: ModalState = defaultState, action: Action): ModalState =>
         }
       }
       return newState
+    case 'OPEN_KEY_BINDINGS_MODAL':
+      return {
+        modalId: action.id,
+        modalType: 'bindings',
+        renderModal: true,
+        messages: action.messages
+      }
     case 'OPEN_ANNOUNCEMENT_MODAL':
       return {
         modalId: action.id,

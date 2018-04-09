@@ -2,11 +2,15 @@
 import type {
   OpenAnnouncementModal,
   OpenConfirmModal,
+  OpenKeyBindingsModal,
   OpenResourcesModal,
   OpenThemeModal
 } from '../types/Actions';
+import {
+  RENDR_MODAL,
+  RESET_ANCMT
+} from '../utils/localStorageKeys'
 
-import { RENDR_MODAL } from '../utils/localStorageKeys'
 import { startCase } from 'lodash'
 import { store } from '../index'
 
@@ -27,58 +31,99 @@ export const openConfirmModal = (id: string): OpenConfirmModal => ({
 
 export const openAnnouncementModal = (): OpenAnnouncementModal => ({
   type: 'OPEN_ANNOUNCEMENT_MODAL',
-  id: 'Announcement!',
-  subHeader: messages[0],
-  messages: messages.slice(1)
+  id: 'Announcement (again)!',
+  subHeader: announcements[0],
+  messages: announcements.slice(1)
 })
 
 export const closeModal = () => ({ type: 'CLOSE_MODAL' })
 
 // render announemnet util
 // render only first 3 visits
-export function renderAnnouncementUtil() {
-  let ls = localStorage.getItem(RENDR_MODAL)
-  if (!ls) {
+export function renderAnnouncementUtil(): void {
+  let numAnnounced = localStorage.getItem(RENDR_MODAL)
+  let isReset = localStorage.getItem(RESET_ANCMT)
+
+  // reset for new announcements, and set
+  // flag to prevent continuous resetting
+  if (Number(numAnnounced) === 3 && !isReset) {
+    localStorage.removeItem(RENDR_MODAL)
+    localStorage.setItem(RESET_ANCMT, 'true')
+    numAnnounced = undefined
+  }
+
+  // render modal, increment count, stopping at 3
+  if (!numAnnounced) {
     localStorage.setItem(RENDR_MODAL, '1')
     store.dispatch(openAnnouncementModal())
-  } else if (Number(ls) < 3) {
-    localStorage.setItem(RENDR_MODAL, String(Number(ls) + 1))
+  } else if (Number(numAnnounced) < 3) {
+    localStorage.setItem(RENDR_MODAL, String(Number(numAnnounced)  +  1))
     store.dispatch(openAnnouncementModal())
   }
 }
+
+export const openKeyBindingsModal = (): OpenKeyBindingsModal => ({
+  type: 'OPEN_KEY_BINDINGS_MODAL',
+  id: 'Key Bindings',
+  messages: bindings
+})
+
+const bindings = `
+  <ul>
+    <li>The editor has SublimeText keybindings provided by CodeMirror.</li>
+    <li>Additional keys bindings / shortcuts:</li>
+    <ul>
+      <li><span>Generate Share Link:</span> <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd></li>
+      <li><span>Scroll through themes:</span> <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + ( <kbd>{</kbd> OR <kbd>}</kbd> )</li>
+      <li><span>Next challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>.</kbd></li>
+      <li><span>Previous challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>,</kbd></li>
+      <li><span>Jump to solution / seed:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>S</kbd></li>
+      <li><span>Run code / tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>ENTER</kbd></li>
+      <li><span>Toggle Suppress Tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + <kbd>/</kbd></li>
+      <li><span>Clear Console:</span> <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>DELTE/BACKSPACE</kbd></li>
+      <li><span>Open autocomplete dropdown:</span> <kbd>CTRL</kbd> + <kbd>SPACE</kbd></li>
+      <li><span>Focus Editor:</span> <kbd>CMD/CTRL</kbd> + <kbd>\\</kbd></li>
+    </ul>
+    <li>Search / Replace functionalities:</li>
+    <ul>
+      <li><span>Start searching:</span> <kbd>CMD/CTRL</kbd> + <kbd>F</kbd></li>
+      <li><span>Find next:</span> <kbd>CMD/CTRL</kbd> + <kbd>G</kbd></li>
+      <li><span>Find previous:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>G</kbd></li>
+      <li><span>Replace:</span> <kbd>CMD</kbd> + <kbd>ALT</kbd> + <kbd>F</kbd> OR <kbd>SHIFT</kbd> + <kbd>CTRL</kbd> + <kbd>F</kbd></li>
+      <li><span>Replace all:</span> <kbd>SHIFT</kbd> + <kbd>CMD</kbd> + <kbd>ALT</kbd> + <kbd>F</kbd> OR <kbd>SHIFT</kbd> + <kbd>CTRL</kbd> + <kbd>R</kbd></li>
+      <li><span>Jump to line:</span> <kbd>ALT</kbd> + <kbd>G</kbd></li>
+    </ul>
+  </ul>
+`
 
 const newIssue = 'https://github.com/no-stack-dub-sack/cs-playground-react/issues/new'
 const README = 'https://github.com/no-stack-dub-sack/cs-playground-react/blob/master/README.md'
 const CHANGELOG = 'https://github.com/no-stack-dub-sack/cs-playground-react/blob/master/CHANGELOG.md'
 
-const messages = [
-  `<span>CS-Playground-React</span> has undergone a major upgrade and has some
-   awesome new features! Some are rather subtle improvements, but here are a few
-   of the most important:`,
-  `<span>Automated Testing:</span> By far the biggest and most important change,
-   when this feature is enabled, every time you run your code, a test suite will
-   run in the background, and the results will log to the console. <span>NOTE:
-   </span> Tests are disabled by default to keep unwanted noise in the console
-   down to a minimum. Delete the <code>// SUPPRESS TESTS</code>&nbsp;
-   comment to enable.`,
-  `<span>New / Improved Key Bindings:</span> All of the previous navigation key
-   bindings (like prev/next challenge) now work with Mac meta keys. There are also
-   several new key bindings to make navigation around the app even easier (such as
-   clear console and easy toggle between seed and solution code). See the <a href=
-   ${README} rel="noopener noreferrer" target="_blank">README</a> for a full list
-   of Key Bindings.`,
-  `<span>New Themes:</span> If you prefer a light editor, or a different dark
-   theme, you can now choose between over 10 UI & editor themes! Some are subtly
-   different, while others change the look of the UI completely. Use <code>CMD/
-   CTRL + ALT + } or {</code>&nbsp;&nbsp;to scroll through the different themes.
-   P.S. If you enjoy UI design, this is an area I could use some help with!`,
-  `<span>Editor Enhancements:</span> This upgrade makes use of several CodeMirror
-   capabilities that will make your coding experience richer and more realistic.
-   For example, search & replace, highlight matching selections, and autocomplete.
-   See the <a href=${README} rel="noopener noreferrer" target="_blank">README</a>
-   for a full list of the Key Bindings that enable some of these features.`,
-  `To see a full list of new features, check out the <a href=${CHANGELOG} rel=
-   "noopener noreferrer" target="_blank">CHANGELOG</a>. I hope you enjoy! If you
-   have comments or concerns, feel free to <a href=${newIssue} rel="noopener
+const announcements = [
+  `<span>CS-Playground-React</span> has once again undergone a major upgrade and has some
+   awesome new features! Here are the highlights:`,
+  `<span>Create your own REPLs:</span> Now, in addition to working through our challenges,
+   you can also create your own JavaScript REPLs (Read-Eval-Print-Loop). Try new problems,
+   jot down ideas, or practice algorithms you've already solved &mdash; these are empty
+   slates for you to do anything you want! Scroll to the bottom of the sidebar menu and
+   press the <kbd>+</kbd> icon to get started.`,
+  `<span>Share your code!</span> Have a cool idea you want to share from one of your new
+   REPLs, or want to compare solutions to a hard problem with a friend? Now you can generate
+   a share link to do just that! Expand the hamburger menu to the right of the console and
+   click the Share icon to generate your first link. Click on the toast to copy it to the
+   clipboard automatically. This action can also be triggered from the keyboard using
+   <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. Send the link to a friend to let them see
+   the contents of your editor when you generated the link!`,
+  `<span>Key Bindings Modal:</span> CS-Playground-React has many key bindings and shortcut
+   keys, many of which you probably didn't know existed - for example, tired of the default
+   theme? Use <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + <kbd>}</kbd> to scroll through more than
+   10 different options! To see a full list of key bindings, click the "Show Key Bindings Modal"
+   button hidden in the hamburger menu to the right of the console.`,
+  `Don't forget about our <span>built-in tests</span>, <span>new themes</span>, and and other new
+   features from our last upate! Check out the <a href=
+   ${README} rel="noopener noreferrer" target="_blank">README</a> and the <a href=${CHANGELOG} rel=
+   "noopener noreferrer" target="_blank">CHANGELOG</a> for a full list of features and recent changes
+   I hope you enjoy! If you have comments or concerns, feel free to <a href=${newIssue} rel="noopener
    noreferrer" target="_blank">open an issue</a>.`
 ]

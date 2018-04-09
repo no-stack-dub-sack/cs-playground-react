@@ -27,11 +27,16 @@ export type OnDrag = (
   resize: Object
 ) => void
 export type OpenAnnouncementModal = {
-    type: 'OPEN_ANNOUNCEMENT_MODAL',
-    id: string,
-    subHeader: string,
-    messages: string[]
-  }
+  type: 'OPEN_ANNOUNCEMENT_MODAL',
+  id: string,
+  subHeader: string,
+  messages: string[]
+}
+export type OpenKeyBindingsModal = {
+  type: 'OPEN_KEY_BINDINGS_MODAL',
+  id: string,
+  messages: string
+}
 export type OpenConfirmModal = { type: 'OPEN_CONFIRM_MODAL', id: string }
 export type OpenResourcesModal = { type: 'OPEN_RESOURCES_MODAL', id: string }
 export type OpenThemeModal = { type: 'OPEN_THEME_MODAL', id: string }
@@ -66,6 +71,7 @@ export type Action =
   | NextChallenge
   | NextTheme
   | OpenAnnouncementModal
+  | OpenKeyBindingsModal
   | OpenConfirmModal
   | OpenResourcesModal
   | OpenThemeModal

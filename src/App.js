@@ -9,7 +9,7 @@ import Console from './components/sidebar/Console'
 import Controls from './components/Controls'
 import Divider from './components/utils/Divider'
 import Menu from './components/sidebar/Menu'
-import Modal from './components/utils/Modal'
+import Modal from './components/Modal'
 import Pane from './components/utils/Pane'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -20,9 +20,6 @@ import { renderAnnouncementUtil } from './actions/modal'
 import { toast } from 'react-toastify'
 
 /** TODO:
-  * add validator isMongoId for GET & POST requests
-  * fix default test disable for first time visitors
-  *
   * POST UPDATE RELEASE:
       * add Menu Searh / Filter
       * switch to real JSDoc, provide Markdown docs

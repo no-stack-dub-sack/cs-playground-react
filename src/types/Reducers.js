@@ -6,7 +6,7 @@ import type { Code } from '../assets/codeRef'
 export type CodeStore = Array<{
   id: string,
   userCode: string
-}> 
+}>
 export type CurrentEditorState = {
   +id: string,
   +code: string,
@@ -56,7 +56,7 @@ export type RunInitializationUtils = (
 
 // Modal
 export type ModalState = {
-  +messages: string[],
+  +messages: string[] | string,
   +modalId: string,
   +modalType: string,
   +renderModal: boolean,
