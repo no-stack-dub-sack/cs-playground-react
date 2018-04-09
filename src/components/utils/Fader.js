@@ -1,5 +1,5 @@
-import { Transition } from 'react-transition-group'
 import React from 'react'
+import { Transition } from 'react-transition-group'
 
 const transitionStyles = {
   entering: { opacity: 0 },
@@ -15,7 +15,7 @@ const Fade = ({ in: inProp, children, attachRef, duration }) => {
   return (
     <Transition in={inProp} timeout={duration} unmountOnExit={true}>
       {(state) => (
-        <div ref={attachRef} style={{
+        <div ref={attachRef && attachRef} style={{
           ...defaultStyle,
           ...transitionStyles[state]
         }}>

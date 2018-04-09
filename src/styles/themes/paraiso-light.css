@@ -35,6 +35,7 @@
   background: #d4d6c6;
 }
 
+.main--controls--action-menu--item.paraiso-light,
 .main--controls--button.paraiso-light {
   color: #e96ba8;
   background: #d4d6c6;
@@ -52,8 +53,9 @@
   border-right: none;
 }
 
+.main--controls--action-menu--item.paraiso-light:hover,
 .main--controls--button.paraiso-light:hover {
-  background: rgba(0,0,0,0.08);
+  background: #dfe0d5;
 }
 
 .main--controls--button.paraiso-light:active {

@@ -5,17 +5,19 @@
   color: white;
 }
 
+.main--controls--action-menu--item.cobalt,
 .main--controls--button.cobalt {
   background: #002240;
   border: 1px solid #ddd;
 }
 
+.main--controls--action-menu--item.cobalt:hover,
 .main--controls--button.cobalt:hover {
-  background: rgba(255,255,255,0.1);
+  background: #1b3954;
 }
 
 .main--controls--button.cobalt:active {
-  background: rgba(255,255,255,0.03);
+  background: #0d2e4a;
 }
 
 .loader-container.cobalt,

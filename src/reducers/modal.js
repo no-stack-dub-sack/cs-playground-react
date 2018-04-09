@@ -1,4 +1,5 @@
 import * as types from '../actions/types'
+
 import { CODE } from '../assets/codeRef'
 
 const defaultState = {
@@ -48,6 +49,13 @@ export default (state = defaultState, action) => {
         }
       }
       break
+    case types.OPEN_KEY_BINDINGS_MODAL:
+      return {
+        modalId: action.id,
+        modalType: 'bindings',
+        renderModal: true,
+        messages: action.messages
+      }
     case types.OPEN_ANNOUNCEMENT_MODAL:
       return {
         modalId: action.id,

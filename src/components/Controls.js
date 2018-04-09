@@ -1,17 +1,8 @@
 import '../styles/controls.css'
-import { apiURL, isProd } from '../App'
-import { clearConsole } from '../actions/console'
-import { connect } from 'react-redux'
-import { RESET_STATE } from '../utils/regexp'
-import { Share } from 'react-feather';
-import { ToastContainer, toast } from 'react-toastify'
-import axios from 'axios'
-import BounceInBounceOut from './utils/BounceTransition'
-import executeCode from '../utils/test/challenge/eval-code-run-tests'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import ReactTooltip from 'react-tooltip'
 
+import React, { Component } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import {apiURL, isProd} from '../App';
 import {
   nextChallenge,
   prevChallenge,
@@ -19,8 +10,21 @@ import {
   toggleSolution
 } from '../actions/editor'
 
+import ActionsMenu from './ActionMenu'
+import BounceInBounceOut from './utils/BounceTransition'
+import { Menu } from 'react-feather';
+import PropTypes from 'prop-types'
+import { RESET_STATE } from '../utils/regexp'
+import ReactTooltip from 'react-tooltip'
+import axios from 'axios';
+import { clearConsole } from '../actions/console'
+import { connect } from 'react-redux'
+import executeCode from '../utils/test/challenge/eval-code-run-tests'
+import { findDOMNode } from 'react-dom'
+import {map} from 'lodash-es';
+
 const tipData = [
-  ['shareTip', 'Get Share Link'],
+  ['menuTip', 'Expand Menu'],
   ['runCodeTip', 'Cmd/Ctrl + Enter'],
   ['prevTip','Cmd/Ctrl + Shift + <'],
   ['nextTip','Cmd/Ctrl + Shift + >']
@@ -31,7 +35,8 @@ class Controls extends Component {
     super(props)
     this.state = {
       clearConsole: false,
-      resetCount: 0
+      resetCount: 0,
+      renderActionsMenu: false
     }
   }
   componentDidMount() {
@@ -63,6 +68,10 @@ class Controls extends Component {
       // prevent Backspace default
       e.preventDefault()
       this.props.clearConsole()
+    }
+    // Generate Share Link: CTRL + SHIFT + PlusSign
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 187) {
+      this.generateShareLink()
     }
   }
   toggleClearConsole = () => {
@@ -113,6 +122,10 @@ class Controls extends Component {
       )
     }
   }
+  toggleActionsMenu = () => {
+    this.setState({ renderActionsMenu: !this.state.renderActionsMenu });
+    ReactTooltip.hide(findDOMNode(this.refs['Expand Menu']))
+  }
   generateShareLink = () => {
     const baseURL = isProd
       // NOTE: Change for prod to CS-Address!
@@ -136,7 +149,7 @@ class Controls extends Component {
   toastShareLink = (shareLink) => {
     if (!toast.isActive(this.toastId)) {
       this.toastId = toast.error(
-        `Your share link is ${shareLink} (click to copy)`, {
+        `Click to copy share link: ${shareLink}`, {
           autoClose: false,
           onClose: () => this.copyShareLink(shareLink),
         }
@@ -149,61 +162,57 @@ class Controls extends Component {
     if (input) {
       input.value = shareLink
       input.select()
-      document.execCommand("Copy")
+      document.execCommand('copy')
       this.toastId = toast.success(
-        `Share link copied to clipboard!`, { autoClose: 2500 }
+        `Share link copied to clipboard!`, {
+          autoClose: 2500,
+          pauseOnHover: false
+        }
       )
     }
-
   }
   render() {
+    const buttonMeta = [
+      ['menuTip', this.toggleActionsMenu, 'menu-button', <Menu />],
+      ['runCodeTip', () => this.handleExecuteCode(this.props), 'run-code', 'Run Code'],
+      ['prevTip', this.props.prevChallenge, 'previous', 'Previous'],
+      ['nextTip', this.props.nextChallenge, 'next', 'Next']
+    ]
     return (
       <React.Fragment>
         <section className={`main--controls ${this.props.theme}`}>
-          <button
-            onClick={this.generateShareLink}
-            className={`main--controls--button ${this.props.theme} share-code`}
-            data-tip
-            data-for="shareTip">
-            <Share />
-          </button>
-          <button
-            onClick={() => this.handleExecuteCode(this.props)}
-            className={`main--controls--button ${this.props.theme} run-code`}
-            data-tip
-            data-for="runCodeTip">
-            Run Code
-          </button>
-          <button
-            onClick={this.props.prevChallenge}
-            className={`main--controls--button ${this.props.theme} previous`}
-            data-tip
-            data-for="prevTip">
-            Previous
-          </button>
-          <button
-            onClick={this.props.nextChallenge}
-            className={`main--controls--button ${this.props.theme} next`}
-            data-tip
-            data-for="nextTip">
-            Next
-          </button>
-          {tipData.map(tip => (
+          {map(buttonMeta, button => (
+            <button
+              data-tip
+              data-for={button[0]}
+              onClick={button[1]}
+              className={`main--controls--button ${this.props.theme} ${button[2]}`}
+              key={button[0]}>
+              {button[3]}
+            </button>
+          ))}
+          {map(tipData, tip => (
             <ReactTooltip
               id={tip[0]}
               key={tip[0]}
               border={true}
+              ref={ref => this[tip[1]] = ref }
               effect='solid'
               delayShow={1000}>
               {tip[1]}
             </ReactTooltip>
           ))}
         </section>
+        {/* Absolutely positioned components */}
         <ToastContainer
           closeButton={false}
           position="bottom-right"
           toastClassName={`toast ${this.props.theme}`}
           transition={BounceInBounceOut} />
+        <ActionsMenu
+          closeActionsMenu={this.toggleActionsMenu}
+          render={this.state.renderActionsMenu}
+          generateShareLink={this.generateShareLink}/>
         {/* dummy div for copying share link */}
         <input type="text" ref={ref => this.secretShareLinkInput = ref} />
       </React.Fragment>
