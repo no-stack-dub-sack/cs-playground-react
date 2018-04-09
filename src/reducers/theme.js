@@ -1,8 +1,11 @@
-import * as types from '../actions/types'
-import { head, indexOf, last, isEqual } from 'lodash'
-import { THEME_STATE } from '../utils/localStorageKeys'
+// @flow
+import { head, indexOf, isEqual, last } from 'lodash'
 
-const initialState = {
+import type { Action } from '../types/Actions'
+import { THEME_STATE } from '../utils/localStorageKeys'
+import type { ThemeState } from '../types/Reducers'
+
+const initialState: ThemeState = {
   current: 'tomorrow-night-eighties',
   themes: [
     'tomorrow-night-eighties',
@@ -18,21 +21,27 @@ const initialState = {
     'neat', // light
     'panda-syntax',
     'paraiso-light', // light
-    'twilight',
+    'twilight'
   ]
 }
 
-const defaultState = JSON.parse(
-  localStorage.getItem(THEME_STATE)
-) || initialState
+// reducer's default state is either initialState
+// or rehydrated from LS, which is set in index.js
+let hydrate = localStorage.getItem(THEME_STATE)
+let defaultState: ThemeState = hydrate
+  ? JSON.parse(hydrate)
+  : initialState
 
 if (!isEqual(defaultState.themes, initialState.themes)) {
-  defaultState.themes = initialState.themes
+  defaultState = {
+    ...defaultState,
+    themes: initialState.themes
+  }
 }
 
-export default (state = defaultState, action) => {
+export default (state: ThemeState = defaultState, action: Action): ThemeState => {
   switch (action.type) {
-    case types.NEXT_THEME: {
+    case 'NEXT_THEME': {
       const idx = state.current === last(state.themes)
         ? 0
         : indexOf(state.themes, state.current)+1
@@ -41,7 +50,7 @@ export default (state = defaultState, action) => {
         current: state.themes[idx]
       }
     }
-    case types.PREV_THEME: {
+    case 'PREV_THEME': {
       const idx = state.current === head(state.themes)
         ? state.themes.length-1
         : indexOf(state.themes, state.current)-1

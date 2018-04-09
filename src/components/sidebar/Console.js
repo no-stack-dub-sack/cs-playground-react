@@ -1,11 +1,7 @@
+// @flow
 import '../../styles/console.css'
-import { clearConsole } from '../../actions/console'
-import { connect } from 'react-redux'
-import { ERROR_TYPES } from '../../utils/regexp'
-import { map } from 'lodash';
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import shortid from 'shortid'
+
+import * as React from 'react'
 
 import {
   ICON_BLACK,
@@ -13,31 +9,48 @@ import {
   ICON_WHITE
 } from '../../utils/base64'
 
-// button states:
+import { ERROR_TYPES } from '../../utils/regexp'
+import type { State } from '../../types/State'
+import { clearConsole } from '../../actions/console'
+import { connect } from 'react-redux'
+import { map } from 'lodash';
+import shortid from 'shortid'
 
-const disabled = {
+type ButtonState = {
+  background: string,
+  color: string,
+  icon: string
+}
+
+type Props = {
+  bottomHeight: string,
+  clearConsole: () => Object,
+  messages: string[],
+  theme: string,
+  transition: string,
+}
+
+// button states
+const disabled: ButtonState = {
   background: '#1b1d1a',
   color: '#787577',
   icon: ICON_DISABLED
 }
 
-const hover = {
+const hover: ButtonState = {
   background: '#ccc',
   color: '#1b1d1a',
   icon: ICON_BLACK
 }
 
-const _default = {
+const _default: ButtonState = {
   background: '#1b1d1a',
   color: '#ccc',
   icon: ICON_WHITE
 }
 
-class Console extends Component {
-  constructor(props) {
-    super(props)
-    this.state = disabled
-  }
+class Console extends React.Component<Props, ButtonState> {
+  state = disabled
   componentWillReceiveProps(nextProps) {
     if (!nextProps.messages.length) {
       this.setState(disabled)
@@ -103,14 +116,6 @@ class Console extends Component {
   }
 }
 
-Console.propTypes = {
-  bottomHeight: PropTypes.string.isRequired,
-  clearConsole: PropTypes.func.isRequired,
-  messages: PropTypes.array.isRequired,
-  theme: PropTypes.string.isRequired,
-  transition: PropTypes.string.isRequired
-}
-
 const mapStateToProps = ({
   console: messages,
   theme: {
@@ -120,7 +125,7 @@ const mapStateToProps = ({
     bottomHeight,
     transition
   }
-}) => ({
+}: State) => ({
   messages,
   bottomHeight,
   transition,

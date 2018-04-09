@@ -1,38 +1,9 @@
-import _ from 'lodash';
-import * as types from './types'
-import { store } from '../index'
-import { disableProxyConsole } from '../index'
+// @flow
+import type { ClearConsole, ConsoleLog } from '../types/Actions';
 
-export const clearConsole = () => ({ type: types.CLEAR_CONSOLE })
+export const clearConsole = (): ClearConsole => ({ type: 'CLEAR_CONSOLE' })
 
-_.mixin({
-  'createLogs': arr =>
-  _.join(
-    _.map(arr, msg => {
-      // NOTE: Do not stringify DLL
-      if (typeof msg === 'object'
-        && msg !== null
-        && msg.hasOwnProperty('prev'))
-        return msg
-      else if (typeof msg !== 'string')
-        return JSON.stringify(msg)
-      return msg
-    }),
-    ' '
-  )
+export const consoleLog = (logs: string): ConsoleLog => ({
+  type: 'CONSOLE_LOG',
+  logs
 })
-
-// createProxyConsole
-export default () => {
-  if (!disableProxyConsole) {
-    const OG_Log = console.log
-    console.log = function(...args) {
-      const logs = _.createLogs([...args])
-      store.dispatch({
-        type: types.CONSOLE_LOG,
-        logs
-      })
-      OG_Log.apply(console, [...args])
-    }
-  }
-}

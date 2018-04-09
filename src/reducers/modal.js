@@ -1,8 +1,9 @@
-import * as types from '../actions/types'
-
+// @flow
+import type { Action } from '../types/Actions'
 import { CODE } from '../assets/codeRef'
+import type { ModalState } from '../types/Reducers'
 
-const defaultState = {
+const defaultState: ModalState = {
   renderModal: false,
   modalId: '',
   messages: [],
@@ -10,14 +11,14 @@ const defaultState = {
   modalType: ''
 }
 
-export default (state = defaultState, action) => {
+export default (state: ModalState = defaultState, action: Action): ModalState => {
   switch (action.type) {
-    case types.CLOSE_MODAL:
+    case 'CLOSE_MODAL':
       return {
         ...state,
         renderModal: false
       }
-    case types.OPEN_THEME_MODAL:
+    case 'OPEN_THEME_MODAL':
       return {
         renderModal: true,
         modalId: action.id,
@@ -25,7 +26,7 @@ export default (state = defaultState, action) => {
         subHeader: '',
         modalType: 'theme'
       }
-    case types.OPEN_RESOURCES_MODAL:
+    case 'OPEN_RESOURCES_MODAL':
       // only toggle rederModal if
       // modal state already loaded
       if (state.modalId === action.id) {
@@ -36,10 +37,11 @@ export default (state = defaultState, action) => {
       }
       // otherwise find the right
       // modal and load it's state
+      let newState = state
       for (let category in CODE) {
         for (let topic of CODE[category]) {
           if (topic.title === action.id) {
-            return {
+            newState = {
               modalId: action.id,
               modalType: 'resources',
               renderModal: true,
@@ -48,15 +50,15 @@ export default (state = defaultState, action) => {
           }
         }
       }
-      break
-    case types.OPEN_KEY_BINDINGS_MODAL:
+      return newState
+    case 'OPEN_KEY_BINDINGS_MODAL':
       return {
         modalId: action.id,
         modalType: 'bindings',
         renderModal: true,
         messages: action.messages
       }
-    case types.OPEN_ANNOUNCEMENT_MODAL:
+    case 'OPEN_ANNOUNCEMENT_MODAL':
       return {
         modalId: action.id,
         modalType: 'announcement',
@@ -64,7 +66,7 @@ export default (state = defaultState, action) => {
         subHeader: action.subHeader,
         messages: action.messages
       }
-    case types.OPEN_CONFIRM_MODAL:
+    case 'OPEN_CONFIRM_MODAL':
       return {
         modalId: action.id,
         modalType: 'confirm',
@@ -72,7 +74,6 @@ export default (state = defaultState, action) => {
         subHeader: '',
         messages: []
       }
-    default:
-      return state
+    default: return state
   }
 }

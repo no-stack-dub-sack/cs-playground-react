@@ -1,6 +1,10 @@
+// @flow
 import { flatten, replace } from 'lodash'
+
+import type { Code } from '../../../assets/codeRef'
+
 // => arr of chal IDs in correct order
-export default function createOrderKey(CODE) {
+export default function createOrderKey(CODE: Code): string[] {
   const {
     SORTING_ALGOS,
     DATA_STRUCTURES,

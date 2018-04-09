@@ -29,12 +29,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "postinstall": "flow-typed install",
     "pre-deploy": "yarn run build && cd build && cp index.html 200.html",
     "deploy": "yarn run pre-deploy && cd build && surge --domain cs-playground-react.surge.sh & cd ..",
     "deploy:test": "yarn run pre-deploy && cd build && surge --domain questionable-number.surge.sh && cd .."
   },
   "devDependencies": {
-    "chalk": "^2.3.0",
+    "flow-bin": "^0.66.0",
     "prop-types": "^15.6.0",
     "redux-devtools-extension": "^2.13.2"
   }

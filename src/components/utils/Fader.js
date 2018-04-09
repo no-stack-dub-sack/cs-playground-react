@@ -1,15 +1,25 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
+
 import { Transition } from 'react-transition-group'
 
-const transitionStyles = {
+const transitionStyles: { [string]: Object } = {
   entering: { opacity: 0 },
   entered: { opacity: 1 },
   exiting: { opacity: 0 },
 }
 
-const Fade = ({ in: inProp, children, attachRef, duration }) => {
+type Props = {
+  in: boolean,
+  children: React.Node,
+  attachRef: Function,
+  duration: string | { enter: string, exit: string }
+}
+
+const Fade = ({ in: inProp, children, attachRef, duration }: Props) => {
   const defaultStyle = {
-    transition: `opacity ${duration.exit ? duration.exit : duration}ms ease-out`,
+    // $FlowFixMe = stupid coercion problem
+    transition: `opacity ${duration.exit ? duration.exit : duration} ms ease-out`,
     opacity: 0
   }
   return (

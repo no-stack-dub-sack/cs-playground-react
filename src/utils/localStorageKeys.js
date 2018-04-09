@@ -1,3 +1,4 @@
+// @flow
 export const PANES_STATE = 'cs-pg-react-panesState'
 export const THEME_STATE = 'cs-pg-react-themeState'
 export const EDITR_STATE = 'cs-pg-react-editorState'

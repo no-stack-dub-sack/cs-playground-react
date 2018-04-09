@@ -1,5 +1,11 @@
-import * as types from './types'
-
+// @flow
+import type {
+  OpenAnnouncementModal,
+  OpenConfirmModal,
+  OpenKeyBindingsModal,
+  OpenResourcesModal,
+  OpenThemeModal
+} from '../types/Actions';
 import {
   RENDR_MODAL,
   RESET_ANCMT
@@ -8,33 +14,33 @@ import {
 import { startCase } from 'lodash'
 import { store } from '../index'
 
-export const openThemeModal = (id) => ({
-  type: types.OPEN_THEME_MODAL,
+export const openThemeModal = (id: string): OpenThemeModal => ({
+  type: 'OPEN_THEME_MODAL',
   id: startCase(id)
 })
 
-export const openResourcesModal = (id) => ({
-  type: types.OPEN_RESOURCES_MODAL,
+export const openResourcesModal = (id: string): OpenResourcesModal => ({
+  type: 'OPEN_RESOURCES_MODAL',
   id: startCase(id)
 })
 
-export const openConfirmModal = (id) => ({
-  type: types.OPEN_CONFIRM_MODAL,
+export const openConfirmModal = (id: string): OpenConfirmModal => ({
+  type: 'OPEN_CONFIRM_MODAL',
   id
 })
 
-export const openAnnouncementModal = () => ({
-  type: types.OPEN_ANNOUNCEMENT_MODAL,
+export const openAnnouncementModal = (): OpenAnnouncementModal => ({
+  type: 'OPEN_ANNOUNCEMENT_MODAL',
   id: 'Announcement (again)!',
   subHeader: announcements[0],
   messages: announcements.slice(1)
 })
 
-export const closeModal = () => ({ type: types.CLOSE_MODAL })
+export const closeModal = () => ({ type: 'CLOSE_MODAL' })
 
 // render announemnet util
 // render only first 3 visits
-export function renderAnnouncementUtil() {
+export function renderAnnouncementUtil(): void {
   let numAnnounced = localStorage.getItem(RENDR_MODAL)
   let isReset = localStorage.getItem(RESET_ANCMT)
 
@@ -42,22 +48,22 @@ export function renderAnnouncementUtil() {
   // flag to prevent continuous resetting
   if (Number(numAnnounced) === 3 && !isReset) {
     localStorage.removeItem(RENDR_MODAL)
-    localStorage.setItem(RESET_ANCMT, true)
+    localStorage.setItem(RESET_ANCMT, 'true')
     numAnnounced = undefined
   }
 
   // render modal, increment count, stopping at 3
   if (!numAnnounced) {
-    localStorage.setItem(RENDR_MODAL, 1)
+    localStorage.setItem(RENDR_MODAL, '1')
     store.dispatch(openAnnouncementModal())
   } else if (Number(numAnnounced) < 3) {
-    localStorage.setItem(RENDR_MODAL, Number(numAnnounced)  +  1)
+    localStorage.setItem(RENDR_MODAL, String(Number(numAnnounced)  +  1))
     store.dispatch(openAnnouncementModal())
   }
 }
 
-export const openKeyBindingsModal = () => ({
-  type: types.OPEN_KEY_BINDINGS_MODAL,
+export const openKeyBindingsModal = (): OpenKeyBindingsModal => ({
+  type: 'OPEN_KEY_BINDINGS_MODAL',
   id: 'Key Bindings',
   messages: bindings
 })

@@ -1,3 +1,4 @@
+// @flow
 // regexp constructors
 export const RESET_STATE = new RegExp('resetState\\(\\)')
 export const SUPPRESS_TESTS = new RegExp('\\/\\/\\s\\s?SUPPRESS\\s\\s?TESTS', 'i')

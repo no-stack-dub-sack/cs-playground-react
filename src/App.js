@@ -2,7 +2,7 @@ import './styles/app.css'
 import './styles/themes/__index__.css'
 
 import React, { Component } from 'react'
-import { doubleClick, dragHorizontal, dragVertical } from './actions/panes'
+import { onDragHorizontal, onDragVertical } from './utils/onDrag';
 
 import CodeMirrorRenderer from './components/CodeMirrorRenderer'
 import Console from './components/sidebar/Console'
@@ -13,6 +13,7 @@ import Modal from './components/Modal'
 import Pane from './components/utils/Pane'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import { doubleClick } from './actions/panes'
 import { isMongoId } from 'validator'
 import { loadRepl } from './actions/editor'
 import { renderAnnouncementUtil } from './actions/modal'
@@ -103,8 +104,8 @@ class App extends Component {
     // double-click event for snapping divider top or bottom
     this.horizontalDivider.addEventListener('dblclick', this.props.doubleClick)
     // apply simpleDrag to allow for AWESOME pane resizing:
-    this.horizontalDivider.simpleDrag(dragVertical, null, 'vertical')
-    this.verticalDivider.simpleDrag(dragHorizontal, null, 'horizontal')
+    this.horizontalDivider.simpleDrag(onDragVertical, null, 'vertical')
+    this.verticalDivider.simpleDrag(onDragHorizontal, null, 'horizontal')
     // register hits to hit-count-server:
     if (isProd) {
       axios.post('https://hit-count-server.herokuapp.com/register-count')
