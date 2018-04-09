@@ -149,9 +149,10 @@ class Controls extends React.Component<Props, LocalState> {
     ReactTooltip.hide(findDOMNode(this.refs['Expand Menu']))
   }
   generateShareLink = (): void => {
+    // NOTE: for test deployments change
+    // to questionable-number.surge.sh
     const baseURL = isProd
-      // NOTE: Change for prod to CS-Address!
-      ? 'https://questionable-number.surge.sh'
+      ? 'https://cs-playground-react.surge.sh'
       : 'http://localhost:3000'
     // make POST req to cs-pg-react-api and respond
     // with mongoId associated w/ stored code string.

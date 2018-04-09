@@ -102,7 +102,7 @@ const CHANGELOG = 'https://github.com/no-stack-dub-sack/cs-playground-react/blob
 
 const announcements = [
   `<span>CS-Playground-React</span> has once again undergone a major upgrade and has some
-   awesome new features! Here are the highlights:`,
+   awesome new features! Besides our sleek new menu UI, here are the major functional highlights:`,
   `<span>Create your own REPLs:</span> Now, in addition to working through our challenges,
    you can also create your own JavaScript REPLs (Read-Eval-Print-Loop). Try new problems,
    jot down ideas, or practice algorithms you've already solved &mdash; these are empty
@@ -113,8 +113,8 @@ const announcements = [
    a share link to do just that! Expand the hamburger menu to the right of the console and
    click the Share icon to generate your first link. Click on the toast to copy it to the
    clipboard automatically. This action can also be triggered from the keyboard using
-   <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. Send the link to a friend to let them see
-   the contents of your editor when you generated the link!`,
+   <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. Send the link to a friend to share
+   the current contents of your editor!`,
   `<span>Key Bindings Modal:</span> CS-Playground-React has many key bindings and shortcut
    keys, many of which you probably didn't know existed - for example, tired of the default
    theme? Use <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + <kbd>}</kbd> to scroll through more than
@@ -123,7 +123,7 @@ const announcements = [
   `Don't forget about our <span>built-in tests</span>, <span>new themes</span>, and and other new
    features from our last upate! Check out the <a href=
    ${README} rel="noopener noreferrer" target="_blank">README</a> and the <a href=${CHANGELOG} rel=
-   "noopener noreferrer" target="_blank">CHANGELOG</a> for a full list of features and recent changes
+   "noopener noreferrer" target="_blank">CHANGELOG</a> for a full list of features and recent changes.
    I hope you enjoy! If you have comments or concerns, feel free to <a href=${newIssue} rel="noopener
    noreferrer" target="_blank">open an issue</a>.`
 ]
