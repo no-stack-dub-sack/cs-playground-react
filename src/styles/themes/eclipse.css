@@ -1,13 +1,17 @@
+.loader-container.eclipse,
 .sidebar.left-pane.eclipse,
 .sidebar--menu--detail.eclipse {
   color: #7F0055;
   background: #f5f5f5;
 }
 
+.sidebar--menu--input.eclipse,
+.sidebar--menu--input-icon.eclipse,
 .sidebar--menu--detail--button.solution.eclipse {
   color: #7F0055;
 }
 
+.loader.eclipse,
 .sidebar--menu--detail--button.resources.eclipse {
   color: #3F7F5F;
 }
@@ -27,4 +31,24 @@
 
 .sidebar--menu.eclipse > details {
   width: 92%;
+}
+
+.toast.eclipse {
+  background: #7F0055;
+}
+
+.sidebar--menu--input.eclipse:focus {
+  border-bottom: 2px solid #cc7;
+}
+
+.modal--confirm--yes.eclipse:hover,
+.modal--confirm--no.eclipse:hover {
+  border-color: #7F0055;
+  color: #cc7;
+}
+
+.modal--confirm--yes.eclipse:active,
+.modal--confirm--no.eclipse:active {
+  border-color: #cc7;
+  color: #7F0055;
 }

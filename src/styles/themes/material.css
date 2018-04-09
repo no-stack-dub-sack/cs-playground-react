@@ -1,7 +1,32 @@
+.loader.material,
 .sidebar--menu--detail--button.resources.material {
   color: rgba(199, 146, 234, .7);
 }
 
 .sidebar--menu--detail--button.solution.material {
   color: #F77669;
+}
+
+.loader-container.material {
+  background: #263238;
+}
+
+.toast.material {
+  background: #F77669;
+}
+
+.sidebar--menu--input.material:focus {
+  border-bottom: 2px solid rgba(199, 146, 234, .7);
+}
+
+.modal--confirm--yes.material:hover,
+.modal--confirm--no.material:hover {
+  border-color: rgba(199, 146, 234, .7);
+  color: #F77669;
+}
+
+.modal--confirm--yes.material:active,
+.modal--confirm--no.material:active {
+  border-color: #F77669;
+  color: rgba(199, 146, 234, .7);
 }

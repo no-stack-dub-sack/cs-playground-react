@@ -1,16 +1,19 @@
 import { combineReducers } from 'redux'
 import console from './console'
-import editor from './editor'
+import editor from './editor/editor'
+import menu from './menu'
 import modal from './modal'
 import panes from './panes'
 import theme from './theme'
 
-const rootReducer = combineReducers({
+const reducers = {
   console,
   editor,
   modal,
   panes,
-  theme
-})
+  theme,
+  menu
+}
 
-export default rootReducer
+export type Reducers = typeof reducers
+export default combineReducers(reducers)

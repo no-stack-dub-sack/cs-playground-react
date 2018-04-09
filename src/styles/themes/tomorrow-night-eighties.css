@@ -2,6 +2,31 @@
   color: #f2777a;
 }
 
-.sidebar--menu--detail--button.resources.tomorrow-night-eighties {
+.sidebar--menu--detail--button.resources.tomorrow-night-eighties,
+.loader.tomorrow-night-eighties {
   color: #99cc99;
+}
+
+.sidebar--menu--input.tomorrow-night-eighties:focus {
+  border-bottom: 2px solid #f2777a;
+}
+
+.loader-container.tomorrow-night-eighties {
+  color: #000000;
+}
+
+.toast.tomorrow-night-eighties {
+  background: #f2777a;
+}
+
+.modal--confirm--yes.tomorrow-night-eighties:hover,
+.modal--confirm--no.tomorrow-night-eighties:hover {
+  border-color: #f2777a;
+  color: #99cc99;
+}
+
+.modal--confirm--yes.tomorrow-night-eighties:active,
+.modal--confirm--no.tomorrow-night-eighties:active {
+  border-color: #99cc99;
+  color: #f2777a;
 }

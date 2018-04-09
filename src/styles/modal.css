@@ -3,7 +3,9 @@
 }
 
 .modal {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #5b5b5b;
   color: #ccc;
   padding: 2px 50px 30px 50px;
@@ -16,6 +18,10 @@
   margin: 5px 0 5px 0;
 }
 
+.modal h2 {
+  margin-bottom: 0;
+}
+
 .modal a,
 .modal span {
   text-decoration: none;
@@ -23,7 +29,22 @@
 }
 
 .modal code {
-  color: rgb(26, 25, 27)
+  color: rgb(26, 25, 27);
+  font-style: italic;
+}
+
+.modal kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
 }
 
 .modal a:hover {
@@ -34,4 +55,36 @@
 .modal--header {
   text-align: center;
   user-select: none;
+  max-width: 400px;
+}
+
+.modal--confirm-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  margin-bottom: -20px;
+}
+
+.modal--confirm--yes,
+.modal--confirm--no {
+  padding: 7px 25px;
+  border: 2px solid #ccc;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.modal--confirm--yes:hover,
+.modal--confirm--no:hover {
+  border-color: #46bc99;
+  color: #99cc99;
+}
+
+.modal--confirm--yes:active,
+.modal--confirm--no:active {
+  border-color: #99cc99;
+  color: #46bc99;
 }

@@ -1,6 +1,7 @@
 .main--controls {
   height: 50px;
   background: #707070;
+  display: flex;
 }
 
 .main--controls--button {
@@ -28,10 +29,49 @@
 }
 
 .main--controls--button.run-code {
-  width: 50%;
+  width: 40%;
+}
+
+.main--controls--button.menu-button {
+  width: 10%;
+}
+
+.main--controls--action-menu--item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #707070;
+  color: #ccc;
+  transition: background .2s;
+}
+
+.main--controls--action-menu--item:hover {
+  background: #808080;
+}
+
+#action-menu-root {
+  margin: 0;
+  padding: 0;
+  background: #707070;
+}
+
+.main--controls--action-menu {
+  width: 200px;
+  height: 100px;
+  bottom: 150px;
+  position: relative;
+  z-index: 5;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .main--controls--button.next,
 .main--controls--button.previous {
   width: 25%;
+}
+
+#dummy-input {
+  position: absolute;
+  bottom: -500px;
 }

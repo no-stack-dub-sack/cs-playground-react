@@ -1,3 +1,7 @@
+.sidebar--menu summary::-webkit-details-marker {
+  color: #ccc;
+}
+
 .sidebar--menu.top-pane {
   overflow-y: auto;
   flex: auto;
@@ -89,9 +93,8 @@
 }
 
 .sidebar--menu--detail--button.resources {
-    margin-right: 5px;
+  margin-right: 5px;
 }
-
 
 .sidebar--menu details {
   margin-top: 15px;
@@ -111,4 +114,22 @@
 
 .sidebar--menu > details > details {
   padding-left: 20px;
+}
+
+.sidebar--menu--detail form {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.sidebar--menu--input {
+  font-size: 15px;
+  width: 90%;
+  outline: none;
+  border: none;
+  background: none;
+  color: #ccc;
+}
+
+.sidebar--menu--input-icon {
+  color: #ccc;
 }

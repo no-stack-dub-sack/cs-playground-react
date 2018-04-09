@@ -1,13 +1,14 @@
-import * as types from '../actions/types'
+// @flow
+import type { Action } from '../types/Actions'
 
-export default (state = [], action) => {
+export default (state: string[] = [], action: Action): string[] => {
   switch(action.type) {
-    case types.CONSOLE_LOG:
+    case 'CONSOLE_LOG':
       return [
         ...state,
         action.logs
       ]
-    case types.CLEAR_CONSOLE:
+    case 'CLEAR_CONSOLE':
       return []
     default:
       return state

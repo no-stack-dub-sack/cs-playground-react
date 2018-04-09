@@ -1,7 +1,32 @@
+.loader.icecoder,
 .sidebar--menu--detail--button.solution.icecoder {
   color: #b9ca4a;
 }
 
 .sidebar--menu--detail--button.resources.icecoder {
+  color: #6cb5d9;
+}
+
+.loader-container.icecoder {
+  background: #1d1d1b;
+}
+
+.toast.icecoder {
+  background: #6cb5d9;
+}
+
+.sidebar--menu--input.icecoder:focus {
+  border-bottom: 2px solid #b9ca4a;
+}
+
+.modal--confirm--yes.icecoder:hover,
+.modal--confirm--no.icecoder:hover {
+  border-color: #6cb5d9;
+  color: #b9ca4a;
+}
+
+.modal--confirm--yes.icecoder:active,
+.modal--confirm--no.icecoder:active {
+  border-color: #b9ca4a;
   color: #6cb5d9;
 }

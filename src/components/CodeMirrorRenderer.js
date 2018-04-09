@@ -1,6 +1,7 @@
 import { closeModal, openThemeModal } from '../actions/modal'
 import { connect } from 'react-redux'
 import { Controlled as CodeMirror } from 'react-codemirror2'
+import { Loader } from 'react-feather'
 import { nextTheme, prevTheme } from '../actions/theme'
 import { updateCode } from '../actions/editor'
 import defaultOptions from '../utils/editorConfig'
@@ -85,19 +86,28 @@ class CodeMirrorRenderer extends Component {
     }
   }
   updateCode = (editor, data, value) => {
-    this.props.updateCode(value, false)
+    this.props.updateCode(value)
   }
   assignEditor = (editor) => {
     this.editor = editor
   }
   render() {
-    const options = this.props.welcome ? {
+    const options = this.props.currentId === 'welcome' ? {
       ...defaultOptions,
       mode: 'markdown',
       theme: this.props.theme
     } : {
       ...defaultOptions,
       theme: this.props.theme
+    }
+    if (this.props.loading) {
+      return (
+        <div className={`loader-container ${this.props.theme}`}>
+          <Loader
+            className={`loader ${this.props.theme}`}
+            size={50} />
+        </div>
+      )
     }
     return (
       <CodeMirror
@@ -115,8 +125,7 @@ CodeMirrorRenderer.propTypes = {
   currentId: PropTypes.string.isRequired,
   isSolution: PropTypes.bool.isRequired,
   updateCode: PropTypes.func.isRequired,
-  theme: PropTypes.string.isRequired,
-  welcome: PropTypes.bool.isRequired,
+  theme: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -124,8 +133,7 @@ const mapStateToProps = (state) => {
     code: state.editor.current.code,
     currentId: state.editor.current.id,
     isSolution: state.editor.current.isSolution,
-    theme: state.theme.current,
-    welcome: state.editor.welcome
+    theme: state.theme.current
   }
 }
 

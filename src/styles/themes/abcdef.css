@@ -2,10 +2,35 @@
   color: darkgoldenrod;
 }
 
+.loader.abcdef,
 .sidebar--menu--detail--button.resources.abcdef {
   color: #abcdef;
 }
 
 .sidebar--menu.abcdef > details {
   width: 92%;
+}
+
+.loader-container.abcdef {
+  background: #0f0f0f;
+}
+
+.sidebar--menu--input.abcdef:focus {
+  border-bottom: 2px solid darkgoldenrod;
+}
+
+.toast.abcdef {
+  background: darkgoldenrod;
+}
+
+.modal--confirm--yes.abcdef:hover,
+.modal--confirm--no.abcdef:hover {
+  border-color: darkgoldenrod;
+  color: #abcdef;
+}
+
+.modal--confirm--yes.abcdef:active,
+.modal--confirm--no.abcdef:active {
+  border-color: #abcdef;
+  color: darkgoldenrod;
 }

@@ -2,10 +2,36 @@
   color: #ca7841;
 }
 
-.sidebar--menu--detail--button.resources.twilight {
+.sidebar--menu--detail--button.resources.twilight,
+.loader.twilight {
   color: #f9ee98;
 }
 
 .sidebar--menu.twilight > details {
   width: 92%;
+}
+
+.loader-container.twilight {
+  background: #141414;
+}
+
+.toast.twilight {
+  background: #ca7841;
+  color: #141414;
+}
+
+.sidebar--menu--input.twilight:focus {
+  border-bottom: 2px solid #ca7841;
+}
+
+.modal--confirm--yes.twilight:hover,
+.modal--confirm--no.twilight:hover {
+  border-color: #ca7841;
+  color: #f9ee98;
+}
+
+.modal--confirm--yes.twilight:active,
+.modal--confirm--no.twilight:active {
+  border-color: #f9ee98;
+  color: #ca7841;
 }

@@ -1,16 +1,16 @@
 import './styles/index.css'
+
 import * as LS from './utils/localStorageKeys'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { createStore } from 'redux'
-import { DO_NOT_SAVE } from './utils/regexp'
-import { Provider } from 'react-redux'
+
 import App from './App'
-import createProxyConsole from './actions/console'
+import { DO_NOT_SAVE } from './utils/regexp'
 import ErrorBoundary from './components/utils/ErrorBoundary'
+import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import configureStore from './store'
+import createProxyConsole from './utils/createProxyConsole'
 import registerServiceWorker from './utils/registerServiceWorker'
-import rootReducer from './reducers/rootReducer'
 import simpleDrag from './utils/simpleDrag'
 
 // NOTE: set to true or use console.info
@@ -24,16 +24,13 @@ createProxyConsole()
 // enable resizable split panes
 simpleDrag()
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools()
-)
+export const store = configureStore()
 
 // set localStorage when navigating away from app
 window.onbeforeunload = function(e) {
   const state = store.getState()
   // use // DO NOT SAVE comment to disable saving
-  if (!DO_NOT_SAVE.test(state.editor.current.code)) {
+  if (!DO_NOT_SAVE.test(state.editor.current.code) && !state.editor.isSharedRepl) {
     localStorage.setItem(
       LS.EDITR_STATE,
       JSON.stringify(state.editor)
@@ -45,6 +42,10 @@ window.onbeforeunload = function(e) {
     localStorage.setItem(
       LS.THEME_STATE,
       JSON.stringify(state.theme)
+    )
+    localStorage.setItem(
+      LS.MENU_STATE,
+      JSON.stringify(state.menu)
     )
   }
   // save pane state

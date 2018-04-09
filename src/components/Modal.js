@@ -1,60 +1,19 @@
-import '../../styles/modal.css'
-import { closeModal } from '../../actions/modal'
-import { connect } from 'react-redux'
-import { map } from 'lodash';
-import { RENDR_MODAL } from '../../utils/localStorageKeys'
-import Fade from './Fader'
-import PropTypes from 'prop-types'
+import '../styles/modal.css'
+
 import React, { Component } from 'react'
+
+import AnnouncementModal from './modals/AnnouncementModal';
+import BindingsModal from './modals/BindingsModal';
+import ConfirmModal from './modals/ConfirmModal';
+import Fade from './utils/Fader'
+import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
+import ResourcesModal from './modals/ResourcesModal';
+import ThemeModal from './modals/ThemeModal';
+import { closeModal } from '../actions/modal'
+import { connect } from 'react-redux'
+import { deleteRepl } from '../actions/editor'
 import shortid from 'shortid'
-
-// modal types:
-const ResourcesModal = (props) => (
-  <div className="modal">
-    <h2 className="modal--header">
-      { props.header }
-    </h2>
-    <ul>
-      { map(props.messages, props.renderListItem) }
-    </ul>
-  </div>
-)
-
-const AnnouncementModal = (props) => (
-  <div className="modal">
-    <h2 className="modal--header">
-      { props.header }
-    </h2>
-    <p>
-      <strong dangerouslySetInnerHTML={{ __html: props.subHeader }} />
-    </p>
-    <ul>
-      { map(props.messages, props.renderListItem) }
-    </ul>
-    <p>
-      <strong dangerouslySetInnerHTML={{ __html:
-          props.messages[props.messages.length-1]}} />
-    </p>
-    {(() => {
-        let num = localStorage.getItem(RENDR_MODAL)
-        num = num === '1' ? 2 : num === '2' ? 1 : 0
-        return (
-          <span>
-            {`You will see this notification ${num} more time${num === 1 ? '' : 's'}`}
-          </span>
-        )
-    })()}
-  </div>
-)
-
-const ThemeModal = ({ header }) => (
-  <h2
-    className="modal"
-    style={{ padding: 20, boxShadow: 'none', opacity: 0.8 }}>
-    { header }
-  </h2>
-)
 
 class Modal extends Component {
   componentDidMount() {
@@ -87,6 +46,10 @@ class Modal extends Component {
       )) return true
     return false
   }
+  deleteRepl = ({ target: { id } }) => {
+    this.props.deleteRepl(id.slice(8))
+    this.props.closeModal()
+  }
   renderListItem = (item, i, arr) => {
     if (this.props.modalType === 'resources') {
       return (
@@ -117,10 +80,18 @@ class Modal extends Component {
               { ...this.props }
               renderListItem={this.renderListItem}
               renderNumAnnounced={this.renderNumAnnounced} />
+          : modalType === 'bindings'
+          ? <BindingsModal { ...this.props } />
           : modalType === 'resources'
-          ?  <ResourcesModal
+          ? <ResourcesModal
               { ...this.props }
               renderListItem={this.renderListItem} />
+          : modalType === 'confirm'
+          ? <ConfirmModal
+              closeModal={this.props.closeModal}
+              deleteRepl={this.deleteRepl}
+              id={header}
+              theme={this.props.theme} />
           : <ThemeModal header={header} /> }
       </Fade>,
       document.getElementById('modal-root')
@@ -129,22 +100,24 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  messages: PropTypes.array.isRequired,
-  renderModal: PropTypes.bool.isRequired,
-  header: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
+  header: PropTypes.string.isRequired,
+  messages: PropTypes.array.isRequired,
+  modalType: PropTypes.string.isRequired,
+  renderModal: PropTypes.bool.isRequired,
   subHeader: PropTypes.string,
-  modalType: PropTypes.string.isRequired
+  theme: PropTypes.string.isRequired
 }
 
-const mapStateToProps = ({ modal }) => {
+const mapStateToProps = ({ modal, theme }) => {
   return {
-    messages: modal.messages,
-    renderModal: modal.renderModal,
     header: modal.modalId,
+    messages: modal.messages,
+    modalType: modal.modalType,
+    renderModal: modal.renderModal,
     subHeader: modal.subHeader,
-    modalType: modal.modalType
+    theme: theme.current
   }
 }
 
-export default connect(mapStateToProps, { closeModal })(Modal)
+export default connect(mapStateToProps, { closeModal, deleteRepl })(Modal)

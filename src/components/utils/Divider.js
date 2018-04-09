@@ -1,3 +1,4 @@
+// @flow
 import { VERTICAL_GRIP, HORIZONTAL_GRIP } from '../../utils/base64'
 import PropTypes from 'prop-types'
 import React from 'react'

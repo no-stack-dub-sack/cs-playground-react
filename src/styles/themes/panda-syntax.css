@@ -2,6 +2,32 @@
   color: #FF75B5;
 }
 
-.sidebar--menu--detail--button.resources.panda-syntax {
+.sidebar--menu--detail--button.resources.panda-syntax,
+.loader.panda-syntax {
   color: #ffb86c;
+}
+
+.loader-container.panda-syntax {
+  background: #292A2B;
+}
+
+.toast.panda-syntax {
+  background: #ffb86c;
+  color: #292A2B;
+}
+
+.sidebar--menu--input.panda-syntax:focus {
+  border-bottom: 2px solid #FF75B5;
+}
+
+.modal--confirm--yes.panda-syntax:hover,
+.modal--confirm--no.panda-syntax:hover {
+  border-color: #FF75B5;
+  color: #ffb86c;
+}
+
+.modal--confirm--yes.panda-syntax:active,
+.modal--confirm--no.panda-syntax:active {
+  border-color: #ffb86c;
+  color: #FF75B5;
 }

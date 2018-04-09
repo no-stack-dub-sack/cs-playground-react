@@ -1,7 +1,9 @@
-import * as types from '../actions/types'
+// @flow
+import type { Action } from '../types/Actions'
 import { PANES_STATE } from '../utils/localStorageKeys';
+import type { PanesState } from '../types/Reducers'
 
-const initialState = {
+const initialState: PanesState = {
   topHeight: '70%',
   bottomHeight: '30%',
   leftWidth: '30%',
@@ -10,11 +12,14 @@ const initialState = {
   clickState: 0
 }
 
-let defaultState = JSON.parse(
-  localStorage.getItem(PANES_STATE)
-) || initialState
+// reducer's default state is either initialState
+// or rehydrated from LS, which is set in index.js
+const hydrate = localStorage.getItem(PANES_STATE)
+const defaultState: PanesState = hydrate
+  ? JSON.parse(hydrate)
+  : initialState
 
-const hidePanes = (state) => {
+const hidePanes = (state: PanesState): PanesState => {
   switch (state.clickState) {
     case 0:
       return {
@@ -43,30 +48,27 @@ const hidePanes = (state) => {
   }
 }
 
-const panes = (state = defaultState, action) => {
+export default (state: PanesState = defaultState, action: Action): PanesState => {
   switch (action.type) {
-    case types.RESET_STATE:
+    case 'RESET_STATE':
       localStorage.removeItem(PANES_STATE)
       return initialState
-    case types.DRAG_HORIZONTAL:
+    case 'DRAG_HORIZONTAL':
       return {
         ...state,
         leftWidth: action.leftWidth,
         rightWidth: action.rightWidth,
         transition: 'none'
       }
-    case types.DRAG_VERTICAL:
+    case 'DRAG_VERTICAL':
       return {
         ...state,
         topHeight: action.topHeight,
         bottomHeight: action.bottomHeight,
         transition: 'none'
       }
-    case types.DOUBLE_CLICK:
+    case 'DOUBLE_CLICK':
       return hidePanes(state)
-    default:
-      return state
+    default: return state
   }
 }
-
-export default panes

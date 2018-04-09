@@ -1,6 +1,6 @@
+// @flow
 // regexp constructors
 export const RESET_STATE = new RegExp('resetState\\(\\)')
-export const HAS_LOOPS = new RegExp(/(?:\bwhile|\bfor)\s*?\(.*?\)/)
 export const SUPPRESS_TESTS = new RegExp('\\/\\/\\s\\s?SUPPRESS\\s\\s?TESTS', 'i')
 export const DO_NOT_SAVE = new RegExp('\\/\\/\\s\\s?DO\\s\\s?NOT\\s\\s?SAVE', 'i')
 export const DISABLE_LOOP_PROTECT = new RegExp('\\/\\/\\s\\s?DISABLE\\s\\s?LOOP\\s\\s?PROTECT', 'i')

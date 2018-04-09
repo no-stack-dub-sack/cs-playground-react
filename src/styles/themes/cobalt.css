@@ -5,23 +5,27 @@
   color: white;
 }
 
+.main--controls--action-menu--item.cobalt,
 .main--controls--button.cobalt {
   background: #002240;
   border: 1px solid #ddd;
 }
 
+.main--controls--action-menu--item.cobalt:hover,
 .main--controls--button.cobalt:hover {
-  background: rgba(255,255,255,0.1);
+  background: #1b3954;
 }
 
 .main--controls--button.cobalt:active {
-  background: rgba(255,255,255,0.03);
+  background: #0d2e4a;
 }
 
+.loader-container.cobalt,
 .sidebar--output--messages.cobalt {
   background: #002240;
 }
 
+.loader.cobalt,
 .sidebar--menu--detail--button.solution.cobalt {
   color: #08f;
 }
@@ -45,4 +49,29 @@
 
 .sidebar--menu.cobalt > details {
   width: 92%;
+}
+
+.toast.cobalt {
+  background: #08f;
+}
+
+.sidebar--menu--input.cobalt,
+.sidebar--menu--input-icon.cobalt {
+  color: white;
+}
+
+.sidebar--menu--input.cobalt:focus {
+  border-bottom: 2px solid #08f;
+}
+
+.modal--confirm--yes.cobalt:hover,
+.modal--confirm--no.cobalt:hover {
+  border-color: #08f;
+  color: #ffee80;
+}
+
+.modal--confirm--yes.cobalt:active,
+.modal--confirm--no.cobalt:active {
+  border-color: #ffee80;
+  color: #08f;
 }

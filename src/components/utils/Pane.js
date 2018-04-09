@@ -1,6 +1,15 @@
+// @flow
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
+
+type Props = {
+  className: string,
+  theme: string,
+  leftWidth: string,
+  rightWidth: string,
+  children: React.Node
+}
 
 const Pane = ({
   children,
@@ -8,7 +17,7 @@ const Pane = ({
   leftWidth,
   rightWidth,
   theme
-}) => (
+}: Props) => (
   <main
     className={className.includes('left-pane')
       ? `${className} ${theme}`
