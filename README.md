@@ -6,7 +6,7 @@ __This is meant as a reference / review only &mdash; if you haven't already lear
 
 This project uses [CodeMirror](https://codemirror.net/) and [React-CodeMirror2](https://github.com/scniro/react-codemirror2/) to embed an editor into the browser (the original React-Codemirror is out of date, not maintained, and does not play well with React 16). It also uses a fun little hack to run the code and hijack `console.log`, creating a little REPL which outputs into a mock console. Oh, and a [little script](https://github.com/lingtalfi/simpledrag) I found to help with the resizable panes!
 
-![image](https://user-images.githubusercontent.com/18563015/35986973-89bb7ec8-0cc8-11e8-8fe1-55f00cc50fb1.png)
+![image](https://user-images.githubusercontent.com/18563015/38588156-5e5212ec-3cf2-11e8-8601-89ea6076c3a2.png)
 The app is currently live here: https://cs-playground-react.surge.sh/
 
 ## Saving / Clearing Code:
