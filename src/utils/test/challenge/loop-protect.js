@@ -1,7 +1,7 @@
 const Babel   = require('babel-standalone')
 const protect = require('loop-protect')
 
-const error = (line, char) => {
+function error(line, char) {
   throw new RangeError(
 `Potential infinite loop, timed out after 200ms.
     at eval:${line}:${char}

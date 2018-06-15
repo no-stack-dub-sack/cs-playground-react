@@ -78,7 +78,7 @@ const bindings = `
       <li><span>Next challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>.</kbd></li>
       <li><span>Previous challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>,</kbd></li>
       <li><span>Jump to solution / seed:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>S</kbd></li>
-      <li><span>Run code / tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>ENTER</kbd></li>
+      <li><span>Run code / tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>ENTER</kbd></li>
       <li><span>Toggle Suppress Tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + <kbd>/</kbd></li>
       <li><span>Clear Console:</span> <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>DELTE/BACKSPACE</kbd></li>
       <li><span>Open autocomplete dropdown:</span> <kbd>CTRL</kbd> + <kbd>SPACE</kbd></li>

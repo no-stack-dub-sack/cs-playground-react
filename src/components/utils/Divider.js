@@ -1,9 +1,9 @@
 // @flow
-import { VERTICAL_GRIP, HORIZONTAL_GRIP } from '../../utils/base64'
-import PropTypes from 'prop-types'
-import React from 'react'
+import PropTypes from 'prop-types';
+import React from 'react';
+import { HORIZONTAL_GRIP, VERTICAL_GRIP } from '../../utils/base64';
 
-const Divider = ({ attachRef, direction }) => {
+const Divider = ({ attachRef, direction }: { attachRef: Function, direction: string }) => {
   return (
     <div
       style={{
