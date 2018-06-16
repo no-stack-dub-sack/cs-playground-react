@@ -1,9 +1,7 @@
 // @flow
-import {
-  ALL_TESTS_SUPPRESSED,
-  IS_SUITE_SUPPRESSED,
-  RMOVE_DUPES,
-} from '../../../utils/localStorageKeys'
+import { concat, filter, findIndex, indexOf, isEqual, uniq, uniqWith } from 'lodash';
+import { ALL_TESTS_SUPPRESSED, IS_SUITE_SUPPRESSED, REMOVE_DUPES } from '../../../utils/localStorageKeys';
+import createOrderKey from './createOrderKey';
 import type {
   AddSuppressTests,
   CheckForUpdates,
@@ -12,17 +10,7 @@ import type {
   RemoveDupes,
   RunInitializationUtils
 } from '../../../types/Reducers'
-import {
-  concat,
-  filter,
-  findIndex,
-  indexOf,
-  isEqual,
-  uniq,
-  uniqWith
-} from 'lodash'
 
-import createOrderKey from './createOrderKey'
 
 // isolate new challenges, combine, remove exact dupes
 const mergeCodeStores: MergeCodeStores = (initialCS, savedCS) => {
@@ -39,7 +27,7 @@ const mergeCodeStores: MergeCodeStores = (initialCS, savedCS) => {
 }
 
 const removeDuplicates: RemoveDupes = (codeStore) => {
-  if (!localStorage.getItem(RMOVE_DUPES)) {
+  if (!localStorage.getItem(REMOVE_DUPES)) {
     for (let i = 0; i < codeStore.length; i++) {
       if (codeStore[i]) {
         const predicate = { id: codeStore[i].id }
@@ -50,7 +38,7 @@ const removeDuplicates: RemoveDupes = (codeStore) => {
         }
       }
     }
-    localStorage.setItem(RMOVE_DUPES, 'true')
+    localStorage.setItem(REMOVE_DUPES, 'true')
   }
   return filter(
     codeStore,

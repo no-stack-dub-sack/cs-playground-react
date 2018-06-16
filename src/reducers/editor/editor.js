@@ -1,17 +1,17 @@
 // @flow
-import { ALL_TESTS_SUPPRESSED, EDITR_STATE } from '../../utils/localStorageKeys'
+import { CODE } from '../../assets/codeRef';
+import WELCOME_MESSAGE from '../../assets/seed/welcome';
+import { ALL_TESTS_SUPPRESSED, EDITOR_STATE } from '../../utils/localStorageKeys';
+import challengeNav from './children/challenges';
+import repls from './children/repls';
+import solutionNav from './children/solutions';
+import createOrderKey from './utils/createOrderKey';
+import { runInitializationUtils } from './utils/initializationUtils';
+import populateCodeStore from './utils/populateCodeStore';
+import updateCodeStore from './utils/updateCodeStore';
 
 import type { Action } from '../../types/Actions'
-import { CODE } from '../../assets/codeRef'
 import type { EditorState } from '../../types/Reducers'
-import WELCOME_MESSAGE from '../../assets/seed/welcome'
-import challengeNav from './children/challenges'
-import createOrderKey from './utils/createOrderKey'
-import populateCodeStore from './utils/populateCodeStore'
-import repls from './children/repls'
-import { runInitializationUtils } from './utils/initializationUtils'
-import solutionNav from './children/solutions'
-import updateCodeStore from './utils/updateCodeStore'
 
 const initialState: EditorState = {
   isSharedRepl: false,
@@ -28,7 +28,7 @@ const initialState: EditorState = {
 // or rehydrated from LS, which is set in index.js
 const defaultState = runInitializationUtils(
   initialState,
-  localStorage.getItem(EDITR_STATE),
+  localStorage.getItem(EDITOR_STATE),
   CODE
 )
 
@@ -46,7 +46,7 @@ const editor = (state: EditorState = defaultState, action: Action): EditorState 
     case 'TOGGLE_SOLUTION':
       return solutionNav(state, action)
     case 'RESET_STATE':
-      localStorage.removeItem(EDITR_STATE)
+      localStorage.removeItem(EDITOR_STATE)
       localStorage.removeItem(ALL_TESTS_SUPPRESSED)
       return initialState
     case 'UPDATE_CODE':

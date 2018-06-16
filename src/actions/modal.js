@@ -7,8 +7,8 @@ import type {
   OpenThemeModal
 } from '../types/Actions';
 import {
-  RENDR_MODAL,
-  RESET_ANCMT
+  RENDER_MODAL,
+  RESET_ANNOUNCEMENT_COUNT
 } from '../utils/localStorageKeys'
 
 import { startCase } from 'lodash'
@@ -41,23 +41,23 @@ export const closeModal = () => ({ type: 'CLOSE_MODAL' })
 // render announemnet util
 // render only first 3 visits
 export function renderAnnouncementUtil(): void {
-  let numAnnounced = localStorage.getItem(RENDR_MODAL)
-  let isReset = localStorage.getItem(RESET_ANCMT)
+  let numAnnounced = localStorage.getItem(RENDER_MODAL)
+  let isReset = localStorage.getItem(RESET_ANNOUNCEMENT_COUNT)
 
   // reset for new announcements, and set
   // flag to prevent continuous resetting
   if (Number(numAnnounced) === 3 && !isReset) {
-    localStorage.removeItem(RENDR_MODAL)
-    localStorage.setItem(RESET_ANCMT, 'true')
+    localStorage.removeItem(RENDER_MODAL)
+    localStorage.setItem(RESET_ANNOUNCEMENT_COUNT, 'true')
     numAnnounced = undefined
   }
 
   // render modal, increment count, stopping at 3
   if (!numAnnounced) {
-    localStorage.setItem(RENDR_MODAL, '1')
+    localStorage.setItem(RENDER_MODAL, '1')
     store.dispatch(openAnnouncementModal())
   } else if (Number(numAnnounced) < 3) {
-    localStorage.setItem(RENDR_MODAL, String(Number(numAnnounced)  +  1))
+    localStorage.setItem(RENDER_MODAL, String(Number(numAnnounced)  +  1))
     store.dispatch(openAnnouncementModal())
   }
 }
@@ -74,24 +74,25 @@ const bindings = `
     <li>Additional keys bindings / shortcuts:</li>
     <ul>
       <li><span>Generate Share Link:</span> <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd></li>
-      <li><span>Scroll through themes:</span> <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + ( <kbd>{</kbd> OR <kbd>}</kbd> )</li>
-      <li><span>Next challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>.</kbd></li>
-      <li><span>Previous challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>,</kbd></li>
-      <li><span>Jump to solution / seed:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>S</kbd></li>
-      <li><span>Run code / tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>ENTER</kbd></li>
+      <li><span>Scroll Through Themes:</span> <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + ( <kbd>{</kbd> OR <kbd>}</kbd> )</li>
+      <li><span>Next Challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>.</kbd></li>
+      <li><span>Previous Challenge:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>,</kbd></li>
+      <li><span>Jump to Solution / seed:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>S</kbd></li>
+      <li><span>Run code / Tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>ENTER</kbd></li>
       <li><span>Toggle Suppress Tests:</span> <kbd>CMD/CTRL</kbd> + <kbd>ALT</kbd> + <kbd>/</kbd></li>
+      <li><span>Toggle Loop Protect:</span> <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>L</kbd></li>
       <li><span>Clear Console:</span> <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>DELTE/BACKSPACE</kbd></li>
-      <li><span>Open autocomplete dropdown:</span> <kbd>CTRL</kbd> + <kbd>SPACE</kbd></li>
+      <li><span>Open Autocomplete Dropdown:</span> <kbd>CTRL</kbd> + <kbd>SPACE</kbd></li>
       <li><span>Focus Editor:</span> <kbd>CMD/CTRL</kbd> + <kbd>\\</kbd></li>
     </ul>
     <li>Search / Replace functionalities:</li>
     <ul>
-      <li><span>Start searching:</span> <kbd>CMD/CTRL</kbd> + <kbd>F</kbd></li>
-      <li><span>Find next:</span> <kbd>CMD/CTRL</kbd> + <kbd>G</kbd></li>
-      <li><span>Find previous:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>G</kbd></li>
+      <li><span>Start Searching:</span> <kbd>CMD/CTRL</kbd> + <kbd>F</kbd></li>
+      <li><span>Find Next:</span> <kbd>CMD/CTRL</kbd> + <kbd>G</kbd></li>
+      <li><span>Find Previous:</span> <kbd>CMD/CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>G</kbd></li>
       <li><span>Replace:</span> <kbd>CMD</kbd> + <kbd>ALT</kbd> + <kbd>F</kbd> OR <kbd>SHIFT</kbd> + <kbd>CTRL</kbd> + <kbd>F</kbd></li>
-      <li><span>Replace all:</span> <kbd>SHIFT</kbd> + <kbd>CMD</kbd> + <kbd>ALT</kbd> + <kbd>F</kbd> OR <kbd>SHIFT</kbd> + <kbd>CTRL</kbd> + <kbd>R</kbd></li>
-      <li><span>Jump to line:</span> <kbd>ALT</kbd> + <kbd>G</kbd></li>
+      <li><span>Replace All:</span> <kbd>SHIFT</kbd> + <kbd>CMD</kbd> + <kbd>ALT</kbd> + <kbd>F</kbd> OR <kbd>SHIFT</kbd> + <kbd>CTRL</kbd> + <kbd>R</kbd></li>
+      <li><span>Jump to Line:</span> <kbd>ALT</kbd> + <kbd>G</kbd></li>
     </ul>
   </ul>
 `

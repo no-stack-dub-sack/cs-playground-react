@@ -1,4 +1,4 @@
-import { RENDR_MODAL } from '../../utils/localStorageKeys'
+import { RENDER_MODAL } from '../../utils/localStorageKeys'
 import React from 'react'
 import { map } from 'lodash'
 
@@ -18,7 +18,7 @@ const AnnouncementModal = (props) => (
           props.messages[props.messages.length-1]}} />
     </p>
     {(() => {
-        let num = localStorage.getItem(RENDR_MODAL)
+        let num = localStorage.getItem(RENDER_MODAL)
         num = num === '1' ? 2 : num === '2' ? 1 : 0
         return (
           <span>

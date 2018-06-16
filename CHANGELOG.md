@@ -1,3 +1,9 @@
+## 0.3.0 (June 15th, 2018)
+Small update including minor fixes (typos, etc.). Also:
+- fix 'all of a sudden' babel-standalone bug catching syntax error in loop protect code (that didn't seem to exist), was causing issues with executing code on Chrome for windows (not on Mac for some reason?)
+- add ability to toggle loop-protect via key binding
+- improve logic that handles toggling control comments via keybindings
+
 ## 0.3.0 (April 9th, 2018)
 A pretty major update including a few big new features, and one smaller but important one:
 - __Awesome, more modern menu UI and theme updates:__ Thanks to @IssaacAbrahamson for coming through on this one! Way better design skills than me, and the menu looks freaking great! So much better...

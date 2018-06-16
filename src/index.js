@@ -34,7 +34,7 @@ window.onbeforeunload = function(e) {
   // use // DO NOT SAVE comment to disable saving
   if (!DO_NOT_SAVE.test(state.editor.current.code) && !state.editor.isSharedRepl) {
     localStorage.setItem(
-      LS.EDITR_STATE,
+      LS.EDITOR_STATE,
       JSON.stringify(state.editor)
     )
     localStorage.setItem(
