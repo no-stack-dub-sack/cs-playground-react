@@ -1,4 +1,4 @@
-import toggleSuppressTests from './toggleSuppressTests'
+import toggleControlComments from './toggleControlComments';
 
 export default {
   indentUnit: 4,
@@ -36,10 +36,13 @@ export default {
       cm.showHint()
     },
     'Ctrl-Alt-/': (cm) => {
-      toggleSuppressTests(cm)
+      toggleControlComments(cm, /\/\/\s+SUPPRESS\s+TESTS/i, '// SUPPRESS TESTS')
     },
     'Cmd-Alt-/': (cm) => {
-      toggleSuppressTests(cm)
-    }
+      toggleControlComments(cm, /\/\/\s+SUPPRESS\s+TESTS/i, '// SUPPRESS TESTS')
+    },
+    'Ctrl-Alt-L': (cm) => {
+    	toggleControlComments(cm, /\/\/\s+DISABLE\s+LOOP\s+PROTECT/i, '// DISABLE LOOP PROTECT')
+    },
   }
 }

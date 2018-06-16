@@ -1,17 +1,19 @@
-import './styles/index.css'
-
-import * as LS from './utils/localStorageKeys'
-
-import App from './App'
-import { DO_NOT_SAVE } from './utils/regexp'
-import ErrorBoundary from './components/utils/ErrorBoundary'
-import { Provider } from 'react-redux'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import configureStore from './store'
-import createProxyConsole from './utils/createProxyConsole'
-import registerServiceWorker from './utils/registerServiceWorker'
-import simpleDrag from './utils/simpleDrag'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Store } from 'redux';
+import App from './App';
+import ErrorBoundary from './components/utils/ErrorBoundary';
+import configureStore from './store';
+import './styles/index.css';
+import createProxyConsole from './utils/createProxyConsole';
+import * as LS from './utils/localStorageKeys';
+import { DO_NOT_SAVE } from './utils/regexp';
+import registerServiceWorker from './utils/registerServiceWorker';
+import simpleDrag from './utils/simpleDrag';
+import type {
+	State
+} from './types/State'
 
 // NOTE: set to true or use console.info
 // when debugging w/ console.log becomes
@@ -24,7 +26,7 @@ createProxyConsole()
 // enable resizable split panes
 simpleDrag()
 
-export const store = configureStore()
+export const store: Store<State> = configureStore()
 
 // set localStorage when navigating away from app
 window.onbeforeunload = function(e) {
