@@ -83,8 +83,7 @@ export const tests = [
   {
     expression: `
     (() => {
-      [4,1,7,87,34,45,73,8]
-        .forEach(n => __tree__.add(n))
+      [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
       __tree__.__isNodeValid__()
       return (__tree__.__isBinarySearchTree__())
     })()
@@ -94,11 +93,11 @@ export const tests = [
   {
     expression: `
     (() => {
-      __tree__.add(4)
-      return __tree__.add(4) === null
+      [20, 9, 49, 5, 9, 9, 5].forEach(n => __tree__.add(n))
+      return __tree__.__inOrder__().join('') === '592049'
     })()
     `,
-    message: 'Adding an element that already exists returns <code>null</code>'
+    message: 'Adding duplicate values to the tree is not allowed'
   },
   {
     expression: `typeof __tree__.findMin === 'function'`,
@@ -107,8 +106,7 @@ export const tests = [
   {
     expression:
       `(() => {
-        [4,1,7,87,34,45,73,8]
-          .forEach(n => __tree__.add(n))
+        [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
         return __tree__.findMin() === 1
       })()
     `,
@@ -121,8 +119,7 @@ export const tests = [
   {
     expression:
       `(() => {
-        [4,1,7,87,34,45,73,8]
-          .forEach(n => __tree__.add(n))
+        [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
         return __tree__.findMax() === 87
       })()
     `,
@@ -160,15 +157,6 @@ export const tests = [
   {
     expression: `__tree__.remove(100) === null`,
     message: 'The <code>remove</code> method returns <code>null</code> for an empty tree'
-  },
-  {
-    expression: `
-      (() => {
-        [5,94,3].forEach(n => __tree__.add(n))
-        return (__tree__.remove(100) === null)
-      })()
-    `,
-    message: 'Trying to remove an element that does not exist returns <code>null</code>'
   },
   {
     expression: `
@@ -214,8 +202,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        [1,4,3,7,9,11,14,15,19,50]
-          .forEach(n => __tree__.add(n))
+        [1,4,3,7,9,11,14,15,19,50].forEach(n => __tree__.add(n))
         const removeNum = [9, 11, 14, 19, 3, 50, 15]
         for (let num of removeNum) {
           __tree__.remove(num)
@@ -231,8 +218,7 @@ export const tests = [
   {
     expression: `
       (() => {
-        [100,50,300]
-          .forEach(n => __tree__.add(n))
+        [100,50,300].forEach(n => __tree__.add(n))
         __tree__.remove(100)
         return __tree__.__inOrder__().join('') === '50300'
       })()`,
@@ -257,8 +243,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'findMinHeight')) {
           return 'DISABLED'
         }
-        [4,1,7,87,34,45,73,8]
-          .forEach(n => __tree__.add(n))
+        [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
         return __tree__.findMinHeight() === 1
       })()
     `,
@@ -270,8 +255,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'findMaxHeight')) {
           return 'DISABLED'
         }
-        [4,1,7,87,34,45,73,8]
-          .forEach(n => __tree__.add(n))
+        [4,1,7,87,34,45,73,8].forEach(n => __tree__.add(n))
         return __tree__.findMaxHeight() === 5
       })()
     `,
@@ -296,8 +280,7 @@ export const tests = [
         if (isTestDisabled(BinarySearchTree, 'isBalanced')) {
           return 'DISABLED'
         }
-        [50,17,76,9,23,54,14,19,72,12,67]
-          .forEach(n => __tree__.add(n))
+        [50,17,76,9,23,54,14,19,72,12,67].forEach(n => __tree__.add(n))
         return __tree__.isBalanced()
       })()
     `,

@@ -1,7 +1,6 @@
 export default {
-  title: 'Binary Search Tree',
-  seed:
-`class Node {
+	title: 'Binary Search Tree',
+	seed: `class Node {
     constructor(value) {
         this.value = value
         this.left = null
@@ -32,8 +31,7 @@ class BinarySearchTree {
     // invert()
 }
 `,
-  solution:
-`/**
+	solution: `/**
   * @class Node
   * @property value The node's value
   * @property left The node's left child
@@ -50,7 +48,7 @@ class Node {
 
 /**
   * @class BinarySearchTree
-  * @method add Adds a node to the tree @param {number}
+  * @method add Adds a node or nodes to the tree @param {...number}
   * @method remove @param {number} value @returns {number} Removes and returns the removed element
   * @method findMin @returns {number} Returns the smallest value in the tree
   * @method findMax @returns {number} Returns the greatest value in the tree
@@ -67,379 +65,325 @@ class Node {
   */
 
 class BinarySearchTree {
-    constructor() {
-        this.root = null
-        this.size = 0
-    }
-
-
-    add(value) {
-        if (!this.root) {
-            this.size++
-            this.root = new Node(value)
-            return
-        }
-
-        const add = (value, node) => {
-            if (value > node.value) {
-                if (!node.right) {
-                    this.size++
-                    node.right = new Node(value)
-                    return
-                } else {
-                    return add(value, node.right)
-                }
-            } else if (value < node.value) {
-                if (!node.left) {
-                    this.size++
-                    node.left = new Node(value)
-                    return
-                } else {
-                    return add(value, node.left)
-                }
-            }
-            // element already exists
-            return null
-        }
-
-        return add(value, this.root)
-    }
-
-
-    remove(value) {
-        if (!this.root) {
-            return null
-        }
-
-        const { target, parent } = this.__searchTree(value, this.root)
-
-        if (!target) {
-            return null
-        }
-
-        // decrement size of list
-        this.size--
-
-        // count children
-        let children = 0
-        if (target.right) children++
-        if (target.left) children++
-
-        // remove leaf node
-        if (!children) {
-            if (!parent) {
-                this.root = null
-                return
-            }
-
-            if (parent.left && parent.left.value === value) {
-                parent.left = null
-            } else {
-                parent.right = null
-            }
-        }
-
-        // remove node with 1 child
-        if (children === 1) {
-            if (!parent) {
-                if (target.left) {
-                    this.root = target.left
-                } else {
-                    this.root = target.right
-                }
-                return
-            }
-
-            if (parent.left && parent.left.value === value) {
-                if (target.left) {
-                    parent.left = target.left
-                } else {
-                    parent.left = target.right
-                }
-            } else {
-                if (target.left) {
-                    parent.right = target.left
-                } else {
-                    parent.right = target.right
-                }
-            }
-        }
-
-        // remove node w/ 2 children
-        if (children === 2) {
-            if (!parent && target.right && target.left) {
-                this.root.value = target.right.value
-                target.right = null
-                return
-            }
-
-            var findMin = (minRight, minRightParent) => {
-                if (minRight.left) {
-                    return findMin(minRight.left, minRight)
-                }
-
-                return { minRight, minRightParent }
-            }
-
-            var { minRight, minRightParent } = findMin(target.right, target)
-
-            target.value = minRight.value
-
-            if (!minRight.left && !minRight.right) {
-                if (minRightParent.left.value === minRight.value) {
-                    minRightParent.left = null
-                } else {
-                    minRightParent.right = null
-                }
-            } else {
-                minRightParent.left = minRight.right
-            }
-        }
-    }
-
-
-    findMin() {
-        if (!this.root) {
-            return null
-        }
-
-        const findMin = (node) => {
-            return node.left
-                ? findMin(node.left)
-                : node.value
-        }
-
-        return findMin(this.root)
-    }
-
-
-    findMax() {
-        if (!this.root) {
-            return null
-        }
-
-        const findMax = (node) => {
-            return node.right
-                ? findMax(node.right)
-                : node.value
-        }
-
-        return findMax(this.root)
-    }
-
-
-    isPresent(value) {
-        if (!this.root) {
-            return false
-        }
-
-        const isPresent = (value, node) => {
-            if (value === node.value) {
-                return true
-            } else if (value > node.value && node.right) {
-                return isPresent(value, node.right)
-            } else if (value < node.value && node.left) {
-                return isPresent(value, node.left)
-            }
-            return false
-        }
-
-        return isPresent(value, this.root)
-    }
-
-
-    findMaxHeight() {
-        const height = (node) => {
-            if (!node) {
-                return -1
-            }
-
-            var leftHeight = height(node.left)
-            var rightHeight = height(node.right)
-
-            return leftHeight > rightHeight
-                ? leftHeight + 1
-                : rightHeight + 1
-        }
-        return height(this.root)
-    }
-
-
-    findMinHeight() {
-        const height = (node) => {
-            if (!node) {
-                return -1
-            }
-
-            var leftHeight = height(node.left)
-            var rightHeight = height(node.right)
-
-            return leftHeight < rightHeight
-                ? leftHeight + 1
-                : rightHeight + 1
-        }
-        return height(this.root)
-    }
-
-
-    isBalanced() {
-        return this.findMinHeight() > (this.findMaxHeight() - 1)
-            ? false
-            : true
-    }
-
-
-    inOrder() {
-        if (!this.root) {
-            return null
-        }
-
-        const traverse = (node, list) => {
-            if (node) {
-                traverse(node.left, list)
-                list.push(node.value)
-                traverse(node.right, list)
-                return list
-            }
-        }
-
-        return traverse(this.root, [])
-    }
-
-
-    preOrder() {
-        if (!this.root) {
-            return null
-        }
-
-        const traverse = (node, list) => {
-            if (node) {
-                list.push(node.value)
-                traverse(node.left, list)
-                traverse(node.right, list)
-                return list
-            }
-        }
-
-        return traverse(this.root, [])
-    }
-
-
-    postOrder() {
-        if (!this.root) {
-          return null
-        }
-
-        const traverse = (node, list) => {
-            if (node) {
-                traverse(node.left, list)
-                traverse(node.right, list)
-                list.push(node.value)
-                return list
-            }
-        }
-
-        return traverse(this.root, [])
-    }
-
-
-    levelOrder() {
-        if (!this.root) {
-            return null
-        }
-
-        const results = [], q = []
-        q.push(this.root)
-
-        while (q.length) {
-            let node = q.shift()
-            results.push(node.value)
-
-            if (node.left) {
-                q.push(node.left)
-            }
-
-            if (node.right) {
-                q.push(node.right)
-            }
-        }
-
-        return results
-    }
-
-
-    reverseLevelOrder() {
-        if (!this.root) {
-            return null
-        }
-
-        const results = [], q = []
-
-        q.push(this.root)
-
-        while (q.length) {
-            let node = q.shift()
-            results.push(node.value)
-
-            if (node.right) {
-                q.push(node.right)
-            }
-
-            if (node.left) {
-                q.push(node.left)
-            }
-        }
-
-        return results
-    }
-
-
-    invert() {
-        if (!this.root) {
-            return null
-        }
-
-        const invert = (node) => {
-            if (node) {
-              var tempNode = node.left
-              node.left = node.right
-              node.right = tempNode
-
-              invert(node.left)
-              invert(node.right)
-            }
-        }
-
-        invert(this.root)
-    }
-
-    // helper method for deletion actions
-    // tracks matching node and parent node
-    __searchTree(value, node, parent) {
-        if (value === node.value) {
-            return {
-                target: node,
-                parent
-            }
-        } else if (value < node.value && node.left) {
-            return this.__searchTree(value, node.left, node)
-        } else if (value > node.value && node.right) {
-            return this.__searchTree(value, node.right, node)
-        }
-
-        return {
-            target: null,
-            parent: null
-        }
-    }
+	constructor() {
+		this.root = null
+	}
+
+	// allow for adding an indeterminate amount
+	// of values at a time with rest operator
+	add(...values) {
+		const _add = (value, node = this.root) => {
+			const newNode = new Node(value)
+			if (!node) {
+				this.root = newNode
+				return
+			}
+
+			if (value === node.value) {
+				console.error('Value already exists in tree - no new node added')
+				return
+			}
+
+			if (value > node.value) {
+				if (node.right) return _add(value, node.right)
+				node.right = newNode
+				return
+			} else {
+				if (node.left) return _add(value, node.left)
+				node.left = newNode
+				return
+			}
+		}
+
+		for (const value of values) {
+			_add(value)
+		}
+	}
+
+	remove(value, node = this.root, firstItr = true) {
+		if (!node) {
+			return null
+		} else if (value > node.value) {
+			node.right = this.remove(value, node.right, false)
+		} else if (value < node.value) {
+			node.left = this.remove(value, node.left, false)
+		} else {
+			// node is leaf node
+			if (!node.left && !node.right) {
+				// handle edge case of deleting the root
+				// of a single node tree, and use extra
+				// argument to prevent this behavior from
+				// acting on a newly set root node as the
+				// result of a recursive call. Else, this
+				// disrupts handling of other edge case of
+				// deleting root from a tree with 3 nodes
+				if (firstItr) {
+					this.root = null
+				} else {
+					node = null
+				}
+			}
+			// node only has right child
+			else if (!node.left) {
+				node.value = node.right.value
+				node.right = node.right.right
+			}
+			// node only has left child
+			else if (!node.right) {
+				node.value = node.left.value
+				node.left = node.left.left
+			}
+			// node has 2 children
+			else {
+				const rightSubTreeMin = this.findMin(node.right)
+				node.value = rightSubTreeMin
+				node.right = this.remove(rightSubTreeMin, node.right, false)
+			}
+		}
+
+		return node
+	}
+
+	// DEPTH FIRST TRAVERSALS
+
+	// left -> root -> right
+	inOrder() {
+		if (!this.root) {
+			return null;
+		}
+
+		const result = [],
+			stack = [];
+		let currentNode = this.root;
+
+		while (currentNode || stack.length) {
+			if (currentNode) {
+				stack.push(currentNode);
+				currentNode = currentNode.left;
+			} else {
+				const top = stack.pop();
+				result.push(top.value);
+				currentNode = top.right;
+			}
+		}
+
+		return result;
+	}
+
+	recursiveInOrder(node = this.root, result = []) {
+		if (!node) {
+			return null
+		}
+
+		if (node) {
+			this.recursiveInOrder(node.left, result)
+			result.push(node.value)
+			this.recursiveInOrder(node.right, result)
+		}
+
+		return result
+	}
+
+	// root -> left -> right
+	preOrder() {
+		if (!this.root) {
+			return null;
+		}
+
+		const result = [],
+			stack = [];
+		let currentNode = this.root;
+
+		while (currentNode || stack.length) {
+			if (currentNode) {
+				stack.push(currentNode);
+				result.push(currentNode.value);
+				currentNode = currentNode.left;
+			} else {
+				const top = stack.pop();
+				currentNode = top.right;
+			}
+		}
+
+		return result;
+	}
+
+	recursivePreOrder(node = this.root, result = []) {
+		if (!node) {
+			return null
+		}
+
+		if (node) {
+			result.push(node.value)
+			this.recursivePreOrder(node.left, result)
+			this.recursivePreOrder(node.right, result)
+		}
+
+		return result
+	}
+
+	// left -> right -> root
+	postOrder() {
+		if (!this.root) return null;
+
+		const stack = [this.root],
+			result = [];
+
+		while (stack.length) {
+			const top = stack.pop();
+			result.unshift(top.value);
+			if (top.left) stack.push(top.left);
+			if (top.right) stack.push(top.right);
+		}
+
+		return result;
+	}
+
+	recursivePostOrder(node = this.root, result = []) {
+		if (!node) {
+			return null
+		}
+
+		if (node) {
+			this.recursivePostOrder(node.left, result)
+			this.recursivePostOrder(node.right, result)
+			result.push(node.value)
+		}
+
+		return result
+	}
+
+	// BREADTH FIRST TRAVERSALS
+
+	levelOrder() {
+		if (!this.root) return null;
+
+		const queue = [this.root],
+			result = [];
+
+		while (queue.length) {
+			const front = queue.shift();
+			result.push(front.value);
+			if (front.left) queue.push(front.left);
+			if (front.right) queue.push(front.right);
+		}
+
+		return result;
+
+	}
+
+	reverseLevelOrder() {
+		if (!this.root) return null;
+
+		const queue = [],
+			result = [];
+		queue.push(this.root);
+
+		while (queue.length) {
+			const front = queue.shift();
+			result.push(front.value);
+			if (front.right) queue.push(front.right);
+			if (front.left) queue.push(front.left);
+		}
+
+		return result;
+
+	}
+
+	// iterative example
+	// must accept a node as an argument instead of being initialized
+	// within the method in order to be correctly utilized by the
+	// remove method when deleting a node with 2 children
+	findMin(currentNode = this.root) {
+		if (!currentNode) return null
+
+		let min
+
+		while (currentNode) {
+			min = currentNode.value
+			currentNode = currentNode.left
+		}
+
+		return min
+	}
+
+	// recursive example
+	findMax(node = this.root) {
+		if (!node) {
+			return null
+		}
+
+		if (node.right) {
+			return this.findMax(node.right)
+		}
+
+		return node.value
+	}
+
+	isPresent(value, node = this.root) {
+		if (!node) {
+			return false
+		}
+
+		if (value === node.value) {
+			return true
+		} else if (value > node.value && node.right) {
+			return this.isPresent(value, node.right)
+		} else if (value < node.value && node.left) {
+			return this.isPresent(value, node.left)
+		}
+
+		return false
+	}
+
+	findMaxHeight(node = this.root) {
+		if (!node) {
+			return -1
+		}
+
+		var leftHeight = this.findMaxHeight(node.left)
+		var rightHeight = this.findMaxHeight(node.right)
+
+		return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1
+	}
+
+	findMinHeight(node = this.root) {
+		if (!node) {
+			return -1
+		}
+
+		var leftHeight = this.findMinHeight(node.left)
+		var rightHeight = this.findMinHeight(node.right)
+
+		return rightHeight > leftHeight ? leftHeight + 1 : rightHeight + 1
+	}
+
+	isBalanced() {
+		if (this.findMinHeight() > (this.findMaxHeight() - 1)) {
+			return false
+		}
+		return true
+	}
+
+	invert(node = this.root) {
+		if (!node) {
+			return null
+		}
+
+		var tempNode = node.left
+		node.left = node.right
+		node.right = tempNode
+
+		this.invert(node.left)
+		this.invert(node.right)
+	}
 }
 
-var tree = new BinarySearchTree()
+const tree = new BinarySearchTree()
 
 // example usage
 
-const vals = [20,9,49,5,23,52,15,50,17,18,16,13,10,11,12]
-vals.forEach(value => tree.add(value))
+tree.add(20, 9, 49, 5, 23, 52, 15, 50, 17, 18, 16, 13, 10, 11, 12)
 
 console.log(\`findMax: \${tree.findMax()}\`)
 console.log(\`findMin: \${tree.findMin()}\`)
@@ -466,14 +410,37 @@ tree.invert()
 console.log('\\nafter deletion and inversion:\\n')
 console.log(JSON.stringify(tree, null, 2))
 `,
-  resources: [
-    { href: 'http://www.geeksforgeeks.org/binary-search-tree-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'http://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
-    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree', caption: 'freeCodeCamp Challenge Series'},
-    { href: 'https://en.wikipedia.org/wiki/Binary_search_tree', caption: 'Wikipedia'},
-    { href: 'https://guide.freecodecamp.org/algorithms/binary-search-trees', caption: 'freeCodeCamp Guides'},
-    { href: 'https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/', caption: 'NCZOnline Blog (JS Specific)'},
-    { href: 'https://www.cs.usfca.edu/~galles/visualization/BST.html', caption: 'Interactive Animated Visualization!'},
-    { href: 'https://visualgo.net/en/bst?slide=1', caption: 'VisualAlgo.net: Better Interactive Animated Visualization!'},
-  ]
+	resources: [{
+			href: 'http://www.geeksforgeeks.org/binary-search-tree-data-structure/',
+			caption: 'GeeksforGeeks.org'
+		},
+		{
+			href: 'http://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/',
+			caption: 'GeeksforGeeks.org JS Implementation'
+		},
+		{
+			href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree',
+			caption: 'freeCodeCamp Challenge Series'
+		},
+		{
+			href: 'https://en.wikipedia.org/wiki/Binary_search_tree',
+			caption: 'Wikipedia'
+		},
+		{
+			href: 'https://guide.freecodecamp.org/algorithms/binary-search-trees',
+			caption: 'freeCodeCamp Guides'
+		},
+		{
+			href: 'https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/',
+			caption: 'NCZOnline Blog (JS Specific)'
+		},
+		{
+			href: 'https://www.cs.usfca.edu/~galles/visualization/BST.html',
+			caption: 'Interactive Animated Visualization!'
+		},
+		{
+			href: 'https://visualgo.net/en/bst?slide=1',
+			caption: 'VisualAlgo.net: Better Interactive Animated Visualization!'
+		},
+	]
 }
