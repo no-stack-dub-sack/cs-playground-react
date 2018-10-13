@@ -149,25 +149,28 @@ class Controls extends React.Component<Props, LocalState> {
     ReactTooltip.hide(findDOMNode(this.refs['Expand Menu']))
   }
   generateShareLink = (): void => {
-    // NOTE: for test deployments change
-    // to questionable-number.surge.sh
-    const baseURL = isProd
-      ? 'https://cs-playground-react.surge.sh'
-      : 'http://localhost:3000'
-    // make POST req to cs-pg-react-api and respond
-    // with mongoId associated w/ stored code string.
-    axios.post(`${apiURL}/insert-code`, {
-      api_key: process.env.REACT_APP_API_KEY,
-      code: this.props.code
-    })
-      .then(res => {
-        // concat w/ base offer toast for user to copy to clipboard
-        this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
-      })
-      .catch(err => {
-        console.error(err)
-        console.log('Error generating share link...')
-      })
+    // NOTE: feature disabled due to Heroku accidentally deleting my account and me not being willing
+    // to redo everything and spend the money of the feature since no one is really using it anyway :-)
+
+    // // NOTE: for test deployments change
+    // // to questionable-number.surge.sh
+    // const baseURL = isProd
+    //   ? 'https://cs-playground-react.surge.sh'
+    //   : 'http://localhost:3000'
+    // // make POST req to cs-pg-react-api and respond
+    // // with mongoId associated w/ stored code string.
+    // axios.post(`${apiURL}/insert-code`, {
+    //   api_key: process.env.REACT_APP_API_KEY,
+    //   code: this.props.code
+    // })
+    //   .then(res => {
+    //     // concat w/ base offer toast for user to copy to clipboard
+    //     this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
+    //   })
+    //   .catch(err => {
+    //     console.error(err)
+        console.log('Share links disabled due to server costs and low demand.\nIf you are interested in this feature being reinstated,\nplease file an issue on our repo:\nhttps://github.com/no-stack-dub-sack/cs-playground-react')
+      // })
   }
   toastShareLink = (shareLink: string): void => {
     if (!toast.isActive(this.toastId)) {
