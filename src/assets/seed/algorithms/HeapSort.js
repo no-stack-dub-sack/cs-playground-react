@@ -130,7 +130,7 @@ console.log('\\nheap sort: ' + JSON.stringify(sorted))
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/heap-sort/', caption: 'GeeksforGeeks.org'},
-    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/implement-heap-sort-with-a-min-heap', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://learn.freecodecamp.org/coding-interview-prep/data-structures/implement-heap-sort-with-a-min-heap', caption: 'freeCodeCamp Challenge'},
     { href: 'https://en.wikipedia.org/wiki/Heapsort', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/algorithms/sorting-algorithms/heap-sort/', caption: 'freeCodeCamp Guides'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/HeapSort.html', caption: 'Awesome Animated Sorting Algo Visualizations!'},

@@ -419,7 +419,7 @@ console.log(JSON.stringify(tree, null, 2))
 			caption: 'GeeksforGeeks.org JS Implementation'
 		},
 		{
-			href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree',
+			href: 'https://learn.freecodecamp.org/coding-interview-prep/data-structures/add-a-new-element-to-a-binary-search-tree',
 			caption: 'freeCodeCamp Challenge Series'
 		},
 		{

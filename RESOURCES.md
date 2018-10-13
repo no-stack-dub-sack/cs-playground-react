@@ -59,7 +59,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 
 ### Heap Sort
 - http://www.geeksforgeeks.org/heap-sort/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/implement-heap-sort-with-a-min-heap __(interactive challenge)__
+  - https://learn.freecodecamp.org/coding-interview-prep/data-structures/implement-heap-sort-with-a-min-heap __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Heapsort
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/heap-sort/
 - https://www.hackerearth.com/practice/algorithms/sorting/heap-sort/tutorial/ __(excellent visualization)__
@@ -76,7 +76,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Stack
 - http://www.geeksforgeeks.org/stack-data-structure/
 - http://www.geeksforgeeks.org/implementation-stack-javascript/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-stack-class __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-stack-class __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
 - https://guide.freecodecamp.org/computer-science/data-structures/stacks
 - https://www.cs.usfca.edu/~galles/visualization/StackLL.html __(interactive visualization)__
@@ -84,7 +84,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Queue
 - http://www.geeksforgeeks.org/queue-data-structure/
 - http://www.geeksforgeeks.org/implementation-queue-javascript/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-queue-class __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-queue-class __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Queue_(abstract_data_type)
 - https://guide.freecodecamp.org/computer-science/data-structures/queues
 - https://www.cs.usfca.edu/~galles/visualization/QueueLL.html __(interactive visualization)__
@@ -92,13 +92,13 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Priority Queue
 - http://www.geeksforgeeks.org/priority-queue-set-1-introduction/
 - http://www.geeksforgeeks.org/implementation-priority-queue-javascript/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-priority-queue-class __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-priority-queue-class __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Priority_queue
 
 ### Linked Lists
 - http://www.geeksforgeeks.org/data-structures/linked-list/
 - http://www.geeksforgeeks.org/implementation-linkedlist-javascript/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/work-with-nodes-in-a-linked-list __(interactive challenge series)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/work-with-nodes-in-a-linked-list __(interactive challenge series)__
 - https://en.wikipedia.org/wiki/Linked_list
 - https://guide.freecodecamp.org/computer-science/data-structures/linked-lists
 
@@ -106,7 +106,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 - https://en.wikipedia.org/wiki/Doubly_linked_list
 - http://www.geeksforgeeks.org/data-structures/linked-list/#doublyLinkedList/
 - https://www.nczonline.net/blog/2009/04/21/computer-science-in-javascript-doubly-linked-lists/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-doubly-linked-list __(interactive challenge series)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-doubly-linked-list __(interactive challenge series)__
 
 ### Circular Doubly Linked Lists
 - https://www.geeksforgeeks.org/doubly-circular-linked-list-set-1-introduction-and-insertion/
@@ -115,7 +115,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 
 ### Hash Table
 - http://www.geeksforgeeks.org/hashing-data-structure/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-hash-table __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-hash-table __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Hash_table
 - https://guide.freecodecamp.org/computer-science/data-structures/hash-tables
 - https://www.cs.usfca.edu/~galles/visualization/OpenHash.html __(interactive visualization)__
@@ -125,7 +125,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Binary Search Tree
 - http://www.geeksforgeeks.org/binary-search-tree-data-structure/
 - http://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/add-a-new-element-to-a-binary-search-tree __(interactive challenges)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/add-a-new-element-to-a-binary-search-tree __(interactive challenges)__
 - https://en.wikipedia.org/wiki/Binary_search_tree
 - https://guide.freecodecamp.org/algorithms/binary-search-trees
 - https://www.nczonline.net/blog/2009/06/09/computer-science-in-javascript-binary-search-tree-part-1/
@@ -134,7 +134,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 
 ### Heaps
 - http://www.geeksforgeeks.org/heap-data-structure/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/insert-an-element-into-a-max-heap __(interactive challenges)__
+- https://learn.freecodecamp.org/coding-interview-prep/data-structures/insert-an-element-into-a-max-heap __(interactive challenges)__
 - https://en.wikipedia.org/wiki/Heap_(data_structure)
 - https://www.cs.usfca.edu/~galles/visualization/Heap.html __(interactive visualization)__
 

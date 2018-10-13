@@ -136,7 +136,7 @@ stack.print()
   resources: [
     { href: 'http://www.geeksforgeeks.org/stack-data-structure/', caption: 'GeeksforGeeks.org'},
     { href: 'http://www.geeksforgeeks.org/implementation-stack-javascript/', caption: 'GeeksforGeeks.org JS Implementation'},
-    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-stack-class', caption: 'freeCodeCamp Challenge Series'},
+    { href: 'https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-stack-class', caption: 'freeCodeCamp Challenge Series'},
     { href: 'https://en.wikipedia.org/wiki/Stack_(abstract_data_type)', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/stacks', caption: 'freeCodeCamp Guides'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/StackLL.html', caption: 'Interactive Animated Visualization!'},

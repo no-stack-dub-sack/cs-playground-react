@@ -122,7 +122,7 @@ heap.print()
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/heap-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/insert-an-element-into-a-max-heap', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://learn.freecodecamp.org/coding-interview-prep/data-structures/insert-an-element-into-a-max-heap', caption: 'freeCodeCamp Challenge'},
     { href: 'https://en.wikipedia.org/wiki/Heap_(data_structure)', caption: 'Wikipedia'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/Heap.html', caption: 'Interactive Animated Visualization!'},
     { href: 'https://visualgo.net/en/heap', caption: 'VisualAlgo.net: Better Interactive Animated Visualization!'},

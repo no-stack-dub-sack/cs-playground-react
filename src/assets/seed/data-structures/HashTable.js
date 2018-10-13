@@ -203,7 +203,7 @@ table.print()
 `,
   resources: [
     { href: 'http://www.geeksforgeeks.org/hashing-data-structure/', caption: 'GeeksforGeeks.org'},
-    { href: 'https://beta.freecodecamp.org/en/challenges/coding-interview-data-structure-questions/create-a-hash-table', caption: 'freeCodeCamp Challenge'},
+    { href: 'https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-hash-table', caption: 'freeCodeCamp Challenge'},
     { href: 'https://en.wikipedia.org/wiki/Hash_table', caption: 'Wikipedia'},
     { href: 'https://guide.freecodecamp.org/computer-science/data-structures/hash-tables', caption: 'freeCodeCamp Guides'},
     { href: 'https://www.cs.usfca.edu/~galles/visualization/OpenHash.html', caption: 'Interactive Animated Visualization 1'},
