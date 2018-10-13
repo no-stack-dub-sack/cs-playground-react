@@ -17,7 +17,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 # Sorting Algorithms
 
 ### Quicksort
-- https://beta.freecodecamp.org/en/challenges/coding-interview-algorithm-questions/implement-quick-sort __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/algorithms/implement-quick-sort/ __(interactive challenge)__
 - https://www.nczonline.net/blog/2012/11/27/computer-science-in-javascript-quicksort/
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/quick-sort
 - https://en.wikipedia.org/wiki/Quicksort
@@ -27,7 +27,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 
 ### Merge sort
 - https://www.nczonline.net/blog/2012/10/02/computer-science-and-javascript-merge-sort/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-algorithm-questions/implement-merge-sort __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/algorithms/implement-merge-sort/ __(interactive challenge)__
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/merge-sort/
 - https://en.wikipedia.org/wiki/Merge_sort
 - http://www.geeksforgeeks.org/merge-sort/
@@ -36,7 +36,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Bubble sort
 - http://www.geeksforgeeks.org/bubble-sort/
 - https://www.nczonline.net/blog/2009/05/26/computer-science-in-javascript-bubble-sort/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-algorithm-questions/implement-bubble-sort __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/algorithms/implement-bubble-sort __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Bubble_sort
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/bubble-sort/
 - https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html __(excellent visualization!)__
@@ -44,7 +44,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Insertion sort
 - http://www.geeksforgeeks.org/insertion-sort/
 - https://www.nczonline.net/blog/2012/09/17/computer-science-in-javascript-insertion-sort/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-algorithm-questions/implement-insertion-sort __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/algorithms/implement-insertion-sort __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Insertion_sort
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/insertion-sort/
 - https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html __(excellent visualization!)__
@@ -52,7 +52,7 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 ### Selection sort
 - http://www.geeksforgeeks.org/selection-sort/
 - https://www.nczonline.net/blog/2009/09/08/computer-science-in-javascript-selection-sort/
-- https://beta.freecodecamp.org/en/challenges/coding-interview-algorithm-questions/implement-selection-sort __(interactive challenge)__
+- https://learn.freecodecamp.org/coding-interview-prep/algorithms/implement-selection-sort __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Selection_sort
 - https://guide.freecodecamp.org/algorithms/sorting-algorithms/selection-sort/
 - https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html __(excellent visualization!)__
