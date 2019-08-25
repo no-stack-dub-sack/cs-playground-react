@@ -126,11 +126,13 @@ class BinarySearchTree {
 			// node only has right child
 			else if (!node.left) {
 				node.value = node.right.value
+				node.left = node.right.left
 				node.right = node.right.right
 			}
 			// node only has left child
 			else if (!node.right) {
 				node.value = node.left.value
+				node.right = node.left.right
 				node.left = node.left.left
 			}
 			// node has 2 children
