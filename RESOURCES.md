@@ -114,6 +114,8 @@ Here's a pretty awesome Big-O notation cheat sheet to help you learn the ropes! 
 - https://en.wikipedia.org/wiki/Doubly_linked_list#Circular_doubly_linked_lists/
 
 ### Hash Table
+- https://medium.com/basecs/taking-hash-tables-off-the-shelf-139cbf4752f0
+- https://medium.com/basecs/hashing-out-hash-functions-ea5dd8beb4dd
 - http://www.geeksforgeeks.org/hashing-data-structure/
 - https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-hash-table __(interactive challenge)__
 - https://en.wikipedia.org/wiki/Hash_table

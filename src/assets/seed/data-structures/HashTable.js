@@ -3,7 +3,7 @@ export default {
   seed:
 `class HashTable {
     constructor() {
-        this.collection = {}
+        this.data = {}
     }
 
     // methods to implement:
@@ -14,23 +14,132 @@ export default {
 }
 `,
   solution:
-`/**
+  `/**
+  * @class HashBucketNode
+  * @property {(number|string)} value The node's value
+  * @property {?Object.<Node>} next The next node
+  */
+
+class HashBucketNode {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+/**
+ * @class HashBucket A simple Singly-Linked List data structure for use as our hash buckets.
+ * This will allow us to implement chaining to handle collisions in our hash table.
+ * @property {?Object.<Node>} head Root node of collection
+ * @property {number} length The length of the list
+ * @method add @param {(number|string)} value Adds node to List
+ * @method remove @param {(number|string)} value @returns {?(number|string)} removed element
+ * @method indexOf @param {(number|string)} value @returns {number} index of a given element
+ */
+
+class HashBucket {
+    constructor() {
+        this.length = 0
+        this.head = null
+    }
+
+
+    get size() {
+        return this.length
+    }
+
+
+    add(value) {
+        const newNode = new HashBucketNode(value)
+        if (!this.head) {
+            this.head = newNode
+        } else {
+            var currentNode = this.head
+            while (currentNode.next) {
+                currentNode = currentNode.next
+            }
+
+            currentNode.next = newNode
+        }
+
+        this.length++
+        return true
+    }
+
+
+    remove(value) {
+        if (this.isEmpty()) {
+          return null
+        }
+
+        if (this.head.value === value) {
+            this.length--
+            this.head = this.head.next
+            return true
+        }
+
+        let currentNode = this.head, previousNode
+        while (currentNode.value !== value) {
+            previousNode = currentNode
+            currentNode = currentNode.next
+            // no match found
+            if (!currentNode) {
+              return null
+            }
+        }
+
+        this.length--
+        previousNode.next = currentNode.next
+        return true
+    }
+
+
+    indexOf(value) {
+        var count = 0
+        var currentNode = this.head
+        if (!currentNode) return -1
+
+        while (value !== currentNode.value) {
+            if (currentNode.next === null) {
+                return -1
+            }
+            currentNode = currentNode.next
+            count++
+        }
+
+        return count
+    }
+}
+
+/**
  * @class Hash Table data structure
- * @property {object} collection
+ * @property {object} data
  * @method hash @param {string} str The function that produces our hash keys
  * @method add @param {string} key @param {*} value The key value pair to add to the hash table
  * @method remove @param {string} key @returns {*} Accepts an un-hashed key, removes and returns associated value
  * @method lookup @param {string} key @returns {*} Accepts an un-hashed key, returns associated value
  */
 
- class HashTable {
+class HashTable {
+    // Note: HashTables often use arrays to store data, and the keys produced
+    // represent array indices (which is why the concept of distribution is so
+    // important when it comes to hashing functions, i.e. the hashing function
+    // should produce keys that are as evenly distributed as possible across the
+    // array's indices). However, in our case, we are using an object to make it
+    // easier to print and visualize the structure in the console, given the wide
+    // range of indices our hashing function creates.
     constructor() {
-        this.collection = {}
+        this.data = {}
     }
 
-    /* we use a naive hashing function
-    to demonstrate the problems that
-    can arise from collision */
+
+    /**
+     * we use a naive hashing function
+     * to demonstrate collision. If you're
+     * interested in good hashing functions,
+     * djb2 is a good place to start. It has
+     * good distribution, and is widely used.
+    */
     hash(str) {
         let hash = 0
         str = String(str)
@@ -43,165 +152,218 @@ export default {
     }
 
 
-    add(key, value) {
-        const hash = this.hash(key)
-        const currentValue = this.collection[hash]
+    add(value) {
+        	const key = this.hash(value)
 
-        if (!currentValue) {
-            this.collection[hash] = { key, value }
-            return
-        }
+            if (!this.data[key]) {
+                const bucket = new HashBucket()
+                bucket.add(value)
 
-        // handle first instance of collision
-        if (!Array.isArray(currentValue)) {
-            // prevent duplicate keys (see note on line 171)
-            if (key === currentValue.key) {
-                return null
+                this.data[key] = bucket
             }
 
-            this.collection[hash] = [ currentValue, { key, value } ]
-
-            return
-        }
-
-        // handle subsequent collisions
-        for (let i in currentValue) {
-            // prevent duplicate keys
-            if (currentValue[i].key === key) {
-                return null
+            // handle collisions using chaining:
+            // each bucket is a LinkedList. Add
+            // items to end of list where bucket
+            // already exists at this index.
+            else {
+                const bucket = this.data[key]
+                bucket.add(value)
             }
-        }
-
-        this.collection[hash] = [ ...currentValue, { key, value } ]
     }
 
 
-    remove(key) {
-        const hash = this.hash(key)
-        const currentValue = this.collection[hash]
+	remove(value) {
+        const key = this.hash(value)
 
-        if (!currentValue) {
+        if (!this.data[key]) {
             return null
         }
 
-        if (!Array.isArray(currentValue)) {
-            delete this.collection[hash]
-            return currentValue.value
-        }
-
-        // handle collision
-        let deleted
-        for (let i in currentValue) {
-            if (currentValue[i].key === key) {
-                deleted = currentValue[i]
-                currentValue.splice(i, 1)
-            }
-        }
-
-        // remove bucket if 1 value left
-        if (currentValue.length === 1) {
-            this.collection[hash] = currentValue[0]
-        }
-
-        return deleted.value
+        return this.data[key].remove(value)
     }
 
 
-    lookup(key) {
-        const hash = this.hash(key)
-        const currentValue = this.collection[hash]
+	lookup(value) {
+        const key = this.hash(value)
 
-        if (!currentValue) {
+        if (!this.data[key]) {
             return null
         }
 
-        // only one key/val pair stored at this hash key
-        if (currentValue.key === key) {
-            return currentValue.value
-        }
+        const bucket = this.data[key]
 
-        // otherwise, collision
-        // iterate through bucket for match
-        for (let i in currentValue) {
-            if (currentValue[i].key === key) {
-                return currentValue[i].value
-            }
+        if (bucket.indexOf(value) > -1) {
+            return key
         }
 
         return null
     }
 
 
-    print() {
-        console.log(JSON.stringify(this.collection, null, 2))
+	print() {
+        console.log(JSON.stringify(this.data, null, 2))
     }
 }
 
-// example usage:
+const randomWords = [
+    'a',
+    'airplane',
+    'and',
+    'approach',
+    'baby',
+    'basic',
+    'button',
+    'can',
+    'case',
+    'chain',
+    'chaining',
+    'collision',
+    'collisions',
+    'computer',
+    'contains',
+    'create',
+    'created',
+    'cycle',
+    'data',
+    'demonstrate',
+    'dictionary',
+    'distribution',
+    'does',
+    'dress',
+    'explosive',
+    'eyes',
+    'for',
+    'fruit',
+    'function',
+    'fungus',
+    'gas',
+    'good',
+    'grapes',
+    'guitar',
+    'handling',
+    'hash',
+    'hashing',
+    'have',
+    'here',
+    'hieroglyph',
+    'hood',
+    'hose',
+    'ice',
+    'ideal',
+    'incomplete',
+    'in',
+    'insect',
+    'is',
+    'junk',
+    'kaleidoscope',
+    'knife',
+    'library',
+    'liquid',
+    'maze',
+    'monster',
+    'mosquito',
+    'naive',
+    'necklace',
+    'needle',
+    'not',
+    'note',
+    'now',
+    'obvious',
+    'of',
+    'onion',
+    'only',
+    'our',
+    'parachute',
+    'passport',
+    'pretty',
+    'produces',
+    'pyramid',
+    'radar',
+    'rainbow',
+    'reasons',
+    'regular',
+    'regularly',
+    'rope',
+    'saddle',
+    'sample',
+    'sentence',
+    'signature',
+    'since',
+    'small',
+    'software',
+    'spellcheck',
+    'spellchecker',
+    'table',
+    'that',
+    'the',
+    'this',
+    'to',
+    'tunnel',
+    'typescript',
+    'umbrella',
+    'under',
+    'use',
+    'uses',
+    'using',
+    'utilize',
+    'utilizes',
+    'videotape',
+    'vulture',
+    'we',
+    'web',
+    'which',
+    'with',
+    'woman',
+    'word',
+    'words',
+    'words',
+    'worm',
+    'x-ray'
+]
 
-const table = new HashTable()
+const dictionary = new HashTable()
 
-// there are several examples of collision here.
-// luckily, our Hash Table can handle it!
+// populate our hash table with a small sample of random words
+randomWords.forEach(word => dictionary.add(word.toLowerCase()))
 
-// for example, even though the data is unique,
-// these key-value pairs produce the same hash key:
-table.add('Aidan Smith', '(555) 876-2344')
-table.add('Aidan Smith', '(555) 234-4247')
-table.add('Nadia Mihst', '(555) 934-5288')
+// create a simplified spellcheck function
+const spellcheck = (str) => {
+    return str.split(' ').map(word => {
+        const strippedWord = word.replace(/^[^a-zA-Z]|[^a-zA-Z]$/, '')
+        const key = dictionary.lookup(strippedWord.toLowerCase())
 
-// there are some other tricky examples here too. can you spot them?
-table.add('Darin Shultz', '(555) 979-8276')
-table.add('Tyler Tate', '(555) 278-4327')
-table.add('Etta Tyler', '(555) 525-0384')
-table.add('Daisy Harris', '(555) 634-0053')
-table.add('Diana Shmit', '(555) 451-8529')
-table.add('Sayid Shirra', '(555) 232-5978')
-table.add('Thomas Brock', '(555) 244-9832')
+        if (!key) {
+            return '**' + word + '**'
+        }
 
-table.print()
+		return word
+    }).join(' ')
+}
 
-// this is a simple and efficient lookup, since there is no collision at this key
-console.log("\\nlookup 'Thomas Brock': " + table.lookup('Thomas Brock'))
+const sentence = 'Here is a sentence to spellcheck using a prettty basic spellchecker which utilizes a dictionary created with our ' +
+      			 'haash table under the hood. The hash table uses a naive hashing function which does not have ideal distrobution ' +
+      			 'and produces colisions pretty regularly. This is good in our case since now we can demonstrate handling collisions ' +
+      			 'using the chaining approach! Note, that, for obvious reasons, this dictionary is imcomplete, and only contains a ' +
+      			 'small smaple of words!'
 
-// this lookup is less efficient than the O(n) average
-// lookup time that can usually be achieved with hash tables.
-console.log("lookup 'Sayid Shirra': " + table.lookup('Sayid Shirra'))
+console.log(spellcheck(sentence))
 
-/* since there are other elements that share the same hash this key-value
- * pair produces, our lookup function must iterate through that bucket of
- * key-value pairs until it finds a match. this is why a good hashing function
- * will strive to avoid collision as much as possible - collision defeats the
- * efficiency that makes hash tables great! can you think of a simple solution
- * for improving the hashing function to avoid this collision?
- */
+console.log('\\nSome collision examples:')
+console.log('dictionary.lookup("junk") = ', dictionary.lookup("junk"))
+console.log('dictionary.lookup("this") = ', dictionary.lookup("this"))
+console.log('dictionary.lookup("have") = ', dictionary.lookup("have"))
+console.log('dictionary.lookup("hash") = ', dictionary.lookup("hash"))
+console.log('dictionary.lookup("here") = ', dictionary.lookup("here"))
+console.log('dictionary.lookup("rainbow") = ', dictionary.lookup("rainbow"))
+console.log('dictionary.lookup("regular") = ', dictionary.lookup("regular"))
 
-// in cases of removal, our hash table is susceptible to
-// the same efficiency drawbacks if collision is present:
-
-table.remove('Aidan Smith')
-table.remove('Nadia Mihst')
-table.remove('Darin Shultz')
-
-console.log("lookup 'Nadia Mihst': " + table.lookup('Nadia Mihst') + '\\n\\n')
-
-table.print()
-
-/* NOTE FROM LINE 41:
- * in a real phone book example, dupe keys would
- * need to be handled. It might make more sense
- * to use the phone number as the key since they
- * are guaranteed to be unique. But then that begs
- * the question, why use a hashtable at all and not
- * a regular JS object with phone numbers as keys and
- * names as values? This would provide constant lookup
- * time and be less complicated. As you can see, this
- * is just for example purposes, and a real-world hash
- * table implementation will have to make sense and be
- * justified by your particular needs and use-case.
- */
+console.log('\\nOur hash table:')
+console.log(dictionary.print())
 `,
   resources: [
+    { href: 'https://medium.com/basecs/hashing-out-hash-functions-ea5dd8beb4dd', caption: 'Hashing out Hashing Functions (BaseCS Medium Article)'},
+    { href: 'https://medium.com/basecs/taking-hash-tables-off-the-shelf-139cbf4752f0', caption: 'Taking Hash Tables Off The Shelf (BaseCS Medium Article)'},
     { href: 'http://www.geeksforgeeks.org/hashing-data-structure/', caption: 'GeeksforGeeks.org'},
     { href: 'https://learn.freecodecamp.org/coding-interview-prep/data-structures/create-a-hash-table', caption: 'freeCodeCamp Challenge'},
     { href: 'https://en.wikipedia.org/wiki/Hash_table', caption: 'Wikipedia'},
