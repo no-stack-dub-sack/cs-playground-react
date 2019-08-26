@@ -1,4 +1,11 @@
-## 0.3.0 (June 15th, 2018)
+## 0.3.2 (August, 25th, 2019)
+Small update:
+- small fix to BST solution thanks to @mansisce
+- rewrite HashTable solution to make much more sense and provide a more practical real-world example
+- remove HashTable challenge tests until new ones can be written
+- add new HashTable resources
+
+## 0.3.1 (June 15th, 2018)
 Small update including minor fixes (typos, etc.). Also:
 - fix 'all of a sudden' babel-standalone bug catching syntax error in loop protect code (that didn't seem to exist), was causing issues with executing code on Chrome for windows (not on Mac for some reason?)
 - add ability to toggle loop-protect via key binding
