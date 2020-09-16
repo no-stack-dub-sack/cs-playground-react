@@ -1,5 +1,14 @@
 # CS-Playground-React: Algos & Data Structures
 
+## NOTE:
+This application is still live at http://cs-playground-react.surge.sh, however there will be no future releases and the repository has been made readonly. In addition, some features such as code-sharing have been disabled due to server costs and low demand. For those of you who have enjoyed the app over the last few years and made pull requests, suggestions, etc. thank you! This was a fun starter project for me as I was learning to code and it will always hold a special place in my :heart:.
+
+Many thanks,
+
+Pete
+
+***
+
 An interactive overview of common sorting algorithms and data structures, implemented in JavaScript, with optional "challenge mode" (get your code to pass all the tests!). This also includes several other miscellaneous algorithm challenges, similar to those asked in programming interviews. This is intended to help you brush up on your computer science fundamentals, algorithm, and problem solving skills. Contributions are welcome!
 
 __This is meant as a reference / review only &mdash; if you haven't already learned / solved these problems on your own, I recommend giving them a try in the editor first before looking at the solution code! If you get stuck, there are plenty of resources accessible right through the app to help you along. A full list of resources can also be found [here](https://github.com/no-stack-dub-sack/cs-playground-react/blob/master/RESOURCES.md).__
